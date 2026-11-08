@@ -111,12 +111,13 @@ const isEven = index % 2 === 0;
           muted
           loop
           playsinline
-          preload="metadata"
+          preload="none"
+          poster={service.videoSrc.replace('.mp4', '.webp')}
+          data-src={service.videoSrc}
           crossorigin="anonymous"
           class="block h-full w-full object-cover"
           aria-label="Video player"
         >
-          <source src={service.videoSrc} type="video/mp4" />
         </video>
       </div>
     </div>

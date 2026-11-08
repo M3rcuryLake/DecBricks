@@ -1,6 +1,7 @@
 import { gsap, ScrollTrigger, SplitText, bp, bus, prefersReducedMotion } from './core/gsap';
 import { getLenis } from './smooth-scroll';
-import { getWebGLExperience, type WebGLTrail } from './webgl/experience';
+import { getWebGLExperience } from './webgl/instance';
+import type { WebGLTrail } from './webgl/experience';
 import { CLIENT_LOGOS, type ClientLogo, SERVICES } from '../data/services';
 
 function initServicesHero(heroEl: HTMLElement) {
@@ -155,6 +156,10 @@ function initServiceBlocks() {
 
           const playVideo = () => {
             if (prefersReducedMotion()) return;
+            if (!video.src && video.dataset.src) {
+              video.src = video.dataset.src;
+              video.load();
+            }
             video.play().catch(() => {});
           };
           const pauseVideo = () => {

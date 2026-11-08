@@ -5,6 +5,7 @@ import { bp } from './core/gsap';
  * variant matches the viewport (desktop vs mobile). Same behaviour here.
  */
 export function initPreviewVideos() {
+  let io: IntersectionObserver | null = null;
   const sync = () => {
     const desktop = window.innerWidth >= bp.lg;
     document.querySelectorAll<HTMLVideoElement>('video[data-preview-mp4]').forEach((v) => {
@@ -12,15 +13,30 @@ export function initPreviewVideos() {
       const active = isMobileVariant ? !desktop : desktop;
       const has = v.querySelector('source');
       if (active && !has) {
-        const s = document.createElement('source');
-        s.src = v.dataset.previewMp4!;
-        s.type = 'video/mp4';
-        v.appendChild(s);
-        v.load();
-        v.play().catch(() => {});
+        if (!io) {
+          io = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              const video = entry.target as HTMLVideoElement;
+              if (entry.isIntersecting) {
+                if (!video.querySelector('source')) {
+                  const s = document.createElement('source');
+                  s.src = video.dataset.previewMp4!;
+                  s.type = 'video/mp4';
+                  video.appendChild(s);
+                  video.load();
+                }
+                video.play().catch(() => {});
+              } else {
+                video.pause();
+              }
+            });
+          }, { rootMargin: '100px' });
+        }
+        io.observe(v);
       } else if (!active && has) {
         has.remove();
         v.load();
+        io?.unobserve(v);
       }
     });
   };
@@ -33,6 +49,7 @@ export function initPreviewVideos() {
   window.addEventListener('resize', onResize);
 
   return () => {
+    io?.disconnect();
     window.removeEventListener('resize', onResize);
     window.clearTimeout(t);
   };
