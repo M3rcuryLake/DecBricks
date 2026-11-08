@@ -1,6 +1,6 @@
 import { gsap, SplitText, bus, bp, prefersReducedMotion } from './core/gsap';
 
-const DURATION = 0.8;
+const DURATION = 0.5;
 const EASE = 'smooth-2';
 const READOUT_DELAY = 0.2;
 const STAGE_OVERLAP = -0.2;
@@ -206,9 +206,15 @@ export function initLoader() {
     const s = stageSize(0);
     gsap.set(box, { width: s.width, height: s.height, scale: 0 });
   };
+  let readoutRaf: number | null = null;
   const updateReadout = () => {
-    widthEl.textContent = String(Math.floor(size.width * scale));
-    heightEl.textContent = String(Math.floor(size.height * scale));
+    if (readoutRaf === null) {
+      readoutRaf = requestAnimationFrame(() => {
+        widthEl.textContent = String(Math.floor(size.width * scale));
+        heightEl.textContent = String(Math.floor(size.height * scale));
+        readoutRaf = null;
+      });
+    }
   };
 
   applyConfig();

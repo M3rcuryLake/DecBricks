@@ -161,7 +161,6 @@ export function initFooter() {
   if (!footer) return;
 
   initSvgRectReveal(footer);
-  initSocialPillsRandomLayout(footer);
 
   const inner = footer.querySelector<HTMLElement>('.structure-footer__inner');
   const marquee = footer.querySelector<HTMLElement>('.structure-footer__marquee');

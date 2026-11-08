@@ -61,18 +61,26 @@ export class MomentumHover {
     this.prevY = e.clientY;
   };
 
-  private startTracking = () => window.addEventListener('mousemove', this.trackVelocity);
+  private isTracking = false;
+  private startTracking = () => {
+    if (!this.isTracking) {
+      this.isTracking = true;
+      window.addEventListener('mousemove', this.trackVelocity, {
+        passive: true,
+        signal: this.controller.signal,
+      });
+    }
+  };
   private stopTracking = () => {
-    window.removeEventListener('mousemove', this.trackVelocity);
-    this.velX = 0;
-    this.velY = 0;
+    if (this.isTracking) {
+      this.isTracking = false;
+      window.removeEventListener('mousemove', this.trackVelocity);
+      this.velX = 0;
+      this.velY = 0;
+    }
   };
 
   private initScrollTrigger() {
-    window.addEventListener('mousemove', this.trackVelocity, {
-      passive: true,
-      signal: this.controller.signal,
-    });
     this.scrollTrigger = ScrollTrigger.create({
       trigger: this.trigger,
       start: 'top bottom',

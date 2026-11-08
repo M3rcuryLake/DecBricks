@@ -91,7 +91,7 @@ export function initPageTransition(callbacks: PageTransitionCallbacks) {
           const item = document.createElement('div');
           item.dataset.row = String(r);
           item.className =
-            'structure-transitionOverlay__item aspect-square w-full bg-neonGreen will-change-transform motion-safe:scale-[1.01]';
+            'structure-transitionOverlay__item aspect-square w-full bg-neonGreen motion-safe:scale-[1.01]';
           frag.appendChild(item);
         }
         col.innerHTML = '';
