@@ -1,6 +1,7 @@
 import { gsap, ScrollTrigger, SplitText, bus, bp } from './core/gsap';
 import { getLenis } from './smooth-scroll';
-import { getWebGLExperience, type WebGLImage } from './webgl/experience';
+import { getWebGLExperience } from './webgl/instance';
+import type { WebGLImage } from './webgl/experience';
 
 type Conds = { isDesktop: boolean; isMobile: boolean; reduceMotion: boolean };
 const MQ = {

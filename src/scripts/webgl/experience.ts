@@ -1066,6 +1066,7 @@ export class WebGLTrail {
 export interface WebGLExperienceAPI {
   fgScene: THREE.Scene;
   bgScene: THREE.Scene;
+  createGroup?: () => THREE.Group;
   createImage: (el: HTMLImageElement | HTMLVideoElement, options?: WebGLImageOptions) => WebGLImage;
   createTrail: (el: SVGSVGElement, options?: WebGLTrailOptions) => WebGLTrail;
   relayout: () => void;
@@ -1467,11 +1468,13 @@ export function initWebGL() {
   experienceInstance = {
     fgScene,
     bgScene,
+    createGroup: () => new THREE.Group(),
     createImage,
     createTrail,
     relayout,
     rebuildPageTargets,
   };
+  (window as any).__webglExp = experienceInstance;
   window.dispatchEvent(new CustomEvent('threeJS-ready'));
   return experienceInstance;
 }

@@ -24,7 +24,21 @@ import { initCaseStudies } from './case-studies';
 import { initTestimonials } from './testimonials';
 import { initContact } from './contact';
 import { initFooter } from './footer';
-import { getWebGLExperience, initWebGL } from './webgl/experience';
+import { bp } from './core/gsap';
+import { getWebGLExperience } from './webgl/instance';
+
+let webglModule: typeof import('./webgl/experience') | null = null;
+function loadWebGL() {
+  if (typeof window === 'undefined' || window.innerWidth < bp.lg) return;
+  if (!webglModule) {
+    import('./webgl/experience').then((mod) => {
+      webglModule = mod;
+      mod.initWebGL();
+    });
+  } else {
+    webglModule.initWebGL();
+  }
+}
 
 let hero: Hero | undefined;
 let heroPlayHandler: (() => void) | null = null;
@@ -71,7 +85,10 @@ function playInlineVideos() {
 // Initial boot
 initSmoothScroll();
 teardown(initPreviewVideos());
-initWebGL();
+loadWebGL();
+window.addEventListener('resize', () => {
+  if (window.innerWidth >= bp.lg) loadWebGL();
+}, { passive: true });
 initSmileyTexts();
 teardown(initButtons());
 initMenu();
