@@ -1119,8 +1119,6 @@ export function initWebGL() {
   const fgScene = new THREE.Scene();
   const camera = new THREE.OrthographicCamera(width / -2, width / 2, height / 2, height / -2, 1, 1000);
   camera.position.set(0, 0, 2);
-  bgScene.add(camera);
-  fgScene.add(camera);
 
   // TouchTexture scene + separate WebGLRenderTargets per renderer context
   const touchScene = new THREE.Scene();
@@ -1287,7 +1285,7 @@ export function initWebGL() {
       });
 
       const mesh = new THREE.Mesh(sharedPlane, mat);
-      mesh.position.set(space.x, space.y, space.zIndex);
+      mesh.position.set(space.x, space.y, -1);
       mesh.scale.set(space.width, space.height, 1);
       bgScene.add(mesh);
       bgItems.push({ el, mesh });
