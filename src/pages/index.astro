@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import Loader from '../components/Loader.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import CaseStudies from '../components/CaseStudies.astro';
+import Testimonials from '../components/Testimonials.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import TransitionOverlay from '../components/TransitionOverlay.astro';
+---
+<Base>
+  <div id="__nuxt">
+    <main class="layout overflow-hidden bg-darkPurple">
+      <Loader />
+      <div class="page page-home z-10 bg-white">
+        <Header />
+        <Hero />
+        <CaseStudies />
+        <Testimonials />
+        <ContactForm />
+        <Footer />
+      </div>
+      <CookieBanner />
+      <TransitionOverlay />
+    </main>
+  </div>
+  <script>import '../scripts/main';</script>
+</Base>

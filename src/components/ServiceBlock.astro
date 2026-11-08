@@ -1,0 +1,175 @@
+---
+import type { ServiceItem } from '../data/services';
+
+export interface Props {
+  service: ServiceItem;
+  index: number;
+}
+
+const { service, index } = Astro.props;
+const isEven = index % 2 === 0;
+---
+
+<article
+  id={service.id}
+  class:list={[
+    'parts-serviceBlock relative flex flex-col border border-darkestPurple/15 px-14 pt-25 pb-30 lg:flex-row lg:items-stretch lg:justify-between lg:gap-40 lg:pt-25 lg:pb-35 xl:gap-60 xl:pt-30 xl:pb-45 3xl:pt-35 3xl:pb-50 4xl:pt-40 4xl:pb-60',
+    isEven
+      ? 'lg:flex-row-reverse lg:pr-35 lg:pl-20 xl:pr-45 xl:pl-25 3xl:pr-55 3xl:pl-30 4xl:pr-65 4xl:pl-35'
+      : 'lg:pr-20 lg:pl-35 xl:pr-25 xl:pl-45 3xl:pr-30 3xl:pl-55 4xl:pr-35 4xl:pl-65',
+  ]}
+  aria-labelledby={`${service.id}-heading`}
+>
+  <span class="absolute -top-px -left-px size-9 bg-purple" aria-hidden="true"></span>
+  <span class="absolute -top-px -right-px size-9 bg-purple" aria-hidden="true"></span>
+  <span class="absolute -bottom-px -left-px size-9 bg-purple" aria-hidden="true"></span>
+  <span class="absolute -right-px -bottom-px size-9 bg-purple" aria-hidden="true"></span>
+  <div
+    class:list={[
+      !isEven && 'lg:-right-15 lg:left-auto 3xl:-right-20 4xl:-right-25',
+      'pointer-events-none absolute bottom-0 left-0 h-265 w-full overflow-hidden lg:h-300 lg:w-380 xl:h-375 xl:w-480 3xl:h-480 3xl:w-615 4xl:h-560 4xl:w-715',
+    ]}
+    aria-hidden="true"
+  >
+    <span
+      class="absolute top-70 -left-7 font-offBit text-[275px] leading-[0.98] font-bold whitespace-nowrap text-purple/5 uppercase lg:top-75 lg:text-[310px] xl:top-95 xl:-left-10 xl:text-[390px] 3xl:top-125 3xl:text-[500px] 4xl:top-145 4xl:-left-15 4xl:text-[580px]"
+    >
+      {service.number}
+    </span>
+  </div>
+  <div
+    class="relative z-1 flex flex-col lg:max-w-1120 lg:flex-1 lg:justify-between lg:gap-50 lg:pt-10 xl:pt-15 3xl:gap-60 4xl:pt-20"
+  >
+    <div class="flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-25">
+      <div>
+        <p
+          class="flex items-center gap-15 font-neuePower text-[12px] leading-none font-bold text-darkPurple uppercase lg:gap-10 xl:text-[14px] 3xl:text-[16px] 4xl:text-[18px]"
+        >
+          <svg
+            class="svgs-doubleSlash w-15 shrink-0 text-purple xl:w-20 4xl:w-25"
+            viewBox="0 0 18 10"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <rect x="8" y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 8 9.27246)" fill="currentColor" />
+            <rect x="11.0938" y="6.18066" width="3.09091" height="3.09091" transform="rotate(-90 11.0938 6.18066)" fill="currentColor" />
+            <rect x="14.1797" y="3.09082" width="3.09091" height="3.09091" transform="rotate(-90 14.1797 3.09082)" fill="currentColor" />
+            <rect y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 0 9.27246)" fill="currentColor" />
+            <rect x="3.09375" y="6.18066" width="3.09091" height="3.09091" transform="rotate(-90 3.09375 6.18066)" fill="currentColor" />
+            <rect x="6.17969" y="3.09082" width="3.09091" height="3.09091" transform="rotate(-90 6.17969 3.09082)" fill="currentColor" />
+          </svg>
+          <span>{service.eyebrow}</span>
+        </p>
+        <h2
+          id={`${service.id}-heading`}
+          class="mt-5 pl-30 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPurple uppercase lg:mt-10 lg:pl-0 lg:text-[36px] xl:text-[44px] 3xl:mt-15 3xl:text-[52px] 4xl:text-[60px]"
+        >
+          {service.title}
+        </h2>
+      </div>
+      <div class="lg:max-w-480">
+        <p
+          class="mt-15 font-neuePower text-[16px] leading-[1.1] font-bold text-darkPurple lg:mt-0 lg:leading-[1.05] xl:text-[18px] 3xl:text-[20px] 4xl:text-[22px]"
+        >
+          {service.lead}
+        </p>
+        <p
+          class="mt-45 font-nohemi text-[16px] leading-[22px] text-darkPurple lg:mt-25 lg:max-w-455 lg:text-[14px] lg:leading-[20px] xl:mt-30 3xl:mt-40 3xl:text-[16px] 3xl:leading-[22px]"
+        >
+          {service.body}
+        </p>
+      </div>
+    </div>
+    <ul class="mt-30 flex flex-col gap-4 lg:mt-0 lg:grid lg:grid-cols-2 lg:gap-x-25 lg:gap-y-10">
+      {
+        service.capabilities.map((capability) => (
+          <li class="flex h-35 items-center gap-7 rounded-l-[18px] rounded-br-12 bg-lightPurple px-15 font-nohemi text-[14px] leading-none text-darkPurple lg:h-40 lg:gap-15 lg:rounded-l-20 lg:rounded-br-16 lg:px-25 xl:h-45 xl:rounded-l-[23px] xl:rounded-br-20 xl:text-[16px] 3xl:h-50 3xl:rounded-l-[25px] 3xl:text-[18px] 4xl:h-60 4xl:gap-25 4xl:rounded-l-30 4xl:rounded-br-24 4xl:px-35 4xl:text-[20px]">
+            <svg
+              class="svgs-cross w-8 shrink-0 text-purple"
+              viewBox="0 0 12 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <rect x="4" y="8" width="4" height="4" transform="rotate(-90 4 8)" fill="currentColor" />
+              <rect x="8" y="4" width="4" height="4" transform="rotate(-90 8 4)" fill="currentColor" />
+              <rect y="4" width="4" height="4" transform="rotate(-90 0 4)" fill="currentColor" />
+              <rect y="12" width="4" height="4" transform="rotate(-90 0 12)" fill="currentColor" />
+              <rect x="8" y="12" width="4" height="4" transform="rotate(-90 8 12)" fill="currentColor" />
+            </svg>
+            <span>{capability}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <div class="relative z-1 mt-40 flex flex-col lg:mt-0 lg:w-260 lg:shrink-0 xl:w-300 3xl:w-360 4xl:w-410">
+    <div class="aspect-4/5 w-full overflow-hidden rounded-40 rounded-tr-none">
+      <div class="parts-autoplayVideo h-full w-full">
+        <video
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          crossorigin="anonymous"
+          class="block h-full w-full object-cover"
+          aria-label="Video player"
+        >
+          <source src={service.videoSrc} type="video/mp4" />
+        </video>
+      </div>
+    </div>
+    <div
+      class:list={[
+        isEven ? 'lg:items-start' : 'lg:items-end',
+        'mt-25 flex flex-col items-center lg:mt-auto lg:pt-40',
+      ]}
+    >
+      <p class="flex items-center gap-8 font-neuePower text-[12px] leading-none font-bold text-darkPurple uppercase">
+        <svg
+          class="svgs-doubleSlash w-15 shrink-0 text-purple"
+          viewBox="0 0 18 10"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <rect x="8" y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 8 9.27246)" fill="currentColor" />
+          <rect x="11.0938" y="6.18066" width="3.09091" height="3.09091" transform="rotate(-90 11.0938 6.18066)" fill="currentColor" />
+          <rect x="14.1797" y="3.09082" width="3.09091" height="3.09091" transform="rotate(-90 14.1797 3.09082)" fill="currentColor" />
+          <rect y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 0 9.27246)" fill="currentColor" />
+          <rect x="3.09375" y="6.18066" width="3.09091" height="3.09091" transform="rotate(-90 3.09375 6.18066)" fill="currentColor" />
+          <rect x="6.17969" y="3.09082" width="3.09091" height="3.09091" transform="rotate(-90 6.17969 3.09082)" fill="currentColor" />
+        </svg>
+        Projects
+      </p>
+      <ul
+        class:list={[
+          isEven ? 'lg:justify-start' : 'lg:justify-end',
+          'mt-15 flex flex-wrap justify-center gap-5 lg:mt-20 lg:gap-9',
+        ]}
+      >
+        {
+          service.projects.map((project) => (
+            <li class="flex h-25 items-center gap-7 rounded-6 bg-neonGreen px-10 font-neuePower text-[12px] leading-none font-bold text-darkPurple uppercase lg:text-[14px]">
+              <svg
+                class="svgs-cross w-6 shrink-0"
+                viewBox="0 0 12 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <rect x="4" y="8" width="4" height="4" transform="rotate(-90 4 8)" fill="currentColor" />
+                <rect x="8" y="4" width="4" height="4" transform="rotate(-90 8 4)" fill="currentColor" />
+                <rect y="4" width="4" height="4" transform="rotate(-90 0 4)" fill="currentColor" />
+                <rect y="12" width="4" height="4" transform="rotate(-90 0 12)" fill="currentColor" />
+                <rect x="8" y="12" width="4" height="4" transform="rotate(-90 8 12)" fill="currentColor" />
+              </svg>
+              <span>{project}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</article>

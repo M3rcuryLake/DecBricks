@@ -1,0 +1,15 @@
+---
+const COLS = 12;
+---
+
+<div
+  class="structure-transitionOverlay grid-cols pointer-events-none fixed inset-0 z-105 grid h-full w-full"
+  style="display: none;"
+  aria-hidden="true"
+>
+  {
+    Array.from({ length: COLS }).map(() => (
+      <div class="structure-transitionOverlay__column col-span-1 h-full" />
+    ))
+  }
+</div>

@@ -1,0 +1,247 @@
+---
+interface Props {
+  /** Smiley sentence; the original CMS serves the singular form on /services. */
+  smileyCopy?: string;
+}
+const {
+  smileyCopy = 'We’re a games industry creative leader that will put your players first. Drop us a message!',
+} = Astro.props;
+---
+<section
+  id="contact"
+  class="sections-contactForm relative bg-darkPurple pt-40 2xl:pt-32"
+  aria-labelledby="contactForm-heading"
+  ><div class="relative mx-auto flex w-full max-w-1920 flex-col overflow-hidden"
+    ><span
+      class="parts-smileyText relative z-3 mx-14 mb-90 w-10/12 max-w-480 heading text-white lg:mb-120 2xl:mr-0 2xl:mb-150 2xl:ml-60 2xl:w-full 2xl:max-w-485"
+      style="font-kerning: none; text-rendering: optimizeSpeed"
+      ><span class="sr-only"
+        >{smileyCopy}</span
+      ><span aria-hidden="true" role="presentation" style="font-kerning: none; text-rendering: optimizeSpeed"
+        >{smileyCopy}</span
+      ></span
+    ><h2 id="contactForm-heading" class="sr-only">Begin your story</h2
+    ><div class="relative z-1 mx-14 mb-48 flex flex-col heading-3xl text-neonGreen uppercase 2xl:mx-0 2xl:mb-150"
+      ><span
+        class="sections-contactForm__headingLeft font-offBit101 font-normal whitespace-nowrap 2xl:-mb-30"
+        aria-hidden="true"
+        role="presentation"
+        >Begin your</span
+      ><span class="sections-contactForm__headingRight font-offBit text-white">story</span></div
+    ><form
+      novalidate
+      aria-labelledby="form-title"
+      class="parts-form -mb-20 rounded-t-10 bg-white px-27 pt-25 pb-20 lg:rounded-t-16 lg:px-54 lg:pt-34 lg:pb-100 sections-contactForm__form z-10 mx-auto w-11/12 origin-bottom lg:origin-bottom-left 2xl:absolute 2xl:right-120 2xl:bottom-0 2xl:ml-0 2xl:w-[38%] 2xl:-translate-x-60"
+      aria-describedby="status-message"
+      ><div class="mb-15 flex items-center gap-15 lg:mb-50"
+        ><svg
+          class="svgs-doubleSlash block w-22 min-w-22 text-darkPurple"
+          viewBox="0 0 18 10"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <rect
+            x="8"
+            y="9.27246"
+            width="3.09091"
+            height="3.09091"
+            transform="rotate(-90 8 9.27246)"
+            fill="currentColor"
+          />
+          <rect
+            x="11.0938"
+            y="6.18066"
+            width="3.09091"
+            height="3.09091"
+            transform="rotate(-90 11.0938 6.18066)"
+            fill="currentColor"
+          />
+          <rect
+            x="14.1797"
+            y="3.09082"
+            width="3.09091"
+            height="3.09091"
+            transform="rotate(-90 14.1797 3.09082)"
+            fill="currentColor"
+          />
+          <rect y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 0 9.27246)" fill="currentColor" />
+          <rect
+            x="3.09375"
+            y="6.18066"
+            width="3.09091"
+            height="3.09091"
+            transform="rotate(-90 3.09375 6.18066)"
+            fill="currentColor"
+          />
+          <rect
+            x="6.17969"
+            y="3.09082"
+            width="3.09091"
+            height="3.09091"
+            transform="rotate(-90 6.17969 3.09082)"
+            fill="currentColor"
+          /></svg
+        ><h3 id="form-title" class="heading-sm text-darkPurple uppercase">Get In Touch</h3></div
+      ><fieldset class="mb-20 flex w-full flex-col gap-10 text-darkPurple"
+        ><legend class="sr-only">Contact Information</legend
+        ><div class="parts-formInput w-full"
+          ><label for="email" class="sr-only">Email</label
+          ><div class="relative"
+            ><input
+              id="email"
+              value={'' as any}
+              type="email"
+              required
+              placeholder="Email"
+              class="border-transparent hover:border-purple focus:border-purple focus:outline-purple block w-full rounded-6 border-2 bg-purple/10 px-22 py-16 subheading text-inherit uppercase placeholder-inherit transition-colors duration-300 focus:ring-0 max-lg:text-[16px]"
+              aria-invalid="false"
+              autocomplete="email" /></div></div
+        ><div class="parts-formInput w-full"
+          ><label for="name" class="sr-only">Name</label
+          ><div class="relative"
+            ><input
+              id="name"
+              value={'' as any}
+              type="text"
+              required
+              placeholder="Name"
+              class="border-transparent hover:border-purple focus:border-purple focus:outline-purple block w-full rounded-6 border-2 bg-purple/10 px-22 py-16 subheading text-inherit uppercase placeholder-inherit transition-colors duration-300 focus:ring-0 max-lg:text-[16px]"
+              aria-invalid="false"
+              autocomplete="name" /></div></div
+        ><div class="parts-formInput w-full"
+          ><label for="company" class="sr-only">Company</label
+          ><div class="relative"
+            ><input
+              id="company"
+              value={'' as any}
+              type="text"
+              required
+              placeholder="Company"
+              class="border-transparent hover:border-purple focus:border-purple focus:outline-purple block w-full rounded-6 border-2 bg-purple/10 px-22 py-16 subheading text-inherit uppercase placeholder-inherit transition-colors duration-300 focus:ring-0 max-lg:text-[16px]"
+              aria-invalid="false"
+              autocomplete="organization" /></div></div
+        ><div class="parts-formTextarea w-full"
+          ><label for="message" class="sr-only">Message</label
+          ><div class="relative">
+            <textarea
+              id="message"
+              type="text"
+              placeholder="Message"
+              class="border-transparent hover:border-purple focus:border-purple focus:outline-purple block min-h-164 w-full rounded-6 bg-purple/10 px-22 py-16 subheading text-darkPurple uppercase placeholder-darkPurple transition-colors duration-300 focus:ring-0 max-lg:text-[16px]"
+              aria-invalid="false"
+            ></textarea></div></div></fieldset
+      ><div class="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between"
+        ><div class="parts-formCheckbox w-full lg:w-6/12" name="Terms and Conditions" is-valid="false"
+          ><div class="flex items-center gap-10"
+            ><div class="relative mt-2 flex-shrink-0"
+              ><input id="terms" type="checkbox" required class="sr-only" aria-invalid="false" /><div
+                class="border-darkPurple flex h-16 min-h-16 w-16 min-w-16 cursor-pointer items-center justify-center rounded-4 border transition-colors lg:h-21 lg:min-h-21 lg:w-21 lg:min-w-21"
+              ></div></div
+            ><div class="flex-1"
+              ><label
+                for="terms"
+                class="text-darkPurple parts-formCheckbox__label block cursor-pointer copy-xs text-darkPurple"
+                >I have read and agree to the <a href="/terms" target="_blank">Terms of Service</a> and
+                <a href="/privacy-policy" target="_blank">Privacy Policy</a>.</label
+              ></div
+            ></div
+          ></div
+        ><button
+          aria-label="Submit"
+          class="part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transition-colors duration-300 cursor-pointer bg-purple text-darkPurple active:bg-white flex-row px-14 py-11 lg:px-18 lg:py-16"
+          ><div class="relative flex overflow-hidden"
+            ><span class="part-btnPrimary__text uppercase btn-text">Submit</span
+            ><span class="part-btnPrimary__text absolute inset-x-0 top-full text-center uppercase btn-text"
+              >Submit</span
+            ></div
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 7 10"
+            class="block w-6 min-w-6 lg:w-8 lg:min-w-8 lg:-mt-1"
+          >
+            <path
+              fill="currentColor"
+              d="M0 9.637V6.546h3.091v3.091zM3.094 6.546V3.455h3.09v3.09zM0 3.455V.365h3.09v3.09z"
+            /></svg></button></div
+      ><span class="mt-20 block w-full copy-xs text-darkPurple lg:w-6/12">
+        This site is protected by reCAPTCHA and the Google
+        <a
+          class="text-purple transition-colors hover:underline"
+          href="https://policies.google.com/privacy"
+          target="_blank"
+          >Privacy Policy</a
+        >
+        and
+        <a
+          class="text-purple transition-colors hover:underline"
+          href="https://policies.google.com/terms"
+          target="_blank"
+          >Terms of Service</a
+        >
+        apply. </span
+      ><div id="status-message" aria-live="polite" aria-atomic="true" class="mt-20"></div></form></div
+  ><div
+    class="pointer-events-none absolute top-[10vw] left-[5vw] w-[120vw] max-w-1820 sm:right-[-10.4vw] sm:left-auto sm:w-[120vw] lg:top-[-10vw] lg:w-[95vw]"
+    ><picture class="parts-webPicture"
+      ><source
+        srcset="
+          /images/contact/computer-back-300.webp  300w,
+          /images/contact/computer-back-500.webp  500w,
+          /images/contact/computer-back-750.webp  750w,
+          /images/contact/computer-back-1000.webp 1000w,
+          /images/contact/computer-back-1600.webp 1600w,
+          /images/contact/computer-back-2000.webp 2000w
+        "
+        type="image/webp"
+        sizes="100vw" /><img
+        alt="computer-back"
+        src="/images/contact/computer-back-300.png"
+        srcset="
+          /images/contact/computer-back-300.png  300w,
+          /images/contact/computer-back-500.png  500w,
+          /images/contact/computer-back-750.png  750w,
+          /images/contact/computer-back-1000.png 1000w,
+          /images/contact/computer-back-1600.png 1600w,
+          /images/contact/computer-back-2000.png 2000w
+        "
+        width="2000"
+        height="1647"
+        class="h-full w-full"
+        sizes="100vw"
+        loading="lazy"
+        role="presentation"
+        draggable="false" /></picture></div
+  ><div
+    class="pointer-events-none absolute top-[10vw] left-[5vw] z-2 w-[120vw] max-w-1820 sm:right-[-10.4vw] sm:left-auto sm:w-[120vw] lg:top-[-10vw] lg:w-[95vw]"
+    ><picture class="parts-webPicture"
+      ><source
+        srcset="
+          /images/contact/computer-front-300.webp  300w,
+          /images/contact/computer-front-500.webp  500w,
+          /images/contact/computer-front-750.webp  750w,
+          /images/contact/computer-front-1000.webp 1000w,
+          /images/contact/computer-front-1600.webp 1600w,
+          /images/contact/computer-front-2000.webp 2000w
+        "
+        type="image/webp"
+        sizes="100vw" /><img
+        alt="computer-front"
+        src="/images/contact/computer-front-300.png"
+        srcset="
+          /images/contact/computer-front-300.png  300w,
+          /images/contact/computer-front-500.png  500w,
+          /images/contact/computer-front-750.png  750w,
+          /images/contact/computer-front-1000.png 1000w,
+          /images/contact/computer-front-1600.png 1600w,
+          /images/contact/computer-front-2000.png 2000w
+        "
+        width="2000"
+        height="1647"
+        class="h-full w-full"
+        sizes="100vw"
+        loading="lazy"
+        role="presentation"
+        draggable="false" /></picture></div
+></section>

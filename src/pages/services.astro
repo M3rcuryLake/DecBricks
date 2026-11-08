@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import Loader from '../components/Loader.astro';
+import Header from '../components/Header.astro';
+import ServicesHero from '../components/ServicesHero.astro';
+import ServiceBlock from '../components/ServiceBlock.astro';
+import ServicesSidebarNav from '../components/ServicesSidebarNav.astro';
+import ServicesClients from '../components/ServicesClients.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import TransitionOverlay from '../components/TransitionOverlay.astro';
+import { SERVICES } from '../data/services';
+---
+
+<Base
+  title="Services | 1minus1"
+  description="An award-winning partner for games studios and publishers. We connect strategy, creative, web and campaigns to make you stand out and thrive."
+  canonical="https://1minus1.com/services"
+  ogTitle="Services | 1minus1"
+  ogDescription="An award-winning partner for games studios and publishers. We connect strategy, creative, web and campaigns to make you stand out and thrive."
+  themeColor="#140128"
+  bodyClass="bg-darkPurple"
+>
+  <div id="__nuxt">
+    <main class="layout overflow-hidden bg-darkPurple">
+      <Loader />
+      <div class="page page-services bg-white">
+        <Header />
+        <ServicesHero />
+        <section
+          data-theme="light"
+          class="sections-servicesList relative overflow-hidden bg-darkPurple"
+          aria-label="Our services"
+        >
+          <div
+            class="rounded-10 bg-white px-9 pt-10 pb-40 lg:rounded-24 lg:px-20 lg:pt-25 lg:pb-50 xl:px-25 xl:pt-30 xl:pb-60 3xl:px-35 3xl:pt-35 3xl:pb-70 4xl:px-35 4xl:pt-40 4xl:pb-80"
+          >
+            <div
+              class="mx-auto flex w-full max-w-1850 flex-col gap-40 lg:gap-55 xl:gap-65 3xl:gap-80 4xl:gap-95"
+            >
+              {SERVICES.map((service, index) => <ServiceBlock service={service} index={index} />)}
+            </div>
+          </div>
+        </section>
+        <ServicesSidebarNav />
+        <ServicesClients />
+        <ContactForm smileyCopy="We’re a games industry creative leader that will put your player first. Drop us a message!" />
+        <Footer />
+      </div>
+      <CookieBanner />
+      <TransitionOverlay />
+    </main>
+  </div>
+  <script>import '../scripts/main';</script>
+</Base>

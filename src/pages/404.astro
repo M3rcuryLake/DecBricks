@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base
+  title="404 - Page Not Found | 1minus1"
+  description="The page you are looking for could not be found."
+  robots="noindex, nofollow"
+>
+  <main class="layout overflow-hidden bg-darkPurple">
+    <div></div>
+    <div class="page page-error bg-darkPurple">
+      <Header />
+      <section
+        data-theme="dark"
+        class="relative flex min-h-svh flex-col items-center justify-center overflow-hidden bg-darkPurple px-20 pt-120 pb-80 text-center text-white"
+      >
+        <p class="mb-20 flex items-center justify-center gap-8 font-neuePower text-[12px] leading-none font-bold text-neonGreen uppercase">
+          <svg
+            class="svgs-doubleSlash block w-15 text-purple"
+            viewBox="0 0 18 10"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <rect x="8" y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 8 9.27246)" fill="currentColor" />
+            <rect x="11.0938" y="6.18066" width="3.09091" height="3.09091" transform="rotate(-90 11.0938 6.18066)" fill="currentColor" />
+            <rect x="14.1797" y="3.09082" width="3.09091" height="3.09091" transform="rotate(-90 14.1797 3.09082)" fill="currentColor" />
+            <rect y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 0 9.27246)" fill="currentColor" />
+            <rect x="3.09375" y="6.18066" width="3.09091" height="3.09091" transform="rotate(-90 3.09375 6.18066)" fill="currentColor" />
+            <rect x="6.17969" y="3.09082" width="3.09091" height="3.09091" transform="rotate(-90 6.17969 3.09082)" fill="currentColor" />
+          </svg>
+          Error 404
+        </p>
+        <h1 class="heading-3.5xl font-offBit101 font-normal text-neonGreen uppercase">404</h1>
+        <p class="mt-20 max-w-480 font-neuePower text-[20px] leading-[1.1] font-bold text-white">
+          Page not found. Head back to explore our work and services.
+        </p>
+        <div class="mt-40 flex flex-wrap items-center justify-center gap-15">
+          <a
+            href="/"
+            class="part-btnPrimary group flex cursor-pointer flex-row items-center justify-center gap-12 rounded-8 bg-neonGreen px-24 py-15 text-darkPurple transition-colors duration-300 active:bg-purple active:text-white lg:py-17"
+            aria-label="Back to Homepage"
+          >
+            <div class="relative flex overflow-hidden">
+              <span class="part-btnPrimary__text btn-text-lg uppercase">Back to Home</span>
+              <span class="part-btnPrimary__text absolute inset-x-0 top-full text-center btn-text-lg uppercase">
+                Back to Home
+              </span>
+            </div>
+          </a>
+          <a
+            href="/services"
+            class="part-btnPrimary group flex cursor-pointer flex-row items-center justify-center gap-12 rounded-8 bg-purple px-24 py-15 text-white transition-colors duration-300 active:bg-white active:text-darkPurple lg:py-17"
+            aria-label="Our Services"
+          >
+            <div class="relative flex overflow-hidden">
+              <span class="part-btnPrimary__text btn-text-lg uppercase">Our Services</span>
+              <span class="part-btnPrimary__text absolute inset-x-0 top-full text-center btn-text-lg uppercase">
+                Our Services
+              </span>
+            </div>
+          </a>
+        </div>
+      </section>
+      <Footer />
+    </div>
+  </main>
+  <script>import '../scripts/main';</script>
+</Base>

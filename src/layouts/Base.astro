@@ -1,0 +1,65 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  themeColor?: string;
+  robots?: string;
+  bodyClass?: string;
+}
+
+const defaultDesc =
+  '1minus1 is a specialist video game agency. Web design, branding, and marketing for studios and publishers worldwide. Over a decade in games.';
+const defaultImg = 'https://1minus1.com/images/og-default.png';
+
+const {
+  title = 'Video Game Agency | Web, Brand & Marketing | 1minus1',
+  description = defaultDesc,
+  canonical = 'https://1minus1.com/',
+  ogTitle = title,
+  ogDescription = description,
+  ogImage = defaultImg,
+  themeColor = '#140128',
+  robots = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+  bodyClass = 'bg-darkPurple',
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="theme-color" content={themeColor} />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="robots" content={robots} />
+    <link rel="icon" href="/fav1.png" type="image/png" />
+    <link rel="canonical" href={canonical} />
+    <link rel="sitemap" href="/sitemap.xml" />
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="1minus1" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
+    <meta name="twitter:image" content={ogImage} />
+    <link rel="preload" as="font" crossorigin href="/fonts/neue-power.woff2" />
+    <link rel="preload" as="font" crossorigin href="/fonts/OffBit.ttf" />
+    <link rel="preload" as="font" crossorigin href="/fonts/OffBit101.ttf" />
+    <link rel="preload" as="font" crossorigin href="/fonts/nohemi.ttf" />
+  </head>
+  <body class={bodyClass}>
+    <canvas class="webgl pointer-events-none fixed inset-0 z-10 hidden h-full w-full lg:block"></canvas>
+    <canvas class="webgl pointer-events-none fixed inset-0 z-0 hidden h-full w-full lg:block"></canvas>
+    <slot />
+  </body>
+</html>

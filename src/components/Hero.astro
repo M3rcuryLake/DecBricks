@@ -1,0 +1,591 @@
+---
+import { SERVICES } from '../data/services';
+
+const HOME_CARD_STYLES = [
+  {
+    outerOrigin: 'origin-top-left',
+    innerClass:
+      'bg-white before:bg-white origin-left max-lg:-rotate-4 max-lg:rounded-t-6 lg:-translate-x-40 lg:rounded-tr-24',
+    numColor: 'text-palePurple/40',
+    contentText: 'text-darkPurple lg:pb-170 3xl:pb-190',
+    slashColor: 'text-purple',
+    pillBg: 'bg-purple text-white',
+    moreBadgeBg: 'bg-palePurple text-darkPurple',
+    btnClass: 'bg-darkPurple text-white active:bg-purple',
+  },
+  {
+    outerOrigin: 'origin-top-right',
+    innerClass:
+      'bg-neonGreen before:bg-neonGreen origin-right max-lg:rotate-4 max-lg:rounded-t-6 lg:translate-x-80 lg:rounded-tl-24',
+    numColor: 'text-white/27',
+    contentText: 'text-darkPurple lg:pb-170 3xl:pb-190',
+    slashColor: 'text-purple',
+    pillBg: 'bg-white text-darkPurple',
+    moreBadgeBg: 'bg-white/50 text-darkPurple',
+    btnClass: 'bg-darkPurple text-white active:bg-purple',
+  },
+  {
+    outerOrigin: 'origin-top-left',
+    innerClass:
+      'bg-darkPurple before:bg-darkPurple origin-left max-lg:-rotate-4 max-lg:rounded-t-6 lg:-translate-x-40 lg:rounded-tr-24',
+    numColor: 'text-palePurple/10',
+    contentText: 'text-white lg:pb-170 3xl:pb-190',
+    slashColor: 'text-purple',
+    pillBg: 'bg-purple text-white',
+    moreBadgeBg: 'bg-palePurple/13 text-white',
+    btnClass: 'bg-white text-darkPurple active:bg-purple active:text-white',
+  },
+  {
+    outerOrigin: 'origin-top-right',
+    innerClass:
+      'bg-purple before:bg-purple origin-right max-lg:rotate-4 max-lg:rounded-t-6 lg:translate-x-80 lg:rounded-tl-24',
+    numColor: 'text-white/15',
+    contentText: 'text-white lg:pb-215 3xl:pb-245',
+    slashColor: 'text-white',
+    pillBg: 'bg-darkPurple text-white',
+    moreBadgeBg: 'bg-white/25 text-darkPurple',
+    btnClass: 'bg-darkPurple text-white active:bg-purple',
+  },
+];
+---
+
+<section class="sections-hero relative overflow-hidden bg-darkPurple" aria-labelledby="hero-heading"
+  ><div class="flex max-h-1080 min-h-svh flex-col pt-70 max-lg:h-svh lg:pt-155" data-theme="dark"
+    ><div class="hidden flex-grow lg:block"></div
+    ><div
+      class="hero-top relative mx-auto flex w-full max-w-1920 flex-grow flex-col justify-center sm:justify-center lg:justify-start lg:pb-0"
+      ><h2 id="hero-heading" class="sr-only">Distinct Always</h2
+      ><div class="relative"
+        ><span
+          aria-hidden="true"
+          class="sections-hero__heading relative z-22 block w-fit heading-3xl text-neonGreen uppercase lg:z-11 lg:-mb-50 lg:-ml-20"
+          data-text="Distinct"
+          ><span class="sections-hero__headingInner pointer-default block"> Distinct </span></span
+        ><div class="mb-52 flex w-fit min-w-full items-center justify-between lg:mb-0"
+          ><h1 class="sr-only">
+            Award-winning creative agency for video games. Brand shapers, game marketeers &amp; web engineers.</h1
+          ><span
+            class="parts-smileyText sections-hero__body relative z-20 hidden w-4/12 min-w-4/12 pl-64 heading text-white 2xl:mb-40 2xl:block 3xl:pr-42"
+            style="font-kerning: none; text-rendering: optimizeSpeed"
+            ><span class="sr-only"
+              >Award-winning creative agency for video games. Brand shapers, game marketeers &amp; web engineers.</span
+            ><span aria-hidden="true" role="presentation" style="font-kerning: none; text-rendering: optimizeSpeed"
+              >Award-winning creative agency for video games. Brand shapers, game marketeers &amp; web engineers.</span
+            ></span
+          ><span
+            class="sections-hero__heading relative z-10 ml-auto block heading-3xl font-offBit101 font-normal text-neonGreen uppercase lg:w-min 2xl:-mr-40"
+            data-font="OffBitTrial-101"
+            data-text="Always"
+            aria-hidden="true"
+            ><span class="sections-hero__headingInner pointer-default block"> Always </span></span
+          ></div
+        ><div
+          class="pin-trigger__mobile start-mobile absolute -top-120 -right-100 z-20 aspect-8/5 w-320 rotate-14 overflow-hidden rounded-20 rounded-tr-none sm:w-480 lg:hidden"
+          ><video
+            data-preview-mp4="/videos/219063fa94bc3a4eb8ae3dad65571723.mp4"
+            class="sections-hero__videoPreviewMobile start-mobile-inner h-full w-full webgl-video parts-webglPreview overflow-hidden object-cover"
+            playsinline
+            loop
+            preload="metadata"
+            muted
+            autoplay
+            crossorigin="anonymous"
+            fetchpriority="high"
+          ></video></div></div
+      ><span
+        class="parts-smileyText relative z-6 mb-20 w-11/12 pl-16 heading text-white sm:w-6/12 lg:z-20 2xl:hidden"
+        style="font-kerning: none; text-rendering: optimizeSpeed"
+        ><span class="sr-only"
+          >Award-winning creative agency for video games. Brand shapers, game marketeers &amp; web engineers.</span
+        ><span aria-hidden="true" role="presentation" style="font-kerning: none; text-rendering: optimizeSpeed"
+          >Award-winning creative agency for video games. Brand shapers, game marketeers &amp; web engineers.</span
+        ></span
+      ><video
+        data-preview-mp4="/videos/219063fa94bc3a4eb8ae3dad65571723.mp4"
+        class="sections-hero__videoPreview start absolute top-40 right-1/12 z-10 hidden aspect-3/2 w-320 rotate-14 overflow-hidden rounded-40 rounded-tr-none lg:invisible lg:block 2xl:w-480 webgl-video parts-webglPreview overflow-hidden object-cover"
+        classname="lg:opacity-0"
+        playsinline
+        loop
+        preload="metadata"
+        muted
+        autoplay
+        crossorigin="anonymous"
+        fetchpriority="high"
+      ></video
+      ><svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 659 374"
+        class="pointer-events-none absolute bottom-0 left-0 z-5 block w-[180vw] max-w-1000 text-white mix-blend-soft-light max-sm:translate-x-[-20vw] lg:hidden"
+      >
+        <path
+          fill="currentColor"
+          d="M506.526 0H330.411v8.086h-18.217V19.55h-18.217v11.455h-17.542v12.13h-17.542v12.13h-16.53l-1.012 1.01v11.793h-16.867V80.87h-16.867v12.804h-16.868v13.477h-16.192v13.477h-15.856l-1.012 1.011v13.14h-16.192v14.151h-15.518v14.825h-15.518v14.825H95.618v14.825H80.774v14.488l-1.012 1.011H65.931v14.488l-1.012 1.011H51.088v16.172H33.1l-.074 21.16H18.257v19.717H0V374l49.064-.121V361.87h17.542v-11.455H83.81l1.012-1.011v-9.771h17.205l1.012-1.011v-9.771h18.217v-9.434h18.891v-9.434h18.892v-9.434h18.554c2.064-2.332.593-6.442 1.012-9.434h18.891v-8.76h19.566v-8.76h18.892v-8.761h19.566v-8.76h19.566c.385-2.796-1.012-6.617 1.012-8.76h18.554v-8.086h19.566v-7.413h19.566v-7.412h19.229c1.923-1.779.708-5.007 1.012-7.413h19.566v-6.738h20.241v-6.739h17.542v3.369h-12.819v13.478h-15.181l-1.012 1.01v13.814h-15.518v14.825h-14.843v13.815l-1.012 1.01h-14.506v14.825h-15.518v14.825h-14.843v15.499h-14.843v56.979h59.71v-13.577h15.855v-14.353h14.85v-13.55h15.518v-14.825h14.506c1.687-2.466 1.113-7.284 1.046-10.472-.041-1.718-1.363-3.268.303-4.353h14.506v-13.814l1.012-1.011h14.506v-13.14l1.012-1.011h15.181v-13.477h16.193v-13.477h16.192v-11.793l1.012-1.011h15.856v-12.803h16.867v-12.13h17.542v-11.118l1.012-1.011h17.205v-10.782h17.204l1.012-1.011v-9.771h18.217v-10.108h18.217c.445-3.194-1.086-7.574 1.012-10.108h17.879v-9.434h18.892v-6.065H659V72.11h-60.722v4.717h-20.241v5.39h-20.916v5.392H536.88v5.39h-20.915v6.065h-20.241v5.391h-19.903c-1.761 1.436-.823 4.03-1.012 6.065h-20.241v6.065h-20.241v6.738h-20.241v6.065h-20.241v6.739h-20.24v6.738h-20.241v6.739h-20.241v6.739h-20.241v7.412h-19.566v7.413h-20.241v7.412h-19.566v8.76h-19.566v8.087h-19.566v8.76h-19.566v8.76h-16.193v-3.369h8.103v-14.151h15.518v-13.141l1.012-1.01h15.181v-13.478h16.867v-13.477h16.193v-12.803h16.867v-12.804h16.868v-12.803h16.867v-11.119l1.012-1.011h16.53v-12.13h17.542V80.197h17.542V69.751l1.012-1.01h17.205V57.959h18.216V47.85h18.892V37.743h18.891v-9.434h18.892c.418-2.992-1.053-7.103 1.012-9.434h18.554v-8.76h18.884v-7.42c6.309-.316 12.995.432 19.256.007 1.923-.128.709-1.664.992-2.702"
+        /></svg></div
+    ><button
+      class="parts-scrollButton group relative flex w-full cursor-pointer items-center justify-between gap-15 px-30 focus:outline-none z-10 mt-auto mb-20"
+      aria-label="Scroll down to explore content"
+      ><svg
+        class="svgs-arrowDown parts-scrollButton__arrowLeft block w-20 min-w-20 text-purple"
+        viewBox="0 0 20 12"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect x="12" y="4.60948e-06" width="4" height="4" transform="rotate(90 12 4.60948e-06)" fill="currentColor" />
+        <rect x="20" y="4.60948e-06" width="4" height="4" transform="rotate(90 20 4.60948e-06)" fill="currentColor" />
+        <rect x="16" y="4" width="4" height="4" transform="rotate(90 16 4)" fill="currentColor" />
+        <rect x="12" y="8" width="4" height="4" transform="rotate(90 12 8)" fill="currentColor" />
+        <rect x="12" y="12" width="4" height="4" transform="rotate(-180 12 12)" fill="currentColor" />
+        <rect x="8" y="8" width="4" height="4" transform="rotate(-180 8 8)" fill="currentColor" />
+        <rect x="4" y="4" width="4" height="4" transform="rotate(-180 4 4)" fill="currentColor" /></svg
+      ><div
+        class="parts-scrollButton__textWrapper relative overflow-hidden text-white transition-colors duration-500 hover:text-purple"
+        ><span class="parts-scrollButton__text block subheading leading-[100%] uppercase">Scroll To Explore</span
+        ><span
+          class="parts-scrollButton__textCopy absolute inset-x-0 top-full block subheading leading-[100%] uppercase"
+          >Scroll To Explore</span
+        ></div
+      ><svg
+        class="svgs-arrowDown parts-scrollButton__arrowMiddle pointer-events-none absolute top-1/2 left-1/2 block w-20 min-w-20 -translate-x-1/2 -translate-y-1/2 text-purple opacity-0"
+        viewBox="0 0 20 12"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect x="12" y="4.60948e-06" width="4" height="4" transform="rotate(90 12 4.60948e-06)" fill="currentColor" />
+        <rect x="20" y="4.60948e-06" width="4" height="4" transform="rotate(90 20 4.60948e-06)" fill="currentColor" />
+        <rect x="16" y="4" width="4" height="4" transform="rotate(90 16 4)" fill="currentColor" />
+        <rect x="12" y="8" width="4" height="4" transform="rotate(90 12 8)" fill="currentColor" />
+        <rect x="12" y="12" width="4" height="4" transform="rotate(-180 12 12)" fill="currentColor" />
+        <rect x="8" y="8" width="4" height="4" transform="rotate(-180 8 8)" fill="currentColor" />
+        <rect x="4" y="4" width="4" height="4" transform="rotate(-180 4 4)" fill="currentColor" /></svg
+      ><svg
+        class="svgs-arrowDown parts-scrollButton__arrowRight block w-20 min-w-20 text-purple"
+        viewBox="0 0 20 12"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect x="12" y="4.60948e-06" width="4" height="4" transform="rotate(90 12 4.60948e-06)" fill="currentColor" />
+        <rect x="20" y="4.60948e-06" width="4" height="4" transform="rotate(90 20 4.60948e-06)" fill="currentColor" />
+        <rect x="16" y="4" width="4" height="4" transform="rotate(90 16 4)" fill="currentColor" />
+        <rect x="12" y="8" width="4" height="4" transform="rotate(90 12 8)" fill="currentColor" />
+        <rect x="12" y="12" width="4" height="4" transform="rotate(-180 12 12)" fill="currentColor" />
+        <rect x="8" y="8" width="4" height="4" transform="rotate(-180 8 8)" fill="currentColor" />
+        <rect x="4" y="4" width="4" height="4" transform="rotate(-180 4 4)" fill="currentColor" /></svg></button
+    ><div
+      class="sections-hero__trailWrapper pointer-events-none absolute top-0 right-0 hidden text-[#26024A] opacity-0 lg:block"
+      ><svg
+        viewBox="0 0 1477 1186"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="sections-hero__trail webgl-trail w-[77vw] max-w-1475"
+      >
+        <path
+          d="M637.889 0.425781L480.389 97.4258L359.889 184.426L244.389 278.426L145.389 382.926L0.388672 561.926L111.889 513.926L244.389 442.926L426.889 370.426L637.889 299.426L878.889 217.926L1025.89 184.426L802.889 324.426L676.889 426.926L549.389 543.926L462.389 655.926L373.889 761.926L646.889 630.926L958.389 513.926L1192.39 451.926L1475.89 402.426L1240.39 543.926L1025.89 683.926L907.389 783.426L783.389 898.426L667.889 1023.93L561.889 1185.43"
+          stroke="currentColor"
+        /></svg></div
+    ><div
+      class="sections-hero__trailWrapper pointer-events-none absolute -top-90 -left-120 hidden text-[#26024A] opacity-0 lg:block"
+      ><svg
+        viewBox="0 0 1716 910"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="sections-hero__trail webgl-trail w-[90vw] max-w-1724"
+      >
+        <path
+          d="M0.0234375 461.95L230.023 471.95L508.523 505.95L789.523 568.45L1029.52 657.95L1266.02 786.45L1430.02 907.95L1398.02 823.45L1283.02 647.95L1115.52 461.95L914.523 301.45L803.023 233.45L914.523 243.95L1134.02 284.45L1377.52 353.45L1568.52 426.45L1714.02 492.45L1616.02 341.95L1474.02 196.45L1337.02 84.9502L1239.02 22.4502L1193.52 0.450195"
+          stroke="currentColor"
+        /></svg></div
+    ><div
+      class="sections-hero__trailWrapper pointer-events-none absolute -top-145 -left-250 hidden text-[#26024A] opacity-0 lg:block"
+      ><svg
+        viewBox="0 0 1253 1209"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="sections-hero__trail webgl-trail w-[65vw] max-w-1251"
+      >
+        <path
+          d="M515.232 0.450195L655.732 68.4502L775.732 146.95L942.232 270.95L1070.73 399.45L1186.73 549.95L1251.23 665.95L1075.23 561.45L882.732 467.45L718.732 399.45L445.232 313.95L289.232 282.45L119.232 258.95L12.2324 252.95L123.732 296.45L264.732 360.95L438.232 460.95L580.732 561.45L701.232 664.45L797.732 765.95L877.732 875.45L890.732 896.95L749.232 829.45L526.232 730.45L344.732 667.95L175.232 625.45L37.2324 606.95L0.232422 603.95L55.2324 632.95L166.732 691.95L282.732 765.45L372.732 835.95L445.232 894.95L521.232 966.45L593.732 1047.95L711.732 1208.45"
+          stroke="currentColor"
+        /></svg></div
+    ><div
+      class="sections-hero__trailWrapper pointer-events-none absolute -top-132 -right-167 hidden text-[#26024A] opacity-0 lg:block"
+      ><svg
+        viewBox="0 0 1198 1391"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="sections-hero__trail webgl-trail w-[62.5vw] max-w-1200"
+      >
+        <path
+          d="M993.15 1390.49L845.65 1229.99L698.65 1102.99L515.65 968.987L340.65 869.987L216.15 806.487L74.1504 751.987L0.150391 728.487L51.1504 724.987L187.15 731.987L393.15 751.987L611.65 782.987L756.65 809.987L904.65 839.487L958.15 849.987L889.15 782.987L778.15 697.487L624.65 597.987L431.65 493.487L287.65 426.487L135.65 370.987L26.1504 343.487L89.6504 335.487H278.15L421.15 343.487L561.65 358.987L730.65 387.987L862.15 416.487L1020.15 457.487L1197.15 514.987L1134.65 451.487L1060.15 387.987L887.15 267.987L713.15 176.987L512.15 93.4868L361.65 45.4868L169.15 0.486816"
+          stroke="currentColor"
+        /></svg></div></div
+  ><div class="relative flex items-end lg:min-h-screen lg:items-start"
+    ><div class="end relative z-20 mx-auto w-full"
+      ><div
+        class="parts-webglVideoPlayer relative aspect-video-mobile max-h-screen w-full rotate-0 sm:aspect-video"
+        id="showreel"
+        ><div
+          class="parts-videoPlayerControls flex items-center gap-9 rounded-8 bg-white p-4 lg:gap-16 lg:p-10 pointer-events-none absolute bottom-40 left-1/2 z-10 w-[calc(100%-40px)] -translate-x-1/2 opacity-0"
+          style
+          ><button
+            class="pause-button order-0 flex h-24 min-h-24 w-24 min-w-24 cursor-pointer items-center justify-center rounded-8 bg-darkPurple"
+            aria-label="Play video"
+            ><svg
+              class="svgs-arrowRight block w-6 min-w-6 text-neonGreen"
+              viewBox="0 0 23 38"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect x="0.000976562" y="14.9863" width="7.49298" height="7.49298" fill="currentColor" />
+              <rect x="0.000976562" y="9.82604e-07" width="7.49298" height="7.49298" fill="currentColor" />
+              <rect x="7.49512" y="7.49268" width="7.49298" height="7.49298" fill="currentColor" />
+              <rect x="14.9854" y="14.9858" width="7.49298" height="7.49298" fill="currentColor" />
+              <rect
+                x="22.4795"
+                y="14.9858"
+                width="7.49298"
+                height="7.49298"
+                transform="rotate(90 22.4795 14.9858)"
+                fill="currentColor"
+              />
+              <rect
+                x="14.9854"
+                y="22.479"
+                width="7.49298"
+                height="7.49298"
+                transform="rotate(90 14.9854 22.479)"
+                fill="currentColor"
+              />
+              <rect
+                x="7.49316"
+                y="29.9722"
+                width="7.49298"
+                height="7.49298"
+                transform="rotate(90 7.49316 29.9722)"
+                fill="currentColor"
+              /></svg></button
+          ><div
+            class="parts-progressBar relative bg-darkPurple/20 bg-darkPurple/20 w-full h-3 order-2 grow"
+            role="group"
+            aria-label="Video progress: 00.00 of 00.00"
+            ><div
+              class="bg-purple left-0 top-1/2 h-10 -translate-y-1/2 parts-progressBar__inner absolute rounded-2"
+              style="width: 0%"
+              aria-hidden="true"
+            ></div
+            ><input
+              value="0"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              class="inset-x-0 top-1/2 w-full h-10 -translate-y-1/2 absolute cursor-pointer opacity-0"
+              aria-label="Video progress: 00.00 of 00.00"
+              aria-valuemin="0"
+              aria-valuemax="1"
+              aria-valuenow="0"
+              aria-valuetext="0%"
+              role="slider"
+              style /></div
+          ><span class="order-1 timestamp subheading text-darkPurple/20" style>00.00</span
+          ><div
+            class="parts-volumeControl relative flex items-center rounded-8 bg-darkPurple order-4"
+            role="group"
+            aria-label="Volume controls"
+            ><button
+              class="mute-button flex cursor-pointer items-center justify-center max-lg:h-24 max-lg:min-h-24 max-lg:w-24 max-lg:min-w-24 lg:p-11"
+              aria-label="Mute"
+              aria-pressed="false"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 7 10"
+                class="w-6 min-w-6 lg:block text-neonGreen hidden"
+              >
+                <path
+                  fill="currentColor"
+                  d="M3.75 9.083V6.25h2.833v2.834zM3.75 6.25V3.417h2.833V6.25zM.916 6.25V4.835h2.833V6.25zM.916 4.834V3.417h2.833v1.417zM3.75.583h2.833v2.833H3.75z"
+                /></svg
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 12 9"
+                class="w-12 min-w-12 lg:hidden text-neonGreen block"
+              >
+                <path fill="currentColor" d="M8 5.167V3.834h1.333v1.333zM10.667 6.5v-4H12v4z" />
+                <path
+                  fill="currentColor"
+                  d="M10.667 3.833V2.5h1.332v1.333zM2.833 9V6.167h2.833V9zM2.834 6.167V3.334h2.833v2.833z"
+                />
+                <path
+                  fill="currentColor"
+                  d="M0 6.166V4.75h2.834v1.418zM0 4.75V3.333h2.833V4.75zM2.834.5h2.833v2.833H2.834z"
+                /></svg></button
+            ><div class="py-11 pr-11 relative hidden items-center gap-4 lg:flex"
+              ><span class="bg-neonGreen h-4 w-3"></span><span class="bg-neonGreen h-8 w-3"></span
+              ><span class="bg-neonGreen h-8 w-3"></span><span class="bg-neonGreen h-8 w-3"></span
+              ><input
+                value="1"
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                class="inset-x-0 top-1/2 h-10 w-full -translate-y-1/2 absolute cursor-pointer opacity-0"
+                aria-label="Volume: 1"
+                aria-valuemin="0"
+                aria-valuemax="1"
+                aria-valuenow="1"
+                role="slider"
+                style /></div></div></div
+        ><div class="absolute inset-0 z-5 h-full w-full"></div
+        ><button
+          class="part-btnVideoPlayer group overflow-hidden rounded-8 bg-white px-24 py-20 transition-[opacity,background-color] duration-500 hover:bg-purple cursor-pointer play-button absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 cursor-pointer pointer-events-none opacity-0"
+          inert
+          tabindex="-1"
+          ><div class="part-btnVideoPlayer__inner relative flex items-center justify-end overflow-hidden"
+            ><span
+              class="mr-12 flex gap-4 btn-text text-darkPurple uppercase transition-colors duration-500 group-hover:text-white"
+              ><span class="parts-btnVideoPlayer__textOne">Play</span
+              ><span class="parts-btnVideoPlayer__textTwo">Showreel</span></span
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 7 10"
+              class="block w-9 min-w-9 text-darkPurple transition-colors duration-500 group-hover:text-white"
+            >
+              <path
+                fill="currentColor"
+                d="M0 9.637V6.546h3.091v3.091zM3.094 6.546V3.455h3.09v3.09zM0 3.455V.365h3.09v3.09z"
+              /></svg></div></button
+        ><video
+          preload="none"
+          crossorigin="anonymous"
+          class="webgl-video h-full w-full object-cover opacity-0"
+          aria-label="1minus1 Showreel: Creative Agency for video games"
+          aria-describedby="video-description"
+          role="application"
+          tabindex="0"
+        ></video
+        ><div class="decorations absolute top-1/2 left-18 hidden -translate-y-1/2 flex-col gap-8 text-neonGreen lg:flex"
+          ><svg
+            class="svgs-cross block w-12 min-w-12"
+            viewBox="0 0 12 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect x="4" y="8" width="4" height="4" transform="rotate(-90 4 8)" fill="currentColor" />
+            <rect x="8" y="4" width="4" height="4" transform="rotate(-90 8 4)" fill="currentColor" />
+            <rect y="4" width="4" height="4" transform="rotate(-90 0 4)" fill="currentColor" />
+            <rect y="12" width="4" height="4" transform="rotate(-90 0 12)" fill="currentColor" />
+            <rect x="8" y="12" width="4" height="4" transform="rotate(-90 8 12)" fill="currentColor" /></svg
+          ><svg
+            class="svgs-cross block w-12 min-w-12"
+            viewBox="0 0 12 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect x="4" y="8" width="4" height="4" transform="rotate(-90 4 8)" fill="currentColor" />
+            <rect x="8" y="4" width="4" height="4" transform="rotate(-90 8 4)" fill="currentColor" />
+            <rect y="4" width="4" height="4" transform="rotate(-90 0 4)" fill="currentColor" />
+            <rect y="12" width="4" height="4" transform="rotate(-90 0 12)" fill="currentColor" />
+            <rect x="8" y="12" width="4" height="4" transform="rotate(-90 8 12)" fill="currentColor" /></svg
+          ><svg
+            class="svgs-cross block w-12 min-w-12"
+            viewBox="0 0 12 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect x="4" y="8" width="4" height="4" transform="rotate(-90 4 8)" fill="currentColor" />
+            <rect x="8" y="4" width="4" height="4" transform="rotate(-90 8 4)" fill="currentColor" />
+            <rect y="4" width="4" height="4" transform="rotate(-90 0 4)" fill="currentColor" />
+            <rect y="12" width="4" height="4" transform="rotate(-90 0 12)" fill="currentColor" />
+            <rect x="8" y="12" width="4" height="4" transform="rotate(-90 8 12)" fill="currentColor" /></svg></div
+        ><div
+          class="decorations absolute top-1/2 right-18 hidden -translate-y-1/2 flex-col gap-8 text-neonGreen lg:flex"
+          ><svg
+            class="svgs-cross block w-12 min-w-12"
+            viewBox="0 0 12 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect x="4" y="8" width="4" height="4" transform="rotate(-90 4 8)" fill="currentColor" />
+            <rect x="8" y="4" width="4" height="4" transform="rotate(-90 8 4)" fill="currentColor" />
+            <rect y="4" width="4" height="4" transform="rotate(-90 0 4)" fill="currentColor" />
+            <rect y="12" width="4" height="4" transform="rotate(-90 0 12)" fill="currentColor" />
+            <rect x="8" y="12" width="4" height="4" transform="rotate(-90 8 12)" fill="currentColor" /></svg
+          ><svg
+            class="svgs-cross block w-12 min-w-12"
+            viewBox="0 0 12 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect x="4" y="8" width="4" height="4" transform="rotate(-90 4 8)" fill="currentColor" />
+            <rect x="8" y="4" width="4" height="4" transform="rotate(-90 8 4)" fill="currentColor" />
+            <rect y="4" width="4" height="4" transform="rotate(-90 0 4)" fill="currentColor" />
+            <rect y="12" width="4" height="4" transform="rotate(-90 0 12)" fill="currentColor" />
+            <rect x="8" y="12" width="4" height="4" transform="rotate(-90 8 12)" fill="currentColor" /></svg
+          ><svg
+            class="svgs-cross block w-12 min-w-12"
+            viewBox="0 0 12 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect x="4" y="8" width="4" height="4" transform="rotate(-90 4 8)" fill="currentColor" />
+            <rect x="8" y="4" width="4" height="4" transform="rotate(-90 8 4)" fill="currentColor" />
+            <rect y="4" width="4" height="4" transform="rotate(-90 0 4)" fill="currentColor" />
+            <rect y="12" width="4" height="4" transform="rotate(-90 0 12)" fill="currentColor" />
+            <rect x="8" y="12" width="4" height="4" transform="rotate(-90 8 12)" fill="currentColor" /></svg></div
+        ><div class="overlay absolute inset-0 z-10 h-full w-full" tabindex="-1"></div
+        ><div id="video-description" class="sr-only">The 1minus1 showreel 2025.</div></div
+      ></div
+    ></div
+  ><div id="services"
+    ><div
+      id="services"
+      class="sections-services pointer-events-none relative z-20 lg:pt-100 pin-trigger"
+      style="transform: translateZ(0px)"
+      ><div class="relative mx-auto flex w-full flex-col">
+        {
+          SERVICES.map((service, index) => {
+            const style = HOME_CARD_STYLES[index];
+            return (
+              <div
+                class={`parts-serviceCard pointer-events-auto flex items-start max-lg:-mx-40 ${style.outerOrigin} lg:-mb-50`}
+                style={`z-index: ${index}`}
+              >
+                <div
+                  class={`${style.innerClass} parts-serviceCard__inner relative w-full will-change-transform before:absolute before:inset-x-0 before:top-full before:h-screen`}
+                >
+                  <div
+                    aria-hidden="true"
+                    class="pointer-events-none absolute inset-x-0 top-0 -bottom-800 overflow-hidden rounded-[inherit]"
+                  >
+                    <span
+                      class={`${style.numColor} absolute -top-12 left-30 font-offBit text-[240px] leading-[98%] font-bold md:text-[420px] lg:-top-30 lg:-left-25 lg:text-[776px]`}
+                    >
+                      {service.number}
+                    </span>
+                  </div>
+                  <div
+                    class={`${style.contentText} relative mx-auto flex h-full max-w-1920 flex-col items-start px-70 pt-20 pb-70 sm:px-80 lg:flex-row lg:pt-50 lg:pr-60 lg:pl-60 2xl:pl-80 3xl:pt-60 3xl:pl-110`}
+                  >
+                    <div class="mb-20 w-full lg:mb-0 lg:w-1/2 lg:pr-40">
+                      <div class="mb-7 flex items-center gap-12 lg:mb-20 lg:gap-14">
+                        <svg
+                          class={`svgs-doubleSlash block w-16 min-w-16 lg:w-28 lg:min-w-28 ${style.slashColor}`}
+                          viewBox="0 0 18 10"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <rect
+                            x="8"
+                            y="9.27246"
+                            width="3.09091"
+                            height="3.09091"
+                            transform="rotate(-90 8 9.27246)"
+                            fill="currentColor"
+                          />
+                          <rect
+                            x="11.0938"
+                            y="6.18066"
+                            width="3.09091"
+                            height="3.09091"
+                            transform="rotate(-90 11.0938 6.18066)"
+                            fill="currentColor"
+                          />
+                          <rect
+                            x="14.1797"
+                            y="3.09082"
+                            width="3.09091"
+                            height="3.09091"
+                            transform="rotate(-90 14.1797 3.09082)"
+                            fill="currentColor"
+                          />
+                          <rect
+                            y="9.27246"
+                            width="3.09091"
+                            height="3.09091"
+                            transform="rotate(-90 0 9.27246)"
+                            fill="currentColor"
+                          />
+                          <rect
+                            x="3.09375"
+                            y="6.18066"
+                            width="3.09091"
+                            height="3.09091"
+                            transform="rotate(-90 3.09375 6.18066)"
+                            fill="currentColor"
+                          />
+                          <rect
+                            x="6.17969"
+                            y="3.09082"
+                            width="3.09091"
+                            height="3.09091"
+                            transform="rotate(-90 6.17969 3.09082)"
+                            fill="currentColor"
+                          />
+                        </svg>
+                        <span class="heading-sm uppercase">{service.eyebrow}</span>
+                      </div>
+                      <h2 class="font-neuePower text-[22px] leading-[88%] font-bold uppercase sm:text-[40px] lg:text-[48px] xl:text-[56px] 2xl:text-[64px] 3xl:text-[75px]">
+                        {service.title}
+                      </h2>
+                    </div>
+                    <div class="flex w-full flex-col items-start lg:w-1/2">
+                      <div class="mb-35 flex flex-wrap items-center gap-y-5 lg:mb-30 3xl:mb-50">
+                        {(service.homeTags ?? service.capabilities.slice(0, 3)).map((cap, capIdx) => (
+                          <div class="parts-keyword w-max" data-parallax="false">
+                            <span
+                              class:list={[
+                                style.pillBg,
+                                capIdx % 2 === 0 && 'rounded-tr-none',
+                                'parts-keyword__inner block cursor-default rounded-40 px-17 py-7 subheading uppercase will-change-transform lg:text-[12px] 2xl:py-11 2xl:text-[14px] 3xl:text-[16px]',
+                              ]}
+                            >
+                              {cap}
+                            </span>
+                          </div>
+                        ))}
+                        <span
+                          class={`${style.moreBadgeBg} ml-4 block rounded-8 px-7 py-7 subheading uppercase lg:px-9 lg:text-[12px] 2xl:py-11 2xl:text-[14px] 3xl:text-[16px]`}
+                        >
+                          +{service.homeExtraCount ?? service.capabilities.length - 3}
+                        </span>
+                      </div>
+                      <p class="mb-20 w-full max-w-475 font-neuePower text-[16px] leading-[110%] font-bold lg:mb-25 lg:text-[18px] lg:leading-[105%] 2xl:text-[20px] 3xl:text-[22px]">
+                        {service.homeSummary}
+                      </p>
+                      <a
+                        href={`/services#${service.id}`}
+                        data-anchor={`#${service.id}`}
+                        class={`part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transition-colors duration-300 cursor-pointer ${style.btnClass} flex-row px-24 py-15 lg:py-17 3xl:py-19`}
+                        aria-label={`Find Out More about ${service.title}`}
+                      >
+                        <div class="relative flex overflow-hidden">
+                          <span class="part-btnPrimary__text uppercase btn-text-lg">Find Out More</span>
+                          <span class="part-btnPrimary__text absolute inset-x-0 top-full text-center uppercase btn-text-lg">
+                            Find Out More
+                          </span>
+                        </div>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 7 10"
+                          class="block w-6 min-w-6 lg:w-8 lg:min-w-8 lg:-mt-1"
+                        >
+                          <path
+                            fill="currentColor"
+                            d="M0 9.637V6.546h3.091v3.091zM3.094 6.546V3.455h3.09v3.09zM0 3.455V.365h3.09v3.09z"
+                          />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })
+        }
+      </div></div
+    ></div
+></section>

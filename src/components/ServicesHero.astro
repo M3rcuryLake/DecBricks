@@ -1,0 +1,154 @@
+---
+import { SERVICES, SERVICES_HERO } from '../data/services';
+---
+
+<section
+  data-theme="dark"
+  class="sections-servicesHero relative overflow-hidden bg-darkPurple pb-20 text-white lg:pb-80"
+>
+  <div class="relative mx-auto w-full max-w-1920 pt-135 lg:pt-90 xl:pt-115 3xl:pt-150 4xl:pt-170">
+    <div
+      class="sections-servicesHero__trailWrapper pointer-events-none absolute hidden lg:-top-105 lg:left-450 lg:block xl:-top-130 xl:left-565 3xl:-top-170 3xl:left-730 4xl:-top-195 4xl:left-845"
+      aria-hidden="true"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 1303 703"
+        class="sections-servicesHero__trail webgl-trail text-darkestPurple opacity-0 lg:w-795 xl:w-995 3xl:w-1295 4xl:w-1495"
+      >
+        <path
+          stroke="currentColor"
+          d="m604 .4-176 106L251 243 101 391.4l-99.5 134L301 397l180-87 302-100 127-27-167 131-159 125.5L425.5 603l-70 98L570 609l237.5-97.5L1019 445l122-28.5 161-24.5"
+        ></path>
+      </svg>
+    </div>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 659 374"
+      class="pointer-events-none absolute -top-40 left-10 w-705 max-w-none text-darkestPurple lg:hidden"
+      aria-hidden="true"
+    >
+      <path
+        fill="currentColor"
+        d="M506.526 0H330.411v8.086h-18.217V19.55h-18.217v11.455h-17.542v12.13h-17.542v12.13h-16.53l-1.012 1.01v11.793h-16.867V80.87h-16.867v12.804h-16.868v13.477h-16.192v13.477h-15.856l-1.012 1.011v13.14h-16.192v14.151h-15.518v14.825h-15.518v14.825H95.618v14.825H80.774v14.488l-1.012 1.011H65.931v14.488l-1.012 1.011H51.088v16.172H33.1l-.074 21.16H18.257v19.717H0V374l49.064-.121V361.87h17.542v-11.455H83.81l1.012-1.011v-9.771h17.205l1.012-1.011v-9.771h18.217v-9.434h18.891v-9.434h18.892v-9.434h18.554c2.064-2.332.593-6.442 1.012-9.434h18.891v-8.76h19.566v-8.76h18.892v-8.761h19.566v-8.76h19.566c.385-2.796-1.012-6.617 1.012-8.76h18.554v-8.086h19.566v-7.413h19.566v-7.412h19.229c1.923-1.779.708-5.007 1.012-7.413h19.566v-6.738h20.241v-6.739h17.542v3.369h-12.819v13.478h-15.181l-1.012 1.01v13.814h-15.518v14.825h-14.843v13.815l-1.012 1.01h-14.506v14.825h-15.518v14.825h-14.843v15.499h-14.843v56.979h59.71v-13.577h15.855v-14.353h14.85v-13.55h15.518v-14.825h14.506c1.687-2.466 1.113-7.284 1.046-10.472-.041-1.718-1.363-3.268.303-4.353h14.506v-13.814l1.012-1.011h14.506v-13.14l1.012-1.011h15.181v-13.477h16.193v-13.477h16.192v-11.793l1.012-1.011h15.856v-12.803h16.867v-12.13h17.542v-11.118l1.012-1.011h17.205v-10.782h17.204l1.012-1.011v-9.771h18.217v-10.108h18.217c.445-3.194-1.086-7.574 1.012-10.108h17.879v-9.434h18.892v-6.065H659V72.11h-60.722v4.717h-20.241v5.39h-20.916v5.392H536.88v5.39h-20.915v6.065h-20.241v5.391h-19.903c-1.761 1.436-.823 4.03-1.012 6.065h-20.241v6.065h-20.241v6.738h-20.241v6.065h-20.241v6.739h-20.24v6.738h-20.241v6.739h-20.241v6.739h-20.241v7.412h-19.566v7.413h-20.241v7.412h-19.566v8.76h-19.566v8.087h-19.566v8.76h-19.566v8.76h-16.193v-3.369h8.103v-14.151h15.518v-13.141l1.012-1.01h15.181v-13.478h16.867v-13.477h16.193v-12.803h16.867v-12.804h16.868v-12.803h16.867v-11.119l1.012-1.011h16.53v-12.13h17.542V80.197h17.542V69.751l1.012-1.01h17.205V57.959h18.216V47.85h18.892V37.743h18.891v-9.434h18.892c.418-2.992-1.053-7.103 1.012-9.434h18.554v-8.76h18.884v-7.42c6.309-.316 12.995.432 19.256.007 1.923-.128.709-1.664.992-2.702"
+      ></path>
+    </svg>
+    <h1 class="sr-only">{SERVICES_HERO.srTitle}</h1>
+    <div class="flex flex-col">
+      <div class="contents lg:flex lg:items-start">
+        <span
+          class="relative z-20 order-1 -ml-10 block w-max heading-3.5xl font-offBit101 font-normal text-neonGreen uppercase lg:order-none lg:-ml-15"
+          aria-hidden="true"
+        >
+          {SERVICES_HERO.headingParts[0]}
+        </span>
+        <p
+          class="relative z-20 order-3 mx-15 mt-35 max-w-330 font-neuePower text-[20px] leading-[1.05] font-bold md:max-w-495 lg:order-none lg:mt-50 lg:mr-115 lg:ml-auto lg:w-440 lg:max-w-none xl:mt-60 xl:mr-215 xl:w-480 xl:text-[22px] 3xl:mt-80 3xl:mr-325 3xl:w-575 3xl:text-[26px] 4xl:mt-90 4xl:mr-465"
+        >
+          {SERVICES_HERO.body}
+        </p>
+      </div>
+      <span
+        class="relative z-1 order-2 -ml-10 block w-max heading-3.5xl text-neonGreen uppercase lg:z-0 lg:order-none lg:-mt-30 lg:ml-110 xl:-mt-35 xl:ml-140 3xl:-mt-45 3xl:ml-180 4xl:-mt-50 4xl:ml-210"
+        aria-hidden="true"
+      >
+        {SERVICES_HERO.headingParts[1]}
+      </span>
+    </div>
+    <div class="relative z-20 mt-50 pb-50 lg:mt-9 lg:flex lg:justify-center lg:pb-0 xl:mt-10 3xl:mt-15 4xl:mt-15">
+      <nav class="px-15 lg:px-0" aria-label="Services">
+        <p class="mb-20 flex items-center justify-center gap-8 font-neuePower text-[12px] leading-none font-bold uppercase">
+          <svg
+            class="svgs-doubleSlash block w-15 text-purple"
+            viewBox="0 0 18 10"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <rect x="8" y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 8 9.27246)" fill="currentColor" />
+            <rect x="11.0938" y="6.18066" width="3.09091" height="3.09091" transform="rotate(-90 11.0938 6.18066)" fill="currentColor" />
+            <rect x="14.1797" y="3.09082" width="3.09091" height="3.09091" transform="rotate(-90 14.1797 3.09082)" fill="currentColor" />
+            <rect y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 0 9.27246)" fill="currentColor" />
+            <rect x="3.09375" y="6.18066" width="3.09091" height="3.09091" transform="rotate(-90 3.09375 6.18066)" fill="currentColor" />
+            <rect x="6.17969" y="3.09082" width="3.09091" height="3.09091" transform="rotate(-90 6.17969 3.09082)" fill="currentColor" />
+          </svg>
+          Jump to
+        </p>
+        <ul class="grid grid-cols-2 gap-5 rounded-8 bg-darkestPurple p-4 md:mx-auto md:w-[85%] lg:mx-0 lg:flex lg:w-max lg:items-center lg:gap-10 lg:py-3 lg:pr-3 lg:pl-4">
+          {
+            SERVICES.map((service, idx) => (
+              <>
+                {idx > 0 && (
+                  <li class="hidden lg:block" aria-hidden="true">
+                    <svg
+                      class="svgs-doubleSlash block w-15 text-white"
+                      viewBox="0 0 18 10"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect x="8" y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 8 9.27246)" fill="currentColor" />
+                      <rect x="11.0938" y="6.18066" width="3.09091" height="3.09091" transform="rotate(-90 11.0938 6.18066)" fill="currentColor" />
+                      <rect x="14.1797" y="3.09082" width="3.09091" height="3.09091" transform="rotate(-90 14.1797 3.09082)" fill="currentColor" />
+                      <rect y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 0 9.27246)" fill="currentColor" />
+                      <rect x="3.09375" y="6.18066" width="3.09091" height="3.09091" transform="rotate(-90 3.09375 6.18066)" fill="currentColor" />
+                      <rect x="6.17969" y="3.09082" width="3.09091" height="3.09091" transform="rotate(-90 6.17969 3.09082)" fill="currentColor" />
+                    </svg>
+                  </li>
+                )}
+                <li>
+                  <a
+                    href={`#${service.id}`}
+                    aria-current="false"
+                    class="parts-serviceNavLink flex h-30 items-center justify-center rounded-6 bg-mutedPurple px-9 font-neuePower text-[12px] leading-none font-bold whitespace-nowrap text-white uppercase transition-colors duration-300 hover:bg-purple focus-visible:bg-purple lg:px-15 lg:text-[14px]"
+                  >
+                    <span class="relative flex overflow-hidden">
+                      <span class="parts-serviceNavLink__label">{service.navLabel}</span>
+                      <span
+                        class="parts-serviceNavLink__label absolute inset-x-0 top-full text-center"
+                        aria-hidden="true"
+                      >
+                        {service.navLabel}
+                      </span>
+                    </span>
+                  </a>
+                </li>
+              </>
+            ))
+          }
+        </ul>
+      </nav>
+      <svg
+        class="svgs-arrowDown absolute bottom-0 left-7 w-20 text-purple lg:-bottom-60 lg:left-20"
+        viewBox="0 0 20 12"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <rect x="12" y="4.60948e-06" width="4" height="4" transform="rotate(90 12 4.60948e-06)" fill="currentColor" />
+        <rect x="20" y="4.60948e-06" width="4" height="4" transform="rotate(90 20 4.60948e-06)" fill="currentColor" />
+        <rect x="16" y="4" width="4" height="4" transform="rotate(90 16 4)" fill="currentColor" />
+        <rect x="12" y="8" width="4" height="4" transform="rotate(90 12 8)" fill="currentColor" />
+        <rect x="12" y="12" width="4" height="4" transform="rotate(-180 12 12)" fill="currentColor" />
+        <rect x="8" y="8" width="4" height="4" transform="rotate(-180 8 8)" fill="currentColor" />
+        <rect x="4" y="4" width="4" height="4" transform="rotate(-180 4 4)" fill="currentColor" />
+      </svg>
+      <svg
+        class="svgs-arrowDown absolute right-7 bottom-0 w-20 text-purple lg:right-20 lg:-bottom-60"
+        viewBox="0 0 20 12"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <rect x="12" y="4.60948e-06" width="4" height="4" transform="rotate(90 12 4.60948e-06)" fill="currentColor" />
+        <rect x="20" y="4.60948e-06" width="4" height="4" transform="rotate(90 20 4.60948e-06)" fill="currentColor" />
+        <rect x="16" y="4" width="4" height="4" transform="rotate(90 16 4)" fill="currentColor" />
+        <rect x="12" y="8" width="4" height="4" transform="rotate(90 12 8)" fill="currentColor" />
+        <rect x="12" y="12" width="4" height="4" transform="rotate(-180 12 12)" fill="currentColor" />
+        <rect x="8" y="8" width="4" height="4" transform="rotate(-180 8 8)" fill="currentColor" />
+        <rect x="4" y="4" width="4" height="4" transform="rotate(-180 4 4)" fill="currentColor" />
+      </svg>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,9 @@
+# START nuxt-robots (indexable)
+User-agent: *
+Disallow: /case-studies/private/*
+Disallow: /case-studies/$
+Disallow: /case-studies$
+Disallow: /labs/
+
+Sitemap: https://1minus1.com/sitemap.xml
+# END nuxt-robots
