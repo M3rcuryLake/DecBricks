@@ -53,9 +53,8 @@ const {
     <meta name="twitter:description" content={ogDescription} />
     <meta name="twitter:image" content={ogImage} />
     <link rel="preload" as="font" crossorigin href="/fonts/neue-power.woff2" />
-    <link rel="preload" as="font" crossorigin href="/fonts/OffBit.ttf" />
-    <link rel="preload" as="font" crossorigin href="/fonts/OffBit101.ttf" />
-    <link rel="preload" as="font" crossorigin href="/fonts/nohemi.ttf" />
+    <link rel="preload" as="font" crossorigin href="/fonts/OffBit.woff2" />
+    <slot name="head" />
   </head>
   <body class={bodyClass}>
     <canvas class="webgl pointer-events-none fixed inset-0 z-10 hidden h-full w-full lg:block"></canvas>
