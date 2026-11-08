@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { gsap, ScrollTrigger, bp, bus, prefersReducedMotion, resizeManager } from '../core/gsap';
 import { getLenis } from '../smooth-scroll';
 
-export const TOUCH_VERTEX_SHADER = `uniform float uTime;
+const TOUCH_VERTEX_SHADER = `uniform float uTime;
 uniform float uBirthTime;
 uniform float uBirthScroll;
 uniform float uCurrentScroll;
@@ -36,7 +36,7 @@ void main() {
   }
 }`;
 
-export const TOUCH_FRAGMENT_SHADER = `uniform sampler2D uTexture;
+const TOUCH_FRAGMENT_SHADER = `uniform sampler2D uTexture;
 uniform float uDuration;
 
 varying float vAge;
@@ -55,7 +55,7 @@ void main() {
   gl_FragColor = vec4(texColor.rgb, finalAlpha);
 }`;
 
-export const BG_VERTEX_SHADER = `varying vec2 vUv;
+const BG_VERTEX_SHADER = `varying vec2 vUv;
 varying vec2 vWorldPosition;
 
 void main() {
@@ -69,7 +69,7 @@ void main() {
   vUv = uv;
 }`;
 
-export const BG_FRAGMENT_SHADER = `varying vec2 vUv;
+const BG_FRAGMENT_SHADER = `varying vec2 vUv;
 varying vec2 vWorldPosition;
 
 uniform sampler2D uMouseTexture;
@@ -145,7 +145,7 @@ void main () {
   #include <colorspace_fragment>
 }`;
 
-export const IMAGE_VERTEX_SHADER = `varying vec2 vUv;
+const IMAGE_VERTEX_SHADER = `varying vec2 vUv;
 varying vec2 vWorldPosition;
 
 void main() {
@@ -159,7 +159,7 @@ void main() {
   vUv = uv;
 }`;
 
-export const IMAGE_FRAGMENT_SHADER = `varying vec2 vUv;
+const IMAGE_FRAGMENT_SHADER = `varying vec2 vUv;
 varying vec2 vWorldPosition;
 
 uniform sampler2D uTexture;
@@ -267,7 +267,7 @@ void main() {
   gl_FragColor = vec4(finalColor, uOpacity);
 }`;
 
-export const TRAIL_VERTEX_SHADER = `
+const TRAIL_VERTEX_SHADER = `
 attribute float instanceOpacity;
 varying float vOpacity;
 
@@ -277,7 +277,7 @@ void main() {
 }
 `;
 
-export const TRAIL_FRAGMENT_SHADER = `
+const TRAIL_FRAGMENT_SHADER = `
 uniform vec3 color;
 uniform float opacity;
 varying float vOpacity;
@@ -295,7 +295,7 @@ function linearToSRGBComp(c: number) {
   return c <= 0.0031308 ? 12.92 * c : 1.055 * Math.pow(c, 1 / 2.4) - 0.055;
 }
 
-export function parseCssColor(str: string | null | undefined, fallback = new THREE.Color(1, 1, 1)): THREE.Color {
+function parseCssColor(str: string | null | undefined, fallback = new THREE.Color(1, 1, 1)): THREE.Color {
   if (!str) return fallback;
   const s = str.trim().toLowerCase();
   if (s.startsWith('oklch')) {
@@ -656,7 +656,7 @@ export class WebGLImage {
     };
   }
 
-  public getImageSpace(force = false) {
+  public getImageSpace(_force = false) {
     const sizes = this.getSizes();
     const isSliderCard = Boolean(this.options.group);
     const b = getElementSpace(this.image, sizes.width, sizes.height, isSliderCard);

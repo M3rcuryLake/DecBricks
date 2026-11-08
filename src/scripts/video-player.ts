@@ -1,4 +1,4 @@
-import { gsap, bp, ScrollTrigger, prefersReducedMotion } from './core/gsap';
+import { gsap, bp, ScrollTrigger } from './core/gsap';
 import { getLenis } from './smooth-scroll';
 
 const SHOWREEL_MP4 = '/videos/3a265a95e25bd70a0242eb3a163a177b.mp4';
@@ -31,9 +31,7 @@ export function initVideoPlayer() {
   let isMuted = false;
   let currentTime = 0;
   let duration = 0;
-  let progress = 0;
   let volume = 1;
-  let showButton = false;
   let hasPlayed = false;
 
   const updateProgressUI = () => {
@@ -79,7 +77,6 @@ export function initVideoPlayer() {
   );
 
   const setShowButton = (val: boolean) => {
-    showButton = val;
     if (!playBtn) return;
     // Spec (Cy6uk_lV.js render): root visibility is an instant class binding on showButton.
     playBtn.classList.toggle('opacity-0', !val);

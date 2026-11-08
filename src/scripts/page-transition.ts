@@ -1,7 +1,7 @@
 import { gsap, ScrollTrigger, bp, bus, prefersReducedMotion, resizeManager } from './core/gsap';
 import { getLenis } from './smooth-scroll';
 
-export const TRANSITION_CONFIG = {
+const TRANSITION_CONFIG = {
   DESKTOP_COLS: 12,
   MOBILE_COLS: 6,
   DURATION: 0.7,
@@ -15,7 +15,7 @@ export const TRANSITION_CONFIG = {
 
 const PENDING_ANCHOR_KEY = 'pending-anchor';
 
-export function setPendingAnchor(anchor: string) {
+function setPendingAnchor(anchor: string) {
   if (anchor) localStorage.setItem(PENDING_ANCHOR_KEY, anchor);
 }
 
@@ -44,10 +44,6 @@ let transitionStarted = false;
 // Tracked current route: authoritative source for popstate handling (the DOM may
 // temporarily hold another route's markup while a transition is in flight).
 let trackedCurrentPath = normalizePath(window.location.pathname);
-
-export function isTransitionActive(): boolean {
-  return transitionStarted;
-}
 
 export function initPageTransition(callbacks: PageTransitionCallbacks) {
   const overlayEl = document.querySelector<HTMLElement>('.structure-transitionOverlay');

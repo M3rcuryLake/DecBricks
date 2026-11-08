@@ -29,7 +29,7 @@ let anchorClearTimer: number | undefined;
 let rebuildThemeTriggersFn: (() => void) | null = null;
 let closeMenuFn: ((resumeLenis?: boolean) => void) | null = null;
 
-export function updateHeaderActiveUI(pathname = normalizePath(window.location.pathname)) {
+function updateHeaderActiveUI(pathname = normalizePath(window.location.pathname)) {
   const header = document.querySelector<HTMLElement>('.structure-menu');
   if (!header) return;
 
@@ -177,7 +177,6 @@ export function initMenu() {
   const mm = gsap.matchMedia();
 
   if (mobileNav) {
-    const bg = mobileNav.querySelector<HTMLElement>('.background');
     const closeBtn = mobileNav.querySelector<HTMLElement>('.close');
     const menuButtonRef = openBtn;
 

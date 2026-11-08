@@ -30,7 +30,6 @@ export function horizontalLoop(itemsIn: gsap.TweenTarget, config: HorizontalLoop
   let loop!: HorizontalLoop;
 
   gsap.context(() => {
-    let lastIndex = 0;
     const tl = gsap.timeline({
       repeat: config.repeat,
       paused: config.paused,
