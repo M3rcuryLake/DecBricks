@@ -90,6 +90,7 @@ export class MomentumHover {
       onLeave: this.stopTracking,
       onLeaveBack: this.stopTracking,
     });
+    this.startTracking();
   }
 
   private initHoverListeners() {
@@ -143,7 +144,7 @@ export class MomentumHover {
 
   destroy() {
     this.scrollTrigger?.kill();
-    window.removeEventListener('mousemove', this.trackVelocity);
+    this.stopTracking();
     this.controller.abort();
   }
 }

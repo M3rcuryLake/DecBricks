@@ -1066,7 +1066,6 @@ export class WebGLTrail {
 export interface WebGLExperienceAPI {
   fgScene: THREE.Scene;
   bgScene: THREE.Scene;
-  createGroup?: () => THREE.Group;
   createImage: (el: HTMLImageElement | HTMLVideoElement, options?: WebGLImageOptions) => WebGLImage;
   createTrail: (el: SVGSVGElement, options?: WebGLTrailOptions) => WebGLTrail;
   relayout: () => void;
@@ -1426,6 +1425,7 @@ export function initWebGL() {
 
   // Render loop on GSAP ticker
   gsap.ticker.add(() => {
+    if (document.hidden) return;
     const scrollY = getLenis()?.scroll ?? window.scrollY;
     const elapsed = (Date.now() - startTime) / 1000;
 
@@ -1468,7 +1468,6 @@ export function initWebGL() {
   experienceInstance = {
     fgScene,
     bgScene,
-    createGroup: () => new THREE.Group(),
     createImage,
     createTrail,
     relayout,

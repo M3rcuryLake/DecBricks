@@ -1,3 +1,4 @@
+import * as THREE from 'three';
 import {
   gsap,
   ScrollTrigger,
@@ -10,8 +11,7 @@ import {
 } from './core/gsap';
 import { MomentumHover } from './core/momentum-hover';
 import { horizontalLoop } from './core/horizontal-loop';
-import { getWebGLExperience } from './webgl/instance';
-import type { WebGLImage } from './webgl/experience';
+import { getWebGLExperience, type WebGLImage } from './webgl/experience';
 
 class StickerMouseTrail {
   private increment = 0;
@@ -370,11 +370,11 @@ export function initCaseStudies() {
 
   // Setup WebGLCaseStudySlider (matches class w in C1VH0-3n.js)
   const exp = window.innerWidth >= bp.lg && (window as any).hasWebGL ? getWebGLExperience() : null;
-  let sliderGroup: any = null;
+  let sliderGroup: THREE.Group | null = null;
   const webglImages = new Map<string, WebGLImage>();
 
-  if (exp && exp.createGroup) {
-    sliderGroup = exp.createGroup();
+  if (exp) {
+    sliderGroup = new THREE.Group();
     exp.fgScene.add(sliderGroup);
     sliderEl.querySelectorAll<HTMLImageElement>('.parts-caseStudySlider__slide img.parts-caseStudyCard__image').forEach((img) => {
       const id = img.getAttribute('data-case-study-id');
