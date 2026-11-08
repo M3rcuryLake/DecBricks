@@ -1,0 +1,73 @@
+---
+import Base from '../layouts/Base.astro';
+import Loader from '../components/Loader.astro';
+import Header from '../components/Header.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+import TransitionOverlay from '../components/TransitionOverlay.astro';
+import { getEntry } from 'astro:content';
+import type { z } from 'astro:content';
+import type { contactPageSchema } from '../content/config';
+
+const contactEntry = await getEntry('pages', 'contact');
+const data = contactEntry.data as z.infer<typeof contactPageSchema>;
+
+const contactSchema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: data.hero.h1,
+    url: data.seo.canonical,
+    description: data.seo.description,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://decbricks.com/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Contact',
+        item: 'https://decbricks.com/contact',
+      },
+    ],
+  },
+];
+---
+
+<Base
+  title={data.seo.title}
+  description={data.seo.description}
+  canonical={data.seo.canonical}
+  schema={contactSchema}
+  bodyClass="bg-darkPurple"
+>
+  <Fragment slot="head">
+    <link rel="preload" as="image" href="/images/contact/computer-back-500.webp" type="image/webp" media="(max-width: 640px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="/images/contact/computer-back-1000.webp" type="image/webp" media="(min-width: 641px)" fetchpriority="high" />
+  </Fragment>
+  <div id="__nuxt">
+    <main id="main-content" class="layout overflow-hidden bg-darkPurple">
+      <Loader />
+      <div class="page page-contact bg-darkPurple">
+        <Header />
+        
+        <!-- Accessible single H1 on page -->
+        <div class="sr-only">
+          <h1>{data.hero.h1}</h1>
+        </div>
+
+        <ContactForm />
+        <Footer />
+      </div>
+      <TransitionOverlay />
+    </main>
+  </div>
+  <script>import '../scripts/main';</script>
+</Base>
