@@ -1,15 +1,27 @@
 ---
 import { SERVICES } from '../data/services';
+
+export interface Props {
+  /** Side-rail items; default = SERVICES. */
+  items?: Array<{ id: string; number: string; navLabel: string }>;
+  /** Accessible name of the nav. */
+  ariaLabel?: string;
+}
+
+const {
+  items = SERVICES.map(({ id, number, navLabel }) => ({ id, number, navLabel })),
+  ariaLabel = 'Services',
+} = Astro.props;
 ---
 
 <nav
   class="sections-servicesSidebarNav fixed top-1/2 right-0 z-40 hidden lg:block"
   inert
-  aria-label="Services"
+  aria-label={ariaLabel}
 >
   <ul class="flex w-58 flex-col gap-4 rounded-l-10 bg-lightPurple px-9 py-9">
     {
-      SERVICES.map((service) => (
+      items.map((service) => (
         <li>
           <a
             href={`#${service.id}`}

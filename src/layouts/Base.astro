@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import '../styles/decbricks.css';
+import { SITE, SITE_URL } from '../data/site';
 
 interface Props {
   title?: string;
@@ -12,31 +13,39 @@ interface Props {
   themeColor?: string;
   robots?: string;
   bodyClass?: string;
-  schema?: any;
+  schema?: unknown;
   noindex?: boolean;
 }
 
-const defaultDesc =
-  '1minus1 is a specialist video game agency. Web design, branding, and marketing for studios and publishers worldwide. Over a decade in games.';
-const defaultImg = 'https://1minus1.com/images/og-default.png';
-
 const {
-  title = 'Video Game Agency | Web, Brand & Marketing | 1minus1',
-  description = defaultDesc,
-  canonical = 'https://1minus1.com/',
+  title = `${SITE.name} | ${SITE.tagline}`,
+  description = SITE.description,
+  canonical: canonicalProp,
   ogTitle = title,
   ogDescription = description,
-  ogImage = defaultImg,
-  themeColor = '#800020',
+  ogImage = SITE.ogImage,
+  themeColor = SITE.themeColor,
   robots: robotsProp,
   bodyClass = 'bg-darkPurple',
   schema,
   noindex = false,
 } = Astro.props;
 
-const robots = noindex
+// Canonical derived from the route when a page doesn't pin one explicitly.
+const canonical =
+  canonicalProp ??
+  new URL(Astro.url.pathname.replace(/\/+$/, '') || '/', SITE_URL).href;
+
+// Non-production builds are never indexed (set PUBLIC_ENV=production to index).
+const isProduction = import.meta.env.PUBLIC_ENV === 'production';
+const robots = !isProduction
   ? 'noindex, nofollow'
-  : (robotsProp || 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
+  : noindex
+    ? 'noindex, nofollow'
+    : robotsProp ||
+      'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+
+const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION || undefined;
 ---
 <!doctype html>
 <html lang="en">
@@ -52,7 +61,8 @@ const robots = noindex
     <link rel="sitemap" href="/sitemap.xml" />
     <meta name="description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="1minus1" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content={SITE.locale} />
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={ogDescription} />
@@ -61,6 +71,7 @@ const robots = noindex
     <meta name="twitter:title" content={ogTitle} />
     <meta name="twitter:description" content={ogDescription} />
     <meta name="twitter:image" content={ogImage} />
+    {gscVerification && <meta name="google-site-verification" content={gscVerification} />}
     <link rel="preload" as="font" crossorigin href="/fonts/kh-teka-regular.woff2" />
     <link rel="preload" as="font" crossorigin href="/fonts/kh-teka-bold.woff2" />
     {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}

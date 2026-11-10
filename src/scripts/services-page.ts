@@ -3,11 +3,21 @@ import { getLenis } from './smooth-scroll';
 import { getWebGLExperience, type WebGLTrail } from './webgl/experience';
 import { CLIENT_LOGOS, type ClientLogo, SERVICES } from '../data/services';
 
+/** Section items derived from hero "Jump to" links so any page can reuse this
+ * init with its own section list (defaults to the SERVICES ids when absent). */
+function deriveNavItems(links: HTMLAnchorElement[]) {
+  const items = links
+    .map((link) => ({
+      id: (link.getAttribute('href') || '').replace(/^#/, ''),
+    }))
+    .filter((it) => it.id);
+  return items.length ? items : SERVICES.map((s) => ({ id: s.id }));
+}
+
 function initServicesHero(heroEl: HTMLElement) {
   // 1. "Jump to" ServiceNavLink char roll hover/focus (ZYPH-moW.js).
   // Desktop-only matchMedia gate; reverse runs at default timescale; charsClass 'char'.
-  const navLinks = Array.from(heroEl.querySelectorAll<HTMLAnchorElement>('.parts-serviceNavLink'));
-  const mmRoll = gsap.matchMedia();
+  const navLinks = Array.from(heroEl.querySelectorAll<HTMLAnchorElement>('.parts-serviceNavLink'));  const mmRoll = gsap.matchMedia();
   mmRoll.add(
     { isDesktop: `(min-width: ${bp.lg}px)`, reduceMotion: '(prefers-reduced-motion: reduce)' },
     (ctx) => {
@@ -39,9 +49,11 @@ function initServicesHero(heroEl: HTMLElement) {
   const setHeroActive = (id: string) => {
     navLinks.forEach((l) => l.setAttribute('aria-current', sectionIdOf(l) === id ? 'true' : 'false'));
   };
-  setHeroActive(SERVICES[0].id);
+  const heroNavItems = deriveNavItems(navLinks);
+  setHeroActive(heroNavItems[0].id);
   const heroTriggers: ScrollTrigger[] = [];
-  SERVICES.forEach((service) => {
+  heroNavItems.forEach(({ id }) => {
+    const service = { id };
     const sectionEl = document.getElementById(service.id);
     if (!sectionEl) return;
     heroTriggers.push(
@@ -385,7 +397,8 @@ function initServicesSidebarNav() {
       gsap.set(navEl, { xPercent: 100, y: -(navEl.offsetHeight - labelsHeight) / 2 });
       navEl.setAttribute('inert', '');
 
-      const lastServiceId = SERVICES[SERVICES.length - 1].id;
+      const navItems = deriveNavItems(itemLinks);
+      const lastServiceId = navItems[navItems.length - 1].id;
       const lastSectionEl = document.getElementById(lastServiceId);
 
       // One show/hide timeline (D5w6q2GP.js): fromTo xPercent 100 → 0 with
@@ -411,13 +424,14 @@ function initServicesSidebarNav() {
 
       itemTriggers = [];
 
-      SERVICES.forEach((service, idx) => {
+      navItems.forEach((navItem, idx) => {
+        const service = { id: navItem.id };
         const sectionEl = document.getElementById(service.id);
         if (!sectionEl) return;
-        const nextService = SERVICES[idx + 1];
+        const nextService = navItems[idx + 1];
         const nextSectionEl = nextService ? document.getElementById(nextService.id) : null;
         const isFirst = idx === 0;
-        const isLast = idx === SERVICES.length - 1;
+        const isLast = idx === navItems.length - 1;
 
         const st = ScrollTrigger.create({
           trigger: sectionEl,
