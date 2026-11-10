@@ -1,33 +1,159 @@
 ---
-// TEMPORARY placeholder — the original page imported `astro:content` /
-// `../content/config`, which do not exist and broke the build.
-// The real Contact page (Cal.com embed, CTA copy, Team, Numbers, form submit)
-// is built in Phase 5 per docs/Implementation-plan.md.
 import Base from '../layouts/Base.astro';
 import Loader from '../components/Loader.astro';
 import Header from '../components/Header.astro';
+import ServicesHero from '../components/ServicesHero.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+import CalEmbed from '../components/CalEmbed.astro';
+import TeamSection from '../components/TeamSection.astro';
+import ContactNumbers from '../components/ContactNumbers.astro';
+import ServicesSidebarNav from '../components/ServicesSidebarNav.astro';
+import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 import TransitionOverlay from '../components/TransitionOverlay.astro';
+import { EMAIL, PHONES } from '../data/contact';
+import { TEAM } from '../data/team';
+import { contactPageSchema } from '../lib/schema';
 
 const title = 'Contact Decbricks | Start Your Digital Project';
 const description =
   'Contact Decbricks for website development, app development, AI automation, custom software, digital marketing and business outreach services.';
+// Hero body: owner-supplied SEO description (docs/Implementation-plan.md §4.2).
+const heroBody = description;
+// Smiley line: derived from the page's own supplied H1 strings — the template
+// default here is 1minus1 copy and must not ship (open-items.md C2/B2).
+const smileyCopy = 'Start your digital project with Decbricks.';
+// 5B paragraph copy was never supplied (brief §4.2 B is referenced but absent
+// from the repo — open-items.md A15). Blocks render with the supplied H2/H3
+// and a neutral navigation sentence; verbatim paragraphs slot in when given.
+const startProjectBody =
+  'Tell us what you want to build — book a call above, or send the form below.';
+const sidebarItems = [
+  { id: 'book-a-call', number: '01', navLabel: 'Book a Call' },
+  { id: 'start-a-project', number: '02', navLabel: 'Start a Project' },
+  { id: 'meet-the-team', number: '03', navLabel: 'Team' },
+  { id: 'contact-numbers', number: '04', navLabel: 'Call Us' },
+];
 ---
 
-<Base title={title} description={description} canonical="/contact" bodyClass="bg-darkPurple">
+<Base
+  title={title}
+  description={description}
+  canonical="/contact"
+  ogTitle={title}
+  ogDescription={description}
+  schema={contactPageSchema(description)}
+  bodyClass="bg-darkPurple"
+>
   <div id="__nuxt">
     <main id="main-content" class="layout overflow-hidden bg-darkPurple">
       <Loader />
       <div class="page page-contact bg-darkPurple">
         <Header />
-        <div class="relative mx-auto w-full max-w-1920 pt-135 lg:pt-90 xl:pt-115 3xl:pt-150 4xl:pt-170">
-          <h1 class="sr-only">Contact Decbricks</h1>
-          <p class="mx-14 font-neuePower text-[20px] leading-[1.05] font-bold text-white">
-            Contact page under construction.
-          </p>
-        </div>
+        <ServicesHero
+          srTitle="Contact Decbricks"
+          headingParts={['Contact', 'Us']}
+          body={heroBody}
+          navItems={[
+            { id: 'book-a-call', navLabel: 'Book a Call' },
+            { id: 'start-a-project', navLabel: 'Start a Project' },
+            { id: 'meet-the-team', navLabel: 'Team' },
+            { id: 'contact-numbers', navLabel: 'Call Us' },
+          ]}
+          navLabel="Contact"
+        />
+        <section
+          data-theme="light"
+          class="sections-servicesList relative overflow-hidden bg-darkPurple"
+          aria-label="Contact Decbricks"
+        >
+          <div
+            class="rounded-10 bg-white px-9 pt-10 pb-40 lg:rounded-24 lg:px-20 lg:pt-25 lg:pb-50 xl:px-25 xl:pt-30 xl:pb-60 3xl:px-35 3xl:pt-35 3xl:pb-70 4xl:px-35 4xl:pt-40 4xl:pb-80"
+          >
+            <div
+              class="mx-auto flex w-full max-w-1850 flex-col gap-40 lg:gap-55 xl:gap-65 3xl:gap-80 4xl:gap-95"
+            >
+              <ContactBlock
+                id="book-a-call"
+                number="01"
+                eyebrow="Book a Call"
+                title="Book a Meeting"
+              >
+                <CalEmbed />
+              </ContactBlock>
+
+              <ContactBlock
+                id="start-a-project"
+                number="02"
+                eyebrow="Start a Project"
+                title="Let’s Start Something Great."
+                h3="Tell us what you want to build."
+              >
+                {EMAIL || PHONES.length > 0 ? (
+                  <>
+                    <p class="font-nohemi text-[15px] leading-[22px] text-darkPurple lg:text-[14px]">
+                      {startProjectBody}
+                    </p>
+                    <ul class="mt-10 flex list-none flex-col gap-8 p-0">
+                      {EMAIL && (
+                        <li>
+                          <a
+                            href={`mailto:${EMAIL}`}
+                            class="font-neuePower text-[14px] font-bold text-darkPurple underline"
+                          >
+                            Email us
+                          </a>
+                        </li>
+                      )}
+                      {PHONES.map((p) => (
+                        <li>
+                          <a
+                            href={`tel:${p.e164}`}
+                            class="font-neuePower text-[14px] font-bold text-darkPurple underline"
+                          >
+                            Call {p.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                ) : (
+                  <p class="font-nohemi text-[15px] leading-[22px] text-darkPurple lg:text-[14px]">
+                    {startProjectBody}
+                  </p>
+                )}
+              </ContactBlock>
+
+              {
+                TEAM.length > 0 && (
+                  <ContactBlock id="meet-the-team" number="03" eyebrow="Team" title="Meet the Team">
+                    <TeamSection />
+                  </ContactBlock>
+                )
+              }
+
+              {
+                PHONES.length > 0 && (
+                  <ContactBlock id="contact-numbers" number="04" eyebrow="Call Us" title="Contact Numbers">
+                    <ContactNumbers />
+                  </ContactBlock>
+                )
+              }
+
+              {
+                TEAM.length === 0 && import.meta.env.DEV && (
+                  <p class="sr-only">Meet the Team is hidden: no team data supplied yet (open-items A5).</p>
+                )
+              }
+            </div>
+          </div>
+        </section>
+        <ServicesSidebarNav items={sidebarItems} ariaLabel="Contact" />
+        <ContactForm smileyCopy={smileyCopy} />
         <Footer />
       </div>
+      <CookieBanner />
       <TransitionOverlay />
     </main>
   </div>

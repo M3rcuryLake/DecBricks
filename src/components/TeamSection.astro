@@ -1,0 +1,71 @@
+---
+/**
+ * TeamSection — "Meet the Team" grid (map 5C). Hides entirely while
+ * `TEAM` is empty (open-items A5) — dev builds get a console warning;
+ * no invented people or placeholder faces are ever shown.
+ */
+import { TEAM } from '../data/team';
+
+const dev = import.meta.env.DEV;
+if (dev && TEAM.length === 0) {
+  console.warn('[decbricks] TEAM is empty (open-items A5) — Meet the Team block hidden on /contact.');
+}
+
+// Team members flagged `placeholder` (owner-supplied later) get a visible badge
+// instead of a photo until a real image exists under src/assets/team/.
+---
+
+{
+  TEAM.length > 0 && (
+    <ul class="team-grid list-none m-0 p-0">
+      {TEAM.map((member) => (
+        <li class="team-card rounded-l-20 rounded-br-12 bg-lightPurple p-15 lg:p-25">
+          {member.photo ? (
+            <img
+              src={member.photo}
+              alt={`Portrait of ${member.name}`}
+              width="800"
+              height="1000"
+              loading="lazy"
+              decoding="async"
+              class="team-card__photo block w-full h-auto rounded-8 object-cover bg-white"
+            />
+          ) : (
+            <div class="team-card__photo team-card__photo--empty block w-full rounded-8 bg-lightPurple" aria-hidden="true" />
+          )}
+
+          <h3 class="mt-15 font-neuePower text-[16px] leading-none font-bold text-darkPurple uppercase">
+            <span class="mr-7">{member.name}</span>
+            {member.placeholder && (
+              <span
+                class="rounded-4 bg-purple px-6 py-3 align-middle font-nohemi text-[10px] font-normal normal-case text-white"
+              >
+                Placeholder
+              </span>
+            )}
+          </h3>
+
+          <p class="team-card__role mt-5 font-nohemi text-[13px] leading-[18px] text-darkPurple">{member.role}</p>
+          {member.bio && (
+            <p class="mt-10 font-nohemi text-[14px] leading-[20px] text-darkPurple">{member.bio}</p>
+          )}
+
+          {member.linkedin && (
+            <a
+              href={member.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="team-card__link mt-10 inline-block font-neuePower text-[13px] font-bold text-darkPurple"
+            >
+              LinkedIn <span aria-hidden="true">↗</span>
+            </a>
+          )}
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+{dev && TEAM.length === 0 && (
+  <p class="sr-only">Meet the Team is hidden: no team data supplied yet (open-items A5).</p>
+)}

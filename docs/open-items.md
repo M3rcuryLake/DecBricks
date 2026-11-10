@@ -19,6 +19,7 @@ Agent: never invent these. Implement safe fallbacks, keep this list current, mar
 | A12 | Copy for Home and Services pages in Decbricks voice (not in brief) | rest of site | see C1 |
 | A13 | Production webfont files / licence confirmation (see B1) | typography | trial files used for dev |
 | A14 | Client / project proof (logos, case studies) if wanted | social proof | none shown |
+| A15 | **Missing brief**: `docs/Implementation-plan.md`/`docs/mapping.md` cite "brief §4.2 B" for the Contact intro copy ("Let's Start Something Great." block — two paragraphs under the mapped H2/H3), but the brief itself is not in the repo. Please supply the supplied verbatim paragraphs (or a pointer to the brief). | /contact content island, block 5B | H2/H3 render; one neutral navigation sentence + contact-method links shown; verbatim paragraphs slot straight into `src/pages/contact.astro` ($ startProjectBody) |
 
 ## B. Licensing / compliance flags
 - **B1 — Fonts:** supplied files are named `*TRIAL*` (KH Interference, KH Teka, KH Teka Mono, FK Raster Trial). Trial builds usually exclude web/commercial use and may have reduced glyph sets. You said you hold a licence: confirm it covers **web embedding** and obtain the non-trial webfont/desktop files before launch.

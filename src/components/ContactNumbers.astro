@@ -1,0 +1,35 @@
+---
+/**
+ * ContactNumbers — list of `tel:` links (map 5D). Hides while `PHONES` is
+ * empty (open-items A3); dev builds warn. Links render with a wrapped pad so
+ * the tap target stays ≥44×44; display string is copy-safe plain text.
+ */
+import { PHONES } from '../data/contact';
+
+if (import.meta.env.DEV && PHONES.length === 0) {
+  console.warn('[decbricks] PHONES is empty (open-items A3) — Contact Numbers block hidden on /contact.');
+}
+---
+
+{
+  PHONES.length > 0 && (
+    <ul class="numbers-list list-none m-0 flex flex-col gap-10 p-0">
+      {PHONES.map((p) => (
+        <li class="rounded-l-20 rounded-br-12 bg-lightPurple">
+          <a
+            href={`tel:${p.e164}`}
+            class="numbers-list__link flex min-w-44 min-h-44 items-center gap-15 rounded-l-20 rounded-br-12 px-20 py-12 font-neuePower text-[15px] leading-none font-bold text-darkPurple uppercase"
+          >
+            <span class="numbers-list__label font-nohemi text-[13px] font-normal normal-case">{p.label}</span>
+            <span>{p.display}</span>
+            {p.whatsapp && (
+              <span class="numbers-list__wa ml-auto font-nohemi text-[12px] font-normal normal-case">
+                WhatsApp
+              </span>
+            )}
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}

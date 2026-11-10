@@ -1,0 +1,80 @@
+---
+/**
+ * ContactBlock — content card for the Contact page island. Clones the
+ * ServiceBlock/AboutBlock chrome (4 corner squares, ghost numeral, hairline
+ * border `border-darkestPurple/15`) with stacked content so wide embeds and
+ * lists (Cal.com, team grid, numbers) keep full card width.
+ */
+export interface Props {
+  id: string;
+  /** Giant ghost numeral, "01"–"04". */
+  number: string;
+  eyebrow: string;
+  title?: string;
+  /** Secondary heading (e.g. "Tell us what you want to build."). */
+  h3?: string;
+}
+const { id, number, eyebrow, title, h3 } = Astro.props;
+---
+
+<article
+  id={id}
+  class="parts-serviceBlock relative flex flex-col border border-darkestPurple/15 px-14 pt-25 pb-30 lg:gap-30 lg:px-30 lg:pt-25 lg:pb-35 xl:gap-35 xl:px-35 xl:pt-30 xl:pb-45 3xl:pt-35 3xl:pb-50 4xl:pt-40 4xl:pb-60"
+  aria-labelledby={`${id}-heading`}
+>
+  <span class="absolute -top-px -left-px size-9 bg-purple" aria-hidden="true"></span>
+  <span class="absolute -top-px -right-px size-9 bg-purple" aria-hidden="true"></span>
+  <span class="absolute -bottom-px -left-px size-9 bg-purple" aria-hidden="true"></span>
+  <span class="absolute -right-px -bottom-px size-9 bg-purple" aria-hidden="true"></span>
+  <div
+    class="pointer-events-none absolute bottom-0 left-0 h-265 w-full overflow-hidden lg:h-300 lg:w-380 xl:h-375 xl:w-480 3xl:h-480 3xl:w-615 4xl:h-560 4xl:w-715"
+    aria-hidden="true"
+  >
+    <span
+      class="absolute top-70 -left-7 font-offBit text-[275px] leading-[0.98] font-bold whitespace-nowrap text-purple/5 uppercase lg:top-75 lg:text-[310px] xl:top-95 xl:-left-10 xl:text-[390px] 3xl:top-125 3xl:text-[500px] 4xl:top-145 4xl:-left-15 4xl:text-[580px]"
+    >
+      {number}
+    </span>
+  </div>
+  <div class="relative z-1 flex w-full flex-col">
+    <div>
+      <p
+        class="flex items-center gap-15 font-neuePower text-[12px] leading-none font-bold text-darkPurple uppercase lg:gap-10 xl:text-[14px] 3xl:text-[16px] 4xl:text-[18px]"
+      >
+        <svg
+          class="svgs-doubleSlash w-15 shrink-0 text-purple xl:w-20 4xl:w-25"
+          viewBox="0 0 18 10"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <rect x="8" y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 8 9.27246)" fill="currentColor" />
+          <rect x="11.0938" y="6.18066" width="3.09091" height="3.09091" transform="rotate(-90 11.0938 6.18066)" fill="currentColor" />
+          <rect x="14.1797" y="3.09082" width="3.09091" height="3.09091" transform="rotate(-90 14.1797 3.09082)" fill="currentColor" />
+          <rect y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 0 9.27246)" fill="currentColor" />
+          <rect x="3.09375" y="6.18066" width="3.09091" height="3.09091" transform="rotate(-90 3.09375 6.18066)" fill="currentColor" />
+          <rect x="6.17969" y="3.09082" width="3.09091" height="3.09091" transform="rotate(-90 6.17969 3.09082)" fill="currentColor" />
+        </svg>
+        <span>{eyebrow}</span>
+      </p>
+      {title && (
+        <h2
+          id={`${id}-heading`}
+          class="mt-5 pl-30 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPurple uppercase lg:mt-10 lg:pl-0 lg:text-[36px] xl:text-[44px] 3xl:mt-15 3xl:text-[52px] 4xl:text-[60px]"
+        >
+          {title}
+        </h2>
+      )}
+      {h3 && (
+        <h3
+          class="mt-20 lg:mt-25 font-nohemi text-[15px] leading-[1.2] font-medium text-darkPurple lg:text-[18px] 3xl:text-[20px]"
+        >
+          {h3}
+        </h3>
+      )}
+    </div>
+    <div class="relative mt-20 w-full lg:mt-25">
+      <slot />
+    </div>
+  </div>
+</article>

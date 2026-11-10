@@ -1,0 +1,100 @@
+---
+/**
+ * CalEmbed — Cal.com inline booking block (map 5A). Renders the embed mount
+ * (initialised lazily by `scripts/cal-embed.ts`) plus a brand-coloured
+ * skeleton, and a fallback card (direct Cal deep link / email / phones) that
+ * replaces the embed on load failure / timeout / missing consent / missing
+ * Cal link. No network happens until `cal-embed.ts` decides to load `embed.js`.
+ */
+import { CAL, EMAIL, PHONES } from '../data/contact';
+
+const hasCal = !!CAL.link;
+const fallbackVisible = !hasCal; // missing Cal link ⇒ never shows a blank box
+const hasFallbackLinks = !!CAL.bookingUrl || !!EMAIL || PHONES.length > 0;
+---
+
+<div class="cal-embed-widget relative w-full" data-has-cal={hasCal ? 'true' : 'false'}>
+  <div
+    class="cal-embed relative w-full overflow-hidden rounded-8 bg-lightPurple"
+    data-lenis-prevent
+    aria-busy={fallbackVisible ? 'false' : 'true'}
+    aria-hidden={fallbackVisible ? 'true' : 'false'}
+  >
+    {
+      fallbackVisible ? null : (
+        <div class="cal-skeleton" aria-hidden="true">
+          <div class="cal-skeleton__bar cal-skeleton__bar--w-sm" />
+          <div class="cal-skeleton__grid">
+            <div class="cal-skeleton__panel" />
+            <div class="cal-skeleton__panel" />
+          </div>
+        </div>
+      )
+    }
+  </div>
+
+  <div class:list={['cal-fallback', fallbackVisible ? '' : 'is-hidden']} role="status">
+    <p class="cal-fallback__title font-neuePower text-[14px] leading-snug font-bold text-darkPurple uppercase">
+      {hasCal
+        ? 'The booking calendar could not load here.'
+        : 'Online booking is not configured yet.'}
+    </p>
+    {
+      hasCal && !hasFallbackLinks ? null : hasFallbackLinks && (
+        <ul class="cal-fallback__links mt-10 flex list-none flex-col gap-8 p-0">
+          {CAL.bookingUrl && (
+            <li>
+              <a
+                href={CAL.bookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="cal-fallback__link font-neuePower text-[14px] font-bold text-darkPurple"
+              >
+                Book a call on Cal.com
+                <span aria-hidden="true"> ↗</span>
+              </a>
+            </li>
+          )}
+
+          {EMAIL && (
+            <li>
+              <a
+                href={`mailto:${EMAIL}`}
+                class="cal-fallback__link font-neuePower text-[14px] font-bold text-darkPurple"
+              >
+                Email us
+              </a>
+            </li>
+          )}
+
+          {PHONES.map((p) => (
+            <li>
+              <a href={`tel:${p.e164}`} class="cal-fallback__link font-neuePower text-[14px] font-bold text-darkPurple">
+                Call {p.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+    <p class="cal-fallback__help mt-10 font-nohemi text-[13px] leading-[20px] text-darkPurple">
+      Or send the form below — we read every message.
+    </p>
+  </div>
+
+  {/* live region for booking-confirmed / embed-error announcements */}
+  <p
+    class="cal-status sr-only"
+    role="status"
+    aria-live="polite"
+    tabindex="-1"
+  >
+    {!hasCal && (import.meta.env.DEV ? 'DEV: CAL.link is empty — set PUBLIC_CAL_LINK (open-items A2).' : '')}
+  </p>
+</div>
+
+{
+  import.meta.env.DEV && !hasCal && console.warn(
+    '[decbricks] Cal.com link not configured (open-items A2) — showing contact fallback card on /contact.'
+  )
+}

@@ -24,11 +24,12 @@ Sidebar items = the 7 blocks (labels: Who We Are, What Drives Us, Mission, Visio
 ### /contact (NEW, replaces broken `contact.astro`)
 Same shell as About. Content island holds, in order, as blocks with the same card chrome:
 1. **Book a meeting** — Cal.com inline embed (`CalEmbed.astro` + `scripts/cal-embed.ts`)
-2. **Let's Start Something Great.** (H2) / **Tell us what you want to build.** (H3) / the two paragraphs (verbatim from brief §4.2 B)
-3. **Meet the Team** — `TeamSection.astro` + `TeamCard.astro`, data `src/data/team.ts`
+2. **Let's Start Something Great.** (H2) / **Tell us what you want to build.** (H3) / the two paragraphs (verbatim from brief §4.2 B — **A15: brief missing, placeholder nav sentence until supplied**)
+3. **Meet the Team** — `TeamSection.astro` (single component; separate `TeamCard.astro` merged into it — deviation logged in Design-handoff), data `src/data/team.ts`
 4. **Contact Numbers** — `ContactNumbers.astro`, data `src/data/contact.ts`, `tel:` links
 then `ContactForm`, `Footer`. Hero: srTitle "Contact Decbricks"/headingParts ['Contact','Us'].
 Sidebar items: Book a Call, Start a Project, Team, Call Us.
+Blocks 3+4 hide while their arrays are empty (dev warnings; sidebar item no-ops).
 
 ## Class hooks scripts depend on (do not rename; null-guard)
 - services-page.ts: `.sections-servicesHero`, `.sections-servicesHero__trail`, `.sections-servicesList`, `.sections-servicesSidebarNav`, `.sections-servicesSidebarNavItem(__bullet|__index|__label|__text)`, `.parts-serviceNavLink(__label)`, `.parts-autoplayVideo`, `.sections-servicesClients`, `.structure-loader`, `.structure-menu`, `li[data-slot]`

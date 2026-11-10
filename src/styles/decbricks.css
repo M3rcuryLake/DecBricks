@@ -69,3 +69,175 @@
 [data-lenis-prevent] iframe {
   pointer-events: auto;
 }
+
+/* --------------------------------------------------------------------------
+   Cal.com inline embed (map 5A).
+   The mount min-height reserves space before embed.js arrives (CLS rule in
+   Implementation-plan §5A) — ~700px on mobile, ~650px from lg.
+   -------------------------------------------------------------------------- */
+.cal-embed {
+  min-height: 700px;
+}
+@media (min-width: 1024px) {
+  .cal-embed {
+    min-height: 650px;
+  }
+}
+/* Once the widget iframe exists, drop the pulsing skeleton behind it. */
+.cal-embed:has(iframe) .cal-skeleton {
+  display: none;
+}
+
+.cal-skeleton {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+}
+.cal-skeleton__bar {
+  height: 16px;
+  width: 40%;
+  border-radius: 8px;
+  background-color: color-mix(in srgb, #800020 18%, transparent);
+  animation: cal-skeleton-pulse 1.6s ease-in-out infinite;
+}
+.cal-skeleton__bar--w-sm {
+  width: 26%;
+}
+.cal-skeleton__grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 12px;
+}
+@media (max-width: 767px) {
+  .cal-skeleton__grid {
+    grid-template-columns: 1fr;
+  }
+}
+.cal-skeleton__panel {
+  border-radius: 8px;
+  background-color: color-mix(in srgb, #800020 12%, transparent);
+  animation: cal-skeleton-pulse 1.6s ease-in-out infinite;
+}
+.cal-skeleton__grid .cal-skeleton__panel + .cal-skeleton__panel {
+  animation-delay: 0.4s;
+}
+@keyframes cal-skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cal-skeleton__bar,
+  .cal-skeleton__panel {
+    animation: none;
+  }
+}
+
+/* Fallback card (failure / timeout / missing consent / missing Cal link).
+   Server-rendered; starts hidden only when the embed is expected to load. */
+.cal-fallback.is-hidden {
+  display: none;
+}
+.cal-fallback__link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.cal-fallback__link:focus-visible {
+  outline: 2px solid var(--brand-bg-dark);
+  outline-offset: 2px;
+}
+.cal-status {
+  /* Off-screen on purpose; it is announced via role=status and receives
+     focus ({ preventScroll: true }) after booking or on failure. */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.cal-status:focus-visible {
+  /* Focus can be moved here programmatically; reveal it briefly as a real
+     paragraph so focus is never parked on invisible content. */
+  position: static;
+  width: auto;
+  height: auto;
+  clip: auto;
+  overflow: visible;
+  white-space: normal;
+  margin: 10px 0 0;
+  outline: 2px solid var(--brand-bg-dark);
+  outline-offset: 2px;
+}
+
+/* Form status line (`#status-message`, aria-live). */
+.form-status {
+  color: var(--brand-on-light);
+}
+.form-status--error {
+  color: var(--brand-error);
+}
+
+/* --------------------------------------------------------------------------
+   Meet the Team (map 5C) grid — custom because the compiled global.css has no
+   `sm:`/`lg:` grid-cols variants and the spacing differs from other grids.
+   -------------------------------------------------------------------------- */
+.team-grid {
+  display: grid;
+  list-style: none;
+  grid-template-columns: minmax(0, 1fr);
+}
+@media (min-width: 640px) {
+  .team-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  .team-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.team-card__photo--empty {
+  aspect-ratio: 4 / 5;
+  border-radius: 8px;
+  background-color: color-mix(in srgb, #800020 10%, transparent);
+}
+.team-card__link,
+.team-card :focus-visible,
+.cal-embed-widget :focus-visible {
+  outline: 2px solid var(--brand-bg-dark);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Contact numbers (map 5D) — rows reuse the card pill shape; the link itself
+   keeps a ≥44px tap target and a visible focus ring.
+   -------------------------------------------------------------------------- */
+.numbers-list {
+  list-style: none;
+}
+.numbers-list__link {
+  /* Compiled global.css has no min-w-44/min-h-44 utilities; tap target here. */
+  min-width: 44px;
+  min-height: 44px;
+  text-underline-offset: 3px;
+}
+.numbers-list__link:hover,
+.numbers-list__link:focus-visible {
+  background-color: var(--brand-accent-deep);
+  color: var(--brand-on-dark);
+}
+.numbers-list__link:hover .numbers-list__label,
+.numbers-list__link:hover .numbers-list__wa,
+.numbers-list__link:focus-visible .numbers-list__label,
+.numbers-list__link:focus-visible .numbers-list__wa {
+  color: var(--brand-on-dark);
+}

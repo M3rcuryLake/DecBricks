@@ -49,11 +49,11 @@ export function initCookies() {
     });
   };
 
-  btn('accept').addEventListener('click', () => { setCookie(ESSENTIAL, 'true'); setCookie(ANALYTICS, 'true'); analytics.checked = true; paintBox(); hide(); });
+  btn('accept').addEventListener('click', () => { setCookie(ESSENTIAL, 'true'); setCookie(ANALYTICS, 'true'); analytics.checked = true; paintBox(); hide(); bus.emit('cookies-decided', true); });
   btn('manage').addEventListener('click', enterManage);
   // Original manage view: clear consent cookies and reload.
   btn('delete').addEventListener('click', () => { delCookie(ESSENTIAL); delCookie(ANALYTICS); window.location.reload(); });
-  btn('save').addEventListener('click', () => { setCookie(ESSENTIAL, 'true'); setCookie(ANALYTICS, String(analytics.checked)); hide(); });
+  btn('save').addEventListener('click', () => { setCookie(ESSENTIAL, 'true'); setCookie(ANALYTICS, String(analytics.checked)); hide(); bus.emit('cookies-decided', analytics.checked); });
   bus.on('manage-cookies', () => { show(); if (!managing) enterManage(); });
 
   if (!getCookie(ESSENTIAL)) {

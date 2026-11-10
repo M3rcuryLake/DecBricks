@@ -23,6 +23,7 @@ import { initKeywords } from './keywords';
 import { initCaseStudies } from './case-studies';
 import { initTestimonials } from './testimonials';
 import { initContact } from './contact';
+import { initCalEmbed } from './cal-embed';
 import { initFooter } from './footer';
 import { getWebGLExperience, initWebGL } from './webgl/experience';
 
@@ -82,6 +83,7 @@ teardown(initKeywords());
 teardown(initCaseStudies());
 teardown(initTestimonials());
 teardown(initContact());
+teardown(initCalEmbed());
 teardown(initFooter());
 initCookies();
 
@@ -110,6 +112,7 @@ initPageTransition({
     teardown(initCaseStudies());
     teardown(initTestimonials());
     teardown(initContact());
+    teardown(initCalEmbed());
     teardown(initFooter());
     refreshHeaderForRoute(newPath);
     mountHeroForCurrentPage();

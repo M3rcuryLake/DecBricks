@@ -2,9 +2,15 @@
 interface Props {
   /** Smiley sentence; the original CMS serves the singular form on /services. */
   smileyCopy?: string;
+  /** sr-only section H2 (aria-labelledby target). */
+  srHeading?: string;
+  /** Two giant display words above the form. */
+  headingParts?: readonly [string, string];
 }
 const {
   smileyCopy = 'We’re a games industry creative leader that will put your players first. Drop us a message!',
+  srHeading = 'Begin your story',
+  headingParts = ['Begin your', 'story'],
 } = Astro.props;
 ---
 <section
@@ -20,20 +26,27 @@ const {
       ><span aria-hidden="true" role="presentation" style="font-kerning: none; text-rendering: optimizeSpeed"
         >{smileyCopy}</span
       ></span
-    ><h2 id="contactForm-heading" class="sr-only">Begin your story</h2
+    ><h2 id="contactForm-heading" class="sr-only">{srHeading}</h2
     ><div class="relative z-1 mx-14 mb-48 flex flex-col heading-3xl text-neonGreen uppercase 2xl:mx-0 2xl:mb-150"
       ><span
         class="sections-contactForm__headingLeft font-offBit101 font-normal whitespace-nowrap 2xl:-mb-30"
         aria-hidden="true"
         role="presentation"
-        >Begin your</span
-      ><span class="sections-contactForm__headingRight font-offBit text-white">story</span></div
+        >{headingParts[0]}</span
+      ><span class="sections-contactForm__headingRight font-offBit text-white">{headingParts[1]}</span></div
     ><form
       novalidate
       aria-labelledby="form-title"
       class="parts-form -mb-20 rounded-t-10 bg-white px-27 pt-25 pb-20 lg:rounded-t-16 lg:px-54 lg:pt-34 lg:pb-100 sections-contactForm__form z-10 mx-auto w-11/12 origin-bottom lg:origin-bottom-left 2xl:absolute 2xl:right-120 2xl:bottom-0 2xl:ml-0 2xl:w-[38%] 2xl:-translate-x-60"
       aria-describedby="status-message"
-      ><div class="mb-15 flex items-center gap-15 lg:mb-50"
+      ><input
+        type="text"
+        name="_gotcha"
+        class="sr-only"
+        tabindex="-1"
+        autocomplete="off"
+        aria-hidden="true"
+      /><div class="mb-15 flex items-center gap-15 lg:mb-50"
         ><svg
           class="svgs-doubleSlash block w-22 min-w-22 text-darkPurple"
           viewBox="0 0 18 10"
@@ -138,12 +151,13 @@ const {
               ><input id="terms" type="checkbox" required class="sr-only" aria-invalid="false" /><div
                 class="border-darkPurple flex h-16 min-h-16 w-16 min-w-16 cursor-pointer items-center justify-center rounded-4 border transition-colors lg:h-21 lg:min-h-21 lg:w-21 lg:min-w-21"
               ></div></div
-            ><div class="flex-1"
-              ><label
+              ><div class="flex-1"
+              ><!-- A11: /terms & /privacy-policy pages do not exist yet — links removed (see docs/open-items.md A11). -->
+              <label
                 for="terms"
                 class="text-darkPurple parts-formCheckbox__label block cursor-pointer copy-xs text-darkPurple"
-                >I have read and agree to the <a href="/terms" target="_blank">Terms of Service</a> and
-                <a href="/privacy-policy" target="_blank">Privacy Policy</a>.</label
+                >I have read and agree to the Terms of Service and Privacy
+                Policy.</label
               ></div
             ></div
           ></div
@@ -165,22 +179,6 @@ const {
               fill="currentColor"
               d="M0 9.637V6.546h3.091v3.091zM3.094 6.546V3.455h3.09v3.09zM0 3.455V.365h3.09v3.09z"
             /></svg></button></div
-      ><span class="mt-20 block w-full copy-xs text-darkPurple lg:w-6/12">
-        This site is protected by reCAPTCHA and the Google
-        <a
-          class="text-purple transition-colors hover:underline"
-          href="https://policies.google.com/privacy"
-          target="_blank"
-          >Privacy Policy</a
-        >
-        and
-        <a
-          class="text-purple transition-colors hover:underline"
-          href="https://policies.google.com/terms"
-          target="_blank"
-          >Terms of Service</a
-        >
-        apply. </span
       ><div id="status-message" aria-live="polite" aria-atomic="true" class="mt-20"></div></form></div
   ><div
     class="pointer-events-none absolute top-[10vw] left-[5vw] w-[120vw] max-w-1820 sm:right-[-10.4vw] sm:left-auto sm:w-[120vw] lg:top-[-10vw] lg:w-[95vw]"
