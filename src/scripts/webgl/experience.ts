@@ -962,7 +962,7 @@ export class WebGLTrail {
   private createPlanes() {
     const sizes = this.getSizes();
     const space = getElementSpace(this.el as unknown as HTMLElement, sizes.width, sizes.height);
-    const color = parseCssColor(space.computedStyle.color, new THREE.Color(0.38, 0.02, 0.74));
+    const color = parseCssColor(space.computedStyle.color, new THREE.Color(0.831, 0.314, 0.376));
     const geom = new THREE.PlaneGeometry(1, 1, 1, 1);
     const curve = new THREE.CatmullRomCurve3(this.pathPoints, false, 'catmullrom', 0.5);
     this.spacedPoints = curve.getSpacedPoints(this.planeCount - 1);
@@ -1190,7 +1190,7 @@ export function initWebGL() {
     uScrollY: { value: 0 },
     uMouseTexture: { value: fgTouchTarget.texture },
     uPixelSize: { value: 25 },
-    uTrailColor: { value: new THREE.Color(0.49, 1, 0.43) },
+    uTrailColor: { value: new THREE.Color(0.976, 0.924, 0.852) },
     uTrailOpacity: { value: 0 },
     uTrailThreshold: { value: 0.25 },
     uTrailBrightness: { value: 1.2 },
@@ -1251,13 +1251,13 @@ export function initWebGL() {
   const scanPageTargets = () => {
     document.querySelectorAll<HTMLElement>('.webgl-background').forEach((el) => {
       const space = getElementSpace(el, width, height);
-      const bgColor = parseCssColor(space.computedStyle.backgroundColor, new THREE.Color(0.11, 0, 0.22));
+      const bgColor = parseCssColor(space.computedStyle.backgroundColor, new THREE.Color(0.502, 0.0, 0.125));
       const trailAttr = el.getAttribute('data-trail');
       let trailColor = trailAttr
-        ? parseCssColor(trailAttr, new THREE.Color(0.49, 1, 0.43))
-        : new THREE.Color(0.49, 1, 0.43);
+        ? parseCssColor(trailAttr, new THREE.Color(0.976, 0.924, 0.852))
+        : new THREE.Color(0.976, 0.924, 0.852);
       if (el.closest('.sections-contactForm')) {
-        trailColor = new THREE.Color(0.38, 0.02, 0.74);
+        trailColor = new THREE.Color(0.831, 0.314, 0.376);
       }
 
       const mat = new THREE.ShaderMaterial({

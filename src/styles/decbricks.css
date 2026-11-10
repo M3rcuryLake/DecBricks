@@ -1,0 +1,71 @@
+/* ==========================================================================
+   Decbricks brand layer — hand-written CSS.
+   Imported AFTER global.css in Base.astro. Only used where existing compiled
+   utilities cannot express the needed value or a contrast fix is required.
+   Never re-define token values that global.css owns.
+   ========================================================================== */
+
+/* Semantic brand aliases (source of truth for values is the @layer theme token
+   block in global.css; these map to brand names for new code). */
+:root {
+  --brand-bg-dark: #800020;
+  --brand-bg-deepest: color-mix(in oklab, #800020 78%, black);
+  --brand-bg-deeper: color-mix(in oklab, #800020 88%, black);
+  --brand-muted: color-mix(in oklab, #800020 76%, #fff9f2);
+  --brand-accent: #D45060;
+  /* Darkened accent for fills that sit under text (≥4.5:1 with Off-White). */
+  --brand-accent-deep: color-mix(in oklab, #D45060 72%, #800020);
+  --brand-surface: #fff9f2;
+  --brand-surface-alt: #f3e6d5;
+  --brand-highlight: #f3e6d5;
+  --brand-on-dark: #fff9f2;
+  --brand-on-light: #800020;
+  --brand-error: #B3261E;
+}
+
+/* --------------------------------------------------------------------------
+   Contrast corrective overrides.
+   Pure coral (#D45060) is decorative-only (corner squares, bullets, masks,
+   ghost numerals, webgl background). Where a coral fill carries text the fill
+   is switched to --brand-accent-deep (#BC3D4D, 5.1:1 with Off-White) or the
+   fill becomes burgundy. Specificity: decbricks.css loads after global.css,
+   so these tie-breaks win.
+   -------------------------------------------------------------------------- */
+
+/* Hero "Jump to" pills + sidebar nav links (text = Off-White 12–14px bold) */
+.hover\:bg-purple:hover {
+  background-color: var(--brand-accent-deep);
+}
+.aria-\[current\=true\]\:bg-purple[aria-current="true"] {
+  background-color: var(--brand-accent-deep);
+}
+.focus-visible\:bg-purple:focus-visible {
+  background-color: var(--brand-accent-deep);
+}
+/* Any pressed state that fills with coral keeps ≥4.5:1 under its text */
+.active\:bg-purple:active {
+  background-color: var(--brand-accent-deep);
+}
+
+/* Primary buttons: static coral fill + burgundy text fails (2.6:1) →
+   burgundy fill + Off-White text (10.3:1). `active:bg-white` still applies. */
+.part-btnPrimary.bg-purple {
+  background-color: var(--brand-bg-dark);
+  color: var(--brand-on-dark);
+}
+
+/* Home-hero capability pills (`bg-purple text-white` 12px) */
+.parts-keyword__inner.bg-purple {
+  background-color: var(--brand-accent-deep);
+}
+
+/* --------------------------------------------------------------------------
+   Lenis × iframe override.
+   global.css ships `.lenis.lenis-smooth iframe { pointer-events: none }`
+   which would make the Cal.com embed unclickable. The embed container gets
+   `data-lenis-prevent` in markup; this re-enables interaction for the iframe
+   the container owns.
+   -------------------------------------------------------------------------- */
+[data-lenis-prevent] iframe {
+  pointer-events: auto;
+}

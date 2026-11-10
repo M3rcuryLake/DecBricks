@@ -43,7 +43,7 @@ xs 456 · sm 640 · md 768 · **lg 1024** (main desktop switch) · xl 1280 · 2x
 ### Radii / borders / motion
 Radii `--radius-{2,4,6,8,10,12,16,20,24,28,30,36,40}` (px). Card border `border-darkestPurple/15`; corner squares `size-9 bg-purple`. Easing `--ease-{in,out,in-out}`; durations 100–700 ms; `--animate-translateX` 10 s linear marquee. Blur `--blur-{sm,lg,xl}`.
 
-## 2. Brand mapping (TARGET)
+## 2. Brand mapping (TARGET → as built)
 
 Brand: Burgundy `#800020` · Warm Beige `#F3E6D5` · Off-White `#FFF9F2` · Coral Red `#D45060`.
 Strategy: **keep the existing token names** (hundreds of class usages; renaming = risk), repoint values, and add semantic aliases for new code. Derived shades are produced from the four brand colours with `color-mix(in oklab, …)` — no new hues.
@@ -75,6 +75,32 @@ Strategy: **keep the existing token names** (hundreds of class usages; renaming 
 
 Required follow-ups (agent): (1) grep every `text-purple` / `hover:bg-purple` + text combo; small text on light cards (eyebrows `text-[12–18px]`, nav labels) → switch to `text-darkPurple`. (2) Hover/active button fills in coral: text must be Off-White **and** ≥18.66px bold, otherwise darken the fill using `color-mix(in oklab, #D45060 72%, #800020)` (≥4.5:1 with Off-White) and record it. (3) Re-verify focus rings: ring colour must be ≥3:1 against both adjacent surfaces (use Off-White on burgundy, Burgundy on off-white; coral only as secondary).
 Re-run a contrast script after the remap and write the real results into this file.
+
+### 2b. AS BUILT (Phase 1, 2026-11-10) — values applied in `@layer theme` (both `:root` and `:host,:root` copies) + scripted hex remap
+| Token | Applied value | Notes |
+|---|---|---|
+| --color-darkPurple | `#800020` | was oklch(15.84%…); themecolor/meta remapped too |
+| --color-darkestPurple | `color-mix(in oklab, #800020 78%, black)` ≈ `#5A0014` | hex fallbacks remapped to `#5A0014(+alpha)` |
+| --color-darkerPurple | `color-mix(in oklab, #800020 88%, black)` ≈ `#6B0019` | |
+| --color-purple | `#D45060` (Coral) | fallbacks `#9860ff*`→`#D45060*` |
+| --color-lightPurple | `#F3E6D5` | fallbacks `#efedf0*`→`#F3E6D5*` |
+| --color-palePurple | `#FFF9F2` | fallbacks `#f2ecff*`→`#FFF9F2*` |
+| --color-mutedPurple | `color-mix(in oklab, #800020 76%, #FFF9F2)` ≈ `#A34B4E` | **documented deviation from the 70% draft**: Off-White text on it = 5.47:1 (70% mix = 4.70:1, too tight). Used by hero "Jump to" pills only |
+| --color-neonGreen | `#F3E6D5` (Warm Beige) | highlight/heading role per C5 |
+| --color-errorRed | `#B3261E` | distinct from coral accent; 6.25:1 on Off-White, 5.3:1 on Beige (C4) |
+| --color-white | `#FFF9F2` | all `#ffffff(+alpha)` fallbacks → `#fff9f2(+alpha)`; pure-white hex in CSS utilities remapped same-suffix |
+
+Remap counts (global.css): `140128` 12 → 0 · `26024a` 3+2 uppercase-variant → 0 · `9860ff` 6 → 0 · `f2ecff` 6 → 0 · `efedf0` 0 (token-only) · `31045f` 0 (token-only) · `ffffff` 23 → 0. Fixed a `##5a0014` double-hash artifact the script introduced (5 spots) — verify `##` count = 0 after any future hex remap.
+Markup/TS remap: `#140128`→`#800020`, `#26024A`→`#5A0014` in `Base.astro` (themeColor default), `services.astro`, `the404game.astro`, `Hero.astro` (4 trail classes).
+WebGL fallbacks in `experience.ts`: text `(0.38,0.02,0.74)`→coral `(0.831,0.314,0.376)` ×2, bg `(0.11,0,0.22)`→burgundy `(0.502,0,0.125)`, trail `(0.49,1,0.43)`→beige `(0.976,0.924,0.852)` ×3; `Footer` `data-trail="oklch(1,0,0)"`→`oklch(98.48% 0.0113 71.9)` (Off-White; parseCssColor does not accept hex).
+
+### 2c. Contrast corrective overrides (`src/styles/decbricks.css`, loaded after global.css → unlayered wins cascade layers)
+- `hover:bg-purple` / `focus-visible:bg-purple` / `aria-[current=true]:bg-purple` / `active:bg-purple` fills → `--brand-accent-deep` = `color-mix(in oklab, #D45060 72%, #800020)` ≈ `#BC3D4D` (5.13:1 with Off-White — passes normal small text).
+- `.part-btnPrimary.bg-purple` (Submit / Accept buttons: coral fill + burgundy text = 2.6:1 fail) → burgundy fill + Off-White text (10.3:1).
+- `.parts-keyword__inner.bg-purple` (home-hero pills 12px) → accent-deep.
+- Coral `text-purple` small text on dark surfaces fixed in markup: Loader counter numerals + CookieBanner Manage/Save buttons → `text-neonGreen` (Beige, 8.8:1 on Burgundy).
+- Remaining decorative coral (corner squares `size-9`, slash/cross/arrow icons on light = 3.9:1 ≥3 UI graphics ✅, 5%-opacity ghost numerals, footer webgl bg) intentionally untouched.
+- Known accepted fail (flagged, launch-blocker B2 scope): Footer `bg-purple` (coral) webgl layer sits under burgundy text `text-darkPurple` (~2.1:1) — mirrors the template's purple-on-dark relationship; resolve when the footer is rebuilt in Phase 3/8 (`--brand-accent-deep` background would also fix it).
 
 ## 3. Typography mapping (TARGET) — KH Type
 
