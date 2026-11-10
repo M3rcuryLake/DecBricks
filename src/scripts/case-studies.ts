@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import type * as THREE from 'three';
 import {
   gsap,
   ScrollTrigger,
@@ -374,7 +374,7 @@ export function initCaseStudies() {
   const webglImages = new Map<string, WebGLImage>();
 
   if (exp) {
-    sliderGroup = new THREE.Group();
+    sliderGroup = exp.createGroup();
     exp.fgScene.add(sliderGroup);
     sliderEl.querySelectorAll<HTMLImageElement>('.parts-caseStudySlider__slide img.parts-caseStudyCard__image').forEach((img) => {
       const id = img.getAttribute('data-case-study-id');

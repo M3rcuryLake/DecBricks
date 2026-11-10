@@ -59,12 +59,16 @@ class ResizeManager {
   private timer: number | null = null;
   constructor() {
     if (typeof window !== 'undefined') {
-      window.addEventListener('resize', () => {
-        if (this.timer) window.clearTimeout(this.timer);
-        this.timer = window.setTimeout(() => {
-          this.fns.forEach((fn) => fn());
-        }, 150);
-      });
+      window.addEventListener(
+        'resize',
+        () => {
+          if (this.timer) window.clearTimeout(this.timer);
+          this.timer = window.setTimeout(() => {
+            this.fns.forEach((fn) => fn());
+          }, 150);
+        },
+        { passive: true }
+      );
     }
   }
   add(fn: () => void) { this.fns.add(fn); }

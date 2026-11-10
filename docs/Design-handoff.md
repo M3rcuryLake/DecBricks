@@ -20,6 +20,10 @@ Purpose: let a fresh session resume without chat history. Append decisions as th
 ## Decisions
 (append below)
 
+### Phase 7 decisions (2026-11-10) — performance & a11y
+- **Bundle split**: `src/scripts/webgl/impl.ts` = former `experience.ts` body exported as `createExperience()`; facade keeps the public API (types re-exported, singleton getter) and dynamic-imports the impl. `initWebGL()` still no-ops < lg or with <2 `canvas.webgl` elements — *and now also nothing loads unless that holds*, saving three.js from the 404/game/contact/about critical path entirely. `case-studies.ts` gets its scene group via the new `exp.createGroup()` + type-only `three` import, so `three` is reachable ONLY from `impl.ts`. Bundle: main JS render-blocking 871→315 KB; three chunk 556 KB lazy. Behaviour parity: consumers already treat a null experience as "use CSS/video fallback"; late `rebuildPageTargets()` covers swaps during load; on idle-ish non-mounted pages nothing changes.
+- Skip link + `#main-content` ids + passive resize added; everything else measured and left as-is per "measure first" (loader/cookie banner untouched — template motion is a launch-visual requirement; numeric Lighthouse is a follow-up since no browser tool is available here).
+
 ### Phase 6 decisions (2026-11-10) — SEO & technical
 - `smtp.xml.ts`/`robots.txt.ts` are razor-simple static endpoints (zero-dep); the old template `public/robots.txt` + `public/sitemap.xml` (1minus1 URLs) were deleted so the endpoints win. `robots.txt` mirrors Base.astro's `PUBLIC_ENV === 'production'` gate — production gets `Allow: / + Sitemap: /sitemap.xml`, everything else `Disallow: /`.
 - Interim OG image `public/og-default.png` is a 1200×630 flat brand PNG (burgundy + off-white inset frame + coral baseline) written with stdlib `zlib`/`struct` — a wordmark needs the real logo (open-items A6, TEMP for launch).
