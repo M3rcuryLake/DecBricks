@@ -32,9 +32,11 @@ const {
 } = Astro.props;
 
 // Canonical derived from the route when a page doesn't pin one explicitly.
+// Page-supplied canonicals may be relative (`/about`) or absolute.
 const canonical =
-  canonicalProp ??
-  new URL(Astro.url.pathname.replace(/\/+$/, '') || '/', SITE_URL).href;
+  canonicalProp === undefined
+    ? new URL(Astro.url.pathname.replace(/\/+$/, '') || '/', SITE_URL).href
+    : new URL(canonicalProp, SITE_URL).href;
 
 // Non-production builds are never indexed (set PUBLIC_ENV=production to index).
 const isProduction = import.meta.env.PUBLIC_ENV === 'production';

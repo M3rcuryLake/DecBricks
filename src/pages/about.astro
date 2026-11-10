@@ -1,0 +1,70 @@
+---
+import Base from '../layouts/Base.astro';
+import Loader from '../components/Loader.astro';
+import Header from '../components/Header.astro';
+import ServicesHero from '../components/ServicesHero.astro';
+import AboutBlock from '../components/AboutBlock.astro';
+import ServicesSidebarNav from '../components/ServicesSidebarNav.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import TransitionOverlay from '../components/TransitionOverlay.astro';
+import { ABOUT } from '../data/about';
+import { aboutPageSchema } from '../lib/schema';
+
+const title = 'About Decbricks | Digital & Technology Solutions Agency';
+const description =
+  'Discover Decbricks, a technology and digital solutions agency helping businesses innovate through software development, AI, automation, design and business growth services.';
+// Hero body: first sentence of the Intro block, verbatim.
+const heroBody = ABOUT[0].paragraphs[0].split('. ').slice(0, 2).join('. ') + '.';
+// Smiley sentence: Intro block first paragraph, verbatim (no 1minus1 copy).
+const smileyCopy = ABOUT[0].paragraphs[0];
+const sidebarItems = ABOUT.map(({ id, number, navLabel }) => ({ id, number, navLabel }));
+---
+
+<Base
+  title={title}
+  description={description}
+  canonical="/about"
+  ogTitle={title}
+  ogDescription={description}
+  schema={aboutPageSchema(description)}
+  bodyClass="bg-darkPurple"
+>
+  <div id="__nuxt">
+    <main id="main-content" class="layout overflow-hidden bg-darkPurple">
+      <Loader />
+      <div class="page page-about bg-darkPurple">
+        <Header />
+        <ServicesHero
+          srTitle="About Decbricks"
+          headingParts={['About', 'Decbricks']}
+          body={heroBody}
+          navItems={ABOUT.map(({ id, navLabel }) => ({ id, navLabel }))}
+          navLabel="About"
+        />
+        <section
+          data-theme="light"
+          class="sections-servicesList relative overflow-hidden bg-darkPurple"
+          aria-label="About Decbricks"
+        >
+          <div
+            class="rounded-10 bg-white px-9 pt-10 pb-40 lg:rounded-24 lg:px-20 lg:pt-25 lg:pb-50 xl:px-25 xl:pt-30 xl:pb-60 3xl:px-35 3xl:pt-35 3xl:pb-70 4xl:px-35 4xl:pt-40 4xl:pb-80"
+          >
+            <div
+              class="mx-auto flex w-full max-w-1850 flex-col gap-40 lg:gap-55 xl:gap-65 3xl:gap-80 4xl:gap-95"
+            >
+              {ABOUT.map((section, index) => <AboutBlock section={section} index={index} />)}
+            </div>
+          </div>
+        </section>
+        <ServicesSidebarNav items={sidebarItems} ariaLabel="About" />
+        <ContactForm smileyCopy={smileyCopy} />
+        <Footer />
+      </div>
+      <CookieBanner />
+      <TransitionOverlay />
+    </main>
+  </div>
+  <script>import '../scripts/main';</script>
+</Base>

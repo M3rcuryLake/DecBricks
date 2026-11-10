@@ -6,7 +6,7 @@ const isHome = pathname === '/';
 // Main nav: only pages that exist are linked. Contact gets the highlight pill.
 const links = [
   { label: 'Work', href: '/', anchor: '#work', enabled: true, current: isHome },
-  { label: 'About', href: '/about', anchor: '', enabled: false, current: pathname === '/about' },
+  { label: 'About', href: '/about', anchor: '', enabled: true, current: pathname === '/about' },
   { label: 'Services', href: '/services', anchor: '', enabled: true, current: pathname === '/services' },
   { label: 'Contact', href: '/contact', anchor: '', enabled: true, current: pathname === '/contact' },
 ].filter((l) => l.enabled);
