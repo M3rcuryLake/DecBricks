@@ -104,6 +104,16 @@ WebGL fallbacks in `experience.ts`: text `(0.38,0.02,0.74)`→coral `(0.831,0.31
 
 ## 3. Typography mapping (TARGET) — KH Type
 
+> **AS BUILT (Phase 2, 2026-11-10)** — verified with fontTools, converted, deployed:
+> - Source files in `src/assets/Fonts/` → WOFF2 subsets in `public/fonts/`: `kh-teka-regular/medium/bold` (27/27/28 KB), `kh-teka-mono-regular` (22 KB), `kh-interference-regular/bold` (10/11 KB), `fk-raster-roman-compact` (22 KB). Subset unicodes: Latin U+0020-007E + A0-FF + 2013/2014 dashes + 2018-201D quotes + 2026 + ₹ (U+20B9) + ™, all layout features kept, `font-display:swap`.
+> - Glyph audit: Teka ×3 (886 glyphs, incl. ₹ & ' ' " " – — @ + € — nothing needed by the copy is missing; only ﷼ absent, unused); Teka Mono identical coverage; Interference R/B (489 glyphs, incl. quotes/dashes/@; no ₹ — irrelevant to display usage); FK Raster Roman Compact Smooth (non-trial ttf, 485 glyphs; no ₹).
+> - `global.css` `@font-face` replaced (scripted): family "KH Teka" declares **400/500/700** in one family (font-synthesis:none makes 700 mandatory), "KH Teka Mono" 400, "KH Interference" 400+700, "FK Raster Roman Compact" 400. 13 faces total incl. fallback-metric faces.
+> - Tokens repointed (both theme blocks): `--font-neuePower/-nohemi` → `"KH Teka","KH Teka Fallback",sans-serif`; `--font-offBit` → `"KH Interference","KH Interference Fallback","KH Teka",sans-serif`; `--font-offBit101` → `"KH Interference","FK Raster Roman Compact","KH Teka",sans-serif`; `--font-mono` → `"KH Teka Mono","KH Teka Mono Fallback",ui-monospace,monospace`.
+> - Fallback-metric faces (CLS): "KH Teka Fallback" = local(Arial) with size-adjust 102.2% (400; measured from Teka avg lowercase advance 0.5362 vs Arial 0.5244) / 98% (500) / 97% (700, local(Arial Bold)), ascent 95% / descent 25% / line-gap 0% (Teka hhea 950/-250 per 1000 upem). "KH Teka Mono Fallback" = local(Tahoma) size-adjust 95%. "KH Interference Fallback" = Arial size-adjust 118% (400) / 112% (700).
+> - `Base.astro` preloads: **kh-teka-regular.woff2 + kh-teka-bold.woff2** only (max 2 files), `crossorigin`. Interference/Mono/FK NOT preloaded.
+> - Hero.astro left a dead `data-font="OffBitTrial-101"` attr (no script consumes it) — cleanup candidate Phase 8.
+> - Specimen/overflow check could not be rendered (no browser tool in this environment): sizes/clamps were tuned to OffBit/Neue Power widths; a visual pass at 375/768/1280/1920 in `npm run dev` is REQUIRED before sign-off (logged as open-item).
+
 Files supplied (all `TRIAL` except FK Raster ttf): FKRasterRomanCompact-Smooth.ttf, FKRasterRomanCompactTrial-Smooth.otf, KHInterferenceTRIAL-{Regular,Bold}.otf, KHTekaMonoTRIAL-{Regular,Bold}.otf, KHTekaTRIAL-{Regular,Medium,Bold}.otf.
 
 | Template token | New family stack | Files / weights | Rationale |
