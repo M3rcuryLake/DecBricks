@@ -20,6 +20,13 @@ Purpose: let a fresh session resume without chat history. Append decisions as th
 ## Decisions
 (append below)
 
+### Phase 6 decisions (2026-11-10) — SEO & technical
+- `smtp.xml.ts`/`robots.txt.ts` are razor-simple static endpoints (zero-dep); the old template `public/robots.txt` + `public/sitemap.xml` (1minus1 URLs) were deleted so the endpoints win. `robots.txt` mirrors Base.astro's `PUBLIC_ENV === 'production'` gate — production gets `Allow: / + Sitemap: /sitemap.xml`, everything else `Disallow: /`.
+- Interim OG image `public/og-default.png` is a 1200×630 flat brand PNG (burgundy + off-white inset frame + coral baseline) written with stdlib `zlib`/`struct` — a wordmark needs the real logo (open-items A6, TEMP for launch).
+- `scripts/check-headings.mjs` (`npm run headings`, must run after build) parses `dist/**/*.html` for exactly-one-H1 + no level skips; currently PASS on 6 pages. Added to package.json with no deps.
+- the404game got explicit `noindex` (previously relied on env gate only); `/services` deliberately **omitted from sitemap** while its content is 1minus1's (open-items C2) — add when A12 copy lands.
+- Internal `About↔Contact↔Services` in-copy text links deferred until owner copy arrives (A12/A15) to avoid injecting links into verbatim/fallback text; header + footer already crosslink the three pages.
+
 ### Phase 5 decisions (2026-11-10) — Contact page
 - **Cal.com loader**: used the official vanilla queue loader (`window.Cal` + `Cal('inline'|'ui'|'on', …)`, plan says `cal('…')` — the official global is `Cal`); `embed.js` (one <script>, once per page load) from `CAL.origin`; `Cal('inline')` on the *element* (not selector) so swapped-mount nodes can never collide; per-mount `WeakSet` guard. Events via `Cal('on',{action:'bookingSuccessful'|'linkFailed'})`; Plus a 10s sanity timer (script error / blocked network / no iframe ⇒ fallback card). Layout `month_view`, theme `light`, `cssVarsPerTheme.light['cal-brand'] = '#800020'`. `decbricks.css` owns `.cal-embed` min-heights (700/650), skeleton pulses + `:has(iframe)` skeleton removal, fallback/status styles. `data-lenis-prevent` + existing iframe pointer-events override keep wheel/touch working.
 - **Consent gate**: cookies.ts (both accept and manage→save) now emits `bus 'cookies-decided'`; `cal-embed.ts` loads only after `essential-consent` cookie exists (open-items B3 note: analytics-only checkbox exists; treating banner-confirmed consent as permission for the booking iframe — owner may refine). Without consent (or on failure): server-rendered `.cal-fallback` card (Cal deep link/email/phone) with `role="status"` announcements; embed swap-in happens on the consent event.
