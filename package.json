@@ -8,7 +8,8 @@
     "preview": "astro preview",
     "check": "astro check",
     "headings": "node scripts/check-headings.mjs",
-    "links": "node scripts/check-links.mjs"
+    "links": "node scripts/check-links.mjs",
+    "check:brand": "python3 scripts/check-brand.py"
   },
   "dependencies": {
     "astro": "^5.0.0",

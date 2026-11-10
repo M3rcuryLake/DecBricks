@@ -1,4 +1,5 @@
 ---
+import { brandify } from '../lib/brand';
 /**
  * CalEmbed — Cal.com inline booking block (map 5A). Renders the embed mount
  * (initialised lazily by `scripts/cal-embed.ts`) plus a brand-coloured
@@ -34,11 +35,10 @@ const hasFallbackLinks = !!CAL.bookingUrl || !!EMAIL || PHONES.length > 0;
   </div>
 
   <div class:list={['cal-fallback', fallbackVisible ? '' : 'is-hidden']} role="status">
-    <p class="cal-fallback__title font-neuePower text-[14px] leading-snug font-bold text-darkPurple uppercase">
-      {hasCal
-        ? 'The booking calendar could not load here.'
-        : 'Online booking is not configured yet.'}
-    </p>
+    <p
+      class="cal-fallback__title font-neuePower text-[14px] leading-snug font-bold text-darkPurple uppercase"
+      set:html={brandify(hasCal ? 'The booking calendar could not load here.' : 'Online booking is not configured yet.')}
+    />
     {
       hasCal && !hasFallbackLinks ? null : hasFallbackLinks && (
         <ul class="cal-fallback__links mt-10 flex list-none flex-col gap-8 p-0">
@@ -77,9 +77,10 @@ const hasFallbackLinks = !!CAL.bookingUrl || !!EMAIL || PHONES.length > 0;
         </ul>
       )
     }
-    <p class="cal-fallback__help mt-10 font-nohemi text-[13px] leading-[20px] text-darkPurple">
-      Or send the form below — we read every message.
-    </p>
+    <p
+      class="cal-fallback__help mt-10 font-nohemi text-[13px] leading-[20px] text-darkPurple"
+      set:html={brandify('Or send the form below — we read every message.')}
+    />
   </div>
 
   {/* live region for booking-confirmed / embed-error announcements */}

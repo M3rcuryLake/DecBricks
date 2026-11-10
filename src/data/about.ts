@@ -30,7 +30,7 @@ export const ABOUT: AboutSection[] = [
     navLabel: "Who We Are",
     title: "Building Technology. Empowering Businesses. Driving Growth.",
     paragraphs: [
-      "Decbricks is a technology and digital solutions agency helping businesses turn ideas into impactful digital products, experiences, and growth opportunities. We partner with startups, emerging businesses, agencies, and established organisations across India and international markets to solve real-world business challenges through technology, innovation, and strategic execution.",
+      "We partner with startups, emerging businesses, agencies, and established organisations across India and international markets to solve real-world business challenges through technology, innovation, and strategic execution.",
       "Our capabilities span custom software development, web and mobile application development, artificial intelligence (AI), business automation, UI/UX and digital design, digital marketing, and business development. Whether it's building a new digital product, streamlining business operations, strengthening an online presence, or reaching the right audience, we bring together the technical expertise and creative execution required to take businesses forward.",
       "At Decbricks, we believe technology should serve a purpose. Every solution we build is driven by the goal of creating measurable value, improving user experiences, optimising processes, and unlocking new opportunities for business growth.",
     ],

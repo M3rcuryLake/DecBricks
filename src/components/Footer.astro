@@ -1,3 +1,6 @@
+---
+import { brandify } from '../lib/brand';
+---
 <footer class="structure-footer relative overflow-hidden" role="contentinfo" aria-label="Site footer"
   ><div class="structure-footer__inner relative z-20 overflow-hidden will-change-transform"
     ><div class="mx-auto flex w-full max-w-1920 flex-col"
@@ -25,7 +28,7 @@
             ></div
           ></button
         ><span
-          class="block whitespace-nowrap font-neuePower text-[20px] leading-none font-bold uppercase text-darkPurple sm:text-[24px] lg:text-[28px]"
+          class="font-brand block whitespace-nowrap text-[22px] text-darkPurple sm:text-[26px] lg:text-[30px]"
           aria-label="Decbricks"
         >
           Decbricks
@@ -48,7 +51,8 @@
         <div
           class="relative z-10 flex flex-col gap-12 px-20 pb-40 sm:-mt-20 sm:flex-row sm:items-center lg:-mt-20 lg:px-36 2xl:-mt-40"
         ><span class="mr-auto subheading text-darkPurple uppercase" role={'text' as any} aria-label="Copyright information"
-          >© 2026 Decbricks. All rights reserved.</span
+          set:html={brandify('© 2026 Decbricks. All rights reserved.')}
+        ></span
         ><nav class="flex flex-wrap items-center gap-13 lg:gap-32"
           ><a
             href="/the404game"

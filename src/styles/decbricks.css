@@ -1,9 +1,55 @@
 /* ==========================================================================
-   Decbricks brand layer — hand-written CSS.
-   Imported AFTER global.css in Base.astro. Only used where existing compiled
-   utilities cannot express the needed value or a contrast fix is required.
-   Never re-define token values that global.css owns.
-   ========================================================================== */
+   Brand font aliases (post-KH swap, FONT-SWAP-PROMPT Option A).
+   Legacy token names (in global.css) now point to:
+     --font-neuePower → "Bricolage Grotesque" (headings/UI/buttons)
+     --font-nohemi    → "Hanken Grotesk" (body)
+     --font-offBit    → "Departure Mono" (display/numerals)
+     --font-offBit101 → "Departure Mono" (display, "Begin your", menu, cookie)
+   ---------------------------------------------------------------------------
+   FK Raster Roman Compact is EXCLUSIVE to the brand name (`.font-brand`).
+   It is never set on headings/display/numerals so the wordmark stays distinct.
+   text-transform:none keeps the exact casing "Decbricks" even inside
+   uppercase headings; font-size:1.06em tunes the raster x-height to match
+   neighbours; line-height:1 so inline use never changes paragraph spacing.
+   -------------------------------------------------------------------------- */
+:root {
+  --font-heading: var(--font-neuePower);
+  --font-body: var(--font-nohemi);
+  --font-display: var(--font-offBit);
+  --font-mono: var(--font-offBit);
+  /* only place the raster face is referenced */
+  --font-brand: "FK Raster Roman Compact", "Departure Mono", ui-monospace, monospace;
+}
+.font-brand {
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-style: normal;
+  text-transform: none;
+  letter-spacing: 0;
+  font-synthesis: none;
+  font-size: 1.06em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   Departure Mono re-tune (was OffBit/Interference — pixel display faces).
+   Departure Mono is wide + monospaced: display utilities need a touch of
+   tracking room so giant numerals / hero words do not collide. Applied at
+   the class level (never touching minified global.css). Pixel-crisp sizes
+   in 11px steps keep the raster clean (font's official guidance).
+   -------------------------------------------------------------------------- */
+.heading-2xl,
+.heading-3xl,
+.heading-3\.5xl,
+.heading-4xl {
+  letter-spacing: -0.01em;
+}
+/* Giant ghost numerals in cards/hero: give the wide monospaced digits air. */
+.font-offBit,
+.font-offBit101 {
+  font-feature-settings: normal;
+}
 
 /* Semantic brand aliases (source of truth for values is the @layer theme token
    block in global.css; these map to brand names for new code). */

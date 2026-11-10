@@ -102,26 +102,38 @@ WebGL fallbacks in `experience.ts`: text `(0.38,0.02,0.74)`→coral `(0.831,0.31
 - Remaining decorative coral (corner squares `size-9`, slash/cross/arrow icons on light = 3.9:1 ≥3 UI graphics ✅, 5%-opacity ghost numerals, footer webgl bg) intentionally untouched.
 - Known accepted fail (flagged, launch-blocker B2 scope): Footer `bg-purple` (coral) webgl layer sits under burgundy text `text-darkPurple` (~2.1:1) — mirrors the template's purple-on-dark relationship; resolve when the footer is rebuilt in Phase 3/8 (`--brand-accent-deep` background would also fix it).
 
-## 3. Typography mapping (TARGET) — KH Type
+## 3. Typography mapping — **Option A: "Bricks & Pixels"** (FONT-SWAP-PROMPT, 2026-11-10)
 
-> **AS BUILT (Phase 2, 2026-11-10)** — verified with fontTools, converted, deployed:
-> - Source files in `src/assets/Fonts/` → WOFF2 subsets in `public/fonts/`: `kh-teka-regular/medium/bold` (27/27/28 KB), `kh-teka-mono-regular` (22 KB), `kh-interference-regular/bold` (10/11 KB), `fk-raster-roman-compact` (22 KB). Subset unicodes: Latin U+0020-007E + A0-FF + 2013/2014 dashes + 2018-201D quotes + 2026 + ₹ (U+20B9) + ™, all layout features kept, `font-display:swap`.
-> - Glyph audit: Teka ×3 (886 glyphs, incl. ₹ & ' ' " " – — @ + € — nothing needed by the copy is missing; only ﷼ absent, unused); Teka Mono identical coverage; Interference R/B (489 glyphs, incl. quotes/dashes/@; no ₹ — irrelevant to display usage); FK Raster Roman Compact Smooth (non-trial ttf, 485 glyphs; no ₹).
-> - `global.css` `@font-face` replaced (scripted): family "KH Teka" declares **400/500/700** in one family (font-synthesis:none makes 700 mandatory), "KH Teka Mono" 400, "KH Interference" 400+700, "FK Raster Roman Compact" 400. 13 faces total incl. fallback-metric faces.
-> - Tokens repointed (both theme blocks): `--font-neuePower/-nohemi` → `"KH Teka","KH Teka Fallback",sans-serif`; `--font-offBit` → `"KH Interference","KH Interference Fallback","KH Teka",sans-serif`; `--font-offBit101` → `"KH Interference","FK Raster Roman Compact","KH Teka",sans-serif`; `--font-mono` → `"KH Teka Mono","KH Teka Mono Fallback",ui-monospace,monospace`.
-> - Fallback-metric faces (CLS): "KH Teka Fallback" = local(Arial) with size-adjust 102.2% (400; measured from Teka avg lowercase advance 0.5362 vs Arial 0.5244) / 98% (500) / 97% (700, local(Arial Bold)), ascent 95% / descent 25% / line-gap 0% (Teka hhea 950/-250 per 1000 upem). "KH Teka Mono Fallback" = local(Tahoma) size-adjust 95%. "KH Interference Fallback" = Arial size-adjust 118% (400) / 112% (700).
-> - `Base.astro` preloads: **kh-teka-regular.woff2 + kh-teka-bold.woff2** only (max 2 files), `crossorigin`. Interference/Mono/FK NOT preloaded.
-> - Hero.astro left a dead `data-font="OffBitTrial-101"` attr (no script consumes it) — cleanup candidate Phase 8.
-> - Specimen/overflow check could not be rendered (no browser tool in this environment): sizes/clamps were tuned to OffBit/Neue Power widths; a visual pass at 375/768/1280/1920 in `npm run dev` is REQUIRED before sign-off (logged as open-item).
+> **AS BUILT.** Supersedes the KH Type mapping of Phase 2 (see §3 history note below). KH Teka / KH Interference / KH Teka Mono are no longer used or shipped. Measured with fontTools; all glyph needs verified.
 
-Files supplied (all `TRIAL` except FK Raster ttf): FKRasterRomanCompact-Smooth.ttf, FKRasterRomanCompactTrial-Smooth.otf, KHInterferenceTRIAL-{Regular,Bold}.otf, KHTekaMonoTRIAL-{Regular,Bold}.otf, KHTekaTRIAL-{Regular,Medium,Bold}.otf.
+### 3a. Final type system
 
-| Template token | New family stack | Files / weights | Rationale |
-|---|---|---|---|
-| --font-neuePower (headings/UI) | `"KH Teka", system sans` | Medium 500 + Bold 700 | brief: KH Teka primary; template uses `font-bold` for headings/buttons → real Bold now exists |
-| --font-nohemi (body) | `"KH Teka", system sans` | Regular 400 | body copy |
-| --font-offBit (giant display/numerals) | `"KH Interference", "KH Teka", sans` | Bold 700 | pixel/raster display analogue of OffBit — **justified deviation**; verify glyph coverage |
-| --font-offBit101 (display, "Begin your", menu, cookie) | `"KH Interference", "FK Raster Roman Compact", "KH Teka", sans` | Regular 400 | |
-| (new) --font-mono | `"KH Teka Mono", ui-monospace, monospace` | Regular 400 | numerals, labels, phone numbers, section index "01" if it improves legibility |
+| Role | Family (self-hosted WOFF2 in `public/fonts/`) | Weights declared | Legacy token repointed (load-bearing for the compiled utilities) | Semantic alias (new code) |
+|---|---|---|---|---|
+| Heading / UI / buttons / eyebrows / nav | **Bricolage Grotesque** — `bricolage-grotesque-latin.woff2` (41 KB, variable 200–800, OFL via Fontsource) | `200 800` (7–800 for headings/buttons, 500 nav/labels) | `--font-neuePower` | `--font-heading` |
+| Body / long copy / form text | **Hanken Grotesk** — `hanken-grotesk-latin.woff2` (34 KB, variable 100–900, OFL via Fontsource) | `100 900` (400 body, 500 emphasis) | `--font-nohemi` | `--font-body` |
+| Display pixel type: giant numerals, `.heading-2xl/3xl/3.5xl/4xl`, "Begin your", menu `.btn-menu`, cookie heading, mono labels, phone numbers | **Departure Mono** — `departure-mono-regular.woff2` (22 KB, 400 only, OFL; from GitHub release rektdeckard/departure-mono v1.500) | `400` (never request bold; `font-synthesis:none`) | `--font-offBit`, `--font-offBit101`, `--font-mono` | `--font-display`, `--font-mono` |
+| **Brand name "Decbricks" — only** | **FK Raster Roman Compact** — `fk-raster-roman-compact.woff2` (23 KB, 400 only, from `src/assets/Fonts/FKRasterRomanCompact-Smooth.ttf`) | `400` via `.font-brand` | — | `--font-brand` (NOT aliased to any legacy token; exclusive to the brand word via `.font-brand`) |
 
-Rules: `@font-face` for family "KH Teka" declares weights 400/500/700 in one family; `font-display: swap`; **convert OTF → WOFF2** (e.g. `pyftsubset … --flavor=woff2 --unicodes=U+0020-007E,U+00A0-00FF,U+2018-201D,U+2013-2014,U+2026,U+20B9 --layout-features='*'`), self-host in `public/fonts/`, preload only the two above-the-fold files (Teka Bold + Teka Regular), no preload for Interference/Mono/FK. Fallback metrics: add `size-adjust/ascent-override/descent-override` fallback faces to limit CLS. Template hard-codes giant px sizes tuned to OffBit/Neue Power widths (`text-[580px]` numerals, `.heading-3xl` clamps) — render a specimen page at 375/768/1280/1920 and fix overflow/line-height regressions. Record final tokens here.
+### 3b. As-built facts
+- `global.css`: 6 `@font-face` rules (was 13): Bricolage + Bricolage Fallback, Hanken + Hanken Fallback, Departure Mono, FK Raster Roman Compact. All KH faces removed; 0 `KH ` references remain.
+- Glyph audit (fontTools): every char used by the copy — incl. "Decbricks", `. , ’ & -` — present in all 4 fonts. Bricolage 226, Hanken 222, Departure Mono 1079, FK Raster 204 glyphs.
+- Variable faces declared with `format("woff2-variations")` so weight ranges resolve; `html{font-synthesis:none}` unchanged.
+- CLS fallback faces (local Arial, metric overrides measured from fontTools avg-lowercase advance):
+  - "Bricolage Fallback": size-adjust **106.48%**, ascent **95.85%**, descent **27.82%** (Bricolage upem 1000, hhea 930/-270, avg-lc 0.5804 vs Arial 0.5244).
+  - "Hanken Fallback": size-adjust **102.61%**, ascent **95.87%**, descent **29.11%** (Hanken upem 1000, hhea 1000/-303, avg-lc 0.5104).
+- `Base.astro` preloads **all 4** WOFF2s (`type="font/woff2" crossorigin`): each is used by above-the-fold text on `/`, `/about`, `/contact` (Bricolage = hero/heading text, Hanken = hero body, Departure Mono = giant display word "Always"/"Begin your", FK Raster = header wordmark). Ship budget ≤4 first-paint font files: met exactly.
+- Tokens repointed ×2 in global.css (both theme blocks); aliases live in `decbricks.css` (`:root { --font-heading/-body/-display/-mono/…--font-brand }`).
+- `.font-brand` treatment (`decbricks.css`): `font-family:var(--font-brand); font-weight:400; text-transform:none; letter-spacing:0; font-synthesis:none; font-size:1.06em; line-height:1; white-space:nowrap`. `1.06em` matches the raster x-height to Bricolage/Hanken neighbours; `text-transform:none` keeps exact casing "Decbricks" even inside uppercase contexts (deliberate: the mixed-case wordmark is part of the brand).
+- Departure Mono re-tune (`decbricks.css`, class-level, minified file untouched): `letter-spacing:-.01em` on `.heading-2xl/.heading-3xl/.heading-3\.5xl/.heading-4xl`.
+- Width deltas measured vs the previous faces (advance/em): Departure Mono **+6.3%** vs KH Interference (e.g. "Always" 3.818 vs 3.6, "Services" 5.091 vs 4.8) — the giant vw-clamped display words grow ~6%; letter-spacing -.01em claws back ~1.5%. Bricolage **+9–13%** vs KH Teka ("Services" 4.269 vs 3.81) — running copy is px-width-bounded, so it re-wraps.
+- **Not verifiable here (no browser tool):** final overflow/wrap of the giant display words at 375/768/1280/1920. Visual confirm in `npm run dev` required before sign-off (owner item §A).
+- Regression gate: `npm run check:brand` — every visible "Decbricks" text node in built HTML must sit inside `.font-brand` (currently PASS on all 6 pages).
+- Header/Footer wordmarks: text wordmark `<span class="font-brand …">Decbricks</span>` (no logo asset yet — open-item A6).
+- `Hero.astro` dead `data-font="OffBitTrial-101"` attr kept (inert; no script consumes it; the load-bearing hook is the class).
+- OG image `public/og-default.png` regenerated with Pillow using the real FK Raster TTF (1200×630, burgundy, Off-White wordmark, coral baseline) — still TEMP pending the designed OG asset (A6).
+
+### 3c. History
+- **Pre-Phase-2:** template 1minus1 faces (Neue Power, OffBit, OffBit 101, Nohemi) — see git history.
+- **Phase 2 (superseded 2026-11-10):** KH Type mapping (Teka/Interference/Teka Mono; FK Raster additionally aliased on `--font-offBit101`) — removed by FONT-SWAP-PROMPT Option A.
+- **Now (active):** see §3a/§3b above.

@@ -15,6 +15,7 @@ import TransitionOverlay from '../components/TransitionOverlay.astro';
 import { EMAIL, PHONES } from '../data/contact';
 import { TEAM } from '../data/team';
 import { contactPageSchema } from '../lib/schema';
+import { brandify } from '../lib/brand';
 
 const title = 'Contact Decbricks | Start Your Digital Project';
 const description =
@@ -92,9 +93,10 @@ const sidebarItems = [
               >
                 {EMAIL || PHONES.length > 0 ? (
                   <>
-                    <p class="font-nohemi text-[15px] leading-[22px] text-darkPurple lg:text-[14px]">
-                      {startProjectBody}
-                    </p>
+                    <p
+                      class="font-nohemi text-[15px] leading-[22px] text-darkPurple lg:text-[14px]"
+                      set:html={brandify(startProjectBody)}
+                    />
                     <ul class="mt-10 flex list-none flex-col gap-8 p-0">
                       {EMAIL && (
                         <li>
@@ -119,9 +121,10 @@ const sidebarItems = [
                     </ul>
                   </>
                 ) : (
-                  <p class="font-nohemi text-[15px] leading-[22px] text-darkPurple lg:text-[14px]">
-                    {startProjectBody}
-                  </p>
+                  <p
+                    class="font-nohemi text-[15px] leading-[22px] text-darkPurple lg:text-[14px]"
+                    set:html={brandify(startProjectBody)}
+                  />
                 )}
               </ContactBlock>
 

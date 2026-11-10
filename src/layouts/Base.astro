@@ -74,8 +74,10 @@ const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION || undefined;
     <meta name="twitter:description" content={ogDescription} />
     <meta name="twitter:image" content={ogImage} />
     {gscVerification && <meta name="google-site-verification" content={gscVerification} />}
-    <link rel="preload" as="font" crossorigin href="/fonts/kh-teka-regular.woff2" />
-    <link rel="preload" as="font" crossorigin href="/fonts/kh-teka-bold.woff2" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/bricolage-grotesque-latin.woff2" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/hanken-grotesk-latin.woff2" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/departure-mono-regular.woff2" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/fk-raster-roman-compact.woff2" />
     {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
     <slot name="head" />
   </head>

@@ -1,4 +1,6 @@
 ---
+import { brandify } from '../lib/brand';
+
 interface Props {
   /** Smiley sentence; the original CMS serves the singular form on /services. */
   smileyCopy?: string;
@@ -12,6 +14,7 @@ const {
   srHeading = 'Begin your story',
   headingParts = ['Begin your', 'story'],
 } = Astro.props;
+const smileyHtml = brandify(smileyCopy);
 ---
 <section
   id="contact"
@@ -21,11 +24,12 @@ const {
     ><span
       class="parts-smileyText relative z-3 mx-14 mb-90 w-10/12 max-w-480 heading text-white lg:mb-120 2xl:mr-0 2xl:mb-150 2xl:ml-60 2xl:w-full 2xl:max-w-485"
       style="font-kerning: none; text-rendering: optimizeSpeed"
-      ><span class="sr-only"
-        >{smileyCopy}</span
-      ><span aria-hidden="true" role="presentation" style="font-kerning: none; text-rendering: optimizeSpeed"
-        >{smileyCopy}</span
-      ></span
+    ><span class="sr-only" set:html={smileyHtml} /><span
+      aria-hidden="true"
+      role="presentation"
+      style="font-kerning: none; text-rendering: optimizeSpeed"
+      set:html={smileyHtml}
+    /></span
     ><h2 id="contactForm-heading" class="sr-only">{srHeading}</h2
     ><div class="relative z-1 mx-14 mb-48 flex flex-col heading-3xl text-neonGreen uppercase 2xl:mx-0 2xl:mb-150"
       ><span

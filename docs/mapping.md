@@ -44,3 +44,29 @@ Blocks 3+4 hide while their arrays are empty (dev warnings; sidebar item no-ops)
 
 ## Other template pieces (not part of the brief but they ship 1minus1 identity)
 `Hero`, `CaseStudies`, `Testimonials`, `ServicesClients`, `index.astro`, `services.astro`, `data/services.ts`, `404.astro`, `the404game.astro`, `Footer` socials, `Header` logo — see open-items.md "Scope decisions".
+
+## Brand typography layer (FONT-SWAP-PROMPT Option A, 2026-11-10)
+- `src/lib/brand.ts` — `BRAND`, `brandify(text)` (HTML-escape → wrap every `Decbricks` word in `<span class="font-brand">`), `hasBrand`. Use at RENDER points; data strings stay verbatim.
+- `src/components/BrandText.astro` — `<BrandText text className?>` convenience wrapper (Fragment inline / span when `className` given).
+- `.font-brand` (decbricks.css) — FK Raster Roman Compact, 400, `text-transform:none`, `font-size:1.06em`, `line-height:1`, `white-space:nowrap`. FK Raster is exclusive to the brand word.
+- Type hooks (unchanged names, repointed values): `.font-neuePower`→Bricolage, `.font-nohemi`→Hanken, `.font-offBit`/`.font-offBit101`/`.font-mono`→Departure Mono. Semantic aliases `--font-heading/-body/-display/-brand/-mono` in `decbricks.css`.
+
+### Brand inventory (every visible "Decbricks")
+| Where | Treatment |
+|---|---|
+| Header wordmark | `<span class="font-brand …">Decbricks</span>` (text wordmark; sized 22/26px) |
+| Footer wordmark | `<span class="font-brand …">Decbricks</span>` (sized 22/26/30px) |
+| Footer copyright | `brandify('© 2026 Decbricks. All rights reserved.')` inline word |
+| Hero giant word(s) | `brandify(headingParts[*])` via `set:html` (~6% wider in Departure Mono — visual check §A) |
+| Hero / smiley copy | `brandify(body/smileyCopy)` on sr-only + visual spans |
+| ServicesHero | `brandify(srTitle, headingParts[0/1], body)` |
+| AboutBlock | title h2, first/rest paragraphs, value names/texts, closing line |
+| ContactBlock | title h2, h3 |
+| TeamSection | member name/role/bio |
+| ContactNumbers | labels + display strings |
+| CalEmbed fallback | fallback title + help line |
+| ContactForm | smiley copy (sr-only + visual) |
+| contact.astro | "start a project" body |
+| `scripts/smiley-text.ts` | GSAP SplitText `type:'lines', deepSlice:true` preserves nested `.font-brand` spans — no splitter change. If config ever becomes `chars`, brand-aware post-processing required. |
+| NOT stylable (by rule) | `<title>`, meta/OG/Twitter, JSON-LD, `alt`, `aria-label`, mailto subjects |
+| Gate | `npm run check:brand` (scripts/check-brand.py) must PASS before shipping |

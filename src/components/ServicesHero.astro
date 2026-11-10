@@ -1,5 +1,6 @@
 ---
 import { SERVICES, SERVICES_HERO } from '../data/services';
+import { brandify } from '../lib/brand';
 
 interface NavItem {
   id: string;
@@ -61,27 +62,24 @@ const {
         d="M506.526 0H330.411v8.086h-18.217V19.55h-18.217v11.455h-17.542v12.13h-17.542v12.13h-16.53l-1.012 1.01v11.793h-16.867V80.87h-16.867v12.804h-16.868v13.477h-16.192v13.477h-15.856l-1.012 1.011v13.14h-16.192v14.151h-15.518v14.825h-15.518v14.825H95.618v14.825H80.774v14.488l-1.012 1.011H65.931v14.488l-1.012 1.011H51.088v16.172H33.1l-.074 21.16H18.257v19.717H0V374l49.064-.121V361.87h17.542v-11.455H83.81l1.012-1.011v-9.771h17.205l1.012-1.011v-9.771h18.217v-9.434h18.891v-9.434h18.892v-9.434h18.554c2.064-2.332.593-6.442 1.012-9.434h18.891v-8.76h19.566v-8.76h18.892v-8.761h19.566v-8.76h19.566c.385-2.796-1.012-6.617 1.012-8.76h18.554v-8.086h19.566v-7.413h19.566v-7.412h19.229c1.923-1.779.708-5.007 1.012-7.413h19.566v-6.738h20.241v-6.739h17.542v3.369h-12.819v13.478h-15.181l-1.012 1.01v13.814h-15.518v14.825h-14.843v13.815l-1.012 1.01h-14.506v14.825h-15.518v14.825h-14.843v15.499h-14.843v56.979h59.71v-13.577h15.855v-14.353h14.85v-13.55h15.518v-14.825h14.506c1.687-2.466 1.113-7.284 1.046-10.472-.041-1.718-1.363-3.268.303-4.353h14.506v-13.814l1.012-1.011h14.506v-13.14l1.012-1.011h15.181v-13.477h16.193v-13.477h16.192v-11.793l1.012-1.011h15.856v-12.803h16.867v-12.13h17.542v-11.118l1.012-1.011h17.205v-10.782h17.204l1.012-1.011v-9.771h18.217v-10.108h18.217c.445-3.194-1.086-7.574 1.012-10.108h17.879v-9.434h18.892v-6.065H659V72.11h-60.722v4.717h-20.241v5.39h-20.916v5.392H536.88v5.39h-20.915v6.065h-20.241v5.391h-19.903c-1.761 1.436-.823 4.03-1.012 6.065h-20.241v6.065h-20.241v6.738h-20.241v6.065h-20.241v6.739h-20.24v6.738h-20.241v6.739h-20.241v6.739h-20.241v7.412h-19.566v7.413h-20.241v7.412h-19.566v8.76h-19.566v8.087h-19.566v8.76h-19.566v8.76h-16.193v-3.369h8.103v-14.151h15.518v-13.141l1.012-1.01h15.181v-13.478h16.867v-13.477h16.193v-12.803h16.867v-12.804h16.868v-12.803h16.867v-11.119l1.012-1.011h16.53v-12.13h17.542V80.197h17.542V69.751l1.012-1.01h17.205V57.959h18.216V47.85h18.892V37.743h18.891v-9.434h18.892c.418-2.992-1.053-7.103 1.012-9.434h18.554v-8.76h18.884v-7.42c6.309-.316 12.995.432 19.256.007 1.923-.128.709-1.664.992-2.702"
       ></path>
     </svg>
-    <h1 class="sr-only">{srTitle}</h1>
+    <h1 class="sr-only" set:html={brandify(srTitle)} />
     <div class="flex flex-col">
       <div class="contents lg:flex lg:items-start">
         <span
           class="relative z-20 order-1 -ml-10 block w-max heading-3.5xl font-offBit101 font-normal text-neonGreen uppercase lg:order-none lg:-ml-15"
           aria-hidden="true"
-        >
-          {headingParts[0]}
-        </span>
+          set:html={brandify(headingParts[0])}
+        ></span>
         <p
           class="relative z-20 order-3 mx-15 mt-35 max-w-330 font-neuePower text-[20px] leading-[1.05] font-bold md:max-w-495 lg:order-none lg:mt-50 lg:mr-115 lg:ml-auto lg:w-440 lg:max-w-none xl:mt-60 xl:mr-215 xl:w-480 xl:text-[22px] 3xl:mt-80 3xl:mr-325 3xl:w-575 3xl:text-[26px] 4xl:mt-90 4xl:mr-465"
-        >
-          {body}
-        </p>
+          set:html={brandify(body)}
+        />
       </div>
       <span
         class="relative z-1 order-2 -ml-10 block w-max heading-3.5xl text-neonGreen uppercase lg:z-0 lg:order-none lg:-mt-30 lg:ml-110 xl:-mt-35 xl:ml-140 3xl:-mt-45 3xl:ml-180 4xl:-mt-50 4xl:ml-210"
         aria-hidden="true"
-      >
-        {headingParts[1]}
-      </span>
+        set:html={brandify(headingParts[1])}
+      ></span>
     </div>
     <div class="relative z-20 mt-50 pb-50 lg:mt-9 lg:flex lg:justify-center lg:pb-0 xl:mt-10 3xl:mt-15 4xl:mt-15">
       <nav class="px-15 lg:px-0" aria-label={navLabel}>

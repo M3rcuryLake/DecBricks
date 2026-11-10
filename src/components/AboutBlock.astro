@@ -5,6 +5,7 @@
  * without video/projects/capabilities. Values render as an H3 list.
  */
 import type { AboutSection } from '../data/about';
+import { brandify } from '../lib/brand';
 
 export interface Props {
   section: AboutSection;
@@ -68,22 +69,19 @@ const [first, ...rest] = section.paragraphs;
         <h2
           id={`${section.id}-heading`}
           class="mt-5 pl-30 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPurple uppercase lg:mt-10 lg:pl-0 lg:text-[36px] xl:text-[44px] 3xl:mt-15 3xl:text-[52px] 4xl:text-[60px]"
-        >
-          {section.title}
-        </h2>
+          set:html={brandify(section.title)}
+        ></h2>
       </div>
       <div class="lg:max-w-480">
         <p
           class="mt-15 font-neuePower text-[16px] leading-[1.1] font-bold text-darkPurple lg:mt-0 lg:leading-[1.05] xl:text-[18px] 3xl:text-[20px] 4xl:text-[22px]"
-        >
-          {first}
-        </p>
+          set:html={brandify(first)}
+        ></p>
         {rest.map((paragraph) => (
           <p
             class="mt-45 font-nohemi text-[16px] leading-[22px] text-darkPurple lg:mt-25 lg:max-w-455 lg:text-[14px] lg:leading-[20px] xl:mt-30 3xl:mt-40 3xl:text-[16px] 3xl:leading-[22px]"
-          >
-            {paragraph}
-          </p>
+            set:html={brandify(paragraph)}
+          ></p>
         ))}
       </div>
     </div>
@@ -105,19 +103,18 @@ const [first, ...rest] = section.paragraphs;
                 <rect y="12" width="4" height="4" transform="rotate(-90 0 12)" fill="currentColor" />
                 <rect x="8" y="12" width="4" height="4" transform="rotate(-90 8 12)" fill="currentColor" />
               </svg>
-              {value.name}
+              <span set:html={brandify(value.name)} />
             </h3>
-            <p class="mt-5 font-nohemi text-[14px] leading-[20px] text-darkPurple lg:mt-8 3xl:text-[16px] 3xl:leading-[22px]">
-              {value.text}
-            </p>
+            <p
+              class="mt-5 font-nohemi text-[14px] leading-[20px] text-darkPurple lg:mt-8 3xl:text-[16px] 3xl:leading-[22px]"
+              set:html={brandify(value.text)}
+            />
           </li>
         ))}
       </ul>
     )}
     {section.closing && (
-      <p class="mt-30 font-neuePower text-[16px] leading-[1.1] font-bold text-darkPurple uppercase 3xl:text-[20px] 4xl:text-[22px]">
-        {section.closing}
-      </p>
+      <p class="mt-30 font-neuePower text-[16px] leading-[1.1] font-bold text-darkPurple uppercase 3xl:text-[20px] 4xl:text-[22px]" set:html={brandify(section.closing)} />
     )}
   </div>
 </article>

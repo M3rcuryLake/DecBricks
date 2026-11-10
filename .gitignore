@@ -147,3 +147,6 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# Trial/licensed font sources — do NOT redistribute (see docs/open-items.md B1)
+assets/Fonts/

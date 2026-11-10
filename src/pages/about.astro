@@ -12,7 +12,7 @@ import TransitionOverlay from '../components/TransitionOverlay.astro';
 import { ABOUT } from '../data/about';
 import { aboutPageSchema } from '../lib/schema';
 
-const title = 'About Decbricks | Digital & Technology Solutions Agency';
+const title = 'Our Purpose | Digital & Technology Solutions Agency';
 const description =
   'Discover Decbricks, a technology and digital solutions agency helping businesses innovate through software development, AI, automation, design and business growth services.';
 // Hero body: first sentence of the Intro block, verbatim.
@@ -37,8 +37,8 @@ const sidebarItems = ABOUT.map(({ id, number, navLabel }) => ({ id, number, navL
       <div class="page page-about bg-darkPurple">
         <Header />
         <ServicesHero
-          srTitle="About Decbricks"
-          headingParts={['About', 'Decbricks']}
+          srTitle="Our Purpose"
+          headingParts={['Our', 'Purpose']}
           body={heroBody}
           navItems={ABOUT.map(({ id, navLabel }) => ({ id, navLabel }))}
           navLabel="About"
@@ -46,7 +46,7 @@ const sidebarItems = ABOUT.map(({ id, number, navLabel }) => ({ id, number, navL
         <section
           data-theme="light"
           class="sections-servicesList relative overflow-hidden bg-darkPurple"
-          aria-label="About Decbricks"
+          aria-label="Our Purpose"
         >
           <div
             class="rounded-10 bg-white px-9 pt-10 pb-40 lg:rounded-24 lg:px-20 lg:pt-25 lg:pb-50 xl:px-25 xl:pt-30 xl:pb-60 3xl:px-35 3xl:pt-35 3xl:pb-70 4xl:px-35 4xl:pt-40 4xl:pb-80"

@@ -18,7 +18,8 @@ Known facts to confirm: contact.astro references `getEntry('pages','contact')`, 
 5. Check `<meta theme-color>` (burgundy) and `webgl` clear/fog colours.
 6. Write real as-built values and contrast results into tokens.md.
 
-## Phase 2 — Typography (§3.2)
+## Phase 2 — Typography (§3.2) — **SUPERSEDED by FONT-SWAP-PROMPT (Option A: "Bricks & Pixels")**
+> The KH Type work this phase described was implemented, then removed on 2026-11-10. The live type system is Bricolage Grotesque / Hanken Grotesk / Departure Mono, with "Decbricks" only in FK Raster via `.font-brand` — as-built values in `docs/tokens.md` §3. Steps below kept for history only.
 1. Inspect font files (`fc-scan`/fontTools): family names, weights, glyph coverage (₹, &, ’ “ ” – —, digits, @, +). Record in tokens.md. If a role font lacks required glyphs, change mapping and log it.
 2. Convert to WOFF2 + Latin subset; place in `public/fonts/`; remove unused 1minus1 font files from preload (keep files until Phase 8 cleanup).
 3. Replace the 4 `@font-face` rules in global.css with KH Teka (400/500/700), KH Interference (400/700), KH Teka Mono (400), FK Raster Roman Compact fallback; `font-display:swap`.

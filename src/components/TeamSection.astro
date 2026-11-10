@@ -1,4 +1,5 @@
 ---
+import { brandify } from '../lib/brand';
 /**
  * TeamSection — "Meet the Team" grid (map 5C). Hides entirely while
  * `TEAM` is empty (open-items A5) — dev builds get a console warning;
@@ -23,7 +24,7 @@ if (dev && TEAM.length === 0) {
           {member.photo ? (
             <img
               src={member.photo}
-              alt={`Portrait of ${member.name}`}
+              alt={`Portrait of $<Fragment set:html={brandify(member.name)} />`}
               width="800"
               height="1000"
               loading="lazy"
@@ -35,7 +36,7 @@ if (dev && TEAM.length === 0) {
           )}
 
           <h3 class="mt-15 font-neuePower text-[16px] leading-none font-bold text-darkPurple uppercase">
-            <span class="mr-7">{member.name}</span>
+            <span class="mr-7"><Fragment set:html={brandify(member.name)} /></span>
             {member.placeholder && (
               <span
                 class="rounded-4 bg-purple px-6 py-3 align-middle font-nohemi text-[10px] font-normal normal-case text-white"
@@ -45,9 +46,9 @@ if (dev && TEAM.length === 0) {
             )}
           </h3>
 
-          <p class="team-card__role mt-5 font-nohemi text-[13px] leading-[18px] text-darkPurple">{member.role}</p>
+          <p class="team-card__role mt-5 font-nohemi text-[13px] leading-[18px] text-darkPurple"><Fragment set:html={brandify(member.role)} /></p>
           {member.bio && (
-            <p class="mt-10 font-nohemi text-[14px] leading-[20px] text-darkPurple">{member.bio}</p>
+            <p class="mt-10 font-nohemi text-[14px] leading-[20px] text-darkPurple"><Fragment set:html={brandify(member.bio)} /></p>
           )}
 
           {member.linkedin && (

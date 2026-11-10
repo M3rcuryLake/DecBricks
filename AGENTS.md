@@ -3,7 +3,7 @@
 Auto-loaded every session. Read this first, then `docs/PROGRESS.md`. Keep this file under ~150 lines.
 
 ## Mission
-Turn this template into the Decbricks site: brand palette + KH Type fonts globally, new **About** and **Contact** pages built on the Services-page architecture, Cal.com inline booking, full SEO, good Core Web Vitals. **Preserve the template's design language, motion and component architecture.** Do not redesign.
+Turn this template into the Decbricks site: brand palette + Bricolage Grotesque / Hanken Grotesk / Departure Mono fonts globally (brand name "Decbricks" only in FK Raster via `.font-brand`), new **About** and **Contact** pages built on the Services-page architecture, Cal.com inline booking, full SEO, good Core Web Vitals. **Preserve the template's design language, motion and component architecture.** Do not redesign.
 
 ## Stack (verified from package.json)
 Astro ^5, TypeScript, GSAP ^3.15 (+ScrollTrigger), Lenis smooth scroll, three ^0.187 (WebGL). Scripts: `npm run dev | build | preview | check`.
@@ -46,7 +46,7 @@ docs/                           project docs (see below)
 ## Brand (source of truth: docs/tokens.md)
 Burgundy `#800020`, Warm Beige `#F3E6D5`, Off-White `#FFF9F2`, Coral Red `#D45060`.
 Contrast facts: Off-White on Burgundy ≈10:1 ✅; Burgundy on Off-White ≈10:1 ✅; **Coral on Burgundy ≈2.6:1 ❌ (decorative/large only)**; Coral on Off-White ≈3.9:1 (large/bold ≥18.66px only). Small text = Burgundy on light, Beige/Off-White on dark.
-Fonts: KH Teka primary (see tokens.md for the role mapping). Font files are `*TRIAL*` builds — see open-items.
+Fonts: Bricolage Grotesque (headings/UI) / Hanken Grotesk (body) / Departure Mono (display) — legacy tokens `--font-neuePower/-nohemi/-offBit/-offBit101` are repointed, keep the names. Brand name "Decbricks" renders ONLY in FK Raster via `.font-brand` (`src/lib/brand.ts` → `brandify()`; gate: `npm run check:brand`). FK Raster file is a "Trial"-named source — see open-items B1.
 
 ## Workflow
 - Work in phases from `docs/Implementation-plan.md`. After each phase: `npm run build` and `npm run check` must pass, update `docs/PROGRESS.md`, `git commit -m "phase N: …"`.
