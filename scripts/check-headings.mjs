@@ -20,7 +20,7 @@ function walk(dir, out = []) {
 
 const files = walk(DIST);
 if (!files.length) {
-  console.error('No dist HTML found — run `npm run build` first.');
+  console.error('No dist HTML found — run `npm run build` first..');
   process.exit(1);
 }
 

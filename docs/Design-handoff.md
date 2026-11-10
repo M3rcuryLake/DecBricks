@@ -20,6 +20,13 @@ Purpose: let a fresh session resume without chat history. Append decisions as th
 ## Decisions
 (append below)
 
+### Phase 8 decisions (2026-11-10) — cleanup & handoff
+- Deleted the four unreferenced template webfonts (`neue-power`, `nohemi`, `OffBit`, `OffBit101`) from `public/fonts` — before deleting, grepped `src/` + `global.css`: no @font-face, preload, or class→font mapping references them (Phase 2 repointed the font tokens; display roles use KH Interference / FK Raster). Trial OT/TTF sources remain in `src/assets/Fonts/` (licence to confirm — open-items B1).
+- `scripts/check-links.mjs` (`npm run links`): every `href`/`src` in built HTML must resolve in `dist` (skips external/`#`/protocol-relative) — PASS. No new dependency.
+- Full-cleanship check `grep -ri 1minus1 dist/ --include=*.html`: only the home page carries 1minus1 copy (Hero/CaseStudies/Testimonials, open-items C1/B2 launch blockers by scope decision); Services 1minus1 *copy* has no literal "1minus1" strings. Header/Footer are Decbricks-clean everywhere.
+- Footer marquee words kept; logged for owner sign-off as open-items C9.
+- Hand-off checklist for the owner: provide A1–A9 (Cal link, email, phones, team, socials, form endpoint, GSC, domain env vars), confirm B1 font licence, supply A12/A15 copy ⇒ then set `PUBLIC_ENV=production`, verify robots/sitemap flips, run `npm run build && npm run headings && npm run links`.
+
 ### Phase 7 decisions (2026-11-10) — performance & a11y
 - **Bundle split**: `src/scripts/webgl/impl.ts` = former `experience.ts` body exported as `createExperience()`; facade keeps the public API (types re-exported, singleton getter) and dynamic-imports the impl. `initWebGL()` still no-ops < lg or with <2 `canvas.webgl` elements — *and now also nothing loads unless that holds*, saving three.js from the 404/game/contact/about critical path entirely. `case-studies.ts` gets its scene group via the new `exp.createGroup()` + type-only `three` import, so `three` is reachable ONLY from `impl.ts`. Bundle: main JS render-blocking 871→315 KB; three chunk 556 KB lazy. Behaviour parity: consumers already treat a null experience as "use CSS/video fallback"; late `rebuildPageTargets()` covers swaps during load; on idle-ish non-mounted pages nothing changes.
 - Skip link + `#main-content` ids + passive resize added; everything else measured and left as-is per "measure first" (loader/cookie banner untouched — template motion is a launch-visual requirement; numeric Lighthouse is a follow-up since no browser tool is available here).

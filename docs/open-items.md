@@ -37,6 +37,7 @@ Agent: never invent these. Implement safe fallbacks, keep this list current, mar
 | C6 | Coral hover fills fail small-text contrast | darken via `color-mix` toward burgundy only where text sits on the fill |
 | C7 | Trailing slash policy | `never` (`/about`) |
 | C8 | Static vs server output for the form endpoint | static + third-party endpoint |
+| C9 | Footer marquee words (Innovative / Distinct / Authentic / Creative / Brave) — template artefact, no 1minus1 identity in the words themselves | Keep: neutral adjectives, already brand types/colours; owner may supply replacements |
 
 ## D. Resolved
 (none yet)
