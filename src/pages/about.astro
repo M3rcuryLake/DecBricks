@@ -16,7 +16,9 @@ const title = 'Our Purpose | Digital & Technology Solutions Agency';
 const description =
   'Discover Decbricks, a technology and digital solutions agency helping businesses innovate through software development, AI, automation, design and business growth services.';
 // Hero body: first sentence of the Intro block, verbatim.
-const heroBody = ABOUT[0].paragraphs[0].split('. ').slice(0, 2).join('. ') + '.';
+const heroBodyRaw = ABOUT[0].paragraphs[0].split('. ').slice(0, 2).join('. ');
+// Don't double the period when the sentence already ends with one (QA 2026-11-11).
+const heroBody = /[.!?…]$/.test(heroBodyRaw.trim()) ? heroBodyRaw : heroBodyRaw + '.';
 // Smiley sentence: Intro block first paragraph, verbatim (no 1minus1 copy).
 const smileyCopy = ABOUT[0].paragraphs[0];
 const sidebarItems = ABOUT.map(({ id, number, navLabel }) => ({ id, number, navLabel }));
@@ -31,7 +33,7 @@ const sidebarItems = ABOUT.map(({ id, number, navLabel }) => ({ id, number, navL
   schema={aboutPageSchema(description)}
   bodyClass="bg-darkPurple"
 >
-  <div id="__nuxt">
+  
     <main id="main-content" class="layout overflow-hidden bg-darkPurple">
       <Loader />
       <div class="page page-about bg-darkPurple">
@@ -65,6 +67,5 @@ const sidebarItems = ABOUT.map(({ id, number, navLabel }) => ({ id, number, navL
       <CookieBanner />
       <TransitionOverlay />
     </main>
-  </div>
   <script>import '../scripts/main';</script>
 </Base>

@@ -140,6 +140,54 @@
   background-color: var(--brand-accent-deep);
 }
 
+/* --------------------------------------------------------------------------
+   Polish pass (S3, QA 2026-11-11). Small, palette-only refinements.
+   -------------------------------------------------------------------------- */
+
+/* Text selection was the last default-blue surface on a fully branded site. */
+::selection {
+  background-color: var(--brand-bg-dark);
+  color: var(--brand-surface);
+}
+
+/* Default grey scrollbar clashed on burgundy pages; palette thumb keeps it
+   branded. Firefox gets the shorthand, WebKit/Blink get the pseudo rules. */
+html {
+  scrollbar-color: var(--brand-bg-dark) var(--brand-surface-alt);
+  scrollbar-width: thin;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background-color: var(--brand-surface-alt);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--brand-bg-dark);
+  border-radius: 8px;
+  border: 2px solid var(--brand-surface-alt);
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--brand-accent-deep);
+}
+
+/* Widows/orphans: balance multi-line headings, pretty avoids single-word
+   last lines in paragraphs. No-op on the w-max display words (never wrap).
+   Pure CSS, zero JS. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+p,
+li {
+  text-wrap: pretty;
+}
+
 /* Primary buttons: static coral fill + burgundy text fails (2.6:1) →
    burgundy fill + Off-White text (10.3:1). `active:bg-white` still applies. */
 .part-btnPrimary.bg-purple {
