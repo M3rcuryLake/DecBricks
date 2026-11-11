@@ -7,6 +7,14 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'auto',
   },
+  // BUG-012: the WebGL experience (three.js + site impl) is one
+  // dynamically-imported vendor chunk (~557 kB min / ~140 kB gzip); splitting
+  // it further would only add requests. 600 kB documents that choice.
+  vite: {
+    build: {
+      chunkSizeWarningLimit: 600,
+    },
+  },
   // c7: always 'directory' URLs (`/about`), canonicals must match this policy.
   trailingSlash: 'never',
   prefetch: {

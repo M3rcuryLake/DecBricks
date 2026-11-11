@@ -9,8 +9,9 @@ import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
 import CookieBanner from '../components/CookieBanner.astro';
 import TransitionOverlay from '../components/TransitionOverlay.astro';
+import { organizationSchema, webSiteSchema } from '../lib/schema';
 ---
-<Base>
+<Base schema={[organizationSchema(), webSiteSchema()]}>
   
     <main id="main-content" class="layout overflow-hidden bg-darkPurple">
       <Loader />

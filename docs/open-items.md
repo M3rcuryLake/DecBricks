@@ -42,3 +42,9 @@ Agent: never invent these. Implement safe fallbacks, keep this list current, mar
 
 ## D. Resolved
 (none yet)
+
+## E. Launch-day checklist (from BUG_REPORT BUG-014; intentional guards until launch)
+1. Set `PUBLIC_ENV=production` at deploy — `Base.astro` then emits `index, follow…` instead of the current pre-launch `noindex, nofollow` on every page.
+2. Rewrite `public/robots.txt` (currently `User-agent: * / Disallow: /`) to allow crawling; keep `/services` disallowed while C1/C2 stand.
+3. Regenerate `og-default.png` with the real FK Raster wordmark (A6) and add a proper favicon set (SVG/ICO/apple-touch-icon).
+4. Confirm A1 domain matches `PUBLIC_SITE_URL`/canonicals before flipping 1.
