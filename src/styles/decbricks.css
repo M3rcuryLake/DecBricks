@@ -1,23 +1,28 @@
 /* ==========================================================================
-   Brand font aliases (post-KH swap, FONT-SWAP-PROMPT Option A).
+   Brand font aliases (post-KH swap, FONT-SWAP-PROMPT Option A; display
+   roles moved to FK Raster by owner decision, 2026-11-11).
    Legacy token names (in global.css) now point to:
      --font-neuePower → "Bricolage Grotesque" (headings/UI/buttons)
      --font-nohemi    → "Hanken Grotesk" (body)
-     --font-offBit    → "Departure Mono" (display/numerals)
-     --font-offBit101 → "Departure Mono" (display, "Begin your", menu, cookie)
+     --font-offBit    → "FK Raster Roman Compact" (giant display/numerals)
+     --font-offBit101 → "FK Raster Roman Compact" (display, "Begin your",
+                        menu, cookie)
    ---------------------------------------------------------------------------
-   FK Raster Roman Compact is EXCLUSIVE to the brand name (`.font-brand`).
-   It is never set on headings/display/numerals so the wordmark stays distinct.
-   text-transform:none keeps the exact casing "Decbricks" even inside
-   uppercase headings; font-size:1.06em tunes the raster x-height to match
-   neighbours; line-height:1 so inline use never changes paragraph spacing.
+   FK Raster Roman Compact carries the brand name (`.font-brand`) AND the
+   display/numeral role (owner decision 2026-11-11 — supersedes the earlier
+   "FK Raster is brand-exclusive" rule). Departure Mono remains for the
+   small mono-label/`--font-mono` role and as the display fallback face.
+   `.font-brand` extras on top of the display face: text-transform:none
+   keeps the exact casing "Decbricks"; font-size:1.06em tunes the raster
+   x-height to match neighbours; line-height:1 so inline use never changes
+   paragraph spacing.
    -------------------------------------------------------------------------- */
 :root {
   --font-heading: var(--font-neuePower);
   --font-body: var(--font-nohemi);
   --font-display: var(--font-offBit);
-  --font-mono: var(--font-offBit);
-  /* only place the raster face is referenced */
+  /* small mono labels stay on Departure Mono (display is FK Raster now) */
+  --font-mono: "Departure Mono", ui-monospace, monospace;
   --font-brand: "FK Raster Roman Compact", "Departure Mono", ui-monospace, monospace;
 }
 .font-brand {
@@ -33,19 +38,13 @@
 }
 
 /* --------------------------------------------------------------------------
-   Departure Mono re-tune (was OffBit/Interference — pixel display faces).
-   Departure Mono is wide + monospaced: display utilities need a touch of
-   tracking room so giant numerals / hero words do not collide. Applied at
-   the class level (never touching minified global.css). Pixel-crisp sizes
-   in 11px steps keep the raster clean (font's official guidance).
+   Display face re-tune. FK Raster Roman Compact is narrower than both
+   Departure Mono and the template's original KH Interference — no tracking
+   compensation is needed. `font-feature-settings:normal` avoids the template
+   forcing OpenType features on the raster face. Pixel-crisp sizes in 11px
+   steps keep the raster clean (font's official guidance).
    -------------------------------------------------------------------------- */
-.heading-2xl,
-.heading-3xl,
-.heading-3\.5xl,
-.heading-4xl {
-  letter-spacing: -0.01em;
-}
-/* Giant ghost numerals in cards/hero: give the wide monospaced digits air. */
+/* Giant ghost numerals in cards/hero: keep the raster face un-decorated. */
 .font-offBit,
 .font-offBit101 {
   font-feature-settings: normal;

@@ -48,7 +48,7 @@ Blocks 3+4 hide while their arrays are empty (dev warnings; sidebar item no-ops)
 ## Brand typography layer (FONT-SWAP-PROMPT Option A, 2026-11-10)
 - `src/lib/brand.ts` — `BRAND`, `brandify(text)` (HTML-escape → wrap every `Decbricks` word in `<span class="font-brand">`), `hasBrand`. Use at RENDER points; data strings stay verbatim.
 - `src/components/BrandText.astro` — `<BrandText text className?>` convenience wrapper (Fragment inline / span when `className` given).
-- `.font-brand` (decbricks.css) — FK Raster Roman Compact, 400, `text-transform:none`, `font-size:1.06em`, `line-height:1`, `white-space:nowrap`. FK Raster is exclusive to the brand word.
+- `.font-brand` (decbricks.css) — FK Raster Roman Compact, 400, `text-transform:none`, `font-size:1.06em`, `line-height:1`, `white-space:nowrap`. 2026-11-11 owner decision: FK Raster ALSO carries the display/numeral role (`--font-offBit`/`--font-offBit101` → `.heading-2xl/3xl/3.5xl/4xl`, giant numerals); Departure Mono keeps only the small `--font-mono` role and is no longer preloaded (fallback-only).
 - Type hooks (unchanged names, repointed values): `.font-neuePower`→Bricolage, `.font-nohemi`→Hanken, `.font-offBit`/`.font-offBit101`/`.font-mono`→Departure Mono. Semantic aliases `--font-heading/-body/-display/-brand/-mono` in `decbricks.css`.
 
 ### Brand inventory (every visible "Decbricks")

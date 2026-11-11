@@ -68,3 +68,11 @@ Purpose: let a fresh session resume without chat history. Append decisions as th
 - **Splitter safety**: `smiley-text.ts` GSAP SplitText `lines+deepSlice` preserves nested `.font-brand`; verified conceptually — regression gate is `npm run check:brand` post-build.
 - **OG image**: `public/og-default.png` regenerated (Pillow) with the real FK Raster TTF — no longer synthetic-looking placeholder glyphs; still TEMP until designed OG (A6).
 - Gate results (2026-11-10): `npm run build` ✅ · `npm run check` 0 errors ✅ · `npm run check:brand` PASS 6/6 pages ✅ · `npm run headings` ✅ · `npm run links` ✅ · grep `KH |KHTeka|KHInterference|Neue Power|OffBit|Nohemi` in src/public code = only load-bearing legacy class names + historical docs/comments.
+
+## Display → FK Raster (owner decision, 2026-11-11)
+- Owner moved the display/numeral role (`.heading-2xl/3xl/3.5xl/4xl`, giant numerals `text-[275px…580px]`, "Begin your", menu/cookie display, 404 numeral) from Departure Mono to **FK Raster Roman Compact**: `--font-offBit` + `--font-offBit101` repointed ×2 in global.css to `"FK Raster Roman Compact","Departure Mono",ui-monospace,monospace`. Supersedes the earlier "FK Raster is brand-exclusive" decision (brand + display now share the face; the brand word inside display headings is visually the same family — the `.font-brand` wrapper still distinguishes it semantically and keeps `text-transform:none`/`1.06em`).
+- `--font-mono` (decbricks.css alias) repointed directly to `"Departure Mono",ui-monospace,monospace` — small mono labels stay Departure Mono. `--font-mono` currently has no consumers in global.css utilities (verified by grep).
+- Preload set reduced 4 → 3: **departure-mono-regular.woff2 preload removed** (no first-paint usage; still ships as fallback face, downloads only if FK Raster fails). First-paint font files: 3 ≤ budget.
+- `-0.01em` heading tracking removed (was Departure Mono width compensation; FK Raster is narrower than KH Interference — measured, no overflow risk).
+- Display headings request `font-weight:700` but FK face is 400-only; with `html{font-synthesis:none}` they render regular — accepted (raster faces are single-weight).
+- Gate: build ✅ · check 0 err ✅ · check:brand ✅ · headings ✅ · links ✅.
