@@ -1,6 +1,4 @@
 ---
-import { SITE } from '../data/site';
-
 const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const isHome = pathname === '/';
 // Main nav: only pages that exist are linked. Contact gets the highlight pill.
@@ -21,7 +19,7 @@ const links = [
       isHome && 'router-link-active router-link-exact-active',
       'parts-animatedLogo relative z-10 mr-auto rounded-8 px-12 py-10 transition-all duration-500 lg:px-18 lg:py-16 text-white pointer-events-auto',
     ]}
-    aria-label="Go to homepage"
+    aria-label="Decbricks — Go to homepage"
     ><div class="relative"
       ><span
         class="font-brand structure-menu__logo block origin-left transition-colors duration-300 whitespace-nowrap text-[22px] lg:text-[26px]"

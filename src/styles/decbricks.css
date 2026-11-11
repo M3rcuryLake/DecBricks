@@ -456,3 +456,21 @@ li {
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
 }
+
+/* Tap targets < 24px (BUG-008): "Scroll To Explore" (16px), "Rise to the
+   top" (17px), footer "Manage Cookies" (16px). Expand the clickable area
+   with an invisible pseudo-element; visuals and layout untouched. The
+   parents already establish positioning or are static-safe (position is
+   set here so the pseudo anchors to the button itself). */
+.parts-scrollButton,
+.parts-btnScrollTop,
+.parts-btnText {
+  position: relative;
+}
+.parts-scrollButton::after,
+.parts-btnScrollTop::after,
+.parts-btnText::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+}
