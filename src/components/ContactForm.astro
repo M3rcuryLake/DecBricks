@@ -118,6 +118,7 @@ const smileyHtml = brandify(smileyCopy);
           ><div class="relative"
             ><input
               id="email"
+              name="email"
               value={'' as any}
               type="email"
               required
@@ -130,6 +131,7 @@ const smileyHtml = brandify(smileyCopy);
           ><div class="relative"
             ><input
               id="name"
+              name="name"
               value={'' as any}
               type="text"
               required
@@ -142,6 +144,7 @@ const smileyHtml = brandify(smileyCopy);
           ><div class="relative"
             ><input
               id="company"
+              name="company"
               value={'' as any}
               type="text"
               required
@@ -154,6 +157,7 @@ const smileyHtml = brandify(smileyCopy);
           ><div class="relative">
             <textarea
               id="message"
+              name="message"
               type="text"
               placeholder="Message"
               class="border-transparent hover:border-purple focus:border-purple focus:outline-purple block min-h-164 w-full rounded-6 bg-purple/10 px-22 py-16 subheading text-darkPurple uppercase placeholder-darkPurple transition-colors duration-300 focus:ring-0 max-lg:text-[16px]"
@@ -163,7 +167,7 @@ const smileyHtml = brandify(smileyCopy);
         ><div class="parts-formCheckbox w-full lg:w-6/12" name="Terms and Conditions" is-valid="false"
           ><div class="flex items-center gap-10"
             ><div class="relative mt-2 flex-shrink-0"
-              ><input id="terms" type="checkbox" required class="sr-only" aria-invalid="false" /><div
+              ><input id="terms" name="terms" type="checkbox" required class="sr-only" aria-invalid="false" /><div
                 class="border-darkPurple flex h-16 min-h-16 w-16 min-w-16 cursor-pointer items-center justify-center rounded-4 border transition-colors lg:h-21 lg:min-h-21 lg:w-21 lg:min-w-21"
               ></div></div
               ><div class="flex-1"

@@ -50,7 +50,11 @@ function updateHeaderActiveUI(pathname = normalizePath(window.location.pathname)
     const rawHref = link.getAttribute('href') || '';
     const dataAnchor = link.getAttribute('data-anchor') || '';
     const isDesktopBtn = link.classList.contains('parts-btnBlock');
-    const isHighlight = dataAnchor === '#contact';
+    // Highlight pill = Contact (Header.astro renders it with the burgundy
+    // highlight classes; it is a permanent CTA pill, not a route-active one).
+    // Header used to model it with `data-anchor="#contact"`, which the runtime
+    // matched — it is a plain href now, so match the href as well.
+    const isHighlight = dataAnchor === '#contact' || rawHref === '/contact';
 
     let isRouteMatch = false;
     let isActive = false;
@@ -61,6 +65,11 @@ function updateHeaderActiveUI(pathname = normalizePath(window.location.pathname)
     } else if (rawHref === '/services') {
       isRouteMatch = isServices;
       isActive = isServices;
+    } else if (rawHref === '/about' || rawHref === '/contact') {
+      // Plain pages: keep SSR `router-link-active`/`aria-current` in sync
+      // instead of stripping them (About/Contact previously lost both).
+      isRouteMatch = rawHref === pathname;
+      isActive = isRouteMatch;
     }
 
     link.classList.toggle('router-link-active', isRouteMatch);
