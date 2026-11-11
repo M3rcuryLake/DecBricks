@@ -69,8 +69,11 @@ function updateHeaderActiveUI(pathname = normalizePath(window.location.pathname)
     else link.removeAttribute('aria-current');
 
     if (isDesktopBtn && !isHighlight) {
-      link.classList.toggle('bg-purple', isActive);
-      link.classList.toggle('text-white', isActive);
+      // Active pill = burgundy + beige text (matches Header.astro's SSR class
+      // for `link.current`); the coral `bg-purple` token can't carry 12–14px
+      // white text (3.9:1).
+      link.classList.toggle('bg-darkPurple', isActive);
+      link.classList.toggle('text-neonGreen', isActive);
       link.classList.toggle('hover:bg-white', !isActive);
       link.classList.toggle('focus:bg-white', !isActive);
     }

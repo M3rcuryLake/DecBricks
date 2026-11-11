@@ -150,3 +150,7 @@ vite.config.ts.timestamp-*
 
 # Trial/licensed font sources — do NOT redistribute (see docs/open-items.md B1)
 assets/Fonts/
+
+# playwright-mcp artifacts
+.playwright-mcp/
+docs/qa/shots/

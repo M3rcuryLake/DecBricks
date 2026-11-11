@@ -129,6 +129,17 @@
   background-color: var(--brand-accent-deep);
 }
 
+/* Theme-4 hero service slab: same hue family as coral but deep enough to
+   carry the slab's own small text (eyebrow/body = Off-White, 5.1:1). The
+   class pair replaces `bg-purple before:bg-purple` in Hero.astro theme 4. */
+.bg-brick {
+  background-color: var(--brand-accent-deep);
+}
+.before\:bg-brick::before {
+  content: '';
+  background-color: var(--brand-accent-deep);
+}
+
 /* Primary buttons: static coral fill + burgundy text fails (2.6:1) →
    burgundy fill + Off-White text (10.3:1). `active:bg-white` still applies. */
 .part-btnPrimary.bg-purple {

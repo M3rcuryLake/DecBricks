@@ -41,12 +41,14 @@ const HOME_CARD_STYLES = [
   {
     outerOrigin: 'origin-top-right',
     innerClass:
-      'bg-purple before:bg-purple origin-right max-lg:rotate-4 max-lg:rounded-t-6 lg:translate-x-80 lg:rounded-tl-24',
+      'bg-brick before:bg-brick origin-right max-lg:rotate-4 max-lg:rounded-t-6 lg:translate-x-80 lg:rounded-tl-24',
     numColor: 'text-white/15',
     contentText: 'text-white lg:pb-215 3xl:pb-245',
     slashColor: 'text-white',
     pillBg: 'bg-darkPurple text-white',
-    moreBadgeBg: 'bg-white/25 text-darkPurple',
+    // white/25 veil over the slab bg left "+N" at ~3:1 — solid burgundy chip
+    // like the tag pills (off-white text, 10:1).
+    moreBadgeBg: 'bg-darkPurple text-white',
     btnClass: 'bg-darkPurple text-white active:bg-purple',
   },
 ];
