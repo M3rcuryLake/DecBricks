@@ -62,16 +62,14 @@ const { id, number, eyebrow, title, h3 } = Astro.props;
         <h2
           id={`${id}-heading`}
           class="mt-5 pl-30 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPurple uppercase lg:mt-10 lg:pl-0 lg:text-[36px] xl:text-[44px] 3xl:mt-15 3xl:text-[52px] 4xl:text-[60px]"
-        >
           set:html={brandify(title)}
-        ></h2>
+        />
       )}
       {h3 && (
         <h3
           class="mt-20 lg:mt-25 font-nohemi text-[15px] leading-[1.2] font-medium text-darkPurple lg:text-[18px] 3xl:text-[20px]"
-        >
           set:html={brandify(h3)}
-        ></h3>
+        />
       )}
     </div>
     <div class="relative mt-20 w-full lg:mt-25">

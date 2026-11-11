@@ -27,6 +27,7 @@ class Checker(html.parser.HTMLParser):
         self.skip_depth = 0
         self.stack = []       # list of (tag, has_brand_class)
         self.offenders = []
+        self.leaks = []
 
     @staticmethod
     def _classes(attrs):
@@ -54,6 +55,10 @@ class Checker(html.parser.HTMLParser):
             self.offenders.append(
                 f'  {self.rel}: "…{data.strip()[:70]}…" not inside .font-brand'
             )
+        # Regression guard (QA 2026-11-11): a leaked `set:html=` attribute that
+        # ended up as element CONTENT renders as literal text in production.
+        if self.skip_depth == 0 and 'set:html=' in data:
+            self.leaks.append(f'  {self.rel}: leaked attribute text "…{data.strip()[:70]}…"')
 
 
 def check(path, rel):
@@ -66,7 +71,7 @@ def check(path, rel):
 
     c = Checker(rel)
     c.feed(body)
-    return c.offenders
+    return c.offenders, c.leaks
 
 
 def main():
@@ -74,10 +79,17 @@ def main():
         print('No dist/ — run `npm run build` first.')
         return 1
     offenders = []
+    leaks = []
     files = sorted(DIST.rglob('*.html'))
     for path in files:
         rel = str(path.relative_to(DIST))
-        offenders.extend(check(path, rel))
+        o, l = check(path, rel)
+        offenders.extend(o)
+        leaks.extend(l)
+    if leaks:
+        print(f'FAIL: leaked set:html attribute text (rendered as literal content) in {len(leaks)} spot(s):')
+        print('\n'.join(leaks))
+        return 1
     if offenders:
         print(f'FAIL: brand word outside .font-brand in {len(offenders)} spot(s):')
         print('\n'.join(offenders))

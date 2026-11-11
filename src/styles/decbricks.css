@@ -50,6 +50,43 @@
   font-feature-settings: normal;
 }
 
+/* --------------------------------------------------------------------------
+   Focus visibility (AGENTS rule 8). The template sets `focus:outline-none`
+   in places, leaving the UA default (light blue) or nothing. Ring uses
+   currentColor so it always contrasts with the element's own text colour;
+   the second rule out-specifies `.focus\:outline-none:focus` (equal
+   specificity, later file wins) for keyboard focus while mouse clicks
+   keep no ring.
+   -------------------------------------------------------------------------- */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+.focus\:outline-none:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   Touch targets (WCAG 2.5.8 / best practice ≥44px on coarse pointers).
+   Several template text-buttons are <24px tall — too small for phones.
+   Desktop (fine pointer) is untouched: the compact template look stays.
+   -------------------------------------------------------------------------- */
+@media (pointer: coarse) {
+  .parts-serviceNavLink,
+  .parts-btnBlock,
+  .parts-btnScrollTop,
+  .parts-btnText {
+    min-height: 44px;
+  }
+  .parts-btnScrollTop,
+  .parts-btnText {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+  }
+}
+
 /* Semantic brand aliases (source of truth for values is the @layer theme token
    block in global.css; these map to brand names for new code). */
 :root {
@@ -130,6 +167,13 @@
 }
 /* Once the widget iframe exists, drop the pulsing skeleton behind it. */
 .cal-embed:has(iframe) .cal-skeleton {
+  display: none;
+}
+/* No Cal link configured (open-items A2): the reserved mount would render as
+   a large empty beige box — collapse it and let the fallback card be the
+   island's content. The CLS min-height above only matters when an embed is
+   actually expected to arrive. */
+.cal-embed-widget[data-has-cal='false'] .cal-embed {
   display: none;
 }
 

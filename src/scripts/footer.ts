@@ -210,12 +210,12 @@ export function initFooter() {
           duration: 45,
           repeat: -1,
           ease: 'none',
-          invalidateOnRefresh: true,
           scrollTrigger: {
             trigger: footer,
             start: 'top bottom',
             end: 'bottom top',
             toggleActions: 'play pause play pause',
+            invalidateOnRefresh: true,
           },
         });
       }

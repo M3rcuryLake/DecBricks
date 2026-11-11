@@ -1,0 +1,188 @@
+- generic [active] [ref=f12e1]:
+  - link "Skip to main content" [ref=f12e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=f12e4]:
+    - generic [ref=f12e5]:
+      - generic [ref=f12e6]:
+        - generic "Hold Tight" [ref=f12e7]:
+          - generic [aria-hidden] [ref=f12e8]:
+            - generic [aria-hidden] [ref=f12e9]: H
+            - generic [aria-hidden] [ref=f12e10]: o
+            - generic [aria-hidden] [ref=f12e11]: l
+            - generic [aria-hidden] [ref=f12e12]: d
+            - generic [aria-hidden] [ref=f12e13]: T
+            - generic [aria-hidden] [ref=f12e14]: i
+            - generic [aria-hidden] [ref=f12e15]: g
+            - generic [aria-hidden] [ref=f12e16]: h
+            - generic [aria-hidden] [ref=f12e17]: t
+        - generic "023" [ref=f12e18]:
+          - generic [aria-hidden] [ref=f12e19]:
+            - generic [aria-hidden] [ref=f12e20]: "0"
+            - generic [aria-hidden] [ref=f12e21]: "2"
+            - generic [aria-hidden] [ref=f12e22]: "3"
+      - generic [ref=f12e23]:
+        - generic "Almost Ready" [ref=f12e24]:
+          - generic [aria-hidden] [ref=f12e25]:
+            - generic [aria-hidden] [ref=f12e26]: A
+            - generic [aria-hidden] [ref=f12e27]: l
+            - generic [aria-hidden] [ref=f12e28]: m
+            - generic [aria-hidden] [ref=f12e29]: o
+            - generic [aria-hidden] [ref=f12e30]: s
+            - generic [aria-hidden] [ref=f12e31]: t
+            - generic [aria-hidden] [ref=f12e32]: R
+            - generic [aria-hidden] [ref=f12e33]: e
+            - generic [aria-hidden] [ref=f12e34]: a
+            - generic [aria-hidden] [ref=f12e35]: d
+            - generic [aria-hidden] [ref=f12e36]: "y"
+        - generic "100" [ref=f12e37]:
+          - generic [aria-hidden] [ref=f12e38]:
+            - generic [aria-hidden] [ref=f12e39]: "1"
+            - generic [aria-hidden] [ref=f12e40]: "0"
+            - generic [aria-hidden] [ref=f12e41]: "0"
+      - generic [ref=f12e67]:
+        - generic [ref=f12e68]: "1"
+        - generic [ref=f12e72]: "1"
+    - generic [ref=f12e73]:
+      - generic:
+        - link "Go to homepage" [ref=f12e74] [cursor=pointer]:
+          - /url: /
+          - generic [ref=f12e75]: Decbricks
+        - button "Menu" [ref=f12e77] [cursor=pointer]
+        - navigation [aria-hidden] [ref=f12e85]:
+          - generic [ref=f12e86]:
+            - link [ref=f12e87] [cursor=pointer]:
+              - /url: /
+              - text: Work
+            - link [ref=f12e88] [cursor=pointer]:
+              - /url: /about
+              - text: About
+            - link [ref=f12e89] [cursor=pointer]:
+              - /url: /services
+              - text: Services
+            - link [ref=f12e90] [cursor=pointer]:
+              - /url: /contact
+              - text: Contact
+      - generic [ref=f12e95]:
+        - heading "Contact Decbricks" [level=1] [ref=f12e96]
+        - generic [ref=f12e97]:
+          - generic [ref=f12e98]:
+            - generic [aria-hidden] [ref=f12e99]: Contact
+            - paragraph [ref=f12e100]: Contact Decbricks for website development, app development, AI automation, custom software, digital marketing and business outreach services.
+          - generic [aria-hidden] [ref=f12e101]: Us
+        - navigation "Contact" [ref=f12e103]:
+          - paragraph [ref=f12e104]: Jump to
+          - list [ref=f12e112]:
+            - listitem [ref=f12e113]:
+              - link "Book a Call" [ref=f12e114] [cursor=pointer]:
+                - /url: "#book-a-call"
+                - generic [ref=f12e115]:
+                  - generic [ref=f12e116]: Book a Call
+                  - generic [aria-hidden] [ref=f12e117]: Book a Call
+            - listitem [ref=f12e118]:
+              - link "Start a Project" [ref=f12e119] [cursor=pointer]:
+                - /url: "#start-a-project"
+                - generic [ref=f12e120]:
+                  - generic [ref=f12e121]: Start a Project
+                  - generic [aria-hidden] [ref=f12e122]: Start a Project
+            - listitem [ref=f12e123]:
+              - link "Team" [ref=f12e124] [cursor=pointer]:
+                - /url: "#meet-the-team"
+                - generic [ref=f12e125]:
+                  - generic [ref=f12e126]: Team
+                  - generic [aria-hidden] [ref=f12e127]: Team
+            - listitem [ref=f12e128]:
+              - link "Call Us" [ref=f12e129] [cursor=pointer]:
+                - /url: "#contact-numbers"
+                - generic [ref=f12e130]:
+                  - generic [ref=f12e131]: Call Us
+                  - generic [aria-hidden] [ref=f12e132]: Call Us
+      - region "Contact Decbricks" [ref=f12e149]:
+        - generic [ref=f12e151]:
+          - article [ref=f12e152]:
+            - generic [aria-hidden]:
+              - generic: "01"
+            - generic [ref=f12e157]:
+              - generic [ref=f12e158]:
+                - paragraph [ref=f12e159]:
+                  - generic [ref=f12e167]: Book a Call
+                - heading "set:html=Book a Meeting >" [level=2] [ref=f12e168]
+              - generic [ref=f12e170]:
+                - status [ref=f12e172]:
+                  - paragraph [ref=f12e173]: Online booking is not configured yet.
+                  - paragraph [ref=f12e174]: Or send the form below — we read every message.
+                - status [ref=f12e175]: "DEV: CAL.link is empty — set PUBLIC_CAL_LINK (open-items A2)."
+          - article [ref=f12e176]:
+            - generic [aria-hidden]:
+              - generic: "02"
+            - generic [ref=f12e181]:
+              - generic [ref=f12e182]:
+                - paragraph [ref=f12e183]:
+                  - generic [ref=f12e191]: Start a Project
+                - heading "set:html=Let’s Start Something Great. >" [level=2] [ref=f12e192]
+                - heading "set:html=Tell us what you want to build. >" [level=3] [ref=f12e193]
+              - paragraph [ref=f12e195]: Tell us what you want to build — book a call above, or send the form below.
+          - paragraph [ref=f12e196]: "Meet the Team is hidden: no team data supplied yet (open-items A5)."
+      - region "Begin your story" [ref=f12e197]:
+        - generic [ref=f12e198]:
+          - generic [ref=f12e199]: Start your digital project with Decbricks.
+          - heading "Begin your story" [level=2] [ref=f12e204]
+          - generic [ref=f12e205]:
+            - generic [aria-hidden] [ref=f12e206]: Begin your
+            - generic [ref=f12e207]: story
+          - form "Get In Touch" [ref=f12e208]:
+            - textbox [aria-hidden] [ref=f12e209]
+            - heading "Get In Touch" [level=3] [ref=f12e218]
+            - group "Contact Information" [ref=f12e219]:
+              - generic [ref=f12e221]:
+                - generic [ref=f12e222]: Email
+                - textbox "Email" [ref=f12e224]
+              - generic [ref=f12e225]:
+                - generic [ref=f12e226]: Name
+                - textbox "Name" [ref=f12e228]
+              - generic [ref=f12e229]:
+                - generic [ref=f12e230]: Company
+                - textbox "Company" [ref=f12e232]
+              - generic [ref=f12e233]:
+                - generic [ref=f12e234]: Message
+                - textbox "Message" [ref=f12e236]
+            - generic [ref=f12e237]:
+              - generic [ref=f12e239]:
+                - generic [ref=f12e240]:
+                  - checkbox "I have read and agree to the Terms of Service and Privacy Policy." [ref=f12e241]
+                  - generic [ref=f12e242] [cursor=pointer]
+                - generic [ref=f12e243]: I have read and agree to the Terms of Service and Privacy Policy.
+              - button "Submit" [ref=f12e245] [cursor=pointer]:
+                - generic [ref=f12e246]:
+                  - generic [ref=f12e247]: Submit
+                  - generic [ref=f12e248]: Submit
+      - contentinfo "Site footer" [ref=f12e251]:
+        - generic [ref=f12e253]:
+          - generic [ref=f12e254]:
+            - button "scroll to top of page" [ref=f12e255] [cursor=pointer]:
+              - generic [ref=f12e256]:
+                - generic [aria-hidden] [ref=f12e265]: Rise to the top
+                - generic [ref=f12e266]: Rise to the top
+            - generic "Decbricks" [ref=f12e267]
+          - generic [aria-hidden] [ref=f12e269]:
+            - generic [ref=f12e270]: Innovative
+            - generic [ref=f12e271]: Distinct
+            - generic [ref=f12e272]: Authentic
+            - generic [ref=f12e273]: Creative
+            - generic [ref=f12e274]: Brave
+            - generic [ref=f12e275]: Innovative
+            - generic [ref=f12e276]: Distinct
+            - generic [ref=f12e277]: Authentic
+            - generic [ref=f12e278]: Creative
+            - generic [ref=f12e279]: Brave
+          - generic [ref=f12e280]:
+            - generic "Copyright information" [ref=f12e281]: © 2026 Decbricks. All rights reserved.
+            - navigation [ref=f12e282]:
+              - link "Play Our 404 Game" [ref=f12e283] [cursor=pointer]:
+                - /url: /the404game
+                - generic [ref=f12e284]:
+                  - generic [ref=f12e285]: Play Our 404 Game
+                  - generic [ref=f12e286]: Play Our 404 Game
+              - button "Manage Cookies" [ref=f12e291] [cursor=pointer]:
+                - generic [ref=f12e292]:
+                  - text: Manage Cookies
+                  - generic [ref=f12e293]: Manage Cookies

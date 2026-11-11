@@ -1,0 +1,355 @@
+- generic [active] [ref=f13e1]:
+  - link "Skip to main content" [ref=f13e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=f13e4]:
+    - generic [ref=f13e73]:
+      - generic:
+        - link "Go to homepage" [ref=f13e74] [cursor=pointer]:
+          - /url: /
+          - generic [ref=f13e75]: Decbricks
+        - button "Menu" [ref=f13e77] [cursor=pointer]
+        - navigation [aria-hidden] [ref=f13e85]:
+          - generic [ref=f13e86]:
+            - link [ref=f13e87] [cursor=pointer]:
+              - /url: /
+              - text: Work
+            - link [ref=f13e88] [cursor=pointer]:
+              - /url: /about
+              - text: About
+            - link [ref=f13e89] [cursor=pointer]:
+              - /url: /services
+              - text: Services
+            - link [ref=f13e90] [cursor=pointer]:
+              - /url: /contact
+              - text: Contact
+      - generic [ref=f13e95]:
+        - heading "Our Services" [level=1] [ref=f13e96]
+        - generic [ref=f13e97]:
+          - generic [ref=f13e98]:
+            - generic [aria-hidden] [ref=f13e99]: Our
+            - paragraph [ref=f13e100]: An award-winning partner for games studios and publishers. We connect strategy, creative, web and campaigns to make you stand out and thrive.
+          - generic [aria-hidden] [ref=f13e101]: Services
+        - navigation "Services" [ref=f13e103]:
+          - paragraph [ref=f13e104]: Jump to
+          - list [ref=f13e112]:
+            - listitem [ref=f13e113]:
+              - link "Strategy" [ref=f13e114] [cursor=pointer]:
+                - /url: "#strategy"
+                - generic [ref=f13e115]:
+                  - generic [ref=f13e116]: Strategy
+                  - generic [aria-hidden] [ref=f13e117]: Strategy
+            - listitem [ref=f13e118]:
+              - link "Creative" [ref=f13e119] [cursor=pointer]:
+                - /url: "#creative"
+                - generic [ref=f13e120]:
+                  - generic [ref=f13e121]: Creative
+                  - generic [aria-hidden] [ref=f13e122]: Creative
+            - listitem [ref=f13e123]:
+              - link "Web Development" [ref=f13e124] [cursor=pointer]:
+                - /url: "#web-development"
+                - generic [ref=f13e125]:
+                  - generic [ref=f13e126]: Web Development
+                  - generic [aria-hidden] [ref=f13e127]: Web Development
+            - listitem [ref=f13e128]:
+              - link "Campaign" [ref=f13e129] [cursor=pointer]:
+                - /url: "#campaigns"
+                - generic [ref=f13e130]:
+                  - generic [ref=f13e131]: Campaign
+                  - generic [aria-hidden] [ref=f13e132]: Campaign
+      - region "Our services" [ref=f13e149]:
+        - generic [ref=f13e151]:
+          - article [ref=f13e152]:
+            - generic [aria-hidden]:
+              - generic: "01"
+            - generic [ref=f13e157]:
+              - generic [ref=f13e158]:
+                - generic [ref=f13e159]:
+                  - paragraph [ref=f13e160]:
+                    - generic [ref=f13e168]: Planning
+                  - heading "Strategy" [level=2] [ref=f13e169]
+                - generic [ref=f13e170]:
+                  - paragraph [ref=f13e171]: Clear evidence-based strategy built to find your audience, sharpen your positioning and plan for success.
+                  - paragraph [ref=f13e172]: It all starts with understanding who you are, what you stand for and where you want to go. Through workshops, research and insight, we build the foundations and a clear path forward for your brand, game, marketing or web.
+              - list [ref=f13e173]:
+                - listitem [ref=f13e174]:
+                  - generic [ref=f13e181]: Research & Insight
+                - listitem [ref=f13e182]:
+                  - generic [ref=f13e189]: Workshops
+                - listitem [ref=f13e190]:
+                  - generic [ref=f13e197]: Brand Strategy
+                - listitem [ref=f13e198]:
+                  - generic [ref=f13e205]: Positioning
+                - listitem [ref=f13e206]:
+                  - generic [ref=f13e213]: Naming
+                - listitem [ref=f13e214]:
+                  - generic [ref=f13e221]: Tone of Voice
+                - listitem [ref=f13e222]:
+                  - generic [ref=f13e229]: Content Strategy
+                - listitem [ref=f13e230]:
+                  - generic [ref=f13e237]: Marketing Strategy
+                - listitem [ref=f13e238]:
+                  - generic [ref=f13e245]: Campaign & Messaging Strategy
+            - generic [ref=f13e246]:
+              - generic "Video player" [ref=f13e249]
+              - generic [ref=f13e250]:
+                - paragraph [ref=f13e251]: Projects
+                - list [ref=f13e259]:
+                  - listitem [ref=f13e260]:
+                    - generic [ref=f13e267]: AdHoc Studio
+                  - listitem [ref=f13e268]:
+                    - generic [ref=f13e275]: Companion Group
+                  - listitem [ref=f13e276]:
+                    - generic [ref=f13e283]: Oddiko
+                  - listitem [ref=f13e284]:
+                    - generic [ref=f13e291]: TTK
+                  - listitem [ref=f13e292]:
+                    - generic [ref=f13e299]: Blind Squirrel
+          - article [ref=f13e300]:
+            - generic [aria-hidden]:
+              - generic: "02"
+            - generic [ref=f13e305]:
+              - generic [ref=f13e306]:
+                - generic [ref=f13e307]:
+                  - paragraph [ref=f13e308]:
+                    - generic [ref=f13e316]: Making
+                  - heading "Creative" [level=2] [ref=f13e317]
+                - generic [ref=f13e318]:
+                  - paragraph [ref=f13e319]: Distinct award-winning creative that will set your digital and physical presence apart from the rest.
+                  - paragraph [ref=f13e320]: Identities that define your story, intentionally crafted so they’re unmistakably yours. We deliver at any scale, from a single asset to full brand systems and campaign toolkits, and every project gets its own considered approach.
+              - list [ref=f13e321]:
+                - listitem [ref=f13e322]:
+                  - generic [ref=f13e329]: Branding
+                - listitem [ref=f13e330]:
+                  - generic [ref=f13e337]: Motion
+                - listitem [ref=f13e338]:
+                  - generic [ref=f13e345]: Marketing Toolkits
+                - listitem [ref=f13e346]:
+                  - generic [ref=f13e353]: UX
+                - listitem [ref=f13e354]:
+                  - generic [ref=f13e361]: Wireframing
+                - listitem [ref=f13e362]:
+                  - generic [ref=f13e369]: UI
+                - listitem [ref=f13e370]:
+                  - generic [ref=f13e377]: Website & Ecommerce
+                - listitem [ref=f13e378]:
+                  - generic [ref=f13e385]: Platforms
+            - generic [ref=f13e386]:
+              - generic "Video player" [ref=f13e389]
+              - generic [ref=f13e390]:
+                - paragraph [ref=f13e391]: Projects
+                - list [ref=f13e399]:
+                  - listitem [ref=f13e400]:
+                    - generic [ref=f13e407]: Bulkhead
+                  - listitem [ref=f13e408]:
+                    - generic [ref=f13e415]: Team17
+                  - listitem [ref=f13e416]:
+                    - generic [ref=f13e423]: Playground Games
+                  - listitem [ref=f13e424]:
+                    - generic [ref=f13e431]: Tencent
+                  - listitem [ref=f13e432]:
+                    - generic [ref=f13e439]: Jyamma Games
+                  - listitem [ref=f13e440]:
+                    - generic [ref=f13e447]: Dlala
+          - article [ref=f13e448]:
+            - generic [aria-hidden]:
+              - generic: "03"
+            - generic [ref=f13e453]:
+              - generic [ref=f13e454]:
+                - generic [ref=f13e455]:
+                  - paragraph [ref=f13e456]:
+                    - generic [ref=f13e464]: Building
+                  - heading "Web Development" [level=2] [ref=f13e465]
+                - generic [ref=f13e466]:
+                  - paragraph [ref=f13e467]: Bespoke web platforms that are engineered to perform at scale.
+                  - paragraph [ref=f13e468]: We build web experiences from architecture to hosting, designed around the CMS and tools your team already utilises. Advanced engineering sits behind each platform, with UI and UX shaping every decision from the start.
+              - list [ref=f13e469]:
+                - listitem [ref=f13e470]:
+                  - generic [ref=f13e477]: Technical Architecture
+                - listitem [ref=f13e478]:
+                  - generic [ref=f13e485]: Front-End Development
+                - listitem [ref=f13e486]:
+                  - generic [ref=f13e493]: Back-End Development
+                - listitem [ref=f13e494]:
+                  - generic [ref=f13e501]: CMS Development
+                - listitem [ref=f13e502]:
+                  - generic [ref=f13e509]: Ecommerce Development
+                - listitem [ref=f13e510]:
+                  - generic [ref=f13e517]: Newsletter & Mailing List Integrations
+                - listitem [ref=f13e518]:
+                  - generic [ref=f13e525]: Support Platform Integrations
+                - listitem [ref=f13e526]:
+                  - generic [ref=f13e533]: Careers Platform Integrations
+                - listitem [ref=f13e534]:
+                  - generic [ref=f13e541]: Hosting, Security & Maintenance
+            - generic [ref=f13e542]:
+              - generic "Video player" [ref=f13e545]
+              - generic [ref=f13e546]:
+                - paragraph [ref=f13e547]: Projects
+                - list [ref=f13e555]:
+                  - listitem [ref=f13e556]:
+                    - generic [ref=f13e563]: Riot
+                  - listitem [ref=f13e564]:
+                    - generic [ref=f13e571]: Microsoft
+                  - listitem [ref=f13e572]:
+                    - generic [ref=f13e579]: Forza
+                  - listitem [ref=f13e580]:
+                    - generic [ref=f13e587]: Evo.gg
+                  - listitem [ref=f13e588]:
+                    - generic [ref=f13e595]: Ninja Theory
+          - article [ref=f13e596]:
+            - generic [aria-hidden]:
+              - generic: "04"
+            - generic [ref=f13e601]:
+              - generic [ref=f13e602]:
+                - generic [ref=f13e603]:
+                  - paragraph [ref=f13e604]:
+                    - generic [ref=f13e612]: Pushing
+                  - heading "Campaigns" [level=2] [ref=f13e613]
+                - generic [ref=f13e614]:
+                  - paragraph [ref=f13e615]: Marketing shaped around each campaign, reaching the right players, building momentum and turning interest into sales.
+                  - paragraph [ref=f13e616]: Campaigns and activations timed to the moments that matter, reaching your audience across organic, paid media and creators with one aligned strategy behind every channel.
+              - list [ref=f13e617]:
+                - listitem [ref=f13e618]:
+                  - generic [ref=f13e625]: Marketing Strategy
+                - listitem [ref=f13e626]:
+                  - generic [ref=f13e633]: Go-to-Market Planning
+                - listitem [ref=f13e634]:
+                  - generic [ref=f13e641]: Key Beat Activations
+                - listitem [ref=f13e642]:
+                  - generic [ref=f13e649]: Store Page Audits and Testing
+                - listitem [ref=f13e650]:
+                  - generic [ref=f13e657]: Game Launches
+                - listitem [ref=f13e658]:
+                  - generic [ref=f13e665]: Organic
+                - listitem [ref=f13e666]:
+                  - generic [ref=f13e673]: Paid Media
+                - listitem [ref=f13e674]:
+                  - generic [ref=f13e681]: Creator Activations
+                - listitem [ref=f13e682]:
+                  - generic [ref=f13e689]: Social Assets
+                - listitem [ref=f13e690]:
+                  - generic [ref=f13e697]: Campaign Management
+            - generic [ref=f13e698]:
+              - generic "Video player" [ref=f13e701]
+              - generic [ref=f13e702]:
+                - paragraph [ref=f13e703]: Projects
+                - list [ref=f13e711]:
+                  - listitem [ref=f13e712]:
+                    - generic [ref=f13e719]: Meadgard
+                  - listitem [ref=f13e720]:
+                    - generic [ref=f13e727]: Hell Let Loose
+                  - listitem [ref=f13e728]:
+                    - generic [ref=f13e735]: "Temtem: Swarm"
+                  - listitem [ref=f13e736]:
+                    - generic [ref=f13e743]: BapBap
+                  - listitem [ref=f13e744]:
+                    - generic [ref=f13e751]: Kyoryu
+                  - listitem [ref=f13e752]:
+                    - generic [ref=f13e759]: Alienware
+      - region "Clients" [ref=f13e760]:
+        - generic [ref=f13e761]:
+          - heading "Clients" [level=2] [ref=f13e766]
+          - list [ref=f13e767]:
+            - listitem [ref=f13e768]:
+              - img "Layer_1" [ref=f13e771]
+            - listitem [ref=f13e772]:
+              - img "image 2" [ref=f13e775]
+            - listitem [ref=f13e776]:
+              - img "inXile_Logo2020_Capstone_white 1" [ref=f13e779]
+            - listitem [ref=f13e780]:
+              - img "PLayByPLay" [ref=f13e783]
+            - listitem [ref=f13e784]:
+              - img "HUNDREDSTAR" [ref=f13e787]
+            - listitem [ref=f13e788]:
+              - img "Third Kind white logo 1" [ref=f13e791]
+            - listitem [ref=f13e792]:
+              - img "Tripwire-Logo.e7575084 2" [ref=f13e795]
+            - listitem [ref=f13e796]:
+              - img "PlaySide_logo logo" [ref=f13e799]
+            - listitem [ref=f13e800]:
+              - img "636d3f145b88e0cc89e6ab48_1047Logo_Color_Horiz_01x1000 1" [ref=f13e803]
+            - listitem [ref=f13e804]:
+              - img "TTK_Full_Logo_Black_LightBG_GAMES 1" [ref=f13e807]
+            - listitem [ref=f13e808]:
+              - img "Group-1" [ref=f13e811]
+            - listitem [ref=f13e812]:
+              - img "LogoCrema_Horizontal_4K_Invert-1024x576 1 1" [ref=f13e815]
+      - region "Begin your story" [ref=f13e816]:
+        - generic [ref=f13e817]:
+          - generic [ref=f13e818]:
+            - generic [ref=f13e819]: We’re a games industry creative leader that will put your player first. Drop us a message!
+            - generic [aria-hidden] [ref=f13e820]: We’re a games industry creative leader that will put your player first. Drop us a message!
+          - heading "Begin your story" [level=2] [ref=f13e825]
+          - generic [ref=f13e826]:
+            - generic [aria-hidden] [ref=f13e827]: Begin your
+            - generic [ref=f13e828]: story
+          - form "Get In Touch" [ref=f13e829]:
+            - textbox [aria-hidden] [ref=f13e830]
+            - heading "Get In Touch" [level=3] [ref=f13e839]
+            - group "Contact Information" [ref=f13e840]:
+              - generic [ref=f13e842]:
+                - generic [ref=f13e843]: Email
+                - textbox "Email" [ref=f13e845]
+              - generic [ref=f13e846]:
+                - generic [ref=f13e847]: Name
+                - textbox "Name" [ref=f13e849]
+              - generic [ref=f13e850]:
+                - generic [ref=f13e851]: Company
+                - textbox "Company" [ref=f13e853]
+              - generic [ref=f13e854]:
+                - generic [ref=f13e855]: Message
+                - textbox "Message" [ref=f13e857]
+            - generic [ref=f13e858]:
+              - generic [ref=f13e860]:
+                - generic [ref=f13e861]:
+                  - checkbox "I have read and agree to the Terms of Service and Privacy Policy." [ref=f13e862]
+                  - generic [ref=f13e863] [cursor=pointer]
+                - generic [ref=f13e864]: I have read and agree to the Terms of Service and Privacy Policy.
+              - button "Submit" [ref=f13e866] [cursor=pointer]:
+                - generic [ref=f13e867]:
+                  - generic [ref=f13e868]: Submit
+                  - generic [ref=f13e869]: Submit
+      - contentinfo "Site footer" [ref=f13e872]:
+        - generic [ref=f13e874]:
+          - generic [ref=f13e875]:
+            - button "scroll to top of page" [ref=f13e876] [cursor=pointer]:
+              - generic [ref=f13e877]:
+                - generic [aria-hidden] [ref=f13e886]: Rise to the top
+                - generic [ref=f13e887]: Rise to the top
+            - generic "Decbricks" [ref=f13e888]
+          - generic [aria-hidden] [ref=f13e890]:
+            - generic [ref=f13e891]: Innovative
+            - generic [ref=f13e892]: Distinct
+            - generic [ref=f13e893]: Authentic
+            - generic [ref=f13e894]: Creative
+            - generic [ref=f13e895]: Brave
+            - generic [ref=f13e896]: Innovative
+            - generic [ref=f13e897]: Distinct
+            - generic [ref=f13e898]: Authentic
+            - generic [ref=f13e899]: Creative
+            - generic [ref=f13e900]: Brave
+          - generic [ref=f13e901]:
+            - generic "Copyright information" [ref=f13e902]: © 2026 Decbricks. All rights reserved.
+            - navigation [ref=f13e903]:
+              - link "Play Our 404 Game" [ref=f13e904] [cursor=pointer]:
+                - /url: /the404game
+                - generic [ref=f13e905]:
+                  - generic [ref=f13e906]: Play Our 404 Game
+                  - generic [ref=f13e907]: Play Our 404 Game
+              - button "Manage Cookies" [ref=f13e912] [cursor=pointer]:
+                - generic [ref=f13e913]:
+                  - text: Manage Cookies
+                  - generic [ref=f13e914]: Manage Cookies
+    - generic [ref=f13e915]:
+      - generic [ref=f13e916]: We're using cookies on this site
+      - paragraph [ref=f13e925]: We use cookies to improve your experience. By using this website you agree to our Cookie Policy.
+      - generic [ref=f13e926]:
+        - button "Accept All" [ref=f13e927] [cursor=pointer]:
+          - generic [ref=f13e928]:
+            - generic "Accept All" [ref=f13e929]
+            - generic "Accept All" [ref=f13e930]
+        - button "Manage" [ref=f13e937] [cursor=pointer]:
+          - generic [ref=f13e938]:
+            - generic "Manage" [ref=f13e939]
+            - generic "Manage" [ref=f13e940]
+      - generic [ref=f13e941]: COOKIES

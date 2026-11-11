@@ -1,0 +1,273 @@
+- generic [active] [ref=f10e1]:
+  - link "Skip to main content" [ref=f10e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=f10e4]:
+    - generic [ref=f10e5]:
+      - generic [ref=f10e6]:
+        - generic "Hold Tight" [ref=f10e7]:
+          - generic [aria-hidden] [ref=f10e8]:
+            - generic [aria-hidden] [ref=f10e9]: H
+            - generic [aria-hidden] [ref=f10e10]: o
+            - generic [aria-hidden] [ref=f10e11]: l
+            - generic [aria-hidden] [ref=f10e12]: d
+            - generic [aria-hidden] [ref=f10e13]: T
+            - generic [aria-hidden] [ref=f10e14]: i
+            - generic [aria-hidden] [ref=f10e15]: g
+            - generic [aria-hidden] [ref=f10e16]: h
+            - generic [aria-hidden] [ref=f10e17]: t
+        - generic "001" [ref=f10e18]:
+          - generic [aria-hidden] [ref=f10e19]:
+            - generic [aria-hidden] [ref=f10e20]: "0"
+            - generic [aria-hidden] [ref=f10e21]: "0"
+            - generic [aria-hidden] [ref=f10e22]: "1"
+      - generic [ref=f10e23]:
+        - generic "Almost Ready" [ref=f10e24]:
+          - generic [aria-hidden] [ref=f10e25]:
+            - generic [aria-hidden] [ref=f10e26]: A
+            - generic [aria-hidden] [ref=f10e27]: l
+            - generic [aria-hidden] [ref=f10e28]: m
+            - generic [aria-hidden] [ref=f10e29]: o
+            - generic [aria-hidden] [ref=f10e30]: s
+            - generic [aria-hidden] [ref=f10e31]: t
+            - generic [aria-hidden] [ref=f10e32]: R
+            - generic [aria-hidden] [ref=f10e33]: e
+            - generic [aria-hidden] [ref=f10e34]: a
+            - generic [aria-hidden] [ref=f10e35]: d
+            - generic [aria-hidden] [ref=f10e36]: "y"
+        - generic "100" [ref=f10e37]:
+          - generic [aria-hidden] [ref=f10e38]:
+            - generic [aria-hidden] [ref=f10e39]: "1"
+            - generic [aria-hidden] [ref=f10e40]: "0"
+            - generic [aria-hidden] [ref=f10e41]: "0"
+      - generic [ref=f10e67]:
+        - generic [ref=f10e68]: "464"
+        - generic [ref=f10e72]: "289"
+    - generic [ref=f10e73]:
+      - generic:
+        - link "Go to homepage" [ref=f10e74] [cursor=pointer]:
+          - /url: /
+          - generic [ref=f10e75]: Decbricks
+        - button "Menu" [ref=f10e77] [cursor=pointer]
+        - navigation [aria-hidden] [ref=f10e85]:
+          - generic [ref=f10e86]:
+            - link [ref=f10e87] [cursor=pointer]:
+              - /url: /
+              - text: Work
+            - link [ref=f10e88] [cursor=pointer]:
+              - /url: /about
+              - text: About
+            - link [ref=f10e89] [cursor=pointer]:
+              - /url: /services
+              - text: Services
+            - link [ref=f10e90] [cursor=pointer]:
+              - /url: /contact
+              - text: Contact
+      - generic [ref=f10e95]:
+        - heading "Our Purpose" [level=1] [ref=f10e96]
+        - generic [ref=f10e97]:
+          - generic [ref=f10e98]:
+            - generic [aria-hidden] [ref=f10e99]: Our
+            - paragraph [ref=f10e100]: We partner with startups, emerging businesses, agencies, and established organisations across India and international markets to solve real-world business challenges through technology, innovation, and strategic execution..
+          - generic [aria-hidden] [ref=f10e101]: Purpose
+        - navigation "About" [ref=f10e103]:
+          - paragraph [ref=f10e104]: Jump to
+          - list [ref=f10e112]:
+            - listitem [ref=f10e113]:
+              - link "Who We Are" [ref=f10e114] [cursor=pointer]:
+                - /url: "#who-we-are"
+                - generic [ref=f10e115]:
+                  - generic [ref=f10e116]: Who We Are
+                  - generic [aria-hidden] [ref=f10e117]: Who We Are
+            - listitem [ref=f10e118]:
+              - link "What Drives Us" [ref=f10e119] [cursor=pointer]:
+                - /url: "#what-drives-us"
+                - generic [ref=f10e120]:
+                  - generic [ref=f10e121]: What Drives Us
+                  - generic [aria-hidden] [ref=f10e122]: What Drives Us
+            - listitem [ref=f10e123]:
+              - link "Mission" [ref=f10e124] [cursor=pointer]:
+                - /url: "#mission"
+                - generic [ref=f10e125]:
+                  - generic [ref=f10e126]: Mission
+                  - generic [aria-hidden] [ref=f10e127]: Mission
+            - listitem [ref=f10e128]:
+              - link "Vision" [ref=f10e129] [cursor=pointer]:
+                - /url: "#vision"
+                - generic [ref=f10e130]:
+                  - generic [ref=f10e131]: Vision
+                  - generic [aria-hidden] [ref=f10e132]: Vision
+            - listitem [ref=f10e133]:
+              - link "Values" [ref=f10e134] [cursor=pointer]:
+                - /url: "#values"
+                - generic [ref=f10e135]:
+                  - generic [ref=f10e136]: Values
+                  - generic [aria-hidden] [ref=f10e137]: Values
+            - listitem [ref=f10e138]:
+              - link "Experience" [ref=f10e139] [cursor=pointer]:
+                - /url: "#experience"
+                - generic [ref=f10e140]:
+                  - generic [ref=f10e141]: Experience
+                  - generic [aria-hidden] [ref=f10e142]: Experience
+            - listitem [ref=f10e143]:
+              - link "Philosophy" [ref=f10e144] [cursor=pointer]:
+                - /url: "#philosophy"
+                - generic [ref=f10e145]:
+                  - generic [ref=f10e146]: Philosophy
+                  - generic [aria-hidden] [ref=f10e147]: Philosophy
+      - region "Our Purpose" [ref=f10e164]:
+        - generic [ref=f10e166]:
+          - article [ref=f10e167]:
+            - generic [aria-hidden]:
+              - generic: "01"
+            - generic [ref=f10e173]:
+              - generic [ref=f10e174]:
+                - paragraph [ref=f10e175]:
+                  - generic [ref=f10e183]: Who We Are
+                - heading "Building Technology. Empowering Businesses. Driving Growth." [level=2] [ref=f10e184]
+              - generic [ref=f10e185]:
+                - paragraph [ref=f10e186]: We partner with startups, emerging businesses, agencies, and established organisations across India and international markets to solve real-world business challenges through technology, innovation, and strategic execution.
+                - paragraph [ref=f10e187]: Our capabilities span custom software development, web and mobile application development, artificial intelligence (AI), business automation, UI/UX and digital design, digital marketing, and business development. Whether it's building a new digital product, streamlining business operations, strengthening an online presence, or reaching the right audience, we bring together the technical expertise and creative execution required to take businesses forward.
+                - paragraph [ref=f10e188]: At Decbricks, we believe technology should serve a purpose. Every solution we build is driven by the goal of creating measurable value, improving user experiences, optimising processes, and unlocking new opportunities for business growth.
+          - article [ref=f10e189]:
+            - generic [aria-hidden]:
+              - generic: "02"
+            - generic [ref=f10e195]:
+              - generic [ref=f10e196]:
+                - paragraph [ref=f10e197]:
+                  - generic [ref=f10e205]: Driven
+                - heading "What Drives Us" [level=2] [ref=f10e206]
+              - generic [ref=f10e207]:
+                - paragraph [ref=f10e208]: We are driven by the challenge of solving meaningful problems through technology and creative thinking. Every business operates differently, with its own objectives, challenges, and opportunities. That's why we approach every project with a focus on understanding the bigger picture before defining the right solution.
+                - paragraph [ref=f10e209]: By combining practical problem-solving, modern technologies, creative innovation, and consistent execution, we aim to deliver digital solutions that address real needs and create lasting impact. Our approach is built around turning complex challenges into practical opportunities for businesses to innovate, adapt, and grow.
+          - article [ref=f10e210]:
+            - generic [aria-hidden]:
+              - generic: "03"
+            - generic [ref=f10e216]:
+              - generic [ref=f10e217]:
+                - paragraph [ref=f10e218]:
+                  - generic [ref=f10e226]: Mission
+                - heading "Our Mission" [level=2] [ref=f10e227]
+              - paragraph [ref=f10e229]: Our mission is to empower businesses with accessible, innovative, and effective technology solutions that simplify operations, enhance digital experiences, and accelerate sustainable growth. We strive to bridge the gap between ideas and execution by making modern digital capabilities more accessible to businesses of every scale.
+          - article [ref=f10e230]:
+            - generic [aria-hidden]:
+              - generic: "04"
+            - generic [ref=f10e236]:
+              - generic [ref=f10e237]:
+                - paragraph [ref=f10e238]:
+                  - generic [ref=f10e246]: Vision
+                - heading "Our Vision" [level=2] [ref=f10e247]
+              - paragraph [ref=f10e249]: Our vision is to become a trusted global technology and digital solutions partner, working alongside businesses to navigate digital transformation, embrace emerging technologies, and unlock new possibilities. We aspire to build an ecosystem where innovation, technology, and strategic thinking enable organisations to adapt, compete, and thrive in an increasingly connected world.
+          - article [ref=f10e250]:
+            - generic [aria-hidden]:
+              - generic: "05"
+            - generic [ref=f10e255]:
+              - generic [ref=f10e256]:
+                - generic [ref=f10e257]:
+                  - paragraph [ref=f10e258]:
+                    - generic [ref=f10e266]: Values
+                  - heading "Our Values" [level=2] [ref=f10e267]
+                - paragraph [ref=f10e269]: The way we approach technology, collaboration, and business growth is shaped by five core principles.
+              - list [ref=f10e270]:
+                - listitem [ref=f10e271]:
+                  - heading "Innovation" [level=3] [ref=f10e272]
+                  - paragraph [ref=f10e280]: We continuously explore emerging technologies, fresh perspectives, and better approaches to solving problems. We believe innovation comes from challenging conventional thinking and finding more effective ways to create value.
+                - listitem [ref=f10e281]:
+                  - heading "Commitment" [level=3] [ref=f10e282]
+                  - paragraph [ref=f10e290]: We take ownership of our work, value the trust our clients place in us, and remain accountable throughout the execution process. Every project deserves attention, consistency, and a commitment to delivering meaningful outcomes.
+                - listitem [ref=f10e291]:
+                  - heading "Collaboration" [level=3] [ref=f10e292]
+                  - paragraph [ref=f10e300]: We believe strong partnerships produce stronger solutions. Through open communication, shared understanding, and active collaboration, we work closely with clients to align our efforts with their goals.
+                - listitem [ref=f10e301]:
+                  - heading "Quality" [level=3] [ref=f10e302]
+                  - paragraph [ref=f10e310]: We prioritise reliability, functionality, performance, and thoughtful design. From the initial concept to the final implementation, we focus on delivering solutions that meet high standards and create dependable digital experiences.
+                - listitem [ref=f10e311]:
+                  - heading "Growth" [level=3] [ref=f10e312]
+                  - paragraph [ref=f10e320]: We embrace continuous learning and improvement. Whether it's adopting new technologies, refining our processes, or expanding our capabilities, we believe growth is essential to creating long-term value for our clients and our organisation.
+          - article [ref=f10e321]:
+            - generic [aria-hidden]:
+              - generic: "06"
+            - generic [ref=f10e327]:
+              - generic [ref=f10e328]:
+                - paragraph [ref=f10e329]:
+                  - generic [ref=f10e337]: Experience
+                - heading "Our Experience" [level=2] [ref=f10e338]
+              - generic [ref=f10e339]:
+                - paragraph [ref=f10e340]: Our experience extends beyond technology development into the practical execution of business growth initiatives. We understand that building a successful digital product or business requires more than strong technology. It also requires effective communication, market understanding, and the ability to connect with the right audience.
+                - paragraph [ref=f10e341]: Alongside developing digital solutions, we have executed email outreach and cold-calling campaigns for startups, including Findtern and Upcoming Engineers. These engagements have provided practical experience in prospect research, targeted lead generation, business communication, customer outreach, and consistent campaign execution. This combination of technical development and business-facing execution gives us a broader perspective on the challenges businesses encounter as they build, launch, and scale.
+          - article [ref=f10e342]:
+            - generic [aria-hidden]:
+              - generic: "07"
+            - generic [ref=f10e347]:
+              - generic [ref=f10e348]:
+                - generic [ref=f10e349]:
+                  - paragraph [ref=f10e350]:
+                    - generic [ref=f10e358]: Philosophy
+                  - heading "Our Philosophy" [level=2] [ref=f10e359]
+                - generic [ref=f10e360]:
+                  - paragraph [ref=f10e361]: We don't build technology simply because it's possible. We build it because it serves a purpose. Every project begins with understanding the problem, identifying the intended outcome, and choosing an approach that aligns with the business objectives behind it.
+                  - paragraph [ref=f10e362]: We value thoughtful engineering, purposeful design, and execution that prioritises real-world impact. Whether developing software, implementing AI-powered solutions, automating workflows, or supporting digital growth, our focus remains on creating solutions that are practical, scalable, and built to deliver lasting value.
+              - paragraph [ref=f10e363]: Decbricks. Building ideas into reality.
+      - region "Begin your story" [ref=f10e364]:
+        - generic [ref=f10e365]:
+          - generic [ref=f10e366]: We partner with startups, emerging businesses, agencies, and established organisations across India and international markets to solve real-world business challenges through technology, innovation, and strategic execution.
+          - heading "Begin your story" [level=2] [ref=f10e377]
+          - generic [ref=f10e378]:
+            - generic [aria-hidden] [ref=f10e379]: Begin your
+            - generic [ref=f10e380]: story
+          - form "Get In Touch" [ref=f10e381]:
+            - textbox [aria-hidden] [ref=f10e382]
+            - heading "Get In Touch" [level=3] [ref=f10e391]
+            - group "Contact Information" [ref=f10e392]:
+              - generic [ref=f10e394]:
+                - generic [ref=f10e395]: Email
+                - textbox "Email" [ref=f10e397]
+              - generic [ref=f10e398]:
+                - generic [ref=f10e399]: Name
+                - textbox "Name" [ref=f10e401]
+              - generic [ref=f10e402]:
+                - generic [ref=f10e403]: Company
+                - textbox "Company" [ref=f10e405]
+              - generic [ref=f10e406]:
+                - generic [ref=f10e407]: Message
+                - textbox "Message" [ref=f10e409]
+            - generic [ref=f10e410]:
+              - generic [ref=f10e412]:
+                - generic [ref=f10e413]:
+                  - checkbox "I have read and agree to the Terms of Service and Privacy Policy." [ref=f10e414]
+                  - generic [ref=f10e415] [cursor=pointer]
+                - generic [ref=f10e416]: I have read and agree to the Terms of Service and Privacy Policy.
+              - button "Submit" [ref=f10e418] [cursor=pointer]:
+                - generic [ref=f10e419]:
+                  - generic [ref=f10e420]: Submit
+                  - generic [ref=f10e421]: Submit
+      - contentinfo "Site footer" [ref=f10e424]:
+        - generic [ref=f10e426]:
+          - generic [ref=f10e427]:
+            - button "scroll to top of page" [ref=f10e428] [cursor=pointer]:
+              - generic [ref=f10e429]:
+                - generic [aria-hidden] [ref=f10e438]: Rise to the top
+                - generic [ref=f10e439]: Rise to the top
+            - generic "Decbricks" [ref=f10e440]
+          - generic [aria-hidden] [ref=f10e442]:
+            - generic [ref=f10e443]: Innovative
+            - generic [ref=f10e444]: Distinct
+            - generic [ref=f10e445]: Authentic
+            - generic [ref=f10e446]: Creative
+            - generic [ref=f10e447]: Brave
+            - generic [ref=f10e448]: Innovative
+            - generic [ref=f10e449]: Distinct
+            - generic [ref=f10e450]: Authentic
+            - generic [ref=f10e451]: Creative
+            - generic [ref=f10e452]: Brave
+          - generic [ref=f10e453]:
+            - generic "Copyright information" [ref=f10e454]: © 2026 Decbricks. All rights reserved.
+            - navigation [ref=f10e455]:
+              - link "Play Our 404 Game" [ref=f10e456] [cursor=pointer]:
+                - /url: /the404game
+                - generic [ref=f10e457]:
+                  - generic [ref=f10e458]: Play Our 404 Game
+                  - generic [ref=f10e459]: Play Our 404 Game
+              - button "Manage Cookies" [ref=f10e464] [cursor=pointer]:
+                - generic [ref=f10e465]:
+                  - text: Manage Cookies
+                  - generic [ref=f10e466]: Manage Cookies

@@ -9,7 +9,9 @@ const HOME_CARD_STYLES = [
     numColor: 'text-palePurple/40',
     contentText: 'text-darkPurple lg:pb-170 3xl:pb-190',
     slashColor: 'text-purple',
-    pillBg: 'bg-purple text-white',
+    // coral cannot carry small text (3.9:1 on off-white, 2.6 on burgundy) —
+    // tag pills use the burgundy surface instead (off-white text, 10:1).
+    pillBg: 'bg-darkPurple text-white',
     moreBadgeBg: 'bg-palePurple text-darkPurple',
     btnClass: 'bg-darkPurple text-white active:bg-purple',
   },
@@ -31,7 +33,8 @@ const HOME_CARD_STYLES = [
     numColor: 'text-palePurple/10',
     contentText: 'text-white lg:pb-170 3xl:pb-190',
     slashColor: 'text-purple',
-    pillBg: 'bg-purple text-white',
+    // see note at first theme: coral can't carry small text
+    pillBg: 'bg-darkPurple text-white',
     moreBadgeBg: 'bg-palePurple/13 text-white',
     btnClass: 'bg-white text-darkPurple active:bg-purple active:text-white',
   },

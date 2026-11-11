@@ -1,0 +1,164 @@
+- generic [ref=f22e1]:
+  - link "Skip to main content" [ref=f22e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=f22e4]:
+    - generic [ref=f22e73]:
+      - generic:
+        - link "Go to homepage" [ref=f22e74] [cursor=pointer]:
+          - /url: /
+          - generic [ref=f22e75]: Decbricks
+        - button "Menu" [ref=f22e77] [cursor=pointer]
+        - navigation [aria-hidden] [ref=f22e333]:
+          - generic [ref=f22e86]:
+            - link [ref=f22e334] [cursor=pointer]:
+              - /url: /
+              - text: Work
+            - link [ref=f22e335] [cursor=pointer]:
+              - /url: /about
+              - text: About
+            - link [ref=f22e336] [cursor=pointer]:
+              - /url: /services
+              - text: Services
+            - link [ref=f22e337] [cursor=pointer]:
+              - /url: /contact
+              - text: Contact
+      - generic [ref=f22e95]:
+        - heading "Contact Decbricks" [level=1] [ref=f22e96]
+        - generic [ref=f22e97]:
+          - generic [ref=f22e98]:
+            - generic [aria-hidden] [ref=f22e99]: Contact
+            - paragraph [ref=f22e100]: Contact Decbricks for website development, app development, AI automation, custom software, digital marketing and business outreach services.
+          - generic [aria-hidden] [ref=f22e101]: Us
+        - navigation "Contact" [ref=f22e103]:
+          - paragraph [ref=f22e104]: Jump to
+          - list [ref=f22e112]:
+            - listitem [ref=f22e113]:
+              - link "Book a Call" [ref=f22e114] [cursor=pointer]:
+                - /url: "#book-a-call"
+                - generic [ref=f22e115]:
+                  - generic [ref=f22e116]: Book a Call
+                  - generic [aria-hidden] [ref=f22e117]: Book a Call
+            - listitem [ref=f22e118]:
+              - link "Start a Project" [ref=f22e119] [cursor=pointer]:
+                - /url: "#start-a-project"
+                - generic [ref=f22e120]:
+                  - generic [ref=f22e121]: Start a Project
+                  - generic [aria-hidden] [ref=f22e122]: Start a Project
+            - listitem [ref=f22e123]:
+              - link "Team" [ref=f22e124] [cursor=pointer]:
+                - /url: "#meet-the-team"
+                - generic [ref=f22e125]:
+                  - generic [ref=f22e126]: Team
+                  - generic [aria-hidden] [ref=f22e127]: Team
+            - listitem [ref=f22e128]:
+              - link "Call Us" [ref=f22e129] [cursor=pointer]:
+                - /url: "#contact-numbers"
+                - generic [ref=f22e130]:
+                  - generic [ref=f22e131]: Call Us
+                  - generic [aria-hidden] [ref=f22e132]: Call Us
+      - region "Contact Decbricks" [ref=f22e149]:
+        - generic [ref=f22e151]:
+          - article [ref=f22e152]:
+            - generic [aria-hidden]:
+              - generic: "01"
+            - generic [ref=f22e157]:
+              - generic [ref=f22e158]:
+                - paragraph [ref=f22e159]:
+                  - generic [ref=f22e167]: Book a Call
+                - heading "Book a Meeting" [level=2] [ref=f22e168]
+              - generic [ref=f22e170]:
+                - status [ref=f22e172]:
+                  - paragraph [ref=f22e173]: Online booking is not configured yet.
+                  - paragraph [ref=f22e174]: Or send the form below — we read every message.
+                - status [ref=f22e175]: "DEV: CAL.link is empty — set PUBLIC_CAL_LINK (open-items A2)."
+          - article [ref=f22e176]:
+            - generic [aria-hidden]:
+              - generic: "02"
+            - generic [ref=f22e181]:
+              - generic [ref=f22e182]:
+                - paragraph [ref=f22e183]:
+                  - generic [ref=f22e191]: Start a Project
+                - heading "Let’s Start Something Great." [level=2] [ref=f22e192]
+                - heading "Tell us what you want to build." [level=3] [ref=f22e193]
+              - paragraph [ref=f22e195]: Tell us what you want to build — book a call above, or send the form below.
+          - paragraph [ref=f22e196]: "Meet the Team is hidden: no team data supplied yet (open-items A5)."
+      - region "Begin your story" [ref=f22e197]:
+        - generic [ref=f22e198]:
+          - generic [ref=f22e199]:
+            - generic [ref=f22e200]: Start your digital project with Decbricks.
+            - generic [aria-hidden] [ref=f22e201]: Start your digital project with Decbricks.
+          - heading "Begin your story" [level=2] [ref=f22e204]
+          - generic [ref=f22e205]:
+            - generic [aria-hidden] [ref=f22e206]: Begin your
+            - generic [ref=f22e207]: story
+          - form "Get In Touch" [ref=f22e208]:
+            - textbox [aria-hidden] [ref=f22e209]
+            - heading "Get In Touch" [level=3] [ref=f22e218]
+            - group "Contact Information" [ref=f22e219]:
+              - generic [ref=f22e221]:
+                - generic [ref=f22e222]: Email
+                - textbox "Email" [active] [invalid] [ref=f22e224]
+              - generic [ref=f22e225]:
+                - generic [ref=f22e226]: Name
+                - textbox "Name" [invalid] [ref=f22e228]
+              - generic [ref=f22e229]:
+                - generic [ref=f22e230]: Company
+                - textbox "Company" [invalid] [ref=f22e232]
+              - generic [ref=f22e233]:
+                - generic [ref=f22e234]: Message
+                - textbox "Message" [ref=f22e236]
+            - generic [ref=f22e237]:
+              - generic [ref=f22e239]:
+                - generic [ref=f22e240]:
+                  - checkbox "I have read and agree to the Terms of Service and Privacy Policy." [invalid] [ref=f22e241]
+                  - generic [ref=f22e242] [cursor=pointer]
+                - generic [ref=f22e243]: I have read and agree to the Terms of Service and Privacy Policy.
+              - button "Submit" [ref=f22e245] [cursor=pointer]:
+                - generic [ref=f22e246]:
+                  - generic [ref=f22e247]: Submit
+                  - generic [ref=f22e248]: Submit
+            - generic [ref=f22e364]: Please complete the highlighted fields.
+      - contentinfo "Site footer" [ref=f22e251]:
+        - generic [ref=f22e253]:
+          - generic [ref=f22e254]:
+            - button "scroll to top of page" [ref=f22e255] [cursor=pointer]:
+              - generic [ref=f22e256]:
+                - generic [aria-hidden] [ref=f22e265]: Rise to the top
+                - generic [ref=f22e266]: Rise to the top
+            - generic "Decbricks" [ref=f22e267]
+          - generic [aria-hidden] [ref=f22e269]:
+            - generic [ref=f22e270]: Innovative
+            - generic [ref=f22e271]: Distinct
+            - generic [ref=f22e272]: Authentic
+            - generic [ref=f22e273]: Creative
+            - generic [ref=f22e274]: Brave
+            - generic [ref=f22e275]: Innovative
+            - generic [ref=f22e276]: Distinct
+            - generic [ref=f22e277]: Authentic
+            - generic [ref=f22e278]: Creative
+            - generic [ref=f22e279]: Brave
+          - generic [ref=f22e280]:
+            - generic "Copyright information" [ref=f22e281]: © 2026 Decbricks. All rights reserved.
+            - navigation [ref=f22e282]:
+              - link "Play Our 404 Game" [ref=f22e283] [cursor=pointer]:
+                - /url: /the404game
+                - generic [ref=f22e284]:
+                  - generic [ref=f22e285]: Play Our 404 Game
+                  - generic [ref=f22e286]: Play Our 404 Game
+              - button "Manage Cookies" [ref=f22e291] [cursor=pointer]:
+                - generic [ref=f22e292]:
+                  - text: Manage Cookies
+                  - generic [ref=f22e293]: Manage Cookies
+    - generic [ref=f22e306]:
+      - generic [ref=f22e307]: We're using cookies on this site
+      - paragraph [ref=f22e316]: We use cookies to improve your experience. By using this website you agree to our Cookie Policy.
+      - generic [ref=f22e317]:
+        - button "Accept All" [ref=f22e318] [cursor=pointer]:
+          - generic [ref=f22e319]:
+            - generic "Accept All" [ref=f22e320]
+            - generic "Accept All" [ref=f22e321]
+        - button "Manage" [ref=f22e328] [cursor=pointer]:
+          - generic [ref=f22e329]:
+            - generic "Manage" [ref=f22e330]
+            - generic "Manage" [ref=f22e331]
+      - generic [ref=f22e332]: COOKIES

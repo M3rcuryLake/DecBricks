@@ -1,0 +1,593 @@
+- generic [active] [ref=f1e1]:
+  - link "Skip to main content" [ref=f1e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=f1e4]:
+    - generic [ref=f1e5]:
+      - generic [ref=f1e6]:
+        - generic "Hold Tight" [ref=f1e7]:
+          - generic [aria-hidden] [ref=f1e8]:
+            - generic [aria-hidden] [ref=f1e9]: H
+            - generic [aria-hidden] [ref=f1e10]: o
+            - generic [aria-hidden] [ref=f1e11]: l
+            - generic [aria-hidden] [ref=f1e12]: d
+            - generic [aria-hidden] [ref=f1e13]: T
+            - generic [aria-hidden] [ref=f1e14]: i
+            - generic [aria-hidden] [ref=f1e15]: g
+            - generic [aria-hidden] [ref=f1e16]: h
+            - generic [aria-hidden] [ref=f1e17]: t
+        - generic "032" [ref=f1e18]:
+          - generic [aria-hidden] [ref=f1e19]:
+            - generic [aria-hidden] [ref=f1e20]: "0"
+            - generic [aria-hidden] [ref=f1e21]: "3"
+            - generic [aria-hidden] [ref=f1e22]: "2"
+      - generic [ref=f1e23]:
+        - generic "Almost Ready" [ref=f1e24]:
+          - generic [aria-hidden] [ref=f1e25]:
+            - generic [aria-hidden] [ref=f1e26]: A
+            - generic [aria-hidden] [ref=f1e27]: l
+            - generic [aria-hidden] [ref=f1e28]: m
+            - generic [aria-hidden] [ref=f1e29]: o
+            - generic [aria-hidden] [ref=f1e30]: s
+            - generic [aria-hidden] [ref=f1e31]: t
+            - generic [aria-hidden] [ref=f1e32]: R
+            - generic [aria-hidden] [ref=f1e33]: e
+            - generic [aria-hidden] [ref=f1e34]: a
+            - generic [aria-hidden] [ref=f1e35]: d
+            - generic [aria-hidden] [ref=f1e36]: "y"
+        - generic "100" [ref=f1e37]:
+          - generic [aria-hidden] [ref=f1e38]:
+            - generic [aria-hidden] [ref=f1e39]: "1"
+            - generic [aria-hidden] [ref=f1e40]: "0"
+            - generic [aria-hidden] [ref=f1e41]: "0"
+      - generic [ref=f1e67]:
+        - generic [ref=f1e68]: "14"
+        - generic [ref=f1e72]: "14"
+    - generic [ref=f1e73]:
+      - generic:
+        - link "Go to homepage" [ref=f1e74] [cursor=pointer]:
+          - /url: /
+          - generic [ref=f1e75]: Decbricks
+        - navigation "Main navigation" [ref=f1e77]:
+          - link "Work" [ref=f1e78] [cursor=pointer]:
+            - /url: /
+            - generic [ref=f1e79]:
+              - generic "Work" [ref=f1e80]:
+                - generic [aria-hidden] [ref=f1e81]:
+                  - generic [aria-hidden] [ref=f1e82]: W
+                  - generic [aria-hidden] [ref=f1e83]: o
+                  - generic [aria-hidden] [ref=f1e84]: r
+                  - generic [aria-hidden] [ref=f1e85]: k
+              - generic "Work" [ref=f1e86]:
+                - generic [aria-hidden] [ref=f1e87]:
+                  - generic [aria-hidden] [ref=f1e88]: W
+                  - generic [aria-hidden] [ref=f1e89]: o
+                  - generic [aria-hidden] [ref=f1e90]: r
+                  - generic [aria-hidden] [ref=f1e91]: k
+          - link "About" [ref=f1e92] [cursor=pointer]:
+            - /url: /about
+            - generic [ref=f1e93]:
+              - generic "About" [ref=f1e94]:
+                - generic [aria-hidden] [ref=f1e95]:
+                  - generic [aria-hidden] [ref=f1e96]: A
+                  - generic [aria-hidden] [ref=f1e97]: b
+                  - generic [aria-hidden] [ref=f1e98]: o
+                  - generic [aria-hidden] [ref=f1e99]: u
+                  - generic [aria-hidden] [ref=f1e100]: t
+              - generic "About" [ref=f1e101]:
+                - generic [aria-hidden] [ref=f1e102]:
+                  - generic [aria-hidden] [ref=f1e103]: A
+                  - generic [aria-hidden] [ref=f1e104]: b
+                  - generic [aria-hidden] [ref=f1e105]: o
+                  - generic [aria-hidden] [ref=f1e106]: u
+                  - generic [aria-hidden] [ref=f1e107]: t
+          - link "Services" [ref=f1e108] [cursor=pointer]:
+            - /url: /services
+            - generic [ref=f1e109]:
+              - generic "Services" [ref=f1e110]:
+                - generic [aria-hidden] [ref=f1e111]:
+                  - generic [aria-hidden] [ref=f1e112]: S
+                  - generic [aria-hidden] [ref=f1e113]: e
+                  - generic [aria-hidden] [ref=f1e114]: r
+                  - generic [aria-hidden] [ref=f1e115]: v
+                  - generic [aria-hidden] [ref=f1e116]: i
+                  - generic [aria-hidden] [ref=f1e117]: c
+                  - generic [aria-hidden] [ref=f1e118]: e
+                  - generic [aria-hidden] [ref=f1e119]: s
+              - generic "Services" [ref=f1e120]:
+                - generic [aria-hidden] [ref=f1e121]:
+                  - generic [aria-hidden] [ref=f1e122]: S
+                  - generic [aria-hidden] [ref=f1e123]: e
+                  - generic [aria-hidden] [ref=f1e124]: r
+                  - generic [aria-hidden] [ref=f1e125]: v
+                  - generic [aria-hidden] [ref=f1e126]: i
+                  - generic [aria-hidden] [ref=f1e127]: c
+                  - generic [aria-hidden] [ref=f1e128]: e
+                  - generic [aria-hidden] [ref=f1e129]: s
+          - link "Contact" [ref=f1e130] [cursor=pointer]:
+            - /url: /contact
+            - generic [ref=f1e131]:
+              - generic "Contact" [ref=f1e132]:
+                - generic [aria-hidden] [ref=f1e133]:
+                  - generic [aria-hidden] [ref=f1e134]: C
+                  - generic [aria-hidden] [ref=f1e135]: o
+                  - generic [aria-hidden] [ref=f1e136]: "n"
+                  - generic [aria-hidden] [ref=f1e137]: t
+                  - generic [aria-hidden] [ref=f1e138]: a
+                  - generic [aria-hidden] [ref=f1e139]: c
+                  - generic [aria-hidden] [ref=f1e140]: t
+              - generic "Contact" [ref=f1e141]:
+                - generic [aria-hidden] [ref=f1e142]:
+                  - generic [aria-hidden] [ref=f1e143]: C
+                  - generic [aria-hidden] [ref=f1e144]: o
+                  - generic [aria-hidden] [ref=f1e145]: "n"
+                  - generic [aria-hidden] [ref=f1e146]: t
+                  - generic [aria-hidden] [ref=f1e147]: a
+                  - generic [aria-hidden] [ref=f1e148]: c
+                  - generic [aria-hidden] [ref=f1e149]: t
+      - generic [ref=f1e151]:
+        - heading "Our Purpose" [level=1] [ref=f1e152]
+        - generic [ref=f1e153]:
+          - generic [ref=f1e154]:
+            - generic [aria-hidden] [ref=f1e155]: Our
+            - paragraph [ref=f1e156]: We partner with startups, emerging businesses, agencies, and established organisations across India and international markets to solve real-world business challenges through technology, innovation, and strategic execution..
+          - generic [aria-hidden] [ref=f1e157]: Purpose
+        - navigation "About" [ref=f1e159]:
+          - paragraph [ref=f1e160]: Jump to
+          - list [ref=f1e168]:
+            - listitem [ref=f1e169]:
+              - link [ref=f1e170] [cursor=pointer]:
+                - /url: "#who-we-are"
+                - generic [ref=f1e171]:
+                  - generic "Who We Are" [ref=f1e172]:
+                    - generic [aria-hidden] [ref=f1e173]: W
+                    - generic [aria-hidden] [ref=f1e174]: h
+                    - generic [aria-hidden] [ref=f1e175]: o
+                    - generic [aria-hidden] [ref=f1e176]: W
+                    - generic [aria-hidden] [ref=f1e177]: e
+                    - generic [aria-hidden] [ref=f1e178]: A
+                    - generic [aria-hidden] [ref=f1e179]: r
+                    - generic [aria-hidden] [ref=f1e180]: e
+                  - generic [aria-hidden] [ref=f1e181]:
+                    - generic [aria-hidden] [ref=f1e182]: W
+                    - generic [aria-hidden] [ref=f1e183]: h
+                    - generic [aria-hidden] [ref=f1e184]: o
+                    - generic [aria-hidden] [ref=f1e185]: W
+                    - generic [aria-hidden] [ref=f1e186]: e
+                    - generic [aria-hidden] [ref=f1e187]: A
+                    - generic [aria-hidden] [ref=f1e188]: r
+                    - generic [aria-hidden] [ref=f1e189]: e
+            - listitem [aria-hidden] [ref=f1e190]
+            - listitem [ref=f1e198]:
+              - link [ref=f1e199] [cursor=pointer]:
+                - /url: "#what-drives-us"
+                - generic [ref=f1e200]:
+                  - generic "What Drives Us" [ref=f1e201]:
+                    - generic [aria-hidden] [ref=f1e202]: W
+                    - generic [aria-hidden] [ref=f1e203]: h
+                    - generic [aria-hidden] [ref=f1e204]: a
+                    - generic [aria-hidden] [ref=f1e205]: t
+                    - generic [aria-hidden] [ref=f1e206]: D
+                    - generic [aria-hidden] [ref=f1e207]: r
+                    - generic [aria-hidden] [ref=f1e208]: i
+                    - generic [aria-hidden] [ref=f1e209]: v
+                    - generic [aria-hidden] [ref=f1e210]: e
+                    - generic [aria-hidden] [ref=f1e211]: s
+                    - generic [aria-hidden] [ref=f1e212]: U
+                    - generic [aria-hidden] [ref=f1e213]: s
+                  - generic [aria-hidden] [ref=f1e214]:
+                    - generic [aria-hidden] [ref=f1e215]: W
+                    - generic [aria-hidden] [ref=f1e216]: h
+                    - generic [aria-hidden] [ref=f1e217]: a
+                    - generic [aria-hidden] [ref=f1e218]: t
+                    - generic [aria-hidden] [ref=f1e219]: D
+                    - generic [aria-hidden] [ref=f1e220]: r
+                    - generic [aria-hidden] [ref=f1e221]: i
+                    - generic [aria-hidden] [ref=f1e222]: v
+                    - generic [aria-hidden] [ref=f1e223]: e
+                    - generic [aria-hidden] [ref=f1e224]: s
+                    - generic [aria-hidden] [ref=f1e225]: U
+                    - generic [aria-hidden] [ref=f1e226]: s
+            - listitem [aria-hidden] [ref=f1e227]
+            - listitem [ref=f1e235]:
+              - link [ref=f1e236] [cursor=pointer]:
+                - /url: "#mission"
+                - generic [ref=f1e237]:
+                  - generic "Mission" [ref=f1e238]:
+                    - generic [aria-hidden] [ref=f1e239]: M
+                    - generic [aria-hidden] [ref=f1e240]: i
+                    - generic [aria-hidden] [ref=f1e241]: s
+                    - generic [aria-hidden] [ref=f1e242]: s
+                    - generic [aria-hidden] [ref=f1e243]: i
+                    - generic [aria-hidden] [ref=f1e244]: o
+                    - generic [aria-hidden] [ref=f1e245]: "n"
+                  - generic [aria-hidden] [ref=f1e246]:
+                    - generic [aria-hidden] [ref=f1e247]: M
+                    - generic [aria-hidden] [ref=f1e248]: i
+                    - generic [aria-hidden] [ref=f1e249]: s
+                    - generic [aria-hidden] [ref=f1e250]: s
+                    - generic [aria-hidden] [ref=f1e251]: i
+                    - generic [aria-hidden] [ref=f1e252]: o
+                    - generic [aria-hidden] [ref=f1e253]: "n"
+            - listitem [aria-hidden] [ref=f1e254]
+            - listitem [ref=f1e262]:
+              - link [ref=f1e263] [cursor=pointer]:
+                - /url: "#vision"
+                - generic [ref=f1e264]:
+                  - generic "Vision" [ref=f1e265]:
+                    - generic [aria-hidden] [ref=f1e266]: V
+                    - generic [aria-hidden] [ref=f1e267]: i
+                    - generic [aria-hidden] [ref=f1e268]: s
+                    - generic [aria-hidden] [ref=f1e269]: i
+                    - generic [aria-hidden] [ref=f1e270]: o
+                    - generic [aria-hidden] [ref=f1e271]: "n"
+                  - generic [aria-hidden] [ref=f1e272]:
+                    - generic [aria-hidden] [ref=f1e273]: V
+                    - generic [aria-hidden] [ref=f1e274]: i
+                    - generic [aria-hidden] [ref=f1e275]: s
+                    - generic [aria-hidden] [ref=f1e276]: i
+                    - generic [aria-hidden] [ref=f1e277]: o
+                    - generic [aria-hidden] [ref=f1e278]: "n"
+            - listitem [aria-hidden] [ref=f1e279]
+            - listitem [ref=f1e287]:
+              - link [ref=f1e288] [cursor=pointer]:
+                - /url: "#values"
+                - generic [ref=f1e289]:
+                  - generic "Values" [ref=f1e290]:
+                    - generic [aria-hidden] [ref=f1e291]: V
+                    - generic [aria-hidden] [ref=f1e292]: a
+                    - generic [aria-hidden] [ref=f1e293]: l
+                    - generic [aria-hidden] [ref=f1e294]: u
+                    - generic [aria-hidden] [ref=f1e295]: e
+                    - generic [aria-hidden] [ref=f1e296]: s
+                  - generic [aria-hidden] [ref=f1e297]:
+                    - generic [aria-hidden] [ref=f1e298]: V
+                    - generic [aria-hidden] [ref=f1e299]: a
+                    - generic [aria-hidden] [ref=f1e300]: l
+                    - generic [aria-hidden] [ref=f1e301]: u
+                    - generic [aria-hidden] [ref=f1e302]: e
+                    - generic [aria-hidden] [ref=f1e303]: s
+            - listitem [aria-hidden] [ref=f1e304]
+            - listitem [ref=f1e312]:
+              - link [ref=f1e313] [cursor=pointer]:
+                - /url: "#experience"
+                - generic [ref=f1e314]:
+                  - generic "Experience" [ref=f1e315]:
+                    - generic [aria-hidden] [ref=f1e316]: E
+                    - generic [aria-hidden] [ref=f1e317]: x
+                    - generic [aria-hidden] [ref=f1e318]: p
+                    - generic [aria-hidden] [ref=f1e319]: e
+                    - generic [aria-hidden] [ref=f1e320]: r
+                    - generic [aria-hidden] [ref=f1e321]: i
+                    - generic [aria-hidden] [ref=f1e322]: e
+                    - generic [aria-hidden] [ref=f1e323]: "n"
+                    - generic [aria-hidden] [ref=f1e324]: c
+                    - generic [aria-hidden] [ref=f1e325]: e
+                  - generic [aria-hidden] [ref=f1e326]:
+                    - generic [aria-hidden] [ref=f1e327]: E
+                    - generic [aria-hidden] [ref=f1e328]: x
+                    - generic [aria-hidden] [ref=f1e329]: p
+                    - generic [aria-hidden] [ref=f1e330]: e
+                    - generic [aria-hidden] [ref=f1e331]: r
+                    - generic [aria-hidden] [ref=f1e332]: i
+                    - generic [aria-hidden] [ref=f1e333]: e
+                    - generic [aria-hidden] [ref=f1e334]: "n"
+                    - generic [aria-hidden] [ref=f1e335]: c
+                    - generic [aria-hidden] [ref=f1e336]: e
+            - listitem [aria-hidden] [ref=f1e337]
+            - listitem [ref=f1e345]:
+              - link [ref=f1e346] [cursor=pointer]:
+                - /url: "#philosophy"
+                - generic [ref=f1e347]:
+                  - generic "Philosophy" [ref=f1e348]:
+                    - generic [aria-hidden] [ref=f1e349]: P
+                    - generic [aria-hidden] [ref=f1e350]: h
+                    - generic [aria-hidden] [ref=f1e351]: i
+                    - generic [aria-hidden] [ref=f1e352]: l
+                    - generic [aria-hidden] [ref=f1e353]: o
+                    - generic [aria-hidden] [ref=f1e354]: s
+                    - generic [aria-hidden] [ref=f1e355]: o
+                    - generic [aria-hidden] [ref=f1e356]: p
+                    - generic [aria-hidden] [ref=f1e357]: h
+                    - generic [aria-hidden] [ref=f1e358]: "y"
+                  - generic [aria-hidden] [ref=f1e359]:
+                    - generic [aria-hidden] [ref=f1e360]: P
+                    - generic [aria-hidden] [ref=f1e361]: h
+                    - generic [aria-hidden] [ref=f1e362]: i
+                    - generic [aria-hidden] [ref=f1e363]: l
+                    - generic [aria-hidden] [ref=f1e364]: o
+                    - generic [aria-hidden] [ref=f1e365]: s
+                    - generic [aria-hidden] [ref=f1e366]: o
+                    - generic [aria-hidden] [ref=f1e367]: p
+                    - generic [aria-hidden] [ref=f1e368]: h
+                    - generic [aria-hidden] [ref=f1e369]: "y"
+      - region "Our Purpose" [ref=f1e386]:
+        - generic [ref=f1e388]:
+          - article [ref=f1e389]:
+            - generic [aria-hidden]:
+              - generic: "01"
+            - generic [ref=f1e395]:
+              - generic [ref=f1e396]:
+                - paragraph [ref=f1e397]:
+                  - generic [ref=f1e405]: Who We Are
+                - heading "Building Technology. Empowering Businesses. Driving Growth." [level=2] [ref=f1e406]
+              - generic [ref=f1e407]:
+                - paragraph [ref=f1e408]: We partner with startups, emerging businesses, agencies, and established organisations across India and international markets to solve real-world business challenges through technology, innovation, and strategic execution.
+                - paragraph [ref=f1e409]: Our capabilities span custom software development, web and mobile application development, artificial intelligence (AI), business automation, UI/UX and digital design, digital marketing, and business development. Whether it's building a new digital product, streamlining business operations, strengthening an online presence, or reaching the right audience, we bring together the technical expertise and creative execution required to take businesses forward.
+                - paragraph [ref=f1e410]: At Decbricks, we believe technology should serve a purpose. Every solution we build is driven by the goal of creating measurable value, improving user experiences, optimising processes, and unlocking new opportunities for business growth.
+          - article [ref=f1e411]:
+            - generic [aria-hidden]:
+              - generic: "02"
+            - generic [ref=f1e417]:
+              - generic [ref=f1e418]:
+                - paragraph [ref=f1e419]:
+                  - generic [ref=f1e427]: Driven
+                - heading "What Drives Us" [level=2] [ref=f1e428]
+              - generic [ref=f1e429]:
+                - paragraph [ref=f1e430]: We are driven by the challenge of solving meaningful problems through technology and creative thinking. Every business operates differently, with its own objectives, challenges, and opportunities. That's why we approach every project with a focus on understanding the bigger picture before defining the right solution.
+                - paragraph [ref=f1e431]: By combining practical problem-solving, modern technologies, creative innovation, and consistent execution, we aim to deliver digital solutions that address real needs and create lasting impact. Our approach is built around turning complex challenges into practical opportunities for businesses to innovate, adapt, and grow.
+          - article [ref=f1e432]:
+            - generic [aria-hidden]:
+              - generic: "03"
+            - generic [ref=f1e438]:
+              - generic [ref=f1e439]:
+                - paragraph [ref=f1e440]:
+                  - generic [ref=f1e448]: Mission
+                - heading "Our Mission" [level=2] [ref=f1e449]
+              - paragraph [ref=f1e451]: Our mission is to empower businesses with accessible, innovative, and effective technology solutions that simplify operations, enhance digital experiences, and accelerate sustainable growth. We strive to bridge the gap between ideas and execution by making modern digital capabilities more accessible to businesses of every scale.
+          - article [ref=f1e452]:
+            - generic [aria-hidden]:
+              - generic: "04"
+            - generic [ref=f1e458]:
+              - generic [ref=f1e459]:
+                - paragraph [ref=f1e460]:
+                  - generic [ref=f1e468]: Vision
+                - heading "Our Vision" [level=2] [ref=f1e469]
+              - paragraph [ref=f1e471]: Our vision is to become a trusted global technology and digital solutions partner, working alongside businesses to navigate digital transformation, embrace emerging technologies, and unlock new possibilities. We aspire to build an ecosystem where innovation, technology, and strategic thinking enable organisations to adapt, compete, and thrive in an increasingly connected world.
+          - article [ref=f1e472]:
+            - generic [aria-hidden]:
+              - generic: "05"
+            - generic [ref=f1e477]:
+              - generic [ref=f1e478]:
+                - generic [ref=f1e479]:
+                  - paragraph [ref=f1e480]:
+                    - generic [ref=f1e488]: Values
+                  - heading "Our Values" [level=2] [ref=f1e489]
+                - paragraph [ref=f1e491]: The way we approach technology, collaboration, and business growth is shaped by five core principles.
+              - list [ref=f1e492]:
+                - listitem [ref=f1e493]:
+                  - heading "Innovation" [level=3] [ref=f1e494]
+                  - paragraph [ref=f1e502]: We continuously explore emerging technologies, fresh perspectives, and better approaches to solving problems. We believe innovation comes from challenging conventional thinking and finding more effective ways to create value.
+                - listitem [ref=f1e503]:
+                  - heading "Commitment" [level=3] [ref=f1e504]
+                  - paragraph [ref=f1e512]: We take ownership of our work, value the trust our clients place in us, and remain accountable throughout the execution process. Every project deserves attention, consistency, and a commitment to delivering meaningful outcomes.
+                - listitem [ref=f1e513]:
+                  - heading "Collaboration" [level=3] [ref=f1e514]
+                  - paragraph [ref=f1e522]: We believe strong partnerships produce stronger solutions. Through open communication, shared understanding, and active collaboration, we work closely with clients to align our efforts with their goals.
+                - listitem [ref=f1e523]:
+                  - heading "Quality" [level=3] [ref=f1e524]
+                  - paragraph [ref=f1e532]: We prioritise reliability, functionality, performance, and thoughtful design. From the initial concept to the final implementation, we focus on delivering solutions that meet high standards and create dependable digital experiences.
+                - listitem [ref=f1e533]:
+                  - heading "Growth" [level=3] [ref=f1e534]
+                  - paragraph [ref=f1e542]: We embrace continuous learning and improvement. Whether it's adopting new technologies, refining our processes, or expanding our capabilities, we believe growth is essential to creating long-term value for our clients and our organisation.
+          - article [ref=f1e543]:
+            - generic [aria-hidden]:
+              - generic: "06"
+            - generic [ref=f1e549]:
+              - generic [ref=f1e550]:
+                - paragraph [ref=f1e551]:
+                  - generic [ref=f1e559]: Experience
+                - heading "Our Experience" [level=2] [ref=f1e560]
+              - generic [ref=f1e561]:
+                - paragraph [ref=f1e562]: Our experience extends beyond technology development into the practical execution of business growth initiatives. We understand that building a successful digital product or business requires more than strong technology. It also requires effective communication, market understanding, and the ability to connect with the right audience.
+                - paragraph [ref=f1e563]: Alongside developing digital solutions, we have executed email outreach and cold-calling campaigns for startups, including Findtern and Upcoming Engineers. These engagements have provided practical experience in prospect research, targeted lead generation, business communication, customer outreach, and consistent campaign execution. This combination of technical development and business-facing execution gives us a broader perspective on the challenges businesses encounter as they build, launch, and scale.
+          - article [ref=f1e564]:
+            - generic [aria-hidden]:
+              - generic: "07"
+            - generic [ref=f1e569]:
+              - generic [ref=f1e570]:
+                - generic [ref=f1e571]:
+                  - paragraph [ref=f1e572]:
+                    - generic [ref=f1e580]: Philosophy
+                  - heading "Our Philosophy" [level=2] [ref=f1e581]
+                - generic [ref=f1e582]:
+                  - paragraph [ref=f1e583]: We don't build technology simply because it's possible. We build it because it serves a purpose. Every project begins with understanding the problem, identifying the intended outcome, and choosing an approach that aligns with the business objectives behind it.
+                  - paragraph [ref=f1e584]: We value thoughtful engineering, purposeful design, and execution that prioritises real-world impact. Whether developing software, implementing AI-powered solutions, automating workflows, or supporting digital growth, our focus remains on creating solutions that are practical, scalable, and built to deliver lasting value.
+              - paragraph [ref=f1e585]: Decbricks. Building ideas into reality.
+      - navigation "About" [ref=f1e586]:
+        - list [ref=f1e587]:
+          - listitem [ref=f1e588]:
+            - link "01 Who We Are" [ref=f1e589] [cursor=pointer]:
+              - /url: "#who-we-are"
+              - generic [ref=f1e590]: "01"
+              - generic: Who We Are
+          - listitem [ref=f1e595]:
+            - link "02 What Drives Us" [ref=f1e596] [cursor=pointer]:
+              - /url: "#what-drives-us"
+              - generic [ref=f1e597]: "02"
+              - generic: What Drives Us
+          - listitem [ref=f1e602]:
+            - link "03 Mission" [ref=f1e603] [cursor=pointer]:
+              - /url: "#mission"
+              - generic [ref=f1e604]: "03"
+              - generic: Mission
+          - listitem [ref=f1e609]:
+            - link "04 Vision" [ref=f1e610] [cursor=pointer]:
+              - /url: "#vision"
+              - generic [ref=f1e611]: "04"
+              - generic: Vision
+          - listitem [ref=f1e616]:
+            - link "05 Values" [ref=f1e617] [cursor=pointer]:
+              - /url: "#values"
+              - generic [ref=f1e618]: "05"
+              - generic: Values
+          - listitem [ref=f1e623]:
+            - link "06 Experience" [ref=f1e624] [cursor=pointer]:
+              - /url: "#experience"
+              - generic [ref=f1e625]: "06"
+              - generic: Experience
+          - listitem [ref=f1e630]:
+            - link "07 Philosophy" [ref=f1e631] [cursor=pointer]:
+              - /url: "#philosophy"
+              - generic [ref=f1e632]: "07"
+              - generic: Philosophy
+      - region "Begin your story" [ref=f1e637]:
+        - generic [ref=f1e638]:
+          - generic [ref=f1e639]: We partner with startups, emerging businesses, agencies, and established organisations across India and international markets to solve real-world business challenges through technology, innovation, and strategic execution.
+          - heading "Begin your story" [level=2] [ref=f1e650]
+          - generic [ref=f1e651]:
+            - generic [aria-hidden] [ref=f1e652]: Begin your
+            - generic [ref=f1e653]: story
+          - form "Get In Touch" [ref=f1e654]:
+            - textbox [aria-hidden] [ref=f1e655]
+            - heading "Get In Touch" [level=3] [ref=f1e664]
+            - group "Contact Information" [ref=f1e665]:
+              - generic [ref=f1e667]:
+                - generic [ref=f1e668]: Email
+                - textbox "Email" [ref=f1e670]
+              - generic [ref=f1e671]:
+                - generic [ref=f1e672]: Name
+                - textbox "Name" [ref=f1e674]
+              - generic [ref=f1e675]:
+                - generic [ref=f1e676]: Company
+                - textbox "Company" [ref=f1e678]
+              - generic [ref=f1e679]:
+                - generic [ref=f1e680]: Message
+                - textbox "Message" [ref=f1e682]
+            - generic [ref=f1e683]:
+              - generic [ref=f1e685]:
+                - generic [ref=f1e686]:
+                  - checkbox "I have read and agree to the Terms of Service and Privacy Policy." [ref=f1e687]
+                  - generic [ref=f1e688] [cursor=pointer]
+                - generic [ref=f1e689]: I have read and agree to the Terms of Service and Privacy Policy.
+              - button "Submit" [ref=f1e691] [cursor=pointer]:
+                - generic [ref=f1e692]:
+                  - generic "Submit" [ref=f1e693]:
+                    - generic [aria-hidden] [ref=f1e694]:
+                      - generic [aria-hidden] [ref=f1e695]: S
+                      - generic [aria-hidden] [ref=f1e696]: u
+                      - generic [aria-hidden] [ref=f1e697]: b
+                      - generic [aria-hidden] [ref=f1e698]: m
+                      - generic [aria-hidden] [ref=f1e699]: i
+                      - generic [aria-hidden] [ref=f1e700]: t
+                  - generic "Submit" [ref=f1e701]:
+                    - generic [aria-hidden] [ref=f1e702]:
+                      - generic [aria-hidden] [ref=f1e703]: S
+                      - generic [aria-hidden] [ref=f1e704]: u
+                      - generic [aria-hidden] [ref=f1e705]: b
+                      - generic [aria-hidden] [ref=f1e706]: m
+                      - generic [aria-hidden] [ref=f1e707]: i
+                      - generic [aria-hidden] [ref=f1e708]: t
+      - contentinfo "Site footer" [ref=f1e712]:
+        - generic [ref=f1e714]:
+          - generic [ref=f1e715]:
+            - button "scroll to top of page" [ref=f1e716] [cursor=pointer]:
+              - generic [ref=f1e717]:
+                - generic [aria-hidden] [ref=f1e727]:
+                  - generic [aria-hidden] [ref=f1e728]: R
+                  - generic [aria-hidden] [ref=f1e729]: i
+                  - generic [aria-hidden] [ref=f1e730]: s
+                  - generic [aria-hidden] [ref=f1e731]: e
+                  - generic [aria-hidden] [ref=f1e732]: t
+                  - generic [aria-hidden] [ref=f1e733]: o
+                  - generic [aria-hidden] [ref=f1e734]: t
+                  - generic [aria-hidden] [ref=f1e735]: h
+                  - generic [aria-hidden] [ref=f1e736]: e
+                  - generic [aria-hidden] [ref=f1e737]: t
+                  - generic [aria-hidden] [ref=f1e738]: o
+                  - generic [aria-hidden] [ref=f1e739]: p
+                - generic "Rise to the top" [ref=f1e740]:
+                  - generic [aria-hidden] [ref=f1e741]:
+                    - generic [aria-hidden] [ref=f1e742]: R
+                    - generic [aria-hidden] [ref=f1e743]: i
+                    - generic [aria-hidden] [ref=f1e744]: s
+                    - generic [aria-hidden] [ref=f1e745]: e
+                    - generic [aria-hidden] [ref=f1e746]: t
+                    - generic [aria-hidden] [ref=f1e747]: o
+                    - generic [aria-hidden] [ref=f1e748]: t
+                    - generic [aria-hidden] [ref=f1e749]: h
+                    - generic [aria-hidden] [ref=f1e750]: e
+                    - generic [aria-hidden] [ref=f1e751]: t
+                    - generic [aria-hidden] [ref=f1e752]: o
+                    - generic [aria-hidden] [ref=f1e753]: p
+            - generic "Decbricks" [ref=f1e754]
+          - generic [aria-hidden] [ref=f1e756]:
+            - generic [ref=f1e757]: Innovative
+            - generic [ref=f1e758]: Distinct
+            - generic [ref=f1e759]: Authentic
+            - generic [ref=f1e760]: Creative
+            - generic [ref=f1e761]: Brave
+            - generic [ref=f1e762]: Innovative
+            - generic [ref=f1e763]: Distinct
+            - generic [ref=f1e764]: Authentic
+            - generic [ref=f1e765]: Creative
+            - generic [ref=f1e766]: Brave
+          - generic [ref=f1e767]:
+            - generic "Copyright information" [ref=f1e768]: © 2026 Decbricks. All rights reserved.
+            - navigation [ref=f1e769]:
+              - link "Play Our 404 Game" [ref=f1e770] [cursor=pointer]:
+                - /url: /the404game
+                - generic [ref=f1e771]:
+                  - generic "Play Our 404 Game" [ref=f1e772]:
+                    - generic [aria-hidden] [ref=f1e773]:
+                      - generic [aria-hidden] [ref=f1e774]: P
+                      - generic [aria-hidden] [ref=f1e775]: l
+                      - generic [aria-hidden] [ref=f1e776]: a
+                      - generic [aria-hidden] [ref=f1e777]: "y"
+                      - generic [aria-hidden] [ref=f1e778]: O
+                      - generic [aria-hidden] [ref=f1e779]: u
+                      - generic [aria-hidden] [ref=f1e780]: r
+                      - generic [aria-hidden] [ref=f1e781]: "4"
+                      - generic [aria-hidden] [ref=f1e782]: "0"
+                      - generic [aria-hidden] [ref=f1e783]: "4"
+                      - generic [aria-hidden] [ref=f1e784]: G
+                      - generic [aria-hidden] [ref=f1e785]: a
+                      - generic [aria-hidden] [ref=f1e786]: m
+                      - generic [aria-hidden] [ref=f1e787]: e
+                  - generic "Play Our 404 Game" [ref=f1e788]:
+                    - generic [aria-hidden] [ref=f1e789]:
+                      - generic [aria-hidden] [ref=f1e790]: P
+                      - generic [aria-hidden] [ref=f1e791]: l
+                      - generic [aria-hidden] [ref=f1e792]: a
+                      - generic [aria-hidden] [ref=f1e793]: "y"
+                      - generic [aria-hidden] [ref=f1e794]: O
+                      - generic [aria-hidden] [ref=f1e795]: u
+                      - generic [aria-hidden] [ref=f1e796]: r
+                      - generic [aria-hidden] [ref=f1e797]: "4"
+                      - generic [aria-hidden] [ref=f1e798]: "0"
+                      - generic [aria-hidden] [ref=f1e799]: "4"
+                      - generic [aria-hidden] [ref=f1e800]: G
+                      - generic [aria-hidden] [ref=f1e801]: a
+                      - generic [aria-hidden] [ref=f1e802]: m
+                      - generic [aria-hidden] [ref=f1e803]: e
+              - button "Manage Cookies" [ref=f1e811] [cursor=pointer]:
+                - generic [ref=f1e812]:
+                  - generic "Manage Cookies" [ref=f1e813]:
+                    - generic [aria-hidden] [ref=f1e814]:
+                      - generic [aria-hidden] [ref=f1e815]: M
+                      - generic [aria-hidden] [ref=f1e816]: a
+                      - generic [aria-hidden] [ref=f1e817]: "n"
+                      - generic [aria-hidden] [ref=f1e818]: a
+                      - generic [aria-hidden] [ref=f1e819]: g
+                      - generic [aria-hidden] [ref=f1e820]: e
+                      - generic [aria-hidden] [ref=f1e821]: C
+                      - generic [aria-hidden] [ref=f1e822]: o
+                      - generic [aria-hidden] [ref=f1e823]: o
+                      - generic [aria-hidden] [ref=f1e824]: k
+                      - generic [aria-hidden] [ref=f1e825]: i
+                      - generic [aria-hidden] [ref=f1e826]: e
+                      - generic [aria-hidden] [ref=f1e827]: s
+                  - generic "Manage Cookies" [ref=f1e828]:
+                    - generic [aria-hidden] [ref=f1e829]:
+                      - generic [aria-hidden] [ref=f1e830]: M
+                      - generic [aria-hidden] [ref=f1e831]: a
+                      - generic [aria-hidden] [ref=f1e832]: "n"
+                      - generic [aria-hidden] [ref=f1e833]: a
+                      - generic [aria-hidden] [ref=f1e834]: g
+                      - generic [aria-hidden] [ref=f1e835]: e
+                      - generic [aria-hidden] [ref=f1e836]: C
+                      - generic [aria-hidden] [ref=f1e837]: o
+                      - generic [aria-hidden] [ref=f1e838]: o
+                      - generic [aria-hidden] [ref=f1e839]: k
+                      - generic [aria-hidden] [ref=f1e840]: i
+                      - generic [aria-hidden] [ref=f1e841]: e
+                      - generic [aria-hidden] [ref=f1e842]: s

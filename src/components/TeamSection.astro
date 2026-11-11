@@ -24,7 +24,7 @@ if (dev && TEAM.length === 0) {
           {member.photo ? (
             <img
               src={member.photo}
-              alt={`Portrait of $<Fragment set:html={brandify(member.name)} />`}
+              alt={`Portrait of ${member.name}`}
               width="800"
               height="1000"
               loading="lazy"
@@ -39,7 +39,7 @@ if (dev && TEAM.length === 0) {
             <span class="mr-7"><Fragment set:html={brandify(member.name)} /></span>
             {member.placeholder && (
               <span
-                class="rounded-4 bg-purple px-6 py-3 align-middle font-nohemi text-[10px] font-normal normal-case text-white"
+                class="rounded-4 bg-darkPurple px-6 py-3 align-middle font-nohemi text-[10px] font-normal normal-case text-white"
               >
                 Placeholder
               </span>
