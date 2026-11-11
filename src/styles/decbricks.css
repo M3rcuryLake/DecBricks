@@ -412,3 +412,47 @@ li {
 .numbers-list__link:focus-visible .numbers-list__wa {
   color: var(--brand-on-dark);
 }
+
+/* --------------------------------------------------------------------------
+   About page layout fixes (2026-11-11).
+   -------------------------------------------------------------------------- */
+
+/* The halftone computer/robot illustration wrappers are section children
+   (the inner max-w-1920 clipper closes after the form). At lg+ their
+   `lg:top-[-10vw]` offset raised them above the section top, striking the
+   Philosophy tagline in the section above. Scoped to the About page via the
+   `clipIllustration` prop; other pages keep the template bleed. */
+.sections-contactForm--clipIllustration {
+  overflow: clip;
+}
+@supports not (overflow: clip) {
+  .sections-contactForm--clipIllustration {
+    overflow: hidden;
+  }
+}
+.sections-contactForm--clipIllustration > .pointer-events-none.absolute {
+  top: 0;
+}
+
+/* Philosophy is the last block in the white card; at the scrolled state its
+   right-hand paragraph column ran beneath the fixed pill nav (nav ≈77px
+   desktop / 54px mobile). Block-level top padding keeps the heading and
+   paragraph columns aligned while clearing the nav. */
+#philosophy {
+  padding-top: 70px;
+}
+@media (min-width: 1024px) {
+  #philosophy {
+    padding-top: 100px;
+  }
+}
+
+/* Fixed pill nav (WORK / ABOUT / SERVICES / CONTACT): `bg-white/70` let page
+   text show through, and the `backdrop-blur-xl` utility does not exist in the
+   compiled global.css (computed backdrop-filter was `none`). Off-White at
+   0.92 opacity + real blur; size and layout untouched. */
+.structure-navPill {
+  background-color: rgba(255, 249, 242, 0.92);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}

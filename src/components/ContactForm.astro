@@ -8,17 +8,28 @@ interface Props {
   srHeading?: string;
   /** Two giant display words above the form. */
   headingParts?: readonly [string, string];
+  /**
+   * Keep the halftone computer illustration inside this section (About page):
+   * the illustration wrappers are section children and at lg+ used to rise
+   * -10vw above the section top, striking the previous section's tagline.
+   * Default false preserves the template bleed on other pages.
+   */
+  clipIllustration?: boolean;
 }
 const {
   smileyCopy = 'We’re a games industry creative leader that will put your players first. Drop us a message!',
   srHeading = 'Begin your story',
   headingParts = ['Begin your', 'story'],
+  clipIllustration = false,
 } = Astro.props;
 const smileyHtml = brandify(smileyCopy);
 ---
 <section
   id="contact"
-  class="sections-contactForm relative bg-darkPurple pt-40 2xl:pt-32"
+  class:list={[
+    'sections-contactForm relative bg-darkPurple pt-40 2xl:pt-32',
+    clipIllustration && 'sections-contactForm--clipIllustration',
+  ]}
   aria-labelledby="contactForm-heading"
   ><div class="relative mx-auto flex w-full max-w-1920 flex-col overflow-hidden"
     ><span
