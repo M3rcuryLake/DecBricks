@@ -76,3 +76,16 @@ Purpose: let a fresh session resume without chat history. Append decisions as th
 - `-0.01em` heading tracking removed (was Departure Mono width compensation; FK Raster is narrower than KH Interference — measured, no overflow risk).
 - Display headings request `font-weight:700` but FK face is 400-only; with `html{font-synthesis:none}` they render regular — accepted (raster faces are single-weight).
 - Gate: build ✅ · check 0 err ✅ · check:brand ✅ · headings ✅ · links ✅.
+
+## Visual QA + polish pass (2026-11-11)
+Full audit log with evidence: `docs/qa/findings.md` (F1–F19). Non-obvious decisions:
+
+- **Coral policy formalised**: pure `#D45060` cannot carry small text with *any* palette colour (best pair off-white = 3.93:1; burgundy pair 2.6:1). Where a coral fill sits under text the fill switches to `--brand-accent-deep` (`#BC3D4D` brick, 5.1:1 with off-white) or burgundy. Applied to: theme-4 hero slab (new `.bg-brick`/`.before\:bg-brick` utilities reusing the existing token — keeps the 4-slab off-white/beige/burgundy/brick rhythm without a new token), "+N" badges (solid burgundy chips like the tag pills), testimonial minimap + slash widgets (burgundy/off-white). `hover/active/focus-visible\:bg-purple` tie-break overrides already in decbricks.css cover the pill/pressed states.
+- **menu.ts active-pill pair** (`bg-darkPurple text-neonGreen`, 8.8:1) chosen to match Header.astro's own SSR styling for `link.current` — runtime and SSR now agree; coral `bg-purple` runtime toggle was a template remnant (3.93:1).
+- **Polish block** appended to `src/styles/decbricks.css` (S3): `::selection` (burgundy/off-white — last default-blue surface), palette scrollbar (`scrollbar-color` + `scrollbar-width:thin` for Firefox, webkit pseudos for Blink; brick thumb hover), `text-wrap: balance` on h1–h6 + `pretty` on p/li (no-op on `w-max` display words; pure CSS, zero JS, honours nothing new about reduced-motion).
+- **`#__nuxt` wrapper div removed** from index/about/contact/services: grep-verified zero references in global.css, all scripts, and dist; a Nuxt-template relic that could confuse future DOM queries. Opening + orphaned closing div both removed; dist div counts balanced.
+- **About hero period guard** (`about.astro`): `split('. ')` slice + blind `'.'` append produced "execution.." from verbatim copy; now appends only when the sentence doesn't already end with `.!?…`. Source copy untouched.
+- **Font preload warnings investigated, no action**: on every prod page Chrome warns all 3 preloads "not used within a few seconds". URLs match @font-face exactly (`as=font`, `crossorigin=anonymous`), fonts fetch at ~20 ms, exactly 3 font requests (no double download), `document.fonts` all "loaded". Chrome heuristic false-positive tied to the loader delaying first paint; removing preloads would *hurt* LCP.
+- **docs/AGENTS.md** replaced with a pointer to the root AGENTS.md (it was a stale duplicate: KH fonts, "contact BROKEN") — prevents future drift.
+- `.gitignore` += `.playwright-mcp/`, `docs/qa/shots/` (QA artefacts are session-local evidence, not repo content).
+- Gates (2026-11-11): build ✅ · check 0 err ✅ · check:brand ✅.
