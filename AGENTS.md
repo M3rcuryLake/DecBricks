@@ -36,6 +36,26 @@ docs/                           project docs (see below)
 9. Typography: use typographic apostrophes/quotes in copy exactly as supplied.
 10. Honour `prefers-reduced-motion` for anything new.
 
+## Skills (installed in `.agents/skills/<name>/SKILL.md`)
+Invoke via the `skill` tool when the task matches. **Precedence: AGENTS.md wins over any skill** — see below.
+
+| Skill | Use it when | Don't use it for |
+|---|---|---|
+| `frontend-design` | Visual decisions for NEW components (AboutBlock, CalEmbed, TeamCard, ContactNumbers) and polish passes | Re-picking palette/fonts — they are fixed (see Precedence) |
+| `frontend-ui-engineering` | Component structure, WCAG a11y, state/loading/error handling, responsive behaviour for new components | Following its React/Tailwind file-structure examples verbatim |
+| `astro-best-practices` | `.astro`/TS conventions: props typing, islands/`client:*`, `astro:assets`, routing, endpoints (`sitemap.xml.ts`, `robots.txt.ts`), build/check hygiene | Island advice that conflicts with the init+teardown rule (Hard rule 2) |
+| `web-design-guidelines` | AUDIT only: review pages/components; findings go to `docs/qa/findings.md`, fixes follow normal workflow | Implementing changes directly from the audit |
+| `webapp-testing` | Repeatable scripted Playwright runs + screenshots under `docs/qa/` | Interactive inspection — prefer the Playwright MCP tools for that |
+
+**Precedence (project rules WIN over any skill):**
+- Palette is fixed: `#800020` / `#F3E6D5` / `#FFF9F2` / `#D45060` (+ `color-mix` derivatives). Fonts: Bricolage Grotesque, Hanken Grotesk, Departure Mono; "Decbricks" only in FK Raster via `.font-brand`. Ignore any skill advice to pick "distinctive" or different fonts/colours.
+- Preserve the template's design language, layout, motion and class hooks. Skills may refine, not redesign.
+- **No Tailwind dependency exists** (compiled `global.css`). Ignore skill advice that assumes Tailwind config, shadcn, UI libraries or new dependencies; follow the CSS rules above.
+- Page-transition/boot rules (init + teardown in `main.ts`) override framework-generic Astro island advice.
+- About copy and SEO titles/descriptions stay verbatim.
+
+**When to invoke:** Phase 3–5 new components → `frontend-design` + `frontend-ui-engineering` + `astro-best-practices` · Phase 6 SEO endpoints/images → `astro-best-practices` · Phase 7 / QA → `web-design-guidelines` (audit) + `webapp-testing` / Playwright MCP. If a skill recommendation conflicts with AGENTS.md, follow AGENTS.md and log the conflict (one line) in `docs/Design-handoff.md`.
+
 ## CSS rules (compiled Tailwind)
 - Spacing unit is **1px** (`--spacing: .0625rem`): `gap-40` = 40px, `pt-135` = 135px. Breakpoints: xs456 sm640 md768 lg1024 xl1280 `2xl`1440 `3xl`1660 `4xl`1920.
 - Theme tokens live in `@layer theme { :root { --color-*, --font-*, --radius-* } }`. Brand changes happen there (see `docs/tokens.md`).
@@ -56,3 +76,5 @@ Fonts: Bricolage Grotesque (headings/UI) / Hanken Grotesk (body) / FK Raster Rom
 
 ## Docs index
 PROGRESS.md · Design-handoff.md · tokens.md · mapping.md · open-items.md · Implementation-plan.md · about-section-data.md
+
+See "Skills" above for `.agents/skills/*` routing; audit-script results belong in `docs/qa/`.

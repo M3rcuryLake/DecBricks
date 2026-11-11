@@ -41,3 +41,5 @@ Non-negotiables:
 1. Phases completed / remaining. 2. Build + check status. 3. Files created/changed (grouped). 4. Decisions made. 5. Open items I must supply. 6. Risks (fonts licence, 1minus1 leftovers, perf numbers).
 
 Begin with Step 0.
+
+> Note: agent skills are routed via the "Skills" section in the root `AGENTS.md` (see also `docs/Design-handoff.md` → "Installed skills").

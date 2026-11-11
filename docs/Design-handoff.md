@@ -89,3 +89,12 @@ Full audit log with evidence: `docs/qa/findings.md` (F1–F19). Non-obvious deci
 - **docs/AGENTS.md** replaced with a pointer to the root AGENTS.md (it was a stale duplicate: KH fonts, "contact BROKEN") — prevents future drift.
 - `.gitignore` += `.playwright-mcp/`, `docs/qa/shots/` (QA artefacts are session-local evidence, not repo content).
 - Gates (2026-11-11): build ✅ · check 0 err ✅ · check:brand ✅.
+
+## Installed skills (2026-11-11)
+Five skills in `.agents/skills/<name>/SKILL.md`, routed via the "Skills" section in root `AGENTS.md` (invoke with the `skill` tool):
+- `frontend-design` — aesthetic direction for new components / polish passes (palette/fonts OVERRIDDEN by project).
+- `frontend-ui-engineering` — production UI structure, a11y, states, responsive behaviour (its React/Tailwind examples don't apply here).
+- `astro-best-practices` — `.astro`/TS conventions, islands, endpoints, build hygiene (page-transition init+teardown rule wins).
+- `web-design-guidelines` — audit-only reviews; results → `docs/qa/findings.md`.
+- `webapp-testing` — scripted Playwright runs (Python) + screenshots under `docs/qa/`; interactive work stays on Playwright MCP.
+Precedence decisions: AGENTS.md hard rules win over any skill (fixed palette `#800020/#F3E6D5/#FFF9F2/#D45060` + fixed font stack; no Tailwind/shadcn/new deps; template class hooks and init+teardown boot rules preserved; About copy + SEO text verbatim). A skill-vs-AGENTS conflict is logged here as one line and resolved in favour of AGENTS.md.
