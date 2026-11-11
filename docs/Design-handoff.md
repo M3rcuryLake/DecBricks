@@ -98,3 +98,6 @@ Five skills in `.agents/skills/<name>/SKILL.md`, routed via the "Skills" section
 - `web-design-guidelines` — audit-only reviews; results → `docs/qa/findings.md`.
 - `webapp-testing` — scripted Playwright runs (Python) + screenshots under `docs/qa/`; interactive work stays on Playwright MCP.
 Precedence decisions: AGENTS.md hard rules win over any skill (fixed palette `#800020/#F3E6D5/#FFF9F2/#D45060` + fixed font stack; no Tailwind/shadcn/new deps; template class hooks and init+teardown boot rules preserved; About copy + SEO text verbatim). A skill-vs-AGENTS conflict is logged here as one line and resolved in favour of AGENTS.md.
+
+## WebGL colour-space convention (2026-11-12)
+In `src/scripts/webgl/impl.ts`, numeric `new THREE.Color(r,g,b)` args are LINEAR working-space values; CSS strings are sRGB. All CSS-derived colours go through `srgbColor()` (`setRGB(..., SRGBColorSpace)`); the oklch parser returns its OKLab→linear-sRGB math output directly (already linear). Hardcoded colour literals that mirror brand hexes (0.831/0.314/0.376 = coral, 0.502/0/0.125 = burgundy, 0.976/0.924/0.852 = warm off-white) are sRGB fractions and must use `srgbColor()`. Do not construct THREE.Color from sRGB fractions directly — the renderer applies linear→sRGB once on output, so raw sRGB fractions double-brighten (footer rendered #EB98A5 instead of #D45060).

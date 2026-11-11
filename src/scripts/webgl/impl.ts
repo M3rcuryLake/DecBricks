@@ -291,8 +291,19 @@ function clamp01(v: number) {
   return Math.max(0, Math.min(1, v));
 }
 
-function linearToSRGBComp(c: number) {
-  return c <= 0.0031308 ? 12.92 * c : 1.055 * Math.pow(c, 1 / 2.4) - 0.055;
+/**
+ * Numeric THREE.Color args are treated as LINEAR working-space values, and the
+ * renderer converts linear→sRGB on output. CSS colour strings are sRGB, so they
+ * must be converted sRGB→linear before constructing a Color, otherwise every
+ * CSS-sourced colour renders washed out (e.g. coral #D45060 → rgb(235,152,165)).
+ */
+function srgbColor(r: number, g: number, b: number): THREE.Color {
+  return new THREE.Color().setRGB(
+    clamp01(r),
+    clamp01(g),
+    clamp01(b),
+    THREE.SRGBColorSpace
+  );
 }
 
 function parseCssColor(str: string | null | undefined, fallback = new THREE.Color(1, 1, 1)): THREE.Color {
@@ -316,16 +327,15 @@ function parseCssColor(str: string | null | undefined, fallback = new THREE.Colo
     const r = 4.0767416621 * l - 3.3077115913 * mCube + 0.2309699292 * sCube;
     const g = -1.2684380046 * l + 2.6097574011 * mCube - 0.3413193965 * sCube;
     const bl = -0.0041960863 * l - 0.7034186147 * mCube + 1.707614701 * sCube;
-    return new THREE.Color(
-      clamp01(linearToSRGBComp(r)),
-      clamp01(linearToSRGBComp(g)),
-      clamp01(linearToSRGBComp(bl))
-    );
+    // OKLab→linear-sRGB: these components are already linear working-space
+    // values, so construct directly (no sRGB pre-convert — the renderer does
+    // that once on output).
+    return new THREE.Color(clamp01(r), clamp01(g), clamp01(bl));
   }
   if (s.startsWith('rgb')) {
     const m = s.match(/rgba?\(\s*([\d.]+)[,\s]+([\d.]+)[,\s]+([\d.]+)/i);
     if (!m) return fallback;
-    return new THREE.Color(
+    return srgbColor(
       clamp01(parseFloat(m[1]) / 255),
       clamp01(parseFloat(m[2]) / 255),
       clamp01(parseFloat(m[3]) / 255)
@@ -962,7 +972,7 @@ export class WebGLTrail {
   private createPlanes() {
     const sizes = this.getSizes();
     const space = getElementSpace(this.el as unknown as HTMLElement, sizes.width, sizes.height);
-    const color = parseCssColor(space.computedStyle.color, new THREE.Color(0.831, 0.314, 0.376));
+    const color = parseCssColor(space.computedStyle.color, srgbColor(0.831, 0.314, 0.376));
     const geom = new THREE.PlaneGeometry(1, 1, 1, 1);
     const curve = new THREE.CatmullRomCurve3(this.pathPoints, false, 'catmullrom', 0.5);
     this.spacedPoints = curve.getSpacedPoints(this.planeCount - 1);
@@ -1187,7 +1197,7 @@ export function createExperience(): WebGLExperienceAPI | null {
     uScrollY: { value: 0 },
     uMouseTexture: { value: fgTouchTarget.texture },
     uPixelSize: { value: 25 },
-    uTrailColor: { value: new THREE.Color(0.976, 0.924, 0.852) },
+    uTrailColor: { value: srgbColor(0.976, 0.924, 0.852) },
     uTrailOpacity: { value: 0 },
     uTrailThreshold: { value: 0.25 },
     uTrailBrightness: { value: 1.2 },
@@ -1248,13 +1258,13 @@ export function createExperience(): WebGLExperienceAPI | null {
   const scanPageTargets = () => {
     document.querySelectorAll<HTMLElement>('.webgl-background').forEach((el) => {
       const space = getElementSpace(el, width, height);
-      const bgColor = parseCssColor(space.computedStyle.backgroundColor, new THREE.Color(0.502, 0.0, 0.125));
+      const bgColor = parseCssColor(space.computedStyle.backgroundColor, srgbColor(0.502, 0.0, 0.125));
       const trailAttr = el.getAttribute('data-trail');
       let trailColor = trailAttr
-        ? parseCssColor(trailAttr, new THREE.Color(0.976, 0.924, 0.852))
-        : new THREE.Color(0.976, 0.924, 0.852);
+        ? parseCssColor(trailAttr, srgbColor(0.976, 0.924, 0.852))
+        : srgbColor(0.976, 0.924, 0.852);
       if (el.closest('.sections-contactForm')) {
-        trailColor = new THREE.Color(0.831, 0.314, 0.376);
+        trailColor = srgbColor(0.831, 0.314, 0.376);
       }
 
       const mat = new THREE.ShaderMaterial({
