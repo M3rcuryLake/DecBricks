@@ -74,6 +74,22 @@ def check(path, rel):
     return c.offenders, c.leaks
 
 
+def check_assets():
+    """Brand lockup assets must be built into dist/ (FONT-SWAP logo task)."""
+    missing = []
+    required = [
+        'brand/logo.webp', 'brand/logo.png',
+        'brand/favicon.ico', 'brand/icon-192.png', 'brand/icon-512.png',
+        'brand/apple-touch-icon.png', 'og-default.png',
+    ]
+    for rel in required:
+        if not (DIST / rel).exists():
+            missing.append(f'  dist/{rel} missing')
+        elif (DIST / rel).stat().st_size == 0:
+            missing.append(f'  dist/{rel} is empty')
+    return missing
+
+
 def main():
     if not DIST.exists():
         print('No dist/ — run `npm run build` first.')
@@ -94,7 +110,12 @@ def main():
         print(f'FAIL: brand word outside .font-brand in {len(offenders)} spot(s):')
         print('\n'.join(offenders))
         return 1
-    print(f'PASS: all "{BRAND.pattern}" occurrences in {len(files)} built page(s) sit inside .font-brand elements.')
+    missing = check_assets()
+    if missing:
+        print('FAIL: brand lockup assets missing from dist/:')
+        print('\n'.join(missing))
+        return 1
+    print(f'PASS: all "{BRAND.pattern}" occurrences in {len(files)} built page(s) sit inside .font-brand elements; lockup + favicon assets present.')
     return 0
 
 

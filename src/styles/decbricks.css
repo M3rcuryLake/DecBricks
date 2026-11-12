@@ -35,6 +35,28 @@
   font-size: 1.06em;
   line-height: 1;
   white-space: nowrap;
+  /* Logo lockup: [LOGO] Decbricks — CSS-only, no extra DOM, accessible name
+     stays the text itself. Logo is a fixed-size inline box (background-image,
+     original full-colour mark — owner decision A: single asset, no surface
+     variants; measured contrast passes on burgundy (highlights 10.8:1) and
+     off-white (copper body 3.4:1)). Aspect 1.0455:1 (assets/brand/logo-trim),
+     height in em so it scales with the type; width from the aspect so there
+     is no layout shift and no wrap between logo and name. */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28em;
+}
+.font-brand::before {
+  content: "";
+  flex: none;
+  display: inline-block;
+  width: var(--brand-logo-w, 1.15em);
+  height: var(--brand-logo-h, 1.1em);
+  background: url(/brand/logo.webp) center/contain no-repeat;
+}
+/* Opt-out: logo redundant or illegible at tiny sizes (see Design-handoff). */
+.font-brand--no-logo::before {
+  content: none;
 }
 
 /* --------------------------------------------------------------------------

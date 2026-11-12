@@ -19,7 +19,7 @@ export function organizationSchema(): Json {
     '@type': 'Organization',
     name: SITE.name,
     url: SITE_URL,
-    logo: `${SITE_URL}/fav1.png`,
+    logo: `${SITE_URL}/brand/logo.png`,
     description: SITE.description,
     ...(EMAIL ? { email: EMAIL } : {}),
     ...(contactPoints.length ? { contactPoint: contactPoints } : {}),

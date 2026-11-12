@@ -1,4 +1,5 @@
 import { gsap, SplitText, bp, bus, seededRandom } from './core/gsap';
+import { brandify } from '../lib/brand';
 
 const SMILEY_SVGS: Record<number, { viewBox: string; d: string }> = {
   1: {
@@ -175,7 +176,7 @@ function hydrateInner(el: HTMLElement, cfg: SmileyConfig): HTMLElement {
   let match: RegExpExecArray | null;
   while ((match = regex.exec(cfg.rawContent)) !== null) {
     if (match.index > lastIdx) {
-      parts.push(cfg.rawContent.slice(lastIdx, match.index));
+      parts.push(brandify(cfg.rawContent.slice(lastIdx, match.index)));
     }
     const color = match[1];
     const count = parseInt(match[2], 10);
@@ -183,7 +184,7 @@ function hydrateInner(el: HTMLElement, cfg: SmileyConfig): HTMLElement {
     lastIdx = regex.lastIndex;
   }
   if (lastIdx < cfg.rawContent.length) {
-    parts.push(cfg.rawContent.slice(lastIdx));
+    parts.push(brandify(cfg.rawContent.slice(lastIdx)));
   }
   inner.innerHTML = parts.join('');
   return inner;

@@ -72,7 +72,7 @@ const {
         ></span>
         <p
           class="parts-smileyText relative z-20 order-3 mx-15 mt-35 max-w-330 font-neuePower text-[20px] leading-[1.05] font-bold md:max-w-495 lg:order-none lg:mt-50 lg:mr-115 lg:ml-auto lg:w-440 lg:max-w-none xl:mt-60 xl:mr-215 xl:w-480 xl:text-[22px] 3xl:mt-80 3xl:mr-325 3xl:w-575 3xl:text-[26px] 4xl:mt-90 4xl:mr-465"
-          ><span class="sr-only">{body}</span
+          ><span class="sr-only" set:html={brandify(body)}></span
           ><span
             aria-hidden="true"
             role="presentation"

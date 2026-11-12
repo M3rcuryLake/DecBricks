@@ -69,7 +69,21 @@ Sage + olive as a supporting layer: **sage for secondary-section backgrounds, ol
 | `--brand-sage` | `#C9D3C0` | secondary-section backgrounds (pilot: testimonials marquee), inactive pill hover/focus, drag-cursor card | Burgundy on sage **7.0:1** ✅ all sizes |
 | `--brand-olive` | `#5A6432` | active tags/pills, input borders on light surfaces | Off-white on olive **6.1:1** ✅ · olive on beige 5.2:1 ✅ · **not a text colour on sage** (4.1:1 small text fails — use burgundy) |
 
+### 2d. Logo lockup (owner-supplied `docs/logo.png`, task 2026-11-12)
+Every visible "Decbricks" renders as a lockup: **[LOGO] Decbricks** — logo via `.font-brand::before` (CSS-only, no DOM, accessible name stays the text). Render mode **A — original full-colour everywhere, no surface variants** (owner decision): the mark is a multi-colour glossy copper blob; measured contrast passes on both surface families (lightest tone vs burgundy 10.8:1, copper body vs off-white ≈3.4:1), so the spec's variant branch never triggers.
+
+| Spec | Value |
+|---|---|
+| Source | `docs/logo.png` 1307×1203 RGBA, transparent bg, multi-colour (copper `#c07860`/`#a86048`, peach `#f0d8c0`, white speculars, near-black edges `#240000`), content bbox 1226×1172, flush at bottom edge, aspect **1.0455:1** |
+| Trimmed master | `assets/brand/logo-trim.png` (1242×1188, content + 8px uniform pad; source in repo, not public) |
+| Display assets | `public/brand/logo.webp` 268×256 (128px @2x) **17 KB** — soft gradient marks a ~15 KB floor; the 10 KB target was not reachable without visible banding. `public/brand/logo.png` 70 KB fallback |
+| Favicon set | `favicon.ico` (16+32), `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` (180) — blob on Burgundy `#800020` plate (multi-colour mark, so the spec's "Off-White if single-colour" branch does not apply) |
+| OG image | `public/og-default.png` 1200×630 regenerated: burgundy plate, real FK Raster TTF (from the woff2 via fontTools) + logo lockup in Warm Beige — replaces the wordmark-only TEMP version |
+| CSS | `.font-brand` → `inline-flex; gap:.28em; white-space:nowrap`; `::before` → `--brand-logo-w/h` (default 1.15em/1.1em from the aspect) with `url(/brand/logo.webp) center/contain no-repeat`; opt-out `.font-brand--no-logo`. Preload `<link rel="preload" as="image" href="/brand/logo.webp">` (header lockup is above the fold) |
+| JSON-LD | `Organization.logo` → `${SITE_URL}/brand/logo.png` |
+
 ### Contrast audit (computed, WCAG 2.1)
+
 | Pair | Ratio | Verdict |
 |---|---|---|
 | Off-White `#FFF9F2` on Burgundy | ~10.3:1 | AA/AAA all sizes |

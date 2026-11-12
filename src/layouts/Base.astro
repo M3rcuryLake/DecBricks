@@ -58,7 +58,10 @@ const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION || undefined;
     <meta name="theme-color" content={themeColor} />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="robots" content={robots} />
-    <link rel="icon" href="/fav1.png" type="image/png" />
+    <link rel="icon" href="/brand/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/brand/icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
+    <link rel="preload" as="image" href="/brand/logo.webp" />
     <link rel="canonical" href={canonical} />
     <link rel="sitemap" href="/sitemap.xml" />
     <meta name="description" content={description} />

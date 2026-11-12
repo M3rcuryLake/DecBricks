@@ -54,10 +54,11 @@ Blocks 3+4 hide while their arrays are empty (dev warnings; sidebar item no-ops)
 ### Brand inventory (every visible "Decbricks")
 | Where | Treatment |
 |---|---|
-| Header wordmark | `<span class="font-brand …">Decbricks</span>` (text wordmark; sized 22/26px) |
+| Header wordmark | `<span class="font-brand …">Decbricks</span>` — 2026-11-12 `.font-brand` = **logo lockup** (`::before` logo + FK Raster name); sized 22/26px |
 | Footer wordmark | `<span class="font-brand …">Decbricks</span>` (sized 22/26/30px) |
-| Footer copyright | `brandify('© 2026 Decbricks. All rights reserved.')` inline word |
+| Footer copyright | `brandify('© 2026 Decbricks. All rights reserved.')` inline word (lockup included) |
 | Hero giant word(s) | `brandify(headingParts[*])` via `set:html` (~6% wider in Departure Mono — visual check §A) |
+| Logo lockup | `.font-brand::before` = `/brand/logo.webp` via `--brand-logo-w/h` (1.15em/1.1em, aspect 1.0455:1); opt-out `.font-brand--no-logo` (**zero opt-outs in use** — every visible mention keeps the logo); giant-context cap hook = set `--brand-logo-w/h` on a context class (none needed today: no giant brand contexts exist — hero H1 is "Distinctly Yours", footer marquee has no brand word) |
 | Hero / smiley copy | `brandify(body/smileyCopy)` on sr-only + visual spans |
 | ServicesHero | `brandify(srTitle, headingParts[0/1], body)` |
 | AboutBlock | title h2, first/rest paragraphs, value names/texts, closing line |
