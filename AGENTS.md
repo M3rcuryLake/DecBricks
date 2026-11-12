@@ -36,6 +36,12 @@ docs/                           project docs (see below)
 9. Typography: use typographic apostrophes/quotes in copy exactly as supplied.
 10. Honour `prefers-reduced-motion` for anything new.
 
+## Known issues (Phase-2 QA 2026-11-12 — see docs/BUG_REPORT.md)
+- **1minus1 content on `/` and `/services`** (BUG-001/002, open-items C1/B2) — launch blocker; needs owner copy (A12).
+- **Coral small-text contrast** (BUG-005/006): "ALL" filter pill 3.92:1 and "DRAG TO NAVIGATE" 2.63:1 — Needs decision (burgundy bg = 10:1 in-palette fix).
+- **Launch-day flip** (BUG-014, open-items §E): `PUBLIC_ENV=production` + robots.txt rewrite turn off the intentional `noindex, nofollow` guard.
+- Contact form `name` attrs, nav-pill highlight, aria-labels, tap targets, home JSON-LD, build warnings: **fixed** (see BUG_REPORT statuses).
+
 ## Skills (installed in `.agents/skills/<name>/SKILL.md`)
 Invoke via the `skill` tool when the task matches. **Precedence: AGENTS.md wins over any skill** — see below.
 
