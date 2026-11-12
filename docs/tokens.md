@@ -81,7 +81,7 @@ Every visible "Decbricks" renders as a lockup: **[LOGO] Decbricks** — logo via
 | Variant rule | `.structure-menu`, `.sections-servicesHero`, `.sections-contactForm`, `.structure-footer` → cream file (decbricks.css). Everything else = full-colour (About white cards). New dark contexts: add the section class to that rule |
 | Favicon set | `favicon.ico` (16+32), `icon-192/512`, `apple-touch-icon` (180) — **transparent, no plate** (owner decision; red mark on a burgundy plate was 2.17:1 = invisible at 16px) |
 | OG image | `public/og-default.png` 1200×630: burgundy plate, cream-variant logo + real FK Raster TTF wordmark in Warm Beige (fontTools woff2→ttf + Pillow) |
-| CSS | `.font-brand` → `inline-flex; gap:.28em; white-space:nowrap`; `::before` → `--brand-logo-w/h` default **1.2em/1.1em** (from the 1.088 aspect; v1 was 1.15em); opt-out `.font-brand--no-logo`. Preload targets the **cream** file (header is above the fold on every route) |
+| CSS | `.font-brand` → `inline; line-height:inherit; white-space:nowrap; vertical-align:baseline;` (true inline layout shares exact text baseline with surrounding copy and punctuation; eliminates the 8–9.3px float caused by `inline-flex`). `::before` → `display:inline-block;` default `--brand-logo-w: 0.98em; --brand-logo-h: 0.90em; margin-inline-end: 0.28em; vertical-align: var(--brand-logo-shift, -0.15em);` (tuned to cap-height scale to preserve exact line pitch `[20, 20, 20]` and optically center the logo mark on FK Raster's x-height center $+0.292\text{em}$ within 0.05px). Opt-out `.font-brand--no-logo`. Preload targets the **cream** file (header is above the fold on every route) |
 | JSON-LD | `Organization.logo` → `${SITE_URL}/brand/logo.png` |
 
 ### Contrast audit (computed, WCAG 2.1)

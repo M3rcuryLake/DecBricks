@@ -167,3 +167,24 @@ Owner replaced `docs/logo.png` after the lockup shipped: copper multi-colour blo
 
 ## Hardcoded `text-[#2F3A1E]` on sage chips (owner decision, 2026-11-12)
 `AboutBlock.astro` + `ServiceBlock.astro` use `text-[#2F3A1E]` (dark olive-brown) for small text on sage chips instead of a token (`--brand-olive` #5A6432 is not a small-text colour on sage — 4.1:1 fails; #2F3A1E on sage measures **7.0:1+** ✅). **Owner decision: keep the hex hard-coded, do not tokenise.** If sage text is ever reused elsewhere, prefer this value as the starting point for a token.
+
+## Brand lockup baseline & optical alignment fix (2026-11-12)
+
+**Symptoms & Root Cause (measured in Playwright across 375/768/1280/1920):**
+1. **8.2px – 15.2px Baseline Float:** `.font-brand` floated high above surrounding text, leaving touching punctuation (commas, periods) sitting on the parent line baseline detached from the brand word. Cause: `.font-brand` had `display: inline-flex; align-items: center;`. CSS Flexible Box Layout Level 1 §4.3 synthesizes the baseline from the first flex item (`::before`, the logo). Because `::before` contains no text, its baseline is synthesized from its bottom margin edge, placing the bottom of `::before` on the line baseline. The flex container then vertically centered "Decbricks" against `::before` at half its height ($0.55\text{em}$), floating the brand word by $0.55\text{em}$ (~8.2px at 14.8px font-size to ~15.2px at 27.5px font-size) above the baseline.
+2. **Line Pitch Disruption:** `line-height: 1` on the `inline-flex` container expanded paragraph line boxes from 20px to 21px and created a split line box with a 5.58px phantom line pitch.
+3. **Font Metric Verification (`fontTools`):** Analysis of `fk-raster-roman-compact.woff2` confirmed all glyphs `D, e, c, b, r, i, k, s` have `yMin = 0`. The font itself has zero baseline shift. True inline layout aligns FK Raster with Hanken Grotesk and Bricolage Grotesque to **0.0000px delta**. No `@font-face` metric hacks (`ascent-override`, `descent-override`) are needed.
+
+**Fix (CSS-only in `src/styles/decbricks.css`; zero markup/data/script changes, zero new dependencies):**
+- `.font-brand`: `display: inline; white-space: nowrap; vertical-align: baseline; line-height: inherit;` (replaces `inline-flex` and `line-height: 1`).
+- `.font-brand::before`: `display: inline-block; width: var(--brand-logo-w, 0.98em); height: var(--brand-logo-h, 0.90em); margin-inline-end: 0.28em; vertical-align: var(--brand-logo-shift, -0.15em); background: url(/brand/logo.webp) center/contain no-repeat;`. Sized to 0.90em cap-height to avoid line-box expansion, and lowered by -0.15em so the vertical center of the logo aligns with FK Raster's x-height center $+0.292\text{em}$ within 0.05px.
+- Flex parent baseline alignment: `.structure-footer .mb-40.flex { align-items: baseline; }` aligns the upper footer "Rise to the top" button text and "Decbricks" wordmark.
+
+**Verification Results:**
+- Baseline delta: 0.0000px across all viewports (375, 768, 1280, 1920) and all contexts (paragraph, uppercase tagline, header link, upper footer, copyright, contact smiley, services hero).
+- Punctuation attachment: 0.0000px delta between punctuation and brand word.
+- Logo optical center: offset from word x-height center is $\le 0.08\text{px}$ on desktop, $\le 0.36\text{px}$ on mobile (acceptance: $\le 1\text{px}$).
+- Paragraph line pitch: bit-identical to plain text without brand (`[22, 22, 22, 22, 22, 22]` at 375, `[20, 20, 20]` at 1280).
+- Quality gates: `npm run build` ✅, `npm run check` (0 errors, 0 warnings) ✅, `npm run check:brand` ✅.
+- 2x DPR before/after crop screenshots saved in `docs/qa/shots/` (`tagline`, `about-paragraph`, `header-link`, `footer-marquee`, `footer-copyright`, `button-smiley`, `h1-hero`).
+- Unverified: Real Safari/WebKit on physical macOS/iOS (tested in Chromium/Linux).

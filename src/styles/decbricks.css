@@ -33,26 +33,25 @@
   letter-spacing: 0;
   font-synthesis: none;
   font-size: 1.06em;
-  line-height: 1;
+  line-height: inherit;
   white-space: nowrap;
-  /* Logo lockup: [LOGO] Decbricks — CSS-only, no extra DOM, accessible name
-     stays the text itself. Logo is a fixed-size inline box (background-image,
-     original full-colour mark — owner decision A: single asset, no surface
-     variants; measured contrast passes on burgundy (highlights 10.8:1) and
-     off-white (copper body 3.4:1)). Aspect 1.0868:1 (assets/brand/logo-trim,
-     2026-11-12 mark v2 — red glossy blob), height in em so it scales with the
-     type; width from the aspect so there is no layout shift and no wrap
-     between logo and name. */
-  display: inline-flex;
-  align-items: center;
-  gap: 0.28em;
+  /* Logo lockup: [LOGO] Decbricks — true inline layout so the brand word
+     shares the exact baseline of surrounding copy and punctuation (comma,
+     period) never detaches. Logo is an inline-block box (background-image,
+     original full-colour mark on light, cream silhouette on dark/coral).
+     Aspect 1.088:1 (assets/brand/logo-trim, 2026-11-12 mark v2 — red glossy blob),
+     height 0.90em (cap-height scale, prevents line-box expansion), width 0.98em,
+     vertical-align -0.15em (centres logo on word's x-height center). */
+  display: inline;
+  vertical-align: baseline;
 }
 .font-brand::before {
   content: "";
-  flex: none;
   display: inline-block;
-  width: var(--brand-logo-w, 1.2em);
-  height: var(--brand-logo-h, 1.1em);
+  width: var(--brand-logo-w, 0.98em);
+  height: var(--brand-logo-h, 0.90em);
+  margin-inline-end: 0.28em;
+  vertical-align: var(--brand-logo-shift, -0.15em);
   background: url(/brand/logo.webp) center/contain no-repeat;
 }
 /* Opt-out: logo redundant or illegible at tiny sizes (see Design-handoff). */
@@ -71,6 +70,12 @@
 .sections-contactForm .font-brand::before,
 .structure-footer .font-brand::before {
   background-image: url(/brand/logo-cream.webp);
+}
+
+/* Flex parent baseline alignment: ensure standalone header/footer flex rows
+   align text items on baseline */
+.structure-footer .mb-40.flex {
+  align-items: baseline;
 }
 
 /* --------------------------------------------------------------------------

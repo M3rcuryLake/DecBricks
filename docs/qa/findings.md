@@ -25,3 +25,26 @@ Evidence in `docs/qa/shots/` (`<page>-<w>-<before|after>-<id>.png`, git-ignored)
 | F17 | all pages | all | S3 | Default grey scrollbar clashed on burgundy/beige pages | about-1280-after-selection.png (visible) | FIXED → palette scrollbar (Firefox `scrollbar-color` + webkit pseudos, thin, brick hover) | qa3 |
 | F18 | all pages | all | S3 | Long headings/paragraphs could orphan single words | n/a | FIXED → `text-wrap: balance` on h1–h6, `pretty` on p/li; computed balance/pretty verified live; no-op on w-max display words | qa3 |
 | F19 | all pages (prod) | all | — | Font preload warnings on every page: investigated — preload URLs match @font-face exactly, fonts fetch at ~20 ms (start:20 dur:7–9), exactly 3 font requests (no double download), statuses all "loaded". Chrome heuristic false-positive tied to loader-delayed first paint. Left as-is (cosmetic console noise, no perf impact) | measured resource timings | INVESTIGATED — no action | qa3 |
+| F20 | all pages | all viewports | S1 | Brand lockup baseline float & line-pitch disruption: `.font-brand` (`display: inline-flex; align-items: center;`) synthesized baseline from empty `::before` logo box, causing word to float 8.2–15.2px ABOVE baseline, detaching touching punctuation (commas, periods) which sat on parent baseline; line-pitch expanded and split (pitch delta 5.58px). | Baseline probe: 1280px deltaBefore = -8.16px (p), -9.33px (tagline) → 0.0000px after. Logo x-height offset = 4.5–5.0px → 0.05–0.08px after. Pitch: [5.58, 20, 20, 20] → [20, 20, 20] matching plain text. Crops in `docs/qa/shots/*-{before,after}.png`. | FIXED → true inline layout (`display:inline; vertical-align:baseline; line-height:inherit;`) + tuned `::before` cap-height size (0.90em/0.98em) and vertical-align (-0.15em) in `decbricks.css`. | qa4 |
+
+## F20 Baseline & Optical Alignment Measurement Table (qa4)
+
+| Context | Viewport | Metric | Before Fix | After Fix | Delta / Status |
+|---|---|---|---|---|---|
+| About Paragraph (`font-nohemi` 14.8px) | 1280px | Baseline Delta vs sibling text | -8.1562px | **0.0000px** | Exact baseline alignment ✅ |
+| About Paragraph | 1280px | Sibling punctuation delta (comma) | -8.1562px | **0.0000px** | Comma attached to word ✅ |
+| About Paragraph | 1280px | Logo vertical offset from word x-height | 4.5000px | **0.0541px** | Optically centered within 0.05px ✅ |
+| About Paragraph | 1280px | Paragraph line pitch (consecutive tops) | `[5.58, 20, 20, 20]` (5 lines) | `[20, 20, 20]` (4 lines) | Bit-identical to plain text ✅ |
+| About Tagline (`font-neuePower` uppercase) | 1280px | Baseline Delta vs sibling text | -9.3281px | **0.0000px** | Exact baseline alignment ✅ |
+| About Tagline | 1280px | Period `.` baseline delta | -9.3281px | **0.0000px** | Period attached to word ✅ |
+| About Tagline | 1280px | Logo vertical offset from word x-height | 5.0078px | **0.0810px** | Optically centered within 0.08px ✅ |
+| Header Logo (`.structure-menu__logo`) | 1280px | Baseline Delta | -9.3281px | **0.0000px** | Exact baseline alignment ✅ |
+| Upper Footer Logo (`.structure-footer .mb-40`) | 1280px | Baseline Delta vs Rise-to-top button | 9.3125px | **0.0000px** | Baseline aligned in flex row ✅ |
+| Footer Copyright (`subheading text-darkPurple`) | 1280px | Baseline Delta | -9.3281px | **0.0000px** | Exact baseline alignment ✅ |
+| Contact Smiley (`.parts-smileyText`) | 1280px | Baseline Delta | -12.8281px | **0.0000px** | Exact baseline alignment ✅ |
+| Contact Services Hero (`.sections-servicesHero`) | 1280px | Baseline Delta | -12.8281px | **0.0000px** | Exact baseline alignment ✅ |
+| About Paragraph | 375px | Baseline Delta | -9.3281px | **0.0000px** | Mobile baseline aligned ✅ |
+| About Paragraph | 375px | Line Pitch | `[5.80, 22, 22, 22, 22, 22, 22]` | `[22, 22, 22, 22, 22, 22]` | Mobile line pitch restored ✅ |
+| About Tagline | 1920px | Baseline Delta | -12.8281px | **0.0000px** | 4K baseline aligned ✅ |
+| All contexts | all | Text wrap / overflow | 0 wraps, 0 overflow | 0 wraps, 0 overflow | `white-space: nowrap` preserved ✅ |
+
