@@ -1,13 +1,13 @@
 ---
-import { SITE } from '../data/site';
-
 const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const isHome = pathname === '/';
-// Main nav: only pages that exist are linked. Contact gets the highlight pill.
+// In-page homepage sections use route links so they work from every page.
 const links = [
-  { label: 'Work', href: '/', anchor: '#work', enabled: true, current: isHome },
-  { label: 'About', href: '/about', anchor: '', enabled: true, current: pathname === '/about' },
+  { label: 'Home', href: '/', anchor: '', enabled: true, current: isHome },
+  { label: 'About Us', href: '/about', anchor: '', enabled: true, current: pathname === '/about' },
   { label: 'Services', href: '/services', anchor: '', enabled: true, current: pathname === '/services' },
+  { label: 'Our Work', href: '/#work', anchor: '#work', enabled: true, current: false },
+  { label: 'Insights', href: '/#insights', anchor: '#insights', enabled: true, current: false },
   { label: 'Contact', href: '/contact', anchor: '', enabled: true, current: pathname === '/contact' },
 ].filter((l) => l.enabled);
 ---
@@ -26,7 +26,7 @@ const links = [
       ><span
         class="font-brand structure-menu__logo block origin-left transition-colors duration-300 whitespace-nowrap text-[22px] lg:text-[26px]"
       >
-        Decbricks
+        DECBRICKS
       </span></div></a
   ><nav
     class="pointer-events-auto hidden items-center gap-5 overflow-hidden rounded-8 structure-navPill p-4 lg:flex"

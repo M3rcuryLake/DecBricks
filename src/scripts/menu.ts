@@ -33,12 +33,10 @@ function updateHeaderActiveUI(pathname = normalizePath(window.location.pathname)
   const header = document.querySelector<HTMLElement>('.structure-menu');
   if (!header) return;
 
-  const isHome = pathname === '/';
-  const isServices = pathname === '/services';
-
   // 1. Logo active state
   const logo = header.querySelector<HTMLAnchorElement>('.parts-animatedLogo');
   if (logo) {
+    const isHome = pathname === '/';
     logo.classList.toggle('router-link-active', isHome);
     logo.classList.toggle('router-link-exact-active', isHome);
     if (isHome) logo.setAttribute('aria-current', 'page');
@@ -50,22 +48,15 @@ function updateHeaderActiveUI(pathname = normalizePath(window.location.pathname)
     const rawHref = link.getAttribute('href') || '';
     const dataAnchor = link.getAttribute('data-anchor') || '';
     const isDesktopBtn = link.classList.contains('parts-btnBlock');
-    const isHighlight = dataAnchor === '#contact';
+    const isHighlight = rawHref === '/contact';
+    const targetPath = rawHref.startsWith('/') ? normalizePath(rawHref.split('#')[0] || '/') : '';
+    const isRouteMatch = targetPath === pathname;
+    const isAnchorActive = isRouteMatch && !!dataAnchor && currentAnchor === dataAnchor;
+    const isActive = dataAnchor ? isAnchorActive : isRouteMatch;
 
-    let isRouteMatch = false;
-    let isActive = false;
-
-    if (dataAnchor) {
-      isRouteMatch = isHome;
-      isActive = currentAnchor === dataAnchor;
-    } else if (rawHref === '/services') {
-      isRouteMatch = isServices;
-      isActive = isServices;
-    }
-
-    link.classList.toggle('router-link-active', isRouteMatch);
-    link.classList.toggle('router-link-exact-active', isRouteMatch);
-    if (isRouteMatch) link.setAttribute('aria-current', 'page');
+    link.classList.toggle('router-link-active', isActive);
+    link.classList.toggle('router-link-exact-active', isActive);
+    if (isActive) link.setAttribute('aria-current', dataAnchor ? 'location' : 'page');
     else link.removeAttribute('aria-current');
 
     if (isDesktopBtn && !isHighlight) {

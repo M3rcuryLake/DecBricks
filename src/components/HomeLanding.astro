@@ -1,0 +1,266 @@
+---
+import { brandify } from '../lib/brand';
+
+const services = [
+  {
+    number: '01',
+    title: 'Strategy & Consulting',
+    description:
+      'Turn business goals into a clear, practical digital roadmap.',
+    details: 'Discovery · Product direction · Digital strategy',
+  },
+  {
+    number: '02',
+    title: 'Design & Branding',
+    description:
+      'Build a distinctive brand and thoughtful experiences people enjoy using.',
+    details: 'Brand identity · UI/UX · Digital experiences',
+  },
+  {
+    number: '03',
+    title: 'Web & Software Development',
+    description:
+      'Create reliable websites, software and platforms around the way you work.',
+    details: 'Websites · Custom software · Integrations',
+  },
+  {
+    number: '04',
+    title: 'Mobile App Development',
+    description:
+      'Bring useful, user-focused mobile products from idea to launch.',
+    details: 'App design · iOS and Android · Ongoing support',
+  },
+  {
+    number: '05',
+    title: 'AI & Automation',
+    description:
+      'Make everyday work more efficient with purposeful AI and automation.',
+    details: 'AI solutions · Workflow automation · System integrations',
+  },
+  {
+    number: '06',
+    title: 'Digital Marketing & Growth',
+    description:
+      'Reach the right audiences and build momentum with focused campaigns.',
+    details: 'Digital marketing · Lead generation · Email campaigns',
+  },
+  {
+    number: '07',
+    title: 'Business Development & Outreach',
+    description:
+      'Support business development with considered, consistent outreach.',
+    details: 'Prospect research · Email outreach · Cold calling',
+  },
+];
+
+const projectCategories = [
+  'Technology & Software',
+  'AI & Automation',
+  'Websites & Platforms',
+  'Mobile Applications',
+  'Business Growth',
+];
+
+const reasons = [
+  {
+    title: 'Solutions Built Around You',
+    description: 'Every engagement starts with your goals, needs and context.',
+  },
+  {
+    title: 'Technology That Makes Sense',
+    description: 'We focus on practical tools that solve real problems.',
+  },
+  {
+    title: 'Quality at Every Stage',
+    description: 'Thoughtful execution matters from the first idea to launch.',
+  },
+  {
+    title: 'Clear & Transparent Communication',
+    description: 'Know what is happening, what comes next and why.',
+  },
+  {
+    title: "Built for What's Next",
+    description: 'Create foundations that can adapt as your business evolves.',
+  },
+  {
+    title: 'More Than Just Development',
+    description: 'Bring technology, creative thinking and growth together.',
+  },
+];
+
+const process = ['Discover', 'Strategise', 'Design & Develop', 'Test & Refine', 'Launch & Support'];
+const audiences = [
+  'Startups & Entrepreneurs',
+  'Small & Medium Businesses',
+  'Agencies & Partners',
+  'Established Organisations',
+];
+---
+
+<div class="home-landing">
+  <section class="home-hero" aria-labelledby="home-hero-title" data-theme="dark">
+    <div class="home-container home-hero__inner">
+      <p class="home-eyebrow">TECHNOLOGY. CREATIVITY. INNOVATION.</p>
+      <h1 id="home-hero-title">We turn ideas into digital experiences that drive growth.</h1>
+      <p class="home-hero__description">
+        We partner with ambitious businesses to design, develop and deliver technology solutions
+        that solve real problems. From websites and applications to AI-powered systems, creative
+        experiences and business growth strategies, we bring everything together under one roof.
+      </p>
+      <div class="home-actions">
+        <a class="home-button home-button--light" href="/contact">Start a Project</a>
+        <a class="home-button home-button--outline" href="/#work" data-anchor="#work">Explore Our Work</a>
+      </div>
+      <ul class="home-hero__pillars" aria-label="Our three pillars">
+        <li>Technology</li>
+        <li>Creative</li>
+        <li>Growth</li>
+      </ul>
+    </div>
+    <div class="home-marquee">
+      <p class="sr-only">THINK BIG. BUILD SMART. MOVE FORWARD.</p>
+      <div class="home-marquee__track" aria-hidden="true">
+        <span>THINK BIG. BUILD SMART. MOVE FORWARD.</span>
+        <span>THINK BIG. BUILD SMART. MOVE FORWARD.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section home-intro" aria-labelledby="home-intro-title" data-theme="light">
+    <div class="home-container home-intro__layout">
+      <p class="home-eyebrow home-eyebrow--dark">A partner for what’s next</p>
+      <div>
+        <h2 id="home-intro-title">Building technology. Creating possibilities.</h2>
+        <p>
+          The right technology can change the way a business operates, connects with customers and
+          grows.
+        </p>
+        <p
+          set:html={brandify(
+            'At Decbricks, we combine technical expertise, creative thinking and strategic execution to help businesses navigate their digital journey.'
+          )}
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section home-services" id="services" aria-labelledby="home-services-title" data-theme="light">
+    <div class="home-container">
+      <div class="home-section__heading">
+        <p class="home-eyebrow home-eyebrow--dark">What we do</p>
+        <h2 id="home-services-title">Complete digital solutions. One trusted partner.</h2>
+      </div>
+      <div class="home-service-grid">
+        {services.map((service) => (
+          <article class="home-service-card">
+            <span class="home-card-number">{service.number}</span>
+            <h3>{service.title}</h3>
+            <p>{service.description}</p>
+            <p class="home-service-card__details">{service.details}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section home-experience" aria-labelledby="home-experience-title" data-theme="dark">
+    <div class="home-container home-experience__layout">
+      <p class="home-eyebrow">Practical experience</p>
+      <div>
+        <h2 id="home-experience-title">We understand what it takes to grow a business.</h2>
+        <p>
+          Alongside technology and creative work, we have executed email and cold-calling campaigns
+          for startups including Findtern and Upcoming Engineers.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section home-work" id="work" aria-labelledby="home-work-title" data-theme="light">
+    <div class="home-container">
+      <div class="home-section__heading home-work__heading">
+        <p class="home-eyebrow home-eyebrow--dark">Areas of focus</p>
+        <h2 id="home-work-title">Ideas brought to life through execution.</h2>
+        <p>Explore the kinds of technology, creative and growth work we can help bring to life.</p>
+      </div>
+      <ul class="home-work-grid">
+        {projectCategories.map((category, index) => (
+          <li class="home-work-card">
+            <span class="home-card-number">{String(index + 1).padStart(2, '0')}</span>
+            <h3>{category}</h3>
+          </li>
+        ))}
+      </ul>
+      <p class="home-work__note">Project examples will be shared here when approved for publication.</p>
+    </div>
+  </section>
+
+  <section class="home-section home-why" aria-labelledby="home-why-title" data-theme="dark">
+    <div class="home-container">
+      <div class="home-section__heading">
+        <p class="home-eyebrow">The difference</p>
+        <h2 id="home-why-title" set:html={brandify('Why Decbricks?')} />
+      </div>
+      <div class="home-reasons-grid">
+        {reasons.map((reason, index) => (
+          <article class="home-reason">
+            <span class="home-card-number">{String(index + 1).padStart(2, '0')}</span>
+            <h3>{reason.title}</h3>
+            <p>{reason.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section home-process" aria-labelledby="home-process-title" data-theme="light">
+    <div class="home-container">
+      <div class="home-section__heading">
+        <p class="home-eyebrow home-eyebrow--dark">A clear way forward</p>
+        <h2 id="home-process-title">Our process</h2>
+      </div>
+      <ol class="home-process-list">
+        {process.map((step, index) => (
+          <li>
+            <span class="home-card-number">{String(index + 1).padStart(2, '0')}</span>
+            <h3>{step}</h3>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="home-section home-audience" aria-labelledby="home-audience-title" data-theme="light">
+    <div class="home-container home-audience__layout">
+      <div class="home-section__heading">
+        <p class="home-eyebrow home-eyebrow--dark">Who we work with</p>
+        <h2 id="home-audience-title">Good ideas can start anywhere.</h2>
+      </div>
+      <ul class="home-audience-list">
+        {audiences.map((audience) => <li>{audience}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="home-section home-insights" id="insights" aria-labelledby="home-insights-title" data-theme="dark">
+    <div class="home-container home-insights__inner">
+      <p class="home-eyebrow">Insights</p>
+      <h2 id="home-insights-title">Fresh perspectives are coming soon.</h2>
+    </div>
+  </section>
+
+  <section class="home-final-cta" id="contact" aria-labelledby="home-cta-title" data-theme="dark">
+    <div class="home-container home-final-cta__inner">
+      <p class="home-eyebrow">Build Beyond Ordinary.</p>
+      <h2 id="home-cta-title">Have an idea? Let’s build it.</h2>
+      <p>
+        Every successful project starts with a conversation. Tell us what you’re planning, what
+        you’re trying to solve or where you want to go.
+      </p>
+      <div class="home-actions">
+        <a class="home-button home-button--light" href="/contact">Start a Project</a>
+        <a class="home-button home-button--outline" href="/contact">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+</div>

@@ -2,24 +2,21 @@
 import Base from '../layouts/Base.astro';
 import Loader from '../components/Loader.astro';
 import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import CaseStudies from '../components/CaseStudies.astro';
-import Testimonials from '../components/Testimonials.astro';
-import ContactForm from '../components/ContactForm.astro';
+import HomeLanding from '../components/HomeLanding.astro';
 import Footer from '../components/Footer.astro';
 import CookieBanner from '../components/CookieBanner.astro';
 import TransitionOverlay from '../components/TransitionOverlay.astro';
 ---
-<Base>
+<Base
+  title="Decbricks | Technology, Creative & Business Growth Agency"
+  description="Decbricks partners with ambitious businesses to deliver technology, creative and growth solutions—from software, websites and apps to AI, automation and digital marketing."
+>
   
     <main id="main-content" class="layout overflow-hidden bg-darkPurple">
       <Loader />
       <div class="page page-home z-10 bg-white">
         <Header />
-        <Hero />
-        <CaseStudies />
-        <Testimonials />
-        <ContactForm />
+        <HomeLanding />
         <Footer />
       </div>
       <CookieBanner />

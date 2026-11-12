@@ -27,25 +27,29 @@ import { brandify } from '../lib/brand';
               >Rise to the top</span
             ></div
           ></button
-        ><span
-          class="font-brand block whitespace-nowrap text-[22px] text-darkPurple sm:text-[26px] lg:text-[30px]"
-          aria-label="Decbricks"
-        >
-          Decbricks
-        </span></div
+        ><div class="dec-footer__brand"
+          ><span
+            class="font-brand block whitespace-nowrap text-[22px] text-darkPurple sm:text-[26px] lg:text-[30px]"
+            aria-label="DECBRICKS"
+          >
+            DECBRICKS
+          </span>
+          <p>Your Technology Solutions Partner.</p>
+        </div></div
       ><div class="relative"
         ><div class="structure-footer__marquee flex w-max items-center gap-100" role="presentation" aria-hidden="true"
-          ><span class="block heading-4xl whitespace-nowrap text-darkPurple uppercase">Innovative</span
-          ><span class="block heading-4xl whitespace-nowrap text-darkPurple uppercase">Distinct</span
-          ><span class="block heading-4xl whitespace-nowrap text-darkPurple uppercase">Authentic</span
+          ><span class="block heading-4xl whitespace-nowrap text-darkPurple uppercase">Technology</span
           ><span class="block heading-4xl whitespace-nowrap text-darkPurple uppercase">Creative</span
-          ><span class="block heading-4xl whitespace-nowrap text-darkPurple uppercase">Brave</span
-          ><span class="block heading-4xl whitespace-nowrap text-darkPurple uppercase">Innovative</span
-          ><span class="block heading-4xl whitespace-nowrap text-darkPurple uppercase">Distinct</span
-          ><span class="block heading-4xl whitespace-nowrap text-darkPurple uppercase">Authentic</span
+          ><span class="block heading-4xl whitespace-nowrap text-darkPurple uppercase">Growth</span
+          ><span class="block heading-4xl whitespace-nowrap text-darkPurple uppercase">Technology</span
           ><span class="block heading-4xl whitespace-nowrap text-darkPurple uppercase">Creative</span
-          ><span class="block heading-4xl whitespace-nowrap text-darkPurple uppercase">Brave</span></div>
+          ><span class="block heading-4xl whitespace-nowrap text-darkPurple uppercase">Growth</span></div>
       </div>
+        <nav class="dec-footer__services px-20 pb-24 lg:px-36" aria-label="Service categories">
+          <a href="/services">Technology</a>
+          <a href="/services">Creative</a>
+          <a href="/services">Growth</a>
+        </nav>
         <!-- Social pill links removed: no Decbricks profiles supplied yet (open-items A8).
              Re-add as .structure-footer__social elements inside the marquee wrapper when available. -->
         <div
@@ -55,13 +59,13 @@ import { brandify } from '../lib/brand';
         ></span
         ><nav class="flex flex-wrap items-center gap-13 lg:gap-32"
           ><a
-            href="/the404game"
+            href="/contact"
             class="part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transition-colors duration-300 cursor-pointer bg-darkestPurple text-white flex-row px-14 py-11 lg:px-18 lg:py-16"
-            aria-label="Play Our 404 Game"
+            aria-label="Start a Project"
             ><div class="relative flex overflow-hidden"
-              ><span class="part-btnPrimary__text uppercase btn-text">Play Our 404 Game</span
+              ><span class="part-btnPrimary__text uppercase btn-text">Start a Project</span
               ><span class="part-btnPrimary__text absolute inset-x-0 top-full text-center uppercase btn-text"
-                >Play Our 404 Game</span
+                >Start a Project</span
               ></div
             ></a
           ><svg
@@ -136,7 +140,12 @@ import { brandify } from '../lib/brand';
               transform="rotate(-90 6.17969 3.09082)"
               fill="currentColor"
             /></svg
-          ><button
+          ><a class="dec-footer__link" href="/about">About Us</a>
+          <a class="dec-footer__link" href="/services">Services</a>
+          <a class="dec-footer__link" href="/#work" data-anchor="#work">Our Work</a>
+          <a class="dec-footer__link" href="/#insights" data-anchor="#insights">Insights</a>
+          <a class="dec-footer__link" href="/contact">Contact</a>
+          <button
             aria-label="Manage Cookies"
             class="parts-btnText rounded-sm subheading text-darkPurple uppercase focus:outline-none cursor-pointer"
             ><div class="relative overflow-hidden"

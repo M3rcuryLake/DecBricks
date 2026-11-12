@@ -21,9 +21,9 @@ export const SITE = {
   name: 'Decbricks',
   legalName: 'Decbricks',
   url: SITE_URL,
-  tagline: 'Building Technology. Empowering Businesses. Driving Growth.',
+  tagline: 'Build Beyond Ordinary.',
   description:
-    'Decbricks is a technology and digital solutions agency helping businesses innovate through software development, AI, automation, design and business growth services.',
+    'Decbricks is a technology, creative and business growth agency helping ambitious businesses with software, websites, applications, AI, automation, digital experiences and growth strategies.',
   /** og/twitter card (1200×630 TEMP asset flagged in open-items A6). */
   ogImage: `${SITE_URL}/og-default.png`,
   locale: 'en',
@@ -31,10 +31,13 @@ export const SITE = {
   email: import.meta.env.PUBLIC_CONTACT_EMAIL || '',
   /** Social profile URLs (open-items A8) — empty until the owner supplies them. */
   socials: [] as Array<{ label: string; href: string }>,
-  /** Main nav; pages are enabled as they are rebuilt (About+Contact exist from Phase 4/5). */
+  /** Main nav; in-page links route through the homepage so they work site-wide. */
   nav: [
-    { label: 'About', href: '/about', enabled: false },
+    { label: 'Home', href: '/', enabled: true },
+    { label: 'About Us', href: '/about', enabled: true },
     { label: 'Services', href: '/services', enabled: true },
-    { label: 'Contact', href: '/contact', enabled: false },
+    { label: 'Our Work', href: '/#work', anchor: '#work', enabled: true },
+    { label: 'Insights', href: '/#insights', anchor: '#insights', enabled: true },
+    { label: 'Contact', href: '/contact', enabled: true },
   ] as NavLink[],
 } as const;
