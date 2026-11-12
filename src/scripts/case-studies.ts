@@ -725,7 +725,7 @@ export function initCaseStudies() {
       const label = (btn.querySelector('.parts-btnBlock__label')?.textContent || '').trim().toLowerCase();
       const active = label === cat;
       btn.setAttribute('aria-pressed', String(active));
-      btn.classList.toggle('bg-purple', active);
+      btn.classList.toggle('bg-olive', active);
       btn.classList.toggle('text-white', active);
       btn.classList.toggle('hover:bg-white', !active);
       btn.classList.toggle('focus:bg-white', !active);

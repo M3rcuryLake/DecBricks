@@ -38,7 +38,7 @@ docs/                           project docs (see below)
 
 ## Known issues (Phase-2 QA 2026-11-12 — see docs/BUG_REPORT.md)
 - **1minus1 content on `/` and `/services`** (BUG-001/002, open-items C1/B2) — launch blocker; needs owner copy (A12).
-- **Coral small-text contrast** (BUG-005/006): "ALL" filter pill 3.92:1 and "DRAG TO NAVIGATE" 2.63:1 — Needs decision (burgundy bg = 10:1 in-palette fix).
+- **Coral small-text contrast** (BUG-005/006): **fixed 2026-11-12 via the green layer** (owner-approved sage/olive palette extension) — active filter pill olive 6.1:1, drag-cursor card sage 7.0:1 (see BUG_REPORT + tokens §2c).
 - **Launch-day flip** (BUG-014, open-items §E): `PUBLIC_ENV=production` + robots.txt rewrite turn off the intentional `noindex, nofollow` guard.
 - Contact form `name` attrs, nav-pill highlight, aria-labels, tap targets, home JSON-LD, build warnings: **fixed** (see BUG_REPORT statuses).
 - **WebGL swap breakage** (BUG-015, fixed 2026-11-12): canvases live inside `.page` and were replaced by every client-side transition → renderers drew to detached canvases (300×150) after any navigation; fixed via `reattachCanvases()` in `webgl/impl.ts` called from `main.ts` `onAfterSwap`. Any future change to the transition swap or WebGL canvas ownership must keep this in sync.
@@ -55,7 +55,7 @@ Invoke via the `skill` tool when the task matches. **Precedence: AGENTS.md wins 
 | `webapp-testing` | Repeatable scripted Playwright runs + screenshots under `docs/qa/` | Interactive inspection — prefer the Playwright MCP tools for that |
 
 **Precedence (project rules WIN over any skill):**
-- Palette is fixed: `#800020` / `#F3E6D5` / `#FFF9F2` / `#D45060` (+ `color-mix` derivatives). Fonts: Bricolage Grotesque, Hanken Grotesk, Departure Mono; "Decbricks" only in FK Raster via `.font-brand`. Ignore any skill advice to pick "distinctive" or different fonts/colours.
+- Palette is fixed: `#800020` / `#F3E6D5` / `#FFF9F2` / `#D45060` (+ `color-mix` derivatives), **extended 2026-11-12 by owner decision with sage `#C9D3C0` (secondary backgrounds) + olive `#5A6432` (tags/borders/hover-active accents)** — see `docs/tokens.md` §2c. Fonts: Bricolage Grotesque, Hanken Grotesk, Departure Mono; "Decbricks" only in FK Raster via `.font-brand`. Ignore any skill advice to pick "distinctive" or different fonts/colours.
 - Preserve the template's design language, layout, motion and class hooks. Skills may refine, not redesign.
 - **No Tailwind dependency exists** (compiled `global.css`). Ignore skill advice that assumes Tailwind config, shadcn, UI libraries or new dependencies; follow the CSS rules above.
 - Page-transition/boot rules (init + teardown in `main.ts`) override framework-generic Astro island advice.
@@ -71,7 +71,7 @@ Invoke via the `skill` tool when the task matches. **Precedence: AGENTS.md wins 
 - `.lenis.lenis-smooth iframe{pointer-events:none}` exists in global.css → iframes (Cal.com) are unclickable unless the container has `data-lenis-prevent` and an explicit `pointer-events:auto` override in decbricks.css.
 
 ## Brand (source of truth: docs/tokens.md)
-Burgundy `#800020`, Warm Beige `#F3E6D5`, Off-White `#FFF9F2`, Coral Red `#D45060`.
+Burgundy `#800020`, Warm Beige `#F3E6D5`, Off-White `#FFF9F2`, Coral Red `#D45060` + supporting **Sage `#C9D3C0`** (secondary backgrounds) and **Olive `#5A6432`** (tags/borders/hover-active accents; owner-approved 2026-11-12 — `docs/tokens.md` §2c).
 Contrast facts: Off-White on Burgundy ≈10:1 ✅; Burgundy on Off-White ≈10:1 ✅; **Coral on Burgundy ≈2.6:1 ❌ (decorative/large only)**; Coral on Off-White ≈3.9:1 (large/bold ≥18.66px only). Small text = Burgundy on light, Beige/Off-White on dark.
 Fonts: Bricolage Grotesque (headings/UI) / Hanken Grotesk (body) / FK Raster Roman Compact (giant display + numerals + brand name via `.font-brand`) / Departure Mono (small mono labels only, fallback face — not preloaded) — legacy tokens `--font-neuePower/-nohemi/-offBit/-offBit101` are repointed, keep the names. Visible "Decbricks" words go through `src/lib/brand.ts` → `brandify()` (gate: `npm run check:brand`). FK Raster file is a "Trial"-named source — see open-items B1.
 

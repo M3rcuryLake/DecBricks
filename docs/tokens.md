@@ -61,6 +61,14 @@ Strategy: **keep the existing token names** (hundreds of class usages; renaming 
 | neonGreen | `#F3E6D5` | `--brand-highlight` | big heading highlight + focus/hover on dark. (Alt: coral if beige lacks punch — decide visually, log it) |
 | errorRed | keep a distinct warm red, e.g. `#FF8F8F` on dark / `#B3261E` on light | `--brand-error` | must not be confusable with accent coral; non-brand by necessity — logged in open-items |
 
+### 2c. Green supporting layer (owner decision 2026-11-12 — extends the 4-colour palette)
+Sage + olive as a supporting layer: **sage for secondary-section backgrounds, olive for text-weight elements** (tags, borders, icons, hover/active states). Burgundy stays the star (one dominant red per screen); coral stays decorative. Never coral/crimson text on sage — burgundy or dark olive instead. Tokens live in `src/styles/decbricks.css` (`:root` → `--brand-sage`, `--brand-olive`; utilities `.bg-sage`, `.bg-olive`) — not in the compiled `global.css` token block, because they are additions, not repoints.
+
+| Token | Value | Role | Contrast facts |
+|---|---|---|---|
+| `--brand-sage` | `#C9D3C0` | secondary-section backgrounds (pilot: testimonials marquee), inactive pill hover/focus, drag-cursor card | Burgundy on sage **7.0:1** ✅ all sizes |
+| `--brand-olive` | `#5A6432` | active tags/pills, input borders on light surfaces | Off-white on olive **6.1:1** ✅ · olive on beige 5.2:1 ✅ · **not a text colour on sage** (4.1:1 small text fails — use burgundy) |
+
 ### Contrast audit (computed, WCAG 2.1)
 | Pair | Ratio | Verdict |
 |---|---|---|

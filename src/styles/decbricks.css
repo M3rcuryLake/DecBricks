@@ -474,3 +474,49 @@ li {
   position: absolute;
   inset: -5px;
 }
+
+/* ─── Green supporting layer (owner decision 2026-11-12) ──────────────
+   Sage = secondary-section backgrounds; Olive = text-weight accents
+   (tags, borders, hover/active states). Burgundy stays the star; coral
+   stays decorative. Verified contrast: burgundy on sage 7.0:1 ·
+   off-white on olive 6.1:1 · burgundy on olive (not used for text) 1.7:1. */
+:root {
+  --brand-sage: #C9D3C0;
+  --brand-olive: #5A6432;
+}
+.bg-sage {
+  background-color: var(--brand-sage);
+}
+.bg-olive {
+  background-color: var(--brand-olive);
+}
+
+/* Case-study filter pills (BUG-005): active pill coral 3.92:1 → olive
+   6.1:1; inactive hover/focus white → sage tint (burgundy text on sage
+   7.0:1). Scoped to the filter group — the shared .parts-btnBlock hook
+   is untouched elsewhere. Unlayered rules beat the compiled utilities. */
+.structure-csFilterGroup .parts-btnBlock:hover,
+.structure-csFilterGroup .parts-btnBlock:focus {
+  background-color: var(--brand-sage);
+}
+.structure-csFilterGroup .parts-btnBlock.bg-olive,
+.structure-csFilterGroup .parts-btnBlock.bg-olive:hover,
+.structure-csFilterGroup .parts-btnBlock.bg-olive:focus {
+  background-color: var(--brand-olive);
+}
+
+/* "Drag To Navigate" cursor card (BUG-006): burgundy on coral 2.63:1 →
+   burgundy on sage 7.0:1. */
+.parts-marqueeCursor__card {
+  background-color: var(--brand-sage);
+}
+
+/* Contact form borders (states): olive on hover/focus. Note: the markup's
+   hover/focus:border-purple utilities do not exist in the compiled CSS —
+   the live affordance is the border + :focus-visible ring, so target those. */
+.parts-form input:hover,
+.parts-form textarea:hover,
+.parts-form input:focus-visible,
+.parts-form textarea:focus-visible {
+  border-color: var(--brand-olive);
+}
