@@ -41,6 +41,7 @@ docs/                           project docs (see below)
 - **Coral small-text contrast** (BUG-005/006): "ALL" filter pill 3.92:1 and "DRAG TO NAVIGATE" 2.63:1 — Needs decision (burgundy bg = 10:1 in-palette fix).
 - **Launch-day flip** (BUG-014, open-items §E): `PUBLIC_ENV=production` + robots.txt rewrite turn off the intentional `noindex, nofollow` guard.
 - Contact form `name` attrs, nav-pill highlight, aria-labels, tap targets, home JSON-LD, build warnings: **fixed** (see BUG_REPORT statuses).
+- **WebGL swap breakage** (BUG-015, fixed 2026-11-12): canvases live inside `.page` and were replaced by every client-side transition → renderers drew to detached canvases (300×150) after any navigation; fixed via `reattachCanvases()` in `webgl/impl.ts` called from `main.ts` `onAfterSwap`. Any future change to the transition swap or WebGL canvas ownership must keep this in sync.
 
 ## Skills (installed in `.agents/skills/<name>/SKILL.md`)
 Invoke via the `skill` tool when the task matches. **Precedence: AGENTS.md wins over any skill** — see below.

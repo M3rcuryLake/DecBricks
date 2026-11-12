@@ -102,7 +102,12 @@ initPageTransition({
   },
   onAfterSwap: (newPath: string) => {
     teardown(initPreviewVideos());
-    getWebGLExperience()?.rebuildPageTargets();
+    // The swap replaced the `.page` DOM (including the WebGL canvases in the
+    // footer) — re-bind the renderers to the new canvases before the
+    // per-route scene targets are rebuilt.
+    const webgl = getWebGLExperience();
+    webgl?.reattachCanvases();
+    webgl?.rebuildPageTargets();
     initSmileyTexts();
     teardown(initButtons());
     teardown(initVideoPlayer());

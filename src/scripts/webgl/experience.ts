@@ -25,7 +25,9 @@ export function initWebGL() {
   import('./impl')
     .then(({ createExperience }) => {
       experienceInstance = createExperience();
-      // A page swap may have happened while the chunk loaded — sync targets.
+      // A page swap may have happened while the chunk loaded — re-bind the
+      // renderers to the current canvases, then sync targets.
+      experienceInstance?.reattachCanvases();
       experienceInstance?.rebuildPageTargets();
     })
     .catch((err) => {

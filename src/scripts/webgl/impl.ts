@@ -1082,6 +1082,8 @@ export interface WebGLExperienceAPI {
   createGroup: () => THREE.Group;
   relayout: () => void;
   rebuildPageTargets: () => void;
+  /** Re-bind the renderers to the canvases created by a page swap. */
+  reattachCanvases: () => void;
 }
 
 let experienceInstance: WebGLExperienceAPI | null = null;
@@ -1092,8 +1094,8 @@ export function createExperience(): WebGLExperienceAPI | null {
   const canvases = document.querySelectorAll<HTMLCanvasElement>('canvas.webgl');
   if (canvases.length < 2) return null;
 
-  const fgCanvas = canvases[0];
-  const bgCanvas = canvases[1];
+  let fgCanvas = canvases[0];
+  let bgCanvas = canvases[1];
 
   let bgRenderer: THREE.WebGLRenderer;
   let fgRenderer: THREE.WebGLRenderer;
@@ -1470,6 +1472,51 @@ export function createExperience(): WebGLExperienceAPI | null {
     return tr;
   };
 
+  // After a client-side page swap the swapped-out `.page` contents (including
+  // these canvases, which live in Footer.astro) are replaced by fresh nodes
+  // from the fetched document, while these renderers keep drawing to the now
+  // detached old canvases (visible as 300x150 default-size canvases). Re-bind
+  // both renderers to the new canvases. Scene contents survive untouched:
+  // three.js allocates GL resources per renderer context, and the render loop
+  // re-reads the touch targets' textures every frame.
+  const reattachCanvases = () => {
+    const next = document.querySelectorAll<HTMLCanvasElement>('canvas.webgl');
+    if (next.length < 2) return;
+    const nextFg = next[0];
+    const nextBg = next[1];
+    if (nextFg === fgCanvas && nextBg === bgCanvas) return;
+
+    let newBg: THREE.WebGLRenderer;
+    let newFg: THREE.WebGLRenderer;
+    try {
+      newBg = new THREE.WebGLRenderer({ canvas: nextBg, antialias: true, stencil: false, alpha: true });
+      newFg = new THREE.WebGLRenderer({ canvas: nextFg, antialias: true, stencil: false, alpha: true });
+    } catch (err) {
+      console.warn('Decbricks: WebGL renderer re-attach failed:', err);
+      return;
+    }
+
+    // Tear the old renderers down only once the new ones exist (fail-safe),
+    // and release their GPU contexts so repeated swaps cannot exhaust them.
+    bgRenderer.dispose();
+    bgRenderer.forceContextLoss();
+    fgRenderer.dispose();
+    fgRenderer.forceContextLoss();
+
+    fgCanvas = nextFg;
+    bgCanvas = nextBg;
+    bgRenderer = newBg;
+    fgRenderer = newFg;
+
+    bgRenderer.outputColorSpace = THREE.SRGBColorSpace;
+    bgRenderer.setSize(width, height);
+    bgRenderer.setPixelRatio(pixelRatio);
+
+    fgRenderer.outputColorSpace = THREE.SRGBColorSpace;
+    fgRenderer.setSize(width, height);
+    fgRenderer.setPixelRatio(pixelRatio);
+  };
+
   experienceInstance = {
     fgScene,
     bgScene,
@@ -1478,6 +1525,7 @@ export function createExperience(): WebGLExperienceAPI | null {
     createGroup: () => new THREE.Group(),
     relayout,
     rebuildPageTargets,
+    reattachCanvases,
   };
   (window as any).__webglExp = experienceInstance;
   window.dispatchEvent(new CustomEvent('threeJS-ready'));
