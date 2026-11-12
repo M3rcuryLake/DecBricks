@@ -2,10 +2,18 @@
 /**
  * AboutBlock — content block for the About page. Reuses the ServiceBlock card
  * chrome (corner squares, ghost numeral, alternating layout, hairline border)
- * without video/projects/capabilities. Values render as an H3 list.
+ * without video/projects/capabilities; sections with `image` in the data file
+ * get a picture card in the same column the video occupies on /services
+ * (docs/plans/about-pictures-plan.md). Values render as an H3 list.
  */
 import type { AboutSection } from '../data/about';
 import { brandify } from '../lib/brand';
+import { Picture } from 'astro:assets';
+
+// Same responsive sizes as ServiceBlock's video column (media widths are
+// lg:260 / xl:300 / 3xl:360 / 4xl:410, 2x DPR on the smallest steps).
+const IMAGE_SIZES =
+  '(min-width: 1920px) 410px, (min-width: 1660px) 360px, (min-width: 1280px) 300px, (min-width: 1024px) 260px, calc(100vw - 47px)';
 
 export interface Props {
   section: AboutSection;
@@ -117,4 +125,23 @@ const [first, ...rest] = section.paragraphs;
       <p class="mt-30 font-neuePower text-[16px] leading-[1.1] font-bold text-darkPurple uppercase 3xl:text-[20px] 4xl:text-[22px]" set:html={brandify(section.closing)} />
     )}
   </div>
+  {section.image && (
+    <div class="relative z-1 mt-40 flex flex-col lg:mt-0 lg:w-260 lg:shrink-0 xl:w-300 3xl:w-360 4xl:w-410">
+      <div class="aspect-4/5 w-full overflow-hidden rounded-40 rounded-tr-none">
+        <Picture
+          formats={['avif', 'webp']}
+          fallbackFormat="webp"
+          src={section.image.src}
+          alt={section.image.alt}
+          widths={[328, 660, 736, 820]}
+          sizes={IMAGE_SIZES}
+          quality={50}
+          loading="lazy"
+          decoding="async"
+          {...(section.image.position ? { position: section.image.position } : {})}
+          class="block h-full w-full object-cover"
+        />
+      </div>
+    </div>
+  )}
 </article>

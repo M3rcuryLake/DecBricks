@@ -188,3 +188,13 @@ Owner replaced `docs/logo.png` after the lockup shipped: copper multi-colour blo
 - Quality gates: `npm run build` ✅, `npm run check` (0 errors, 0 warnings) ✅, `npm run check:brand` ✅.
 - 2x DPR before/after crop screenshots saved in `docs/qa/shots/` (`tagline`, `about-paragraph`, `header-link`, `footer-marquee`, `footer-copyright`, `button-smiley`, `h1-hero`).
 - Unverified: Real Safari/WebKit on physical macOS/iOS (tested in Chromium/Linux).
+
+## About media cards beside section content (2026-11-12)
+
+**What:** every minor About section (02/03/04/06/07) got a picture card reusing ServiceBlock's media column verbatim (`relative z-1 mt-40 … lg:w-260 xl:w-300 3xl:w-360 4xl:w-410` + `aspect-4/5 … rounded-40 rounded-tr-none`); `astro:assets` `<Picture formats={['avif','webp']} fallbackFormat="webp" quality={50}>`. Mapping (owner-approved plan): 02 horse, 03 rocket, 04 poster, 06 airstrip, 07 bust; no card on 01 (hero treatment) / 05 Values (sage cards are the visual; a card would crowd 1024–1280). Plan: `docs/plans/about-pictures-plan.md`.
+
+**Deviations from the plan:** (1) sources re-encoded to WebP q85 in `src/assets/about/` instead of copying PNGs — Astro's Picture defaults the fallback `<img>` to PNG even for WebP sources, so PNG fallbacks were ~2.3 MB each (35 MB `dist/_astro` → 7.3 MB after; `fallbackFormat="webp"` required). (2) Halftone texture is expensive to compress: quality 50 chosen via sharp tests (webp/avif converge ~equal at q50); worst-case srcset fetch ≈911 KB (budget 1200), per-image ≤215 KB. (3) services-page.ts: comment only — `if (!video) return` guard already skips About blocks; no animation hooks exist on the card (verified: no parallax).
+
+**Files:** `src/components/AboutBlock.astro` (media column), `src/data/about.ts` (`image?` field + imports), `src/assets/about/*.webp`, `src/scripts/services-page.ts` (comment), docs. No class renames, no new deps, copy verbatim.
+
+**Open:** poster in-image credit "Zeka Design" → open-items B4 (rights before launch). Crop behaviour note: build output keeps source aspect; the 4:5 crop is done by CSS `object-cover` (identical visual to a baked crop).

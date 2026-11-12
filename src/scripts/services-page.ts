@@ -153,6 +153,8 @@ function initServiceBlocks() {
   // AutoplayVideo play/pause on viewport enter/leave (Bm2y9FGs.js).
   // The original defers setup until the page-level transition completes, so a block video
   // sitting in the first viewport stays paused until the loader/entrance has finished.
+  // About blocks reuse this card chrome with a static <Picture> instead of a video
+  // (docs/plans/about-pictures-plan.md) — the `if (!video) return` guard skips them.
   let mm: gsap.MatchMedia | null = null;
   const wire = () => {
     const videoWrappers = document.querySelectorAll<HTMLElement>('.parts-autoplayVideo');
