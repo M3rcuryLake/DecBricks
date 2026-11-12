@@ -202,6 +202,7 @@ export function initSmileyTexts() {
 
   elements.forEach((el) => {
     const inHero = !!el.closest('.sections-hero');
+    const inServicesHero = !!el.closest('.sections-servicesHero');
     const inCaseStudies = !!el.closest('.sections-caseStudies');
     const inContact = !!el.closest('.sections-contactForm');
     const isHeroMobile = inHero && !el.classList.contains('sections-hero__body');
@@ -209,7 +210,9 @@ export function initSmileyTexts() {
     const existingSr = el.querySelector('.sr-only')?.textContent?.trim() ?? el.textContent?.trim() ?? '';
     const rawContent = inHero
       ? '**purple-4** Award-winning creative agency for video games. Brand shapers, game marketeers & web engineers.'
-      : inContact
+      : inServicesHero && !existingSr.includes('**')
+        ? `**purple-4** ${existingSr}`
+        : inContact
         ? `**purple-3** ${existingSr || 'We’re a games industry creative leader that will put your players first. Drop us a message!'}`
         : inCaseStudies && !existingSr.includes('**')
           ? `**purple-3** ${existingSr}`
