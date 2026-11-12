@@ -9,6 +9,8 @@ import poster from '../assets/about/poster.webp';
 import horse from '../assets/about/horse.webp';
 import airstrip from '../assets/about/airstrip.webp';
 import bust from '../assets/about/bust.webp';
+import knight from '../assets/about/knight.webp';
+import rocketposter from '../assets/about/rocketposter.webp';
 
 export interface AboutValue {
   name: string;
@@ -28,7 +30,7 @@ export interface AboutSection {
   /** Optional bold closing line (Philosophy). */
   closing?: string;
   /** Optional media card beside the block (mirrors ServiceBlock's video column;
-   *  see docs/plans/about-pictures-plan.md — no picture on 01/05 by design). */
+   *  see docs/plans/about-pictures-plan.md — all seven sections carry one). */
   image?: { src: ImageMetadata; alt: string; position?: string };
 }
 
@@ -44,6 +46,10 @@ export const ABOUT: AboutSection[] = [
       "Our capabilities span custom software development, web and mobile application development, artificial intelligence (AI), business automation, UI/UX and digital design, digital marketing, and business development. Whether it's building a new digital product, streamlining business operations, strengthening an online presence, or reaching the right audience, we bring together the technical expertise and creative execution required to take businesses forward.",
       "At Decbricks, we believe technology should serve a purpose. Every solution we build is driven by the goal of creating measurable value, improving user experiences, optimising processes, and unlocking new opportunities for business growth.",
     ],
+    image: {
+      src: rocketposter,
+      alt: "Retro rocket poster with pixel-dot typography and a coral 100% statistic on a charcoal ground.",
+    },
   },
   {
     id: "what-drives-us",
@@ -99,6 +105,10 @@ export const ABOUT: AboutSection[] = [
     paragraphs: [
       "The way we approach technology, collaboration, and business growth is shaped by five core principles.",
     ],
+    image: {
+      src: knight,
+      alt: "Halftone artwork of a chess knight helmet with coral brush strokes on a charcoal ground.",
+    },
     values: [
       {
         name: "Innovation",

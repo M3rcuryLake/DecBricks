@@ -198,3 +198,5 @@ Owner replaced `docs/logo.png` after the lockup shipped: copper multi-colour blo
 **Files:** `src/components/AboutBlock.astro` (media column), `src/data/about.ts` (`image?` field + imports), `src/assets/about/*.webp`, `src/scripts/services-page.ts` (comment), docs. No class renames, no new deps, copy verbatim.
 
 **Open:** poster in-image credit "Zeka Design" → open-items B4 (rights before launch). Crop behaviour note: build output keeps source aspect; the 4:5 crop is done by CSS `object-cover` (identical visual to a baked crop).
+
+**Update (2026-11-12, second batch):** owner added 2 more pictures → all seven sections now carry cards (`rocketposter` on 01, `knight` on 05); alternation is a perfect L/R/L/R/L/R/L. Values-crowding worry resolved by measurement: sage cards still get 301px each at 1024 (h3 251px), no overflow at any width. Both new images are native 4:5 (1080×1350) — zero crop risk.
