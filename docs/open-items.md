@@ -39,6 +39,8 @@ Agent: never invent these. Implement safe fallbacks, keep this list current, mar
 | C7 | Trailing slash policy | `never` (`/about`) |
 | C8 | Static vs server output for the form endpoint | static + third-party endpoint |
 | C9 | Footer marquee words (Innovative / Distinct / Authentic / Creative / Brave) — template artefact, no 1minus1 identity in the words themselves | Keep: neutral adjectives, already brand types/colours; owner may supply replacements |
+| C10 | Discovered 2026-11-12 (flare task): the /services hero WebGL trail does **not** draw on a fresh full-page load (entrance timeline stays paused after the loader's `hero-transition-start` emissions), only after a client-side nav swap. Pre-existing template behaviour, owner-visible only on direct URL loads. | Leave as-is (out of scope of the flare fix); investigate loader event ordering (`hero-transition-start` vs `transition-entrance-done`) if owner wants it fixed |
+| C11 | Discovered 2026-11-12 (flare task): `parseCssColor` (webgl/impl.ts) cannot parse `oklab(...)`/`color(...)` computed strings (only `rgb()`/`oklch()`), so any element coloured via a `color-mix` token falls to the caller's fallback. Now harmless for the trails (both use `text-purple`, parsed as `rgb()`), but a latent trap for future WebGL-coloured elements. | Leave; add `oklab()`/`color()` parsing only if a future element needs it |
 
 ## D. Resolved
 (none yet)
