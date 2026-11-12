@@ -151,3 +151,16 @@ User report "animations and pictures break when going from one page to another".
 **Opt-outs: none.** Smallest mention (footer legal, ~14px) keeps the logo (~15px effective — legible). sr-only duplicates stay plain text (invisible; SSR sr-onlys carry font-brand spans only to satisfy the checker — runtime rebuilds replace them with plain text). Header aria-label kept as "Decbricks — Go to homepage" (same semantics as the spec's "Decbricks - home"; minimal diff).
 
 **Not verifiable here:** real-2x-DPR eyeball (probe ran deviceScaleFactor 2 — crop was crisp), usage rights for the supplied PNG (open-items A6/B1). Loader/menu/footer-split scripts never carry the brand word (checked — no split risk there).
+
+## Logo mark v2 — red blob + cream variant on dark/coral surfaces (2026-11-12, owner swap + decisions)
+
+Owner replaced `docs/logo.png` after the lockup shipped: copper multi-colour blob → glossy **red** blob (median `#e00609`, effectively single-hue). Consequences, all measured:
+- Aspect changed 1.0455 → **1.088** → `--brand-logo-w` default 1.15em → **1.2em** (aspect-true, no squash).
+- The "mode A, no variants" decision's premise (light copper tones at 10.8:1 on burgundy) is gone: red vs burgundy = **2.17:1**, and the footer band is **coral** (`bg-purple` #D45060, every route) where the colour body is **1.22:1**.
+- Owner decisions (asked, answered): **cream silhouette variant on dark surfaces**; favicons go **transparent, no plate** (burgundy plate would have hidden the red mark entirely).
+
+**Files:** `assets/brand/logo-trim.png` regenerated (1240×1141), `public/brand/logo{,-cream}.{webp,png}` (278×256; cream = alpha-mask filled `#FFF9F2`, 10 KB), transparent favicon set, `og-default.png` regenerated (burgundy plate + cream-variant logo + FK Raster wordmark), preload switched to the cream file (header = above the fold everywhere), `check:brand` now asserts `logo-cream.webp` too.
+
+**Variant rule** (decbricks.css): `.structure-menu`, `.sections-servicesHero`, `.sections-contactForm`, `.structure-footer` → cream (burgundy 10.3:1 / coral 3.93:1); all other contexts full-colour (About white cards, 4.78:1). Verified by a full sweep: every `.font-brand` on all 5 routes × sampled surface — zero colour-on-dark, zero cream-on-light, zero wraps/overflow, no console errors. Cream-vs-coral 3.93:1 meets the 3:1 non-text bar; the footer's burgundy text on coral (2.64:1) is the template's pre-existing treatment, untouched.
+
+**Not logo-related, noted for the owner:** on /contact the ServicesHero smiley span rests offscreen-right (x≈1320 @1280, clipped by the section's `overflow-hidden`, no scrollbar) — the template's scroll-driven hero behaviour, pre-existing.

@@ -39,9 +39,10 @@
      stays the text itself. Logo is a fixed-size inline box (background-image,
      original full-colour mark — owner decision A: single asset, no surface
      variants; measured contrast passes on burgundy (highlights 10.8:1) and
-     off-white (copper body 3.4:1)). Aspect 1.0455:1 (assets/brand/logo-trim),
-     height in em so it scales with the type; width from the aspect so there
-     is no layout shift and no wrap between logo and name. */
+     off-white (copper body 3.4:1)). Aspect 1.0868:1 (assets/brand/logo-trim,
+     2026-11-12 mark v2 — red glossy blob), height in em so it scales with the
+     type; width from the aspect so there is no layout shift and no wrap
+     between logo and name. */
   display: inline-flex;
   align-items: center;
   gap: 0.28em;
@@ -50,13 +51,26 @@
   content: "";
   flex: none;
   display: inline-block;
-  width: var(--brand-logo-w, 1.15em);
+  width: var(--brand-logo-w, 1.2em);
   height: var(--brand-logo-h, 1.1em);
   background: url(/brand/logo.webp) center/contain no-repeat;
 }
 /* Opt-out: logo redundant or illegible at tiny sizes (see Design-handoff). */
 .font-brand--no-logo::before {
   content: none;
+}
+/* Dark contexts (2026-11-12 mark v2 — glossy RED blob): the full-colour red
+   mark fails on burgundy (median #e00609 vs #800020 = 2.17:1), so these
+   sections render the off-white silhouette variant instead (owner decision;
+   ≈15:1 on burgundy, matches the white "Decbricks" text beside it). The
+   footer band is coral (`bg-purple` #D45060) on every route — colour body
+   there is 1.22:1, cream 3.34:1 (≥3:1 non-text). Light surfaces (About white
+   cards) keep the full-colour file. */
+.structure-menu .font-brand::before,
+.sections-servicesHero .font-brand::before,
+.sections-contactForm .font-brand::before,
+.structure-footer .font-brand::before {
+  background-image: url(/brand/logo-cream.webp);
 }
 
 /* --------------------------------------------------------------------------

@@ -78,7 +78,7 @@ def check_assets():
     """Brand lockup assets must be built into dist/ (FONT-SWAP logo task)."""
     missing = []
     required = [
-        'brand/logo.webp', 'brand/logo.png',
+        'brand/logo.webp', 'brand/logo-cream.webp', 'brand/logo.png',
         'brand/favicon.ico', 'brand/icon-192.png', 'brand/icon-512.png',
         'brand/apple-touch-icon.png', 'og-default.png',
     ]
