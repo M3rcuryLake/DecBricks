@@ -164,3 +164,6 @@ Owner replaced `docs/logo.png` after the lockup shipped: copper multi-colour blo
 **Variant rule** (decbricks.css): `.structure-menu`, `.sections-servicesHero`, `.sections-contactForm`, `.structure-footer` → cream (burgundy 10.3:1 / coral 3.93:1); all other contexts full-colour (About white cards, 4.78:1). Verified by a full sweep: every `.font-brand` on all 5 routes × sampled surface — zero colour-on-dark, zero cream-on-light, zero wraps/overflow, no console errors. Cream-vs-coral 3.93:1 meets the 3:1 non-text bar; the footer's burgundy text on coral (2.64:1) is the template's pre-existing treatment, untouched.
 
 **Not logo-related, noted for the owner:** on /contact the ServicesHero smiley span rests offscreen-right (x≈1320 @1280, clipped by the section's `overflow-hidden`, no scrollbar) — the template's scroll-driven hero behaviour, pre-existing.
+
+## Hardcoded `text-[#2F3A1E]` on sage chips (owner decision, 2026-11-12)
+`AboutBlock.astro` + `ServiceBlock.astro` use `text-[#2F3A1E]` (dark olive-brown) for small text on sage chips instead of a token (`--brand-olive` #5A6432 is not a small-text colour on sage — 4.1:1 fails; #2F3A1E on sage measures **7.0:1+** ✅). **Owner decision: keep the hex hard-coded, do not tokenise.** If sage text is ever reused elsewhere, prefer this value as the starting point for a token.
