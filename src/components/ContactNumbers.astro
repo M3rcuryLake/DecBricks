@@ -16,7 +16,7 @@ if (import.meta.env.DEV && PHONES.length === 0) {
   PHONES.length > 0 && (
     <ul class="numbers-list list-none m-0 flex flex-col gap-10 p-0">
       {PHONES.map((p) => (
-        <li class="rounded-l-20 rounded-br-12 bg-lightPurple">
+        <li class="rounded-l-20 rounded-br-12 bg-sage">
           <a
             href={`tel:${p.e164}`}
             class="numbers-list__link flex min-w-44 min-h-44 items-center gap-15 rounded-l-20 rounded-br-12 px-20 py-12 font-neuePower text-[15px] leading-none font-bold text-darkPurple uppercase"

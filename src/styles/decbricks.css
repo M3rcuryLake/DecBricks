@@ -475,6 +475,12 @@ li {
   inset: -5px;
 }
 
+/* Coral cross-bullets on sage sticker cards → olive (coral on sage 2.7:1,
+   decorative but muddy; olive reads crisp. Icons are aria-hidden.) */
+.bg-sage .svgs-cross {
+  color: var(--brand-olive);
+}
+
 /* ─── Green supporting layer (owner decision 2026-11-12) ──────────────
    Sage = secondary-section backgrounds; Olive = text-weight accents
    (tags, borders, hover/active states). Burgundy stays the star; coral
