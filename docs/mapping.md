@@ -39,12 +39,13 @@ Blocks 3+4 hide while their arrays are empty (dev warnings; sidebar item no-ops)
 - contact.ts form logic VERIFIED: client-side validation only; "success" is cosmetic (`Message Sent!` + reset). Phase 5 adds real fetch submission.
 - ContactForm.astro VERIFIED: `smileyCopy` prop already exists; "Begin your / story" + "Get In Touch" hard-coded; reCAPTCHA note is decorative text with no script — drop in Phase 5 rewrite or keep as copy.
 - footer.ts: `.structure-footer(__inner|__marquee|__social)`, `.parts-btnScrollTop`
+- testimonials.ts (home): `.tst-band` — P1 spotlight hooks `.tst-*` (card/rail/controls; state machine lands P2). Old drag-canvas hooks `.sections-testimonials*`, `.parts-testimonialCard`, `.parts-testimonialMiniMap*`, `.parts-marqueeCursor` were removed WITH the component rewrite (deliberate no-rename-rule exception; nothing outside the section queried them — verified by grep at rewrite time).
 - services.ts (home): `.sections-services`, `.parts-serviceCard(__inner)`
 - main.ts: `.sections-hero` (home), `.sections-servicesHero`; page transitions via `page-transition.ts`
 - Anchors: block `id` = nav `href="#id"`; heading `id="{id}-heading"` with `aria-labelledby` on the `<article>`.
 
 ## Other template pieces (not part of the brief but they ship 1minus1 identity)
-`Hero`, `CaseStudies`, `Testimonials`, `ServicesClients`, `index.astro`, `services.astro`, `data/services.ts`, `404.astro`, `the404game.astro`, `Footer` socials, `Header` logo — see open-items.md "Scope decisions".
+`Hero`, `CaseStudies`, `ServicesClients`, `index.astro`, `services.astro`, `data/services.ts`, `404.astro`, `the404game.astro`, `Footer` socials, `Header` logo — see open-items.md "Scope decisions". (Testimonials left this list in 2026-11-13 P1: quotes are placeholder-driven data, 1minus1 sticker art/minimap/drag canvas deleted — see open-items.md §E + B2.)
 
 ## Brand typography layer (FONT-SWAP-PROMPT Option A, 2026-11-10)
 - `src/lib/brand.ts` — `BRAND`, `brandify(text)` (HTML-escape → wrap every `Decbricks` word in `<span class="font-brand">`), `hasBrand`. Use at RENDER points; data strings stay verbatim.

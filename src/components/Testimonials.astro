@@ -1,21 +1,19 @@
 ---
 /**
- * Home-page testimonials.
+ * Home-page testimonials — editorial spotlight (Concept A).
  *
- * Phase 0 of docs/plans/testimonials-redesign-plan.md: cards now render from
- * the typed data file `src/data/testimonials.ts` (clearly-marked placeholder
- * set). 1minus1 sticker artwork, the one-off service chip, the pixel-cross
- * "ratings" marks, the minimap chip, the counter chip and the drag-cursor
- * marquee have been removed. The drag-canvas interaction itself is replaced
- * by the spotlight redesign in Phase 1 — until then this section remains
- * interim state.
+ * Phase 1 of docs/plans/testimonials-redesign-plan.md §8: static spotlight
+ * layout. The first card is server-rendered active; prev/next/rail buttons
+ * render but are inert until Phase 2 wires the carousel state machine.
+ * Styles live in the `tst-*` block of `src/styles/decbricks.css`.
+ *
+ * Placeholder guard (unchanged from Phase 0): production renders nothing
+ * while any `placeholder: true` quote exists, unless the owner opts in via
+ * PUBLIC_SHOW_PLACEHOLDER_TESTIMONIALS=true (preview-only).
  */
 import { TESTIMONIALS, hasPlaceholderTestimonials } from '../data/testimonials';
 
 const placeholderFlag = import.meta.env.PUBLIC_SHOW_PLACEHOLDER_TESTIMONIALS === 'true';
-// Placeholder guard: never ship placeholder social proof as if it were real.
-// Dev always previews (with a loud warning); production hides the section
-// unless the owner opts in via PUBLIC_SHOW_PLACEHOLDER_TESTIMONIALS=true.
 const hideSection = hasPlaceholderTestimonials && !placeholderFlag && import.meta.env.PROD;
 if (hasPlaceholderTestimonials && import.meta.env.DEV) {
   console.warn(
@@ -26,44 +24,110 @@ if (hasPlaceholderTestimonials && import.meta.env.DEV) {
   );
 }
 
-// Short, punchy quotes get the display treatment; longer ones stay body-scale.
-const isDisplayQuote = (quote: string) => quote.length <= 100;
+const total = TESTIMONIALS.length;
+const pad2 = (n: number) => String(n).padStart(2, '0');
+const initials = (name: string) =>
+  name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0]?.toUpperCase() ?? '')
+    .join('');
 ---
 
 {
   !hideSection && (
-    <section id="testimonials" class="sections-testimonials relative rounded-t-20 bg-darkPurple">
-      <div class="relative z-20 mx-auto w-full max-w-1920 px-18 py-32 lg:px-32 lg:py-36">
-        <div
-          class="sections-testimonials__inner relative z-10 flex aspect-8/11 w-full cursor-none items-center justify-center overflow-hidden rounded-10 bg-sage sm:aspect-square lg:aspect-5/2 lg:min-h-720 lg:rounded-16"
-          data-cursor-target
-          data-lenis-prevent-touch
-        >
-          <div class="sections-testimonials__slider relative h-full w-full cursor-none will-change-transform">
+    <section
+      id="testimonials"
+      class="tst-band"
+      role="region"
+      aria-roledescription="carousel"
+      aria-labelledby="testimonials-title"
+      data-testid="testimonials"
+    >
+      <div class="tst-inner">
+        <div class="tst-head">
+          <div>
+            <p class="tst-kicker">
+              <em aria-hidden="true">///</em> Social proof
+            </p>
+            <h2 class="tst-title" id="testimonials-title">
+              What our clients say
+            </h2>
+          </div>
+          <p class="tst-index" aria-hidden="true" data-testid="testimonials-index">
+            <b>{pad2(1)}</b> / {pad2(total)}
+          </p>
+        </div>
+
+        <div class="tst-grid">
+          <div class="tst-stage" id="testimonials-stage" data-testid="testimonials-stage">
             {TESTIMONIALS.map((t, i) => (
-              <div
-                class={`parts-testimonialCard sections-testimonials__card absolute top-0 left-0 z-10 flex w-360 flex-col items-start origin-center rounded-10 pt-28 pr-18 pb-32 pl-30 will-change-transform lg:w-540 lg:rounded-16 lg:pt-40 lg:pr-48 lg:pb-48 lg:pl-45 ${
-                  i % 2 === 0 ? 'bg-white' : 'bg-neonGreen'
-                }`}
-                data-index={i}
+              <article
+                class={`tst-card${i === 0 ? ' is-active' : ''}`}
+                id={t.id}
+                aria-roledescription="quote"
+                aria-label={`${i + 1} of ${total}`}
+                aria-hidden={i === 0 ? 'false' : 'true'}
                 data-testid={`testimonial-${t.id}`}
               >
-                <h3 class={`mb-28 lg:mb-48 ${isDisplayQuote(t.quote) ? 'heading-blockquote' : 'font-nohemi text-[16px] leading-[120%] lg:text-[24px]'}`}>
-                  {t.quote}
-                </h3>
-                <div class="item-center flex flex-col items-start">
-                  <span class="subheading text-darkPurple uppercase">{t.name}</span>
-                  <span class="subheading text-darkPurple uppercase opacity-70">
-                    {t.role}, {t.company}
+                <span class="tst-qmark" aria-hidden="true">
+                  ///
+                </span>
+                <blockquote class="tst-quote">
+                  <p>{t.quote}</p>
+                </blockquote>
+                <div class="tst-attr">
+                  <span class="tst-dot" aria-hidden="true">
+                    {initials(t.name)}
                   </span>
+                  <div class="tst-who">
+                    <b>{t.name}</b>
+                    <span>
+                      {t.role}, {t.company}
+                    </span>
+                  </div>
+                  <span class="tst-chip">{t.service}</span>
                 </div>
-              </div>
+              </article>
             ))}
-            <div class="sections-testimonials__border pointer-events-none absolute top-1/2 left-1/2 z-11 -translate-x-1/2 -translate-y-1/2 rounded-8 border-8 border-lightPurple">
-              <div class="h-full w-full rounded-12 border-3 border-darkPurple"></div>
-            </div>
           </div>
-          <div class="sections-testimonials__overlay pointer-events-none absolute inset-0 z-50 h-full w-full cursor-none"></div>
+
+          <nav class="tst-rail" aria-label="All quotes">
+            <p class="tst-railTitle">All quotes</p>
+            <div class="tst-railList" data-testid="testimonials-rail">
+              {TESTIMONIALS.map((t, i) => (
+                <button
+                  type="button"
+                  class={`tst-railBtn${i === 0 ? ' is-active' : ''}`}
+                  aria-controls={t.id}
+                  aria-current={i === 0 ? 'true' : 'false'}
+                  data-testid={`testimonial-rail-${t.id}`}
+                >
+                  <span class="tst-railQuote">{t.quote}</span>
+                  <span class="tst-railMeta">
+                    {pad2(i + 1)} · {t.service}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </nav>
+        </div>
+
+        <div class="tst-controls">
+          <button type="button" class="tst-btn tst-prev" aria-label="Previous quote" data-testid="testimonials-prev">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" />
+            </svg>
+          </button>
+          <button type="button" class="tst-btn tst-next" aria-label="Next quote" data-testid="testimonials-next">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" />
+            </svg>
+          </button>
+          <div class="tst-progress" aria-hidden="true">
+            <i class="tst-bar" style={`width: ${100 / total}%`}></i>
+          </div>
         </div>
       </div>
     </section>
