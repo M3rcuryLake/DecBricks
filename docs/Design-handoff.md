@@ -244,3 +244,42 @@ No new dependencies. No class renames; one additive hook (`.parts-servicesHeroNa
 **Files:** `src/styles/decbricks.css` (token + utility block), AboutBlock/ContactBlock/ServiceBlock/ServicesClients/ContactForm.astro, `src/pages/contact.astro`. No renames, no new deps, copy verbatim.
 
 **Verification:** probes `/tmp/opencode/p1-t1.cjs` (tokens), `p1-t2.cjs` (applications), `p1-t5.cjs` (§3 contrast sweep — ink 18.08:1), `p1-t6.cjs` (reduced-motion baseline); full audit + transitions re-run clean; Phase-0 cookie probes still GREEN. Evidence `docs/qa/shots/phase1-{before,after}-*.png`.
+
+## Phase 3 — Task 1+2: home hero v2 + hero→content band (2026-11-13, commit 061fc01)
+
+**What:** home hero rebuilt behind a `[data-hero-v2]` gate on `.sections-hero` (Hero.astro): two contained `u-display` words (Distinct / Always, Bricolage 800), body copy in its own grid column, the video preview in a ticked media cell (corner ticks at −1px on the CELL, media inset 10px via decbricks.css so the WebGL texture can't paint over them), a Departure Mono capability row (4 pills → `/services#id`, 44px targets), tilt removed from the hero (single-tilt rule; the collage keeps the page's one tilt). Task 2: `.end` row `lg:min-h-screen` slack removed; `#services` `lg:pt-100`→`lg:pt-45` (280px dead burgundy → 45px). All template class hooks preserved (`.sections-hero*`, `.start`, `.start-mobile*`, `.end`, `.pin-trigger__mobile`, `.parts-*`, `#services`, trails).
+
+**Why / rulings:**
+- Display face = Bricolage per plan §3 (FK Raster collapses below ~140px; v1 set it ~230px). `u-display` now carries `font-family: var(--font-neuePower)` — it had none, falling to system-ui (caught on shots).
+- `initServicesPin` mobile branch bug fixed (`y: s`, not `baseY + s`): the old formula wrote the flight's END offset at rest — the real source of the mobile "empty burgundy screens" (F35). `pinBaseY` became write-only → removed.
+- FK W/Y kerning hack removed: `innerText` reflects `text-transform: uppercase`, so it matched lowercase w/y and wrecked Bricolage metrics (F36). Rule of thumb recorded: char-level logic on uppercase elements must use `textContent`.
+- Departure Mono preloaded (was a fallback face): hero mono rows re-wrapped on late swap, /@375 CLS 0.205 → 0.0002 (F37). New pills `<ul>` needed explicit `color` or its whitespace nodes failed the contrast sweep (F38).
+- /@768 LCP 152 → ~440-500ms ACCEPTED: the pin fix surfaces the preview video, which legitimately becomes the LCP element at 768 (F39). Owner copy for `/` still pending (A12/C1) — words held verbatim per approved holding pattern.
+
+**Files:** Hero.astro, hero.ts, decbricks.css (gated Phase-3 block: hero-v2-row/mediaCell/pills/word2/frame/hero-top padding — supplies responsive utilities absent from compiled global.css: `lg:w-320`, `2xl:w-480`, `lg:aspect-3/2`, `max-lg:min-h-svh`, `sm:px-30`), Base.astro. main.ts untouched (BUG-015 rule).
+
+**Verification:** probe `/tmp/opencode/p3-t1.cjs` RED 12 → GREEN 20/20; audit-main ALL CLEAN ×20; build/check/check:brand pass; shots `docs/qa/shots/phase3-t1b/t1c/t1d-hero-*`, `phase3-t1-scroll-*`. Reduced-motion: entrance path unchanged (Phase-1 p1-t6 baseline still applies); no new motion added.
+
+## Phase 3 — Task 3: ServicesHero rebuild (2026-11-13, commit 4bb8fc0)
+
+**What:** shared services/about/contact hero (ServicesHero.astro) rebuilt behind `[data-serviceshero-v2]`: contained `u-display` Bricolage-800 words (word2 one-step offset via `hero-v2-word2`), padded top (15/30px), body cell right-aligned as before; "Jump to" pills moved to the mono system face (outline + hairline border + tracking) via a gated CSS override. All template hooks untouched: `.parts-servicesHeroNavRow`, `.parts-serviceNavLink` + `__label` char-roll double labels + `aria-current` machinery, `.sections-servicesHero__trail(Wrapper)`, `.parts-smileyText`, section class + cookie rules.
+
+**Why / rulings:**
+- The Phase-0 cookie-banner lg nav-lift translate was tuned to the old hero's height; after the rebuild it placed the pills INSIDE the body text (found on shots, F41). Removed — the shorter hero clears the banner zone naturally at lg (content ends ~400px; banner top ≥499px at the 768px min-lg viewport height). p0-t2/p0-t2-desktop re-verified GREEN.
+- Home v2 mobile frame is content-sized (v1 was fixed-height), so the banner-aware height shrink can't cap it: at 375×812 the scroll button dipped ~69px under the card (F42). Fixed with a banner-visible-only compression of discretionary spacing (~106px), reverting on dismiss. Ruling: compression instead of forcing the frame height — the v2 media cell is in flow by design (the v1 absolute preview was the R1 breakage).
+- Pills keep the char-roll SplitText hover/focus (services-page.ts) — masks measured exact-fit with mono tracking (no clipping).
+- `heading-3.5xl` is no longer used anywhere (scripts/styles/components verified); words align to the home hero's display scale (one system).
+
+**Files:** ServicesHero.astro, decbricks.css (gated `[data-serviceshero-v2]` block + cookie-banner compression rules). services-page.ts, main.ts untouched.
+
+**Verification:** p3-t3 GREEN 100/100 (6 page-width combos, incl. pills/body/word overlap checks in the banner-visible state); p0-t2 + p0-t2-desktop GREEN; audit-behav transitions 0 errors + canvases 1280×900 after swaps; p3-cls375 0.0001; build/check/check:brand pass; shots `docs/qa/shots/phase3-t3{,b}-hero-*`.
+
+## Phase 3 — Tasks 4+5: scale verification + LCP-safe hero media (2026-11-13, commit b7ee964)
+
+**Task 4 (scale):** /about + /contact inherit the Task-3 rebuild via ServicesHero props — no spacing changes needed. Verified: p3-t3 GREEN includes both pages × 1280/375; 1920 shots composed (same 104px `--fs-display` cap as home — one system scale).
+
+**Task 5 (LCP-safe media):** poster frames extracted from the actual hero videos with ffmpeg (`hero-preview-poster.webp` 13.8KB, `showreel-poster.webp` 6.3KB → `public/images/heroes/`) and wired to the two preview variants + the `preload="none"` showreel player. Posters are real frames of the real videos — no invented imagery. The showreel poster sits behind the GSAP opacity-0 overlay until play, where it removes the black flash. Lazy source injection (media.ts, active variant only) untouched. Display faces all load at first paint (Departure Mono preloaded in 3.1) — no font swap. `/@768` LCP 436-508 → 168ms, superseding the F39 ruling.
+
+**Files:** Hero.astro (3 poster attrs), public/images/heroes/*, Base.astro (from 3.1). No new deps (ffmpeg is a local tool).
+
+**Verification:** p3-t5 GREEN 12/12; audit-main ALL CLEAN ×20 (CLS ≤0.0002 on /@375, LCP inside ±10% everywhere); build/check/check:brand pass.
