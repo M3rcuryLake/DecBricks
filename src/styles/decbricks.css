@@ -1032,10 +1032,15 @@ html.has-cookie-banner .page .sections-servicesHero {
 }
 
 /* --------------------------------------------------------------------------
-   Footer v2 — Phases 1–2: structure, visual system & brick-laid signature
-   wordmark (plan §4, §7-P1, §7-P2). Stepped clip-path reveal & hover polish
-   arrive in Phase 3.
+   Footer v2 — Phases 1–3: structure, visual system, brick-laid wordmark,
+   and motion / reduced-motion choreography (plan §4, §7-P1–P3).
    -------------------------------------------------------------------------- */
+.structure-footer {
+  --ft-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ft-hover: 220ms;
+  --ft-lay: 1.3s steps(14, end);
+}
+
 .structure-footer__gridBg {
   position: absolute;
   inset: 0;
@@ -1092,7 +1097,8 @@ html.has-cookie-banner .page .sections-servicesHero {
   justify-content: center;
   gap: 10px;
   text-decoration: none;
-  transition: background-color 200ms var(--ease-brand), transform 200ms var(--ease-brand);
+  transform-origin: center center;
+  transition: background-color var(--ft-hover) var(--ft-ease), transform var(--ft-hover) var(--ft-ease);
 }
 .structure-footer__ctaBtn {
   background-color: var(--brand-on-dark);
@@ -1103,7 +1109,7 @@ html.has-cookie-banner .page .sections-servicesHero {
   transform: translateY(-2px);
 }
 .structure-footer__ctaBtn:active {
-  transform: translateY(0);
+  transform: translateY(1px);
 }
 .structure-footer__ctaGhost {
   border: 1.5px solid color-mix(in oklab, var(--brand-on-dark) 55%, transparent);
@@ -1111,6 +1117,9 @@ html.has-cookie-banner .page .sections-servicesHero {
 }
 .structure-footer__ctaGhost:hover {
   background-color: color-mix(in oklab, var(--brand-on-dark) 10%, transparent);
+}
+.structure-footer__ctaGhost:active {
+  transform: translateY(1px);
 }
 @media (max-width: 455px) {
   .structure-footer__ctaActions {
@@ -1163,7 +1172,7 @@ html.has-cookie-banner .page .sections-servicesHero {
   background-size: 0 1.5px;
   background-repeat: no-repeat;
   background-position: 0 calc(100% - 8px);
-  transition: background-size 250ms var(--ease-brand);
+  transition: background-size var(--ft-hover) var(--ft-ease);
 }
 .structure-footer__link:hover {
   background-size: 100% 1.5px;
@@ -1274,9 +1283,56 @@ html.has-cookie-banner .page .sections-servicesHero {
   text-underline-offset: 4px;
 }
 
+.structure-footer__topBtn {
+  transform-origin: center center;
+}
+.structure-footer__topBtn .svgs-arrowUp {
+  transform-origin: center center;
+  transition: transform var(--ft-hover) var(--ft-ease);
+}
+.structure-footer__topBtn:hover .svgs-arrowUp {
+  transform: translateY(-3px);
+}
+.structure-footer__topBtn:active .svgs-arrowUp {
+  transform: translateY(1px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .structure-footer .structure-footer__wordmark {
+    clip-path: inset(100% 0 0 0);
+    transition: clip-path var(--ft-lay);
+  }
+  .structure-footer .structure-footer__wordmarkRow.is-built .structure-footer__wordmark {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .structure-footer .structure-footer__wordmark {
+    clip-path: none;
+    transition: none;
+  }
+  .structure-footer__link,
+  .structure-footer__ctaBtn,
+  .structure-footer__ctaGhost {
+    transition: color 150ms ease, background-color 150ms ease;
+  }
+  .structure-footer__ctaBtn:hover,
+  .structure-footer__ctaBtn:active,
+  .structure-footer__ctaGhost:active,
+  .structure-footer__topBtn:hover .svgs-arrowUp,
+  .structure-footer__topBtn:active .svgs-arrowUp {
+    transform: none;
+  }
+  .structure-footer__topBtn .svgs-arrowUp,
+  .structure-footer__statusDot {
+    transition: none;
+    animation: none;
+  }
+}
+
 .structure-footer a:focus-visible,
 .structure-footer button:focus-visible {
   outline: 2px solid var(--brand-on-dark);
   outline-offset: 3px;
 }
-
