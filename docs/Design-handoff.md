@@ -297,17 +297,6 @@ No new dependencies. No class renames; one additive hook (`.parts-servicesHeroNa
 **Files:** `src/data/footer.ts`, `src/components/footer/*.astro`, `src/components/Footer.astro`, `src/scripts/footer.ts`, `src/styles/decbricks.css`, `docs/open-items.md`.
 
 
-## Testimonials redesign — Phase 0 (2026-11-13)
-
-Plan `docs/plans/testimonials-redesign-plan.md` (owner-approved, Concept A spotlight), evidence `docs/plans/audit/testimonials-current.md`. What/why/files:
-
-- **Data extraction:** `src/data/testimonials.ts` (typed, mirrors `services.ts` pattern) holds 8 clearly-marked placeholder quotes derived from the template's own set — sentiments and length variety kept, all real clients/"1minus1" removed, `service` mapped to the real Strategy/Creative/Web-Development/Campaigns taxonomy. The old 9 hardcoded cards (incl. the Team17 duplicate) are gone.
-- **IP removal in `Testimonials.astro` (1011 → ~90 lines):** all 10 sticker `<picture>` blocks (1minus1 "Group 508xx" art), the one-off service chip, the 45 pixel-cross "rating" SVGs (owner decision: stars stay off until a real ratings policy exists), minimap chip, counter chip, vertical "Testimonials" span and the drag-cursor marquee. Underlying image files stay in `public/images/case-studies/` (possibly referenced elsewhere); unused-hash cull list recorded in open-items B2.
-- **Placeholder launch guard:** prod renders nothing while any `placeholder: true` exists unless `PUBLIC_SHOW_PLACEHOLDER_TESTIMONIALS=true` (preview-only — `check-placeholders.mjs` fails if the flag is raised while placeholders lack consent); dev always previews + `console.warn`. Zero-dep script + `check:placeholders` npm script. No Review/AggregateRating schema now or later (Google: self-serving Organization reviews are ineligible — stated in plan §6).
-- **Script:** `testimonials.ts` sticker placement now skipped when the section has no stickers; drag-canvas init/teardown wiring in `main.ts` unchanged (still registered in boot + `onAfterSwap`; 3-swap gauntlet clean). Draggable/Inertia registrations in `core/gsap` deliberately untouched — they die in Phase 1 with the drag canvas.
-- **Skill conflict log:** `astro-best-practices` (islands/hydration, scoped component styles) conflicts with the template's init+teardown architecture and the decbricks.css convention — AGENTS.md precedence wins; no islands introduced, styles land in `decbricks.css` (P1+).
-- **Interim state accepted:** the drag canvas keeps its known a11y/cut-card issues until Phase 1 replaces it; placeholders make it visibly interim ("Client Name — Role, Company" attribution).
-
 ## Footer redesign — Phase 2 (2026-11-13)
 
 **What:** Shipped Concept A ("Foundation") visual system and signature moment across [Footer.astro](file:///home/ankit/GitHub/decbricks/src/components/Footer.astro), [FooterWordmark.astro](file:///home/ankit/GitHub/decbricks/src/components/footer/FooterWordmark.astro), and [decbricks.css](file:///home/ankit/GitHub/decbricks/src/styles/decbricks.css).
@@ -322,17 +311,6 @@ Plan `docs/plans/testimonials-redesign-plan.md` (owner-approved, Concept A spotl
 
 
 
-## Testimonials redesign — Phase 0 (2026-11-13)
-
-Plan `docs/plans/testimonials-redesign-plan.md` (owner-approved, Concept A spotlight), evidence `docs/plans/audit/testimonials-current.md`. What/why/files:
-
-- **Data extraction:** `src/data/testimonials.ts` (typed, mirrors `services.ts` pattern) holds 8 clearly-marked placeholder quotes derived from the template's own set — sentiments and length variety kept, all real clients/"1minus1" removed, `service` mapped to the real Strategy/Creative/Web-Development/Campaigns taxonomy. The old 9 hardcoded cards (incl. the Team17 duplicate) are gone.
-- **IP removal in `Testimonials.astro` (1011 → ~90 lines):** all 10 sticker `<picture>` blocks (1minus1 "Group 508xx" art), the one-off service chip, the 45 pixel-cross "rating" SVGs (owner decision: stars stay off until a real ratings policy exists), minimap chip, counter chip, vertical "Testimonials" span and the drag-cursor marquee. Underlying image files stay in `public/images/case-studies/` (possibly referenced elsewhere); unused-hash cull list recorded in open-items B2.
-- **Placeholder launch guard:** prod renders nothing while any `placeholder: true` exists unless `PUBLIC_SHOW_PLACEHOLDER_TESTIMONIALS=true` (preview-only — `check-placeholders.mjs` fails if the flag is raised while placeholders lack consent); dev always previews + `console.warn`. Zero-dep script + `check:placeholders` npm script. No Review/AggregateRating schema now or later (Google: self-serving Organization reviews are ineligible — stated in plan §6).
-- **Script:** `testimonials.ts` sticker placement now skipped when the section has no stickers; drag-canvas init/teardown wiring in `main.ts` unchanged (still registered in boot + `onAfterSwap`; 3-swap gauntlet clean). Draggable/Inertia registrations in `core/gsap` deliberately untouched — they die in Phase 1 with the drag canvas.
-- **Skill conflict log:** `astro-best-practices` (islands/hydration, scoped component styles) conflicts with the template's init+teardown architecture and the decbricks.css convention — AGENTS.md precedence wins; no islands introduced, styles land in `decbricks.css` (P1+).
-- **Interim state accepted:** the drag canvas keeps its known a11y/cut-card issues until Phase 1 replaces it; placeholders make it visibly interim ("Client Name — Role, Company" attribution).
-
 ## Footer redesign — Phase 3 (2026-11-13)
 
 **What:** Added stepped brick-laying choreography, hover/active states, reduced-motion branches, and runtime-scoped `will-change` cleanup across [Footer.astro](file:///home/ankit/GitHub/decbricks/src/components/Footer.astro), [footer.ts](file:///home/ankit/GitHub/decbricks/src/scripts/footer.ts), and [decbricks.css](file:///home/ankit/GitHub/decbricks/src/styles/decbricks.css).
@@ -344,27 +322,6 @@ Plan `docs/plans/testimonials-redesign-plan.md` (owner-approved, Concept A spotl
 
 
 
-
-## Testimonials redesign — Phase 0 (2026-11-13)
-
-Plan `docs/plans/testimonials-redesign-plan.md` (owner-approved, Concept A spotlight), evidence `docs/plans/audit/testimonials-current.md`. What/why/files:
-
-- **Data extraction:** `src/data/testimonials.ts` (typed, mirrors `services.ts` pattern) holds 8 clearly-marked placeholder quotes derived from the template's own set — sentiments and length variety kept, all real clients/"1minus1" removed, `service` mapped to the real Strategy/Creative/Web-Development/Campaigns taxonomy. The old 9 hardcoded cards (incl. the Team17 duplicate) are gone.
-- **IP removal in `Testimonials.astro` (1011 → ~90 lines):** all 10 sticker `<picture>` blocks (1minus1 "Group 508xx" art), the one-off service chip, the 45 pixel-cross "rating" SVGs (owner decision: stars stay off until a real ratings policy exists), minimap chip, counter chip, vertical "Testimonials" span and the drag-cursor marquee. Underlying image files stay in `public/images/case-studies/` (possibly referenced elsewhere); unused-hash cull list recorded in open-items B2.
-- **Placeholder launch guard:** prod renders nothing while any `placeholder: true` exists unless `PUBLIC_SHOW_PLACEHOLDER_TESTIMONIALS=true` (preview-only — `check-placeholders.mjs` fails if the flag is raised while placeholders lack consent); dev always previews + `console.warn`. Zero-dep script + `check:placeholders` npm script. No Review/AggregateRating schema now or later (Google: self-serving Organization reviews are ineligible — stated in plan §6).
-- **Script:** `testimonials.ts` sticker placement now skipped when the section has no stickers; drag-canvas init/teardown wiring in `main.ts` unchanged (still registered in boot + `onAfterSwap`; 3-swap gauntlet clean). Draggable/Inertia registrations in `core/gsap` deliberately untouched — they die in Phase 1 with the drag canvas.
-- **Skill conflict log:** `astro-best-practices` (islands/hydration, scoped component styles) conflicts with the template's init+teardown architecture and the decbricks.css convention — AGENTS.md precedence wins; no islands introduced, styles land in `decbricks.css` (P1+).
-- **Interim state accepted:** the drag canvas keeps its known a11y/cut-card issues until Phase 1 replaces it; placeholders make it visibly interim ("Client Name — Role, Company" attribution).
-
-## Testimonials redesign — Phase 1 (2026-11-13)
-
-Plan §8 P1 (static spotlight, Concept A). What/why/files:
-
-- **Layout:** `Testimonials.astro` renders the §6 structure — band (`role="region"` + `aria-roledescription="carousel"`, `aria-labelledby`), mono kicker, section `h2` (removes the pre-existing h1→h3 heading skip), FK-Raster index numeral (aria-hidden; live-region announce is P2), 8 quote cards with the first `is-active` server-rendered (inactive cards are `aria-hidden` + `position:absolute` behind the in-flow active card — active card defines stage height, so nothing is ever cut), rail of 8 `aria-controls` buttons, 44px prev/next, decorative progress bar. Prototype proportions kept (owner-approved proto A); plan's ~700px height estimate was superseded by the prototype (~1058px @1440 measured) — recorded in PROGRESS.
-- **Script:** `testimonials.ts` is now a 23-line stub — all drag-canvas/sticker/minimap/cursor code deleted; `initTestimonials()` returns a no-op teardown so the `main.ts` boot + `onAfterSwap` registration is untouched (BUG-015 pattern preserved; section owns no canvases). **Correction to plan §6:** Draggable/InertiaPlugin registrations in `core/gsap` stay — `case-studies.ts` still uses them (the plan claimed nothing else did).
-- **Styles:** `tst-*` block appended to `decbricks.css` (EOF append; file also carries the parallel session's unrelated edits — staged by hunk isolation). Tokens only (--brand-*/--font-*/--dur-*/--ease-brand), no global.css edits, no new utilities. Focus outlines use `--brand-on-dark` (offwhite on burgundy ≈10:1; coral would fail non-text 3:1). `prefers-reduced-motion` zeroes the card/bar/btn transitions. Contrast sweep ≥6.08:1 everywhere (worst: olive chip 6.08, ink-muted attribution 6.15).
-- **Controls inert by design:** per plan, prev/next/rail render but no-op in P1; the "Arrow keys work too" hint from the prototype was deliberately OMITTED until P2 makes it true (avoids promising behaviour that doesn't exist).
-- **Removed hooks:** `.sections-testimonials*`, `.parts-testimonialCard`, `.parts-testimonialMiniMap*`, `.parts-marqueeCursor` died with the markup; grep confirms nothing outside the section referenced them. `docs/mapping.md` hooks section + "Other template pieces" list updated (Testimonials left the 1minus1-identity list).
 
 ## Footer redesign — Phase 4 (2026-11-13)
 
@@ -419,3 +376,11 @@ Plan §8 P2 (interaction). Decisions worth remembering:
 - **Focus & forced colors (`decbricks.css`):** Scoped `.structure-footer a:focus-visible, .structure-footer button:focus-visible` to `2px solid var(--brand-on-dark)` (`outline-offset: 3px`) and added `@media (forced-colors: active)` fallback resetting `.structure-footer__wordmark` to solid `CanvasText` (`background-image: none; background-clip: border-box`) and `.structure-footer__brick.is-filled` to `Highlight`.
 - **`translate="no"` brand guard (`FooterLegal.astro`):** Added `translate="no"` on the copyright `.font-brand` lockup span alongside `FooterWordmark.astro` so auto-translators preserve `"Decbricks"`.
 - **`@media print` sheet (`decbricks.css`):** Hides `.structure-loader` (caught via screenshot inspect where the fixed loader overlay masked scrolled print captures on fresh page loads), `.webgl`, `.structure-footer .webgl-background`, `.structure-footer__gridBg`, `.structure-footer__wordmarkRow`, `.structure-footer__ctaActions`, `.structure-footer__copyBtn`, `.structure-footer__topBtn`, `.structure-footer__legalBtn`; resets `.structure-footer__inner` transform, sets `.structure-footer { background: #ffffff !important }` with `#111111` ink, and switches the copyright `.font-brand::before` crest to `/brand/logo.webp` + `filter: brightness(0)` so the mark stays legible on paper.
+## Testimonials redesign — Phase 3 (2026-11-13)
+
+Plan §8 P3 (motion polish). Small phase, two real findings:
+
+- **Stage-height equalisation is the CLS fix:** inactive cards are `position:absolute; inset:0`, so the stage height was whatever the *active* quote needed — swapping short→long quotes visibly shifted everything below. The script now raises the stage to the tallest quote (measured via `scrollHeight` of the absolute cards, `document.fonts.ready` + resize re-checks, 340px floor). Result: quote changes are pure opacity/transform, 0 layout-shift entries measured at 1440 and 375.
+- **Reduced-motion overrides must come after their base rules:** putting the tst reduced-motion block mid-file (before the Phase-2/3 additions) silently lost the cascade to later same-specificity rules — chevron and numeral kept animating under emulation until the override was re-homed at EOF. Comment left in the CSS so the ordering constraint survives future edits.
+- Numeral micro-crossfade is class-replay based (`.is-swap` + forced reflow), skipped for reduced motion by CSS; the `/ 08` denominator never animates.
+- Long tasks on home at 1440 are pre-existing (WebGL loop, ~57/4s idle, no container attribution); the section contributes none (identical idle vs swap rates; 375 fully clean).

@@ -1821,3 +1821,38 @@ html.has-cookie-banner .page .sections-servicesHero {
     display: none;
   }
 }
+
+/* ==========================================================================
+   Testimonials — Phase 3 additions (motion polish)
+   Index-numeral micro-crossfade on quote change; cards keep the Phase-1
+   opacity + 12px-rise crossfade and the bar keeps its width transition.
+   All swap motion is opacity/transform only — the stage height is
+   equalised in JS (tallest quote) so changes cause zero layout shift.
+   ========================================================================== */
+@keyframes tst-numeralSwap {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.tst-index b.is-swap {
+  animation: tst-numeralSwap var(--dur-std) var(--ease-brand);
+}
+/* Reduced-motion override lives AFTER every tst base rule — same-specificity
+   earlier rules would otherwise lose the cascade (Phase 3 lesson). */
+@media (prefers-reduced-motion: reduce) {
+  .tst-card,
+  .tst-bar,
+  .tst-railBtn,
+  .tst-btn,
+  .tst-railToggleChevron {
+    transition: none;
+  }
+  .tst-index b.is-swap {
+    animation: none;
+  }
+}

@@ -46,7 +46,24 @@ export function initTestimonials(): (() => void) | void {
 
   const pad2 = (n: number) => String(n).padStart(2, '0');
 
+  // Stage height must not depend on which quote is active, or every quote
+  // change shifts the page (CLS). Inactive cards are `position: absolute;
+  // inset: 0`, so their content height is only visible via scrollHeight —
+  // raise the stage to the tallest quote (Phase 3 motion polish: swaps are
+  // then pure opacity/transform with zero layout shift).
+  const STAGE_MIN_H = 340;
+  const equalizeStageHeight = () => {
+    if (!stage) return;
+    const maxH = cards.reduce((m, c) => Math.max(m, c.scrollHeight), STAGE_MIN_H);
+    if (maxH > 0) stage.style.minHeight = `${maxH}px`;
+  };
+  equalizeStageHeight();
+  window.addEventListener('resize', equalizeStageHeight);
+  // Quote metrics settle again once webfonts swap in.
+  document.fonts?.ready.then(equalizeStageHeight).catch(() => {});
+
   const go = (n: number, opts: { focus?: boolean } = {}) => {
+    const previous = current;
     current = ((n % total) + total) % total;
     cards.forEach((card, i) => {
       const on = i === current;
@@ -59,9 +76,18 @@ export function initTestimonials(): (() => void) | void {
       btn.setAttribute('aria-current', on ? 'true' : 'false');
     });
     const active = cards[current];
-    if (indexNumeral) indexNumeral.textContent = pad2(current + 1);
+    if (indexNumeral) {
+      indexNumeral.textContent = pad2(current + 1);
+      // Micro-crossfade on the numeral only (skipped for reduced motion by CSS).
+      if (current !== previous) {
+        indexNumeral.classList.remove('is-swap');
+        void indexNumeral.offsetWidth; // restart the CSS animation
+        indexNumeral.classList.add('is-swap');
+      }
+    }
     if (bar) bar.style.width = `${((current + 1) / total) * 100}%`;
     if (live) live.textContent = `Quote ${current + 1} of ${total}`;
+    equalizeStageHeight();
     // Focus follows programmatic changes (keyboard/rail/buttons) — never a swipe.
     if (opts.focus && active) active.focus({ preventScroll: true });
   };
@@ -148,5 +174,6 @@ export function initTestimonials(): (() => void) | void {
     stage.removeEventListener('pointercancel', onPointerCancel);
     section.removeEventListener('keydown', onKeyDown);
     window.removeEventListener('hashchange', fromHash);
+    window.removeEventListener('resize', equalizeStageHeight);
   };
 }
