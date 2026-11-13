@@ -1590,12 +1590,20 @@ html.has-cookie-banner .page .sections-servicesHero {
   opacity: 0;
   pointer-events: none;
   transform: translateY(12px);
-  background: var(--brand-surface);
-  border-radius: 16px;
-  padding: clamp(28px, 3vw, 48px) clamp(24px, 3vw, 48px) clamp(24px, 2.5vw, 40px);
   transition:
     opacity var(--dur-std) var(--ease-brand),
     transform var(--dur-std) var(--ease-brand);
+}
+/* The inner is the visible card (CaseStudies precedent: slide outer /
+   __inner visual). Moving background/radius/padding + clipping here keeps
+   the thrown text inside its rounded box — the card box itself never
+   detaches from its content. */
+.tst-cardInner {
+  height: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--brand-surface);
+  padding: clamp(28px, 3vw, 48px) clamp(24px, 3vw, 48px) clamp(24px, 2.5vw, 40px);
 }
 .tst-card.is-active {
   position: relative;
