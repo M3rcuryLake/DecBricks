@@ -1,4 +1,11 @@
 import type { ImageMetadata } from 'astro';
+import strategyConsultingPic from '../assets/services/Strategy_Consulting.png';
+import designBrandingPic from '../assets/services/Design_Branding.png';
+import webSoftwarePic from '../assets/services/Web_n_Software_Development.png';
+import mobileAppPic from '../assets/services/Mobile_App_Development.png';
+import aiAutomationPic from '../assets/services/AI_Automation.png';
+import digitalMarketingPic from '../assets/services/Digital_Marketing_n_Growth.png';
+import businessOutreachPic from '../assets/services/Business_Development_n_Outreach.png';
 
 export type ServiceId =
   | 'strategy-consulting'
@@ -78,10 +85,10 @@ export const SERVICES: ServiceItem[] = [
       'Product Roadmapping',
     ],
     media: {
-      kind: 'artwork',
-      motif: 'strategy-consulting',
-      alt: '',
-      code: 'DB-01 // STR',
+      kind: 'image',
+      src: strategyConsultingPic,
+      alt: 'Halftone illustration of two hands moving chess pieces across a board on an amber ground.',
+      position: '50% 50%',
     },
     homeSummary:
       'We help businesses identify opportunities, define product requirements and choose the right technology and strategies to achieve their objectives.',
@@ -107,10 +114,10 @@ export const SERVICES: ServiceItem[] = [
       'Marketing Materials',
     ],
     media: {
-      kind: 'artwork',
-      motif: 'design-branding',
-      alt: '',
-      code: 'DB-02 // DSN',
+      kind: 'image',
+      src: designBrandingPic,
+      alt: 'Halftone grid of brand guideline, colour palette, and typography specimen spreads.',
+      position: '50% 50%',
     },
     homeSummary:
       'We create thoughtful digital experiences and distinctive brand identities that communicate your value, strengthen your presence and connect with your audience.',
@@ -137,10 +144,10 @@ export const SERVICES: ServiceItem[] = [
       'Website Maintenance',
     ],
     media: {
-      kind: 'artwork',
-      motif: 'web-software-development',
-      alt: '',
-      code: 'DB-03 // ENG',
+      kind: 'image',
+      src: webSoftwarePic,
+      alt: 'Halftone side-profile portrait with a pixel-stepped interface gradient bar.',
+      position: '50% 42%',
     },
     homeSummary:
       'We develop modern websites, web applications and customised software that help businesses improve operations, serve customers and scale confidently.',
@@ -166,10 +173,10 @@ export const SERVICES: ServiceItem[] = [
       'App Maintenance & Support',
     ],
     media: {
-      kind: 'artwork',
-      motif: 'mobile-app-development',
-      alt: '',
-      code: 'DB-04 // MOB',
+      kind: 'image',
+      src: mobileAppPic,
+      alt: 'Halftone artwork displaying two mobile application interface screens side by side.',
+      position: '50% 50%',
     },
     homeSummary:
       'We build intuitive and scalable mobile applications designed to deliver seamless user experiences and support your business objectives.',
@@ -196,10 +203,10 @@ export const SERVICES: ServiceItem[] = [
       'Intelligent Business Systems',
     ],
     media: {
-      kind: 'artwork',
-      motif: 'ai-automation',
-      alt: '',
-      code: 'DB-05 // AI',
+      kind: 'image',
+      src: aiAutomationPic,
+      alt: 'Halftone circuit and cable assembly overlaid with dashed coordinate telemetry lines.',
+      position: '50% 50%',
     },
     homeSummary:
       'We help businesses use artificial intelligence and automation to streamline workflows, improve efficiency and unlock new possibilities.',
@@ -226,10 +233,10 @@ export const SERVICES: ServiceItem[] = [
       'Lead Generation',
     ],
     media: {
-      kind: 'artwork',
-      motif: 'digital-marketing-growth',
-      alt: '',
-      code: 'DB-06 // GRW',
+      kind: 'image',
+      src: digitalMarketingPic,
+      alt: 'Halftone print showing hands holding a folded coral and charcoal graphic sheet.',
+      position: '50% 50%',
     },
     homeSummary:
       'We help businesses strengthen their online presence, connect with potential customers and build digital marketing strategies focused on meaningful growth.',
@@ -258,10 +265,10 @@ export const SERVICES: ServiceItem[] = [
       'Client Acquisition Support',
     ],
     media: {
-      kind: 'artwork',
-      motif: 'business-development-outreach',
-      alt: '',
-      code: 'DB-07 // BDR',
+      kind: 'image',
+      src: businessOutreachPic,
+      alt: 'Halftone low-angle photograph of a group reaching hands together in a circle.',
+      position: '50% 50%',
     },
     homeSummary:
       'Business growth takes more than having a great product or service. It requires reaching the right audience, starting meaningful conversations and building relationships.',
