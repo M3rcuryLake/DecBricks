@@ -214,3 +214,15 @@ Plan `docs/plans/redesign-polish-plan.md`, executed inline with per-task RED→G
 - Deferred minors: header `Menu` 36px / `Close` 34px / skip link 40px tap sizes → Phase 2.
 
 No new dependencies. No class renames; one additive hook (`.parts-servicesHeroNavRow`). No skill conflicts.
+
+## Phase 1 — Foundation tokens (2026-11-13)
+
+**Owner decision:** ink neutral APPROVED (`#2A0208` body/muted on light+sage; headings keep burgundy).
+
+**What:** all §3 tokens live in `decbricks.css` (`--color-ink/-muted`, `--hairline/-dark`, `--radius-pill`, `--dur-micro/std/reveal`, `--ease-brand`, `--fs-display/h2/lede`) + utilities `u-display/u-h2/u-lede/u-kicker/u-ink/u-ink-muted/u-section/u-btn-primary/u-btn-ghost`. Applied per-component, additive only: `u-h2` → 4 shared section h2s (AboutBlock/ContactBlock/ServiceBlock/ServicesClients), `u-kicker` → 3 eyebrows (Bricolage 12px bold → Departure Mono 12px/400/+14% — "mono gets a real job"), `u-lede` → ContactBlock secondary h3, `u-ink` → About body paragraphs, contact fallback paragraphs, form fieldset + checkbox label, `u-btn-primary` → form submit (radius 8→40/0/40/40 signature; fill was already burgundy/off-white via the scoped `.part-btnPrimary.bg-purple` rule, which stays).
+
+**Not applied (deliberate):** `u-display` — hero display words are GSAP-measured (Phase 3 owns heroes); `u-section` — no light free-standing band exists today (caseStudies band is transparent over the burgundy WebGL canvas per the not-painted decision; testimonials/clients are inverted bands) — the one-padding-value + hairline rhythm lands per-section in Phases 3–4; `u-btn-ghost` — no ghost button exists yet (Phase 2 header CTA candidate).
+
+**Files:** `src/styles/decbricks.css` (token + utility block), AboutBlock/ContactBlock/ServiceBlock/ServicesClients/ContactForm.astro, `src/pages/contact.astro`. No renames, no new deps, copy verbatim.
+
+**Verification:** probes `/tmp/opencode/p1-t1.cjs` (tokens), `p1-t2.cjs` (applications), `p1-t5.cjs` (§3 contrast sweep — ink 18.08:1), `p1-t6.cjs` (reduced-motion baseline); full audit + transitions re-run clean; Phase-0 cookie probes still GREEN. Evidence `docs/qa/shots/phase1-{before,after}-*.png`.
