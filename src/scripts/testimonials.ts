@@ -13,14 +13,17 @@
  *   swap). The URL is never written — read-only deep link (decision logged
  *   in docs/Design-handoff.md);
  * - `aria-live` status line announces "Quote N of 8"; index numeral, progress
- *   bar and rail/dot `aria-current` stay in sync;
+ *   bar and rail `aria-selected` stay in sync;
  * - two-phase visual swap (plan §5): the outgoing card fades up-and-out over
  *   140ms, THEN the incoming card fades in from below over 180ms — no
- *   crossfade ghosting. Nav info (numeral, bar, live region, aria-current)
+ *   crossfade ghosting. Nav info (numeral, bar, live region, aria-selected)
  *   updates immediately; only the visual classes are phased.
- * - rail is a desktop (≥1024) identity list; below 1024 it is CSS-hidden and
- *   the `.tst-dot` buttons are the selector (synced with swipe). No
- *   disclosure toggle, no rail height pin (upgrade plan supersedes P6).
+ * - rail (Amendment A): a listbox capped at 6 visible rows scrolling inside
+ *   itself (≥768, vertical), a horizontal scroll-snap strip below 768. On
+ *   every quote change the active row auto-scrolls into view inside the
+ *   list only (scrollTop math, never the page); scroll cues (edge fades +
+ *   "+N more") derive from the list's scroll position. Roving tabindex on
+ *   the options; ArrowUp/Down/Home/End move the selection.
  *
  * No autoplay anywhere. Pure class/attribute toggles — no GSAP; the CSS
  * transitions (and their reduced-motion zeroing) live in `decbricks.css`.
@@ -40,41 +43,31 @@ export function initTestimonials(): (() => void) | void {
   const stage = section.querySelector<HTMLElement>('.tst-stage');
   const cards = Array.from(section.querySelectorAll<HTMLElement>('.tst-card'));
   const railList = section.querySelector<HTMLElement>('.tst-railList');
-  const railButtons = Array.from(section.querySelectorAll<HTMLButtonElement>('.tst-railBtn'));
-  const dotsWrap = section.querySelector<HTMLElement>('.tst-dots');
-  const navDots = Array.from(section.querySelectorAll<HTMLButtonElement>('.tst-dots .tst-dot'));
+  const railOptions = Array.from(section.querySelectorAll<HTMLElement>('.tst-railOpt'));
+  const moreBtn = section.querySelector<HTMLButtonElement>('.tst-railMore');
   const prevBtn = section.querySelector<HTMLButtonElement>('.tst-prev');
   const nextBtn = section.querySelector<HTMLButtonElement>('.tst-next');
   const live = section.querySelector<HTMLElement>('.tst-live');
   const indexNumeral = section.querySelector<HTMLElement>('.tst-index b');
   const bar = section.querySelector<HTMLElement>('.tst-bar');
-  if (!stage || !railList || !cards.length || !railButtons.length || !navDots.length || !prevBtn || !nextBtn) return;
+  if (!stage || !railList || !cards.length || !railOptions.length || !prevBtn || !nextBtn) return;
 
   const total = cards.length;
   let current = Math.max(0, cards.findIndex((c) => c.classList.contains('is-active')));
 
   const pad2 = (n: number) => String(n).padStart(2, '0');
 
-  // Stage height must not depend on which quote is active, or every quote
-  // change shifts the page (CLS). All cards are `position: absolute;
-  // inset: 0` (they fill the stage), so their content height is only
-  // visible via scrollHeight — set the stage to the tallest quote (P3
-  // machinery, kept; explicit height so cards always fill it). ≥1024 the
-  // identity rail (8 rows) sits beside the stage: the floor is raised so
-  // neither column starves (upgrade plan §5). Below 1024 the grid stacks —
-  // the old 340px floor applies. (The P6 rail height pin is gone: identity
-  // rows fit the stage naturally, and the pin was the cramping root cause.)
-  const STAGE_MIN_H = 260; // mobile safety floor (tallest placeholder quote is ~342/208)
-  const STAGE_MIN_H_DESKTOP = 480; // balances the ~448px identity rail (upgrade plan §5)
-  const mqDesktop = window.matchMedia('(min-width: 1024px)');
+  // Stage height = the TALLEST quote's content (Amendment A: content-sized
+  // card, no floors). It must not depend on which quote is active, or every
+  // quote change shifts the page (CLS). All cards are `position: absolute;
+  // inset: 0` (they fill the stage), so a card's own scrollHeight tracks
+  // the stage's CURRENT height — measuring it would pin the stage to its
+  // previous size forever (it could grow but never shrink). Measure natural
+  // content instead: clone each inner at height:auto into a hidden probe at
+  // the stage's width. Runs on init/resize/fonts.ready only — 8 small
+  // clones per call.
   const equalizeStageHeight = () => {
     if (!stage) return;
-    // Cards are `position: absolute; inset: 0` (they fill the stage), so a
-    // card's own scrollHeight tracks the stage's CURRENT height — measuring
-    // it would pin the stage to its previous size forever (it could grow
-    // but never shrink). Measure natural content instead: clone each inner
-    // at height:auto into a hidden probe at the stage's width. Runs on
-    // init/resize/fonts.ready only — 8 small clones per call.
     const probe = document.createElement('div');
     probe.setAttribute('aria-hidden', 'true');
     probe.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;left:0;top:0;';
@@ -91,13 +84,20 @@ export function initTestimonials(): (() => void) | void {
       return h;
     });
     probe.remove();
-    const maxH = Math.max(...contentH, mqDesktop.matches ? STAGE_MIN_H_DESKTOP : STAGE_MIN_H);
+    const maxH = Math.max(...contentH);
     if (maxH > 0) stage.style.height = `${maxH}px`;
   };
   equalizeStageHeight();
-  window.addEventListener('resize', equalizeStageHeight);
+  const onResize = () => {
+    equalizeStageHeight();
+    updateListCues();
+  };
+  window.addEventListener('resize', onResize);
   // Quote metrics settle again once webfonts swap in.
-  document.fonts?.ready.then(equalizeStageHeight).catch(() => {});
+  document.fonts?.ready.then(() => {
+    equalizeStageHeight();
+    updateListCues();
+  }).catch(() => {});
 
   // Two-phase swap (upgrade plan §5): nav info syncs immediately; visuals
   // run leave (140ms) → enter (180ms), CSS-timed in decbricks.css. Rapid
@@ -117,14 +117,48 @@ export function initTestimonials(): (() => void) | void {
     });
   };
 
-  const setSelection = (btns: HTMLButtonElement[]) =>
-    btns.forEach((btn, i) => {
+  // Listbox selection sync (Amendment A): class + aria-selected + roving
+  // tabindex (active option is the only tab stop, so the scroll container
+  // itself needs no tabindex).
+  const setSelection = (opts: HTMLElement[]) =>
+    opts.forEach((opt, i) => {
       const on = i === current;
-      btn.classList.toggle('is-active', on);
-      btn.setAttribute('aria-current', on ? 'true' : 'false');
+      opt.classList.toggle('is-active', on);
+      opt.setAttribute('aria-selected', on ? 'true' : 'false');
+      opt.tabIndex = on ? 0 : -1;
     });
 
-  const go = (n: number, opts: { focus?: boolean } = {}) => {
+  // Scroll the active row into view INSIDE the list only — direct
+  // scrollTop/scrollLeft math (never scrollIntoView, which can scroll
+  // ancestor/page scrollers). `nearest` semantics: no movement when the row
+  // is already visible; wrapping 8→1 lands on scrollTop 0 naturally (row 0
+  // is above the viewport then). Vertical ≥768, horizontal strip below.
+  const mqStrip = window.matchMedia('(max-width: 767px)');
+  const EDGE = 12; // breathing room past the list padding
+  const scrollOptionIntoView = (idx: number, behavior: ScrollBehavior) => {
+    if (!railList) return;
+    const row = railOptions[idx];
+    if (!row) return;
+    if (mqStrip.matches) {
+      const left = row.offsetLeft;
+      let target: number | null = null;
+      if (left < railList.scrollLeft + 4) target = left - EDGE;
+      else if (left + row.offsetWidth > railList.scrollLeft + railList.clientWidth - 4)
+        target = left + row.offsetWidth - railList.clientWidth + EDGE;
+      if (target === null) return;
+      railList.scrollTo({ left: Math.max(0, Math.min(target, railList.scrollWidth - railList.clientWidth)), behavior });
+    } else {
+      const top = row.offsetTop;
+      let target: number | null = null;
+      if (top < railList.scrollTop + 4) target = top - EDGE;
+      else if (top + row.offsetHeight > railList.scrollTop + railList.clientHeight - 4)
+        target = top + row.offsetHeight - railList.clientHeight + EDGE;
+      if (target === null) return;
+      railList.scrollTo({ top: Math.max(0, Math.min(target, railList.scrollHeight - railList.clientHeight)), behavior });
+    }
+  };
+
+  const go = (n: number, opts: { focus?: boolean; listScroll?: ScrollBehavior } = {}) => {
     if (phaseTimer) {
       clearTimeout(phaseTimer);
       phaseTimer = null;
@@ -135,8 +169,7 @@ export function initTestimonials(): (() => void) | void {
     const from = current;
     current = target;
 
-    setSelection(railButtons);
-    setSelection(navDots);
+    setSelection(railOptions);
     cards.forEach((card, i) => card.setAttribute('aria-hidden', i === current ? 'false' : 'true'));
     const active = cards[current];
     if (indexNumeral) {
@@ -152,7 +185,11 @@ export function initTestimonials(): (() => void) | void {
     // stage size is the max over ALL cards at a constant width, so it can't
     // change between navigations (review fix; it runs on
     // init/resize/fonts.ready only, see above).
-    // Focus follows programmatic changes (keyboard/rail/buttons) — never a swipe.
+    // Active row follows inside the list (never the page). Default smooth;
+    // init/deep-link pass 'auto'; reduced motion hard-cuts.
+    scrollOptionIntoView(current, opts.listScroll ?? (prefersReducedMotion() ? 'auto' : 'smooth'));
+    // Focus follows programmatic changes (keyboard/prev-next) — never a
+    // swipe, and never a list click/keyboard (the option keeps focus there).
     if (opts.focus && active) active.focus({ preventScroll: true });
 
     const outgoing = cards[from];
@@ -168,17 +205,58 @@ export function initTestimonials(): (() => void) | void {
   const onNext = () => go(current + 1, { focus: true });
 
   const onRailClick = (e: MouseEvent) => {
-    const btn = (e.target as HTMLElement | null)?.closest<HTMLButtonElement>('.tst-railBtn');
-    if (!btn) return;
-    const i = railButtons.indexOf(btn);
-    if (i >= 0) go(i, { focus: true });
+    const opt = (e.target as HTMLElement | null)?.closest<HTMLElement>('.tst-railOpt');
+    if (!opt) return;
+    const i = railOptions.indexOf(opt);
+    if (i >= 0) go(i, { focus: false, listScroll: prefersReducedMotion() ? 'auto' : 'smooth' });
   };
 
-  const onDotClick = (e: MouseEvent) => {
-    const btn = (e.target as HTMLElement | null)?.closest<HTMLButtonElement>('.tst-dot');
-    if (!btn) return;
-    const i = navDots.indexOf(btn);
-    if (i >= 0) go(i, { focus: true });
+  // Listbox keyboard (Amendment A): ArrowUp/Down move the selection (and
+  // auto-scroll the list), Home/End jump. Focus STAYS on the option (roving
+  // tabindex; APG listbox pattern). Left/Right remain section-level.
+  const onListKeyDown = (e: KeyboardEvent) => {
+    if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp' && e.key !== 'Home' && e.key !== 'End') return;
+    if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    e.preventDefault();
+    let next: number;
+    if (e.key === 'ArrowDown') next = Math.min(total - 1, current + 1);
+    else if (e.key === 'ArrowUp') next = Math.max(0, current - 1);
+    else if (e.key === 'Home') next = 0;
+    else next = total - 1;
+    if (next === current) return;
+    go(next, { listScroll: prefersReducedMotion() ? 'auto' : 'smooth' });
+    railOptions[next]?.focus();
+  };
+
+  // Scroll cues (Amendment A): bottom fade while rows exist below, top fade
+  // when scrolled down; the "+N more" button counts rows fully below the
+  // fold (computed from offsets — never hardcoded). The strip (<768) has
+  // neither: it's fully visible by design.
+  const updateListCues = () => {
+    if (!railList) return;
+    if (mqStrip.matches) {
+      railList.classList.remove('is-fadeTop', 'is-fadeBottom');
+      if (moreBtn) moreBtn.hidden = true;
+      return;
+    }
+    const bottomEdge = railList.scrollTop + railList.clientHeight;
+    let hidden = 0;
+    for (const row of railOptions) if (row.offsetTop >= bottomEdge - 1) hidden++;
+    railList.classList.toggle('is-fadeBottom', hidden > 0);
+    railList.classList.toggle('is-fadeTop', railList.scrollTop > 1);
+    if (moreBtn) {
+      if (hidden > 0) {
+        moreBtn.hidden = false;
+        moreBtn.textContent = `+${hidden} more`;
+        moreBtn.setAttribute('aria-label', `Show ${hidden} more quotes`);
+      } else {
+        moreBtn.hidden = true;
+      }
+    }
+  };
+  const onMoreClick = () => {
+    if (!railList) return;
+    railList.scrollBy({ top: railList.clientHeight, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
   };
 
   const onKeyDown = (e: KeyboardEvent) => {
@@ -224,14 +302,17 @@ export function initTestimonials(): (() => void) | void {
     const m = /^#t-(\d+)$/.exec(window.location.hash || '');
     if (!m) return;
     const i = cards.findIndex((c) => c.id === `t-${m[1]}`);
-    if (i >= 0 && i !== current) go(i);
+    if (i >= 0 && i !== current) go(i, { listScroll: 'auto' }); // deep link: jump, no animation
   };
   fromHash();
+  updateListCues();
 
   prevBtn.addEventListener('click', onPrev);
   nextBtn.addEventListener('click', onNext);
   railList.addEventListener('click', onRailClick);
-  dotsWrap?.addEventListener('click', onDotClick);
+  railList.addEventListener('keydown', onListKeyDown);
+  railList.addEventListener('scroll', updateListCues, { passive: true });
+  moreBtn?.addEventListener('click', onMoreClick);
   stage.addEventListener('pointerdown', onPointerDown);
   stage.addEventListener('pointermove', onPointerMove);
   stage.addEventListener('pointerup', onPointerUp);
@@ -261,13 +342,15 @@ export function initTestimonials(): (() => void) | void {
     prevBtn.removeEventListener('click', onPrev);
     nextBtn.removeEventListener('click', onNext);
     railList.removeEventListener('click', onRailClick);
-    dotsWrap?.removeEventListener('click', onDotClick);
+    railList.removeEventListener('keydown', onListKeyDown);
+    railList.removeEventListener('scroll', updateListCues);
+    moreBtn?.removeEventListener('click', onMoreClick);
     stage.removeEventListener('pointerdown', onPointerDown);
     stage.removeEventListener('pointermove', onPointerMove);
     stage.removeEventListener('pointerup', onPointerUp);
     stage.removeEventListener('pointercancel', onPointerCancel);
     section.removeEventListener('keydown', onKeyDown);
     window.removeEventListener('hashchange', fromHash);
-    window.removeEventListener('resize', equalizeStageHeight);
+    window.removeEventListener('resize', onResize);
   };
 }

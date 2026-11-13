@@ -58,46 +58,76 @@ const initials = (name: string) =>
         </div>
 
         <div class="tst-grid">
-          <div class="tst-stage" id="testimonials-stage" data-testid="testimonials-stage">
-            {TESTIMONIALS.map((t, i) => (
-              <article
-                class={`tst-card${i === 0 ? ' is-active' : ''}`}
-                id={t.id}
-                aria-roledescription="quote"
-                aria-label={`${i + 1} of ${total}`}
-                aria-hidden={i === 0 ? 'false' : 'true'}
-                tabindex="-1"
-                data-testid={`testimonial-${t.id}`}
-              >
-                <div class="tst-cardInner">
-                  <blockquote class="tst-quote">
-                    <p>{t.quote}</p>
-                  </blockquote>
-                  <div class="tst-attr">
-                    <span class="tst-attrDisc" aria-hidden="true">
-                      {initials(t.name)}
-                    </span>
-                    <div class="tst-who">
-                      <b>{t.name}</b>
-                      <span>
-                        {t.role}, {t.company}
+          <div class="tst-stageCol">
+            <div class="tst-stage" id="testimonials-stage" data-testid="testimonials-stage">
+              {TESTIMONIALS.map((t, i) => (
+                <article
+                  class={`tst-card${i === 0 ? ' is-active' : ''}`}
+                  id={t.id}
+                  aria-roledescription="quote"
+                  aria-label={`${i + 1} of ${total}`}
+                  aria-hidden={i === 0 ? 'false' : 'true'}
+                  tabindex="-1"
+                  data-testid={`testimonial-${t.id}`}
+                >
+                  <div class="tst-cardInner">
+                    <blockquote class="tst-quote">
+                      <p>{t.quote}</p>
+                    </blockquote>
+                    <div class="tst-attr">
+                      <span class="tst-attrDisc" aria-hidden="true">
+                        {initials(t.name)}
                       </span>
+                      <div class="tst-who">
+                        <b>{t.name}</b>
+                        <span>
+                          {t.role}, {t.company}
+                        </span>
+                      </div>
+                      <span class="tst-chip">{t.service}</span>
                     </div>
-                    <span class="tst-chip">{t.service}</span>
                   </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              ))}
+            </div>
+
+            <p class="tst-live sr-only" role="status" data-testid="testimonials-live"></p>
+
+            <div class="tst-controls">
+              <button type="button" class="tst-btn tst-prev" aria-label="Previous quote" data-testid="testimonials-prev">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" />
+                </svg>
+              </button>
+              <button type="button" class="tst-btn tst-next" aria-label="Next quote" data-testid="testimonials-next">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" />
+                </svg>
+              </button>
+              <p class="tst-index" aria-hidden="true" data-testid="testimonials-index">
+                <b>{pad2(1)}</b> / {pad2(total)}
+              </p>
+              <div class="tst-progress" aria-hidden="true">
+                <i class="tst-bar" style={`width: ${100 / total}%`}></i>
+              </div>
+            </div>
           </div>
 
-          <nav class="tst-rail" aria-label="All clients">
-            <div class="tst-railList" id="tst-railList" data-testid="testimonials-rail">
+          <div class="tst-rail">
+            <div
+              class="tst-railList"
+              id="tst-railList"
+              role="listbox"
+              aria-label="All clients"
+              data-testid="testimonials-rail"
+              data-lenis-prevent
+            >
               {TESTIMONIALS.map((t, i) => (
-                <button
-                  type="button"
-                  class={`tst-railBtn${i === 0 ? ' is-active' : ''}`}
-                  aria-controls={t.id}
-                  aria-current={i === 0 ? 'true' : 'false'}
+                <div
+                  role="option"
+                  class={`tst-railOpt${i === 0 ? ' is-active' : ''}`}
+                  aria-selected={i === 0 ? 'true' : 'false'}
+                  tabindex={i === 0 ? 0 : -1}
                   data-testid={`testimonial-rail-${t.id}`}
                 >
                   <span class="tst-railDisc" aria-hidden="true">
@@ -110,46 +140,13 @@ const initials = (name: string) =>
                     </span>
                   </span>
                   <span class="tst-railChip">{t.service}</span>
-                </button>
+                </div>
               ))}
             </div>
-          </nav>
-        </div>
-
-        <p class="tst-live sr-only" role="status" data-testid="testimonials-live"></p>
-
-        <div class="tst-controls">
-          <button type="button" class="tst-btn tst-prev" aria-label="Previous quote" data-testid="testimonials-prev">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" />
-            </svg>
-          </button>
-          <button type="button" class="tst-btn tst-next" aria-label="Next quote" data-testid="testimonials-next">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" />
-            </svg>
-          </button>
-          <p class="tst-index" aria-hidden="true" data-testid="testimonials-index">
-            <b>{pad2(1)}</b> / {pad2(total)}
-          </p>
-          <div class="tst-progress" aria-hidden="true">
-            <i class="tst-bar" style={`width: ${100 / total}%`}></i>
-          </div>
-        </div>
-
-        <div class="tst-dots" data-testid="testimonials-dots">
-          {TESTIMONIALS.map((t, i) => (
-            <button
-              type="button"
-              class={`tst-dot${i === 0 ? ' is-active' : ''}`}
-              aria-label={`Quote ${i + 1} of ${total}`}
-              aria-controls={t.id}
-              aria-current={i === 0 ? 'true' : 'false'}
-              data-testid={`testimonial-dot-${t.id}`}
-            >
-              <i aria-hidden="true"></i>
+            <button type="button" class="tst-railMore" id="tst-railMore" data-testid="testimonials-railMore" aria-label="Show more quotes" hidden>
+              +2 more
             </button>
-          ))}
+          </div>
         </div>
       </div>
     </section>
