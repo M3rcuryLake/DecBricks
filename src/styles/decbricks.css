@@ -567,3 +567,49 @@ li {
 .parts-form textarea:focus-visible {
   border-color: var(--brand-olive);
 }
+
+/* --------------------------------------------------------------------------
+   Cookie-banner safe area (phase 0, R9). cookies.ts sets --cookie-safe-area
+   to the banner card's height + bottom margin while the banner is visible and
+   toggles .has-cookie-banner on <html>. Consumers: (1) the page reserves the
+   footprint so scroll-end content (footer, "Manage Cookies", "Rise to top")
+   is never covered; (2) viewport-height heroes shrink by the reserved amount
+   so first-viewport content (hero subhead, JUMP TO pills) sits above the
+   banner. Targets existing utility classes as selectors — no renames.
+   Mid-scroll overlap of scrolling content is inherent to a fixed overlay and
+   accepted (banner dismisses in one tap). */
+:root {
+  --cookie-safe-area: 0px;
+}
+html.has-cookie-banner .page {
+  padding-bottom: var(--cookie-safe-area);
+}
+html.has-cookie-banner .page div.min-h-svh {
+  min-height: calc(100svh - var(--cookie-safe-area));
+}
+/* Content-height heroes (ServicesHero on /about /services /contact): while the
+   banner is visible the hero fills the viewport AND its bottom padding grows by
+   the reserved amount, so in-flow content that sits at the hero's bottom edge
+   (the JUMP TO pills row) lifts clear of the card. Base pb differs per
+   breakpoint (20 mobile / 80 lg); 80-base everywhere only adds empty brand
+   space, never clips content. */
+html.has-cookie-banner .page .sections-servicesHero {
+  min-height: 100svh;
+  padding-bottom: calc(var(--spacing) * 80 + var(--cookie-safe-area));
+}
+@media (min-width: 1024px) {
+  /* At lg the pills row's position is fixed by the tall content above it, so
+     bottom padding cannot lift it. While the banner is visible, translate the
+     nav up by the card's height (safe area minus its bottom margin) so the
+     last pill clears the card. Reverts on dismiss. */
+  html.has-cookie-banner .page .sections-servicesHero nav {
+    translate: 0 calc(62px - var(--cookie-safe-area));
+  }
+}
+@media not all and (min-width: 1024px) {
+  /* The home hero pins to 100svh via .max-lg:h-svh — override the height too,
+     or the min-height shrink has no effect while height wins. */
+  html.has-cookie-banner .page div.max-lg\:h-svh {
+    height: calc(100svh - var(--cookie-safe-area));
+  }
+}

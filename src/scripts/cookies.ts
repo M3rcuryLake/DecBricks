@@ -1,4 +1,4 @@
-import { gsap, Flip, bus } from './core/gsap';
+import { gsap, Flip, ScrollTrigger, bus } from './core/gsap';
 
 const ESSENTIAL = 'essential-consent';
 const ANALYTICS = 'analytics-consent';
@@ -28,11 +28,34 @@ export function initCookies() {
   paintBox();
   box.addEventListener('click', () => { analytics.checked = !analytics.checked; paintBox(); });
 
+  // Phase 0 (R9): while the banner is visible, reserve its footprint via
+  // `--cookie-safe-area` (decbricks.css consumers: .page bottom padding +
+  // viewport-height heroes shrink) so it never sits over real content or
+  // interactive elements. Mid-scroll overlap of scrolling content is inherent
+  // to any fixed overlay; this guarantees scroll-end and first-viewport.
+  const setSafeArea = () => {
+    const mb = parseFloat(getComputedStyle(card).marginBottom) || 0;
+    const h = Math.ceil(card.getBoundingClientRect().height) || 0;
+    if (!h) return;
+    const de = document.documentElement;
+    de.classList.add('has-cookie-banner');
+    de.style.setProperty('--cookie-safe-area', `${h + mb}px`);
+    requestAnimationFrame(() => ScrollTrigger.refresh());
+  };
+  const clearSafeArea = () => {
+    const de = document.documentElement;
+    de.classList.remove('has-cookie-banner');
+    de.style.removeProperty('--cookie-safe-area');
+    requestAnimationFrame(() => ScrollTrigger.refresh());
+  };
+
   const hide = () => {
+    clearSafeArea();
     gsap.to(card, { autoAlpha: 0, duration: 0.5, onComplete: () => { card.hidden = true; } });
   };
   const show = () => {
     card.hidden = false;
+    setSafeArea();
     gsap.fromTo(card, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 });
   };
   const enterManage = () => {
@@ -45,7 +68,10 @@ export function initCookies() {
     gsap.set([manage, bs], { opacity: 0 });
     Flip.from(state, {
       duration: 0.4, ease: 'power2.inOut',
-      onComplete: () => gsap.to([manage, ...buttons.querySelectorAll('button')], { opacity: 1, duration: 0.3, ease: 'power2.out', stagger: { from: 'random', each: 0.05 } }),
+      onComplete: () => {
+        setSafeArea(); // manage view is taller — re-reserve
+        gsap.to([manage, ...buttons.querySelectorAll('button')], { opacity: 1, duration: 0.3, ease: 'power2.out', stagger: { from: 'random', each: 0.05 } });
+      },
     });
   };
 
