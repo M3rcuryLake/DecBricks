@@ -215,6 +215,24 @@ Plan `docs/plans/redesign-polish-plan.md`, executed inline with per-task RED→G
 
 No new dependencies. No class renames; one additive hook (`.parts-servicesHeroNavRow`). No skill conflicts.
 
+## Phase 2 — Global chrome (2026-11-13)
+
+**Owner decision:** loader "plan default" approved — first-visit intro ≤1.2s, sessionStorage skip on repeat visits, 1.5s hard cap.
+
+**What:**
+- **Loader (F27/F28):** `initLoader` gates on `sessionStorage['decbricks:loader-seen']` + a pre-paint `html.loader-skip` class (inline script in `Base.astro`, rule in `decbricks.css`) so repeat visits never flash the overlay; the timeline is compressed with `timeScale(natural/1.1s)`; a 1500ms hard cap releases the hero hold and boosts the tail; reduced-motion now zeroes the heading char tweens (previously hardcoded 0.3/0.35s) and releases the hold immediately. **CLS side-effect found and fixed:** the box's layout-anchored readout + corner ticks swept ~370px through layout during the scale-in → one coalesced 0.19 layout-shift entry; they are now anchored at the box's static top-left and positioned per-frame via GSAP transforms (exempt from CLS), and stage 0 runs after the scale-in. Site-wide CLS ≤0.008.
+- **Header (F29/F31):** mono `01–04` indexes (Departure Mono, `aria-hidden`, outside the hover-slide masks); active route = 2px `currentColor` bar via `::after` on the link (text-decoration is clipped by the labels' tight `overflow-hidden` slide mask); Contact CTA keeps the burgundy fill with Off-White text (`.parts-btnBlock.bg-darkPurple` scoped rule; `text-neonGreen` removed); `menu.ts` pill-toggle block deleted (route state = `router-link-active` + underline).
+- **Mobile menu (F30):** full editorial overlay — `min-height:100svh` nav, straight grid (rotation + 1minus1 glyph svg deleted), hairline link separators with mono indexes, `MENU / ESC TO CLOSE` mono meta row (`u-kicker`), off-white `.background`. Esc-close, focus trap, inert handling were already present in `menu.ts` and are verified by probe.
+- **Rects (F29):** Menu 36→44px, Close 34→44px, skip link 40→44px (min-height + flex, padding untouched). Skip link restyled: signature radius 40/0/40/40, Departure Mono 12px.
+- **Footer (F32):** scrollTop / copyright / Manage-Cookies labels → `u-kicker` (Departure Mono 12px). Dead columns: none remain (social pills removed earlier, A8).
+- **Transitions (F33):** cover/reveal 0.7→0.5s (`--dur-reveal`); stagger, easing and the swap lifecycle untouched (BUG-015 rule).
+
+**Files:** `src/scripts/loader.ts`, `src/scripts/menu.ts`, `src/scripts/page-transition.ts`, `Header.astro`, `Footer.astro`, `Loader.astro`, `Base.astro`, `decbricks.css`.
+
+**Verification:** `p2-t1.cjs` (loader cut + skip, 3-run timing), `p2-t2.cjs` (12 header/menu checks), `p2-t3.cjs` (footer mono), `p2-cls*.cjs` (CLS isolation matrix), `p2-t1x.cjs` (timing incl. reduced motion); audit-main 0 contrast fails / 0 overflow / CLS ≤0.008; audit-behav transitions 0 errs, canvases 1280×900 after swaps; p0-t2 cookie probes still GREEN. Shots `docs/qa/shots/phase2-*.png`.
+
+**Not done / deliberate:** CookieBanner needed no further work (Phase 0 covered safe-area, 44px targets, contrast). Footer marquee words are 1minus1 brand adjectives — content, not chrome (A12/Phase 4). Rollback: loader flag is additive (`decbricks:loader-seen` absence restores old behaviour minus the compression).
+
 ## Phase 1 — Foundation tokens (2026-11-13)
 
 **Owner decision:** ink neutral APPROVED (`#2A0208` body/muted on light+sage; headings keep burgundy).
