@@ -978,42 +978,19 @@ html.has-cookie-banner .page .sections-servicesHero {
   min-height: 100svh;
   padding-bottom: calc(var(--spacing) * 80 + var(--cookie-safe-area));
 }
-/* Phase 3: the editorial rebuild made the hero content ~2x shorter (words
-   230px -> 104px scale), so at lg the pills row now ends ~400px — clear of the
-   banner zone (banner top = 100svh - 269px, >= 499px at the 768px min lg
-   viewport height) WITHOUT the old nav translate. That translate was tuned to
-   the old geometry and slammed the pills into the hero body after the rebuild
-   — removed. Decorative arrows (-bottom-60) may graze the banner top edge only
-   below ~vh 730 (aria-hidden decor, accepted). */
+@media (min-width: 1024px) {
+  /* Cookie-banner safe area: tighten top padding slightly so ServicesHero's
+     Jump-to bar fits above the 269px cookie card naturally instead of translating
+     <nav> -247px on top of the display headline. */
+  html.has-cookie-banner .page .sections-servicesHero > div {
+    padding-top: 76px;
+  }
+}
 @media not all and (min-width: 1024px) {
   /* The home hero pins to 100svh via .max-lg:h-svh — override the height too,
      or the min-height shrink has no effect while height wins. */
   html.has-cookie-banner .page div.max-lg\:h-svh {
     height: calc(100svh - var(--cookie-safe-area));
-  }
-  /* Phase 3: the v2 home frame is content-sized (height:auto), so the v1
-     height-shrink cannot cap it — at 375x812 the content dipped the scroll
-     button ~69px under the card. While the banner is visible the frame's
-     discretionary spacing compresses (~-106px: padding, row margins, 16:9
-     cell, word2/pills/body margins) so every interactive element clears the
-     banner top at scroll-0 on short phones. Transient — reverts on dismiss. */
-  html.has-cookie-banner .page [data-hero-v2] .hero-v2-frame {
-    padding-top: 24px;
-  }
-  html.has-cookie-banner .page [data-hero-v2] .hero-v2-row {
-    margin-block: 10px;
-  }
-  html.has-cookie-banner .page [data-hero-v2] .hero-v2-mediaCell {
-    aspect-ratio: 16 / 9;
-  }
-  html.has-cookie-banner .page [data-hero-v2] .hero-v2-word2 {
-    margin-top: 8px;
-  }
-  html.has-cookie-banner .page [data-hero-v2] .hero-v2-pills {
-    margin-top: 10px;
-  }
-  html.has-cookie-banner .page [data-hero-v2] .parts-smileyText.mb-20 {
-    margin-bottom: 10px;
   }
   /* ServicesHero pills wrap to 2+ rows below lg; at 44px tap height (R12) the
      wrapped rows dip under the card (row-2 bottom 647 vs card top 626 on
@@ -1981,3 +1958,56 @@ html.has-cookie-banner .page .sections-servicesHero {
    plan — the identity rail fits the stage naturally and the pin was the
    cramping root cause. Kinetic hover JS remains in testimonials.ts.)
    ========================================================================== */
+
+/* ==========================================================================
+   ServicesHero — Phase 2 (display scaling/clipping fix & 7-pill nav balance)
+   ========================================================================== */
+.sections-servicesHero .sections-servicesHero__display {
+  padding-inline: clamp(16px, 2.5vw, 48px);
+}
+.sections-servicesHero .sections-servicesHero__word {
+  font-size: clamp(2.875rem, min(14.2vw, 24vh), 16.5rem);
+  line-height: 0.9;
+}
+.sections-servicesHero .sections-servicesHero__word1 {
+  margin-left: 0;
+}
+.sections-servicesHero .sections-servicesHero__word2 {
+  margin-left: clamp(12px, 5.5vw, 130px);
+}
+@media (min-width: 1024px) {
+  .sections-servicesHero .sections-servicesHero__body {
+    margin-top: clamp(10px, 1.5vw, 24px);
+    margin-bottom: clamp(12px, 1.4vw, 24px);
+  }
+  .sections-servicesHero .sections-servicesHero__word2 {
+    margin-top: clamp(6px, 0.8vw, 16px);
+  }
+}
+
+@media (max-width: 1023px) {
+  .sections-servicesHero .sections-servicesHero__navItem--fullMobile {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 455px) {
+  .sections-servicesHero .parts-serviceNavLink {
+    padding-inline: 8px;
+    font-size: 11px;
+  }
+}
+@media (min-width: 1024px) {
+  .sections-servicesHero .sections-servicesHero__navList {
+    width: auto;
+    max-width: min(100%, calc(100vw - 48px));
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .sections-servicesHero .sections-servicesHero__navDivider {
+    display: none;
+  }
+}
