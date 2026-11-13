@@ -123,8 +123,8 @@ WebGL fallbacks in `experience.ts`: text `(0.38,0.02,0.74)`→coral `(0.831,0.31
 - `.part-btnPrimary.bg-purple` (Submit / Accept buttons: coral fill + burgundy text = 2.6:1 fail) → burgundy fill + Off-White text (10.3:1).
 - `.parts-keyword__inner.bg-purple` (home-hero pills 12px) → accent-deep.
 - Coral `text-purple` small text on dark surfaces fixed in markup: Loader counter numerals + CookieBanner Manage/Save buttons → `text-neonGreen` (Beige, 8.8:1 on Burgundy).
-- Remaining decorative coral (corner squares `size-9`, slash/cross/arrow icons on light = 3.9:1 ≥3 UI graphics ✅, 5%-opacity ghost numerals, footer webgl bg) intentionally untouched.
-- Known accepted fail (flagged, launch-blocker B2 scope): Footer `bg-purple` (coral) webgl layer sits under burgundy text `text-darkPurple` (~2.1:1) — mirrors the template's purple-on-dark relationship; resolve when the footer is rebuilt in Phase 3/8 (`--brand-accent-deep` background would also fix it).
+- Remaining decorative coral (corner squares `size-9`, slash/cross/arrow icons on light = 3.9:1 ≥3 UI graphics ✅, 5%-opacity ghost numerals, ~~footer webgl bg~~ (now burgundy, see below)) intentionally untouched.
+- ~~Known accepted fail~~ **RESOLVED (F23, re-verified footer phase 0: Off-White on burgundy 10.36:1, worst case on trail colour 5.13:1)** — historical note: Footer `bg-purple` (coral) webgl layer sits under burgundy text `text-darkPurple` (~2.1:1) — mirrors the template's purple-on-dark relationship; resolve when the footer is rebuilt in Phase 3/8 (`--brand-accent-deep` background would also fix it).
 
 ## 3. Typography mapping — **Option A: "Bricks & Pixels"** (FONT-SWAP-PROMPT, 2026-11-10)
 

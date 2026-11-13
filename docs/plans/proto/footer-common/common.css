@@ -1,0 +1,15 @@
+/* THROWAWAY PROTOTYPE CSS — never imported by the site. */
+@font-face{font-family:"Bricolage";src:url(../../../../public/fonts/bricolage-grotesque-latin.woff2) format("woff2");font-weight:200 800;font-display:swap}
+@font-face{font-family:"Hanken";src:url(../../../../public/fonts/hanken-grotesk-latin.woff2) format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Departure";src:url(../../../../public/fonts/departure-mono-regular.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"FKRaster";src:url(../../../../public/fonts/fk-raster-roman-compact.woff2) format("woff2");font-display:swap}
+:root{--burg:#800020;--beige:#F3E6D5;--off:#FFF9F2;--coral:#D45060;--coral-deep:#BC3D4D;--sage:#C9D3C0;--olive:#5A6432;--deepest:color-mix(in oklab,#800020 78%,black)}
+*{box-sizing:border-box;margin:0}
+body{font-family:Hanken,system-ui,sans-serif;background:#222;color:var(--off);-webkit-font-smoothing:antialiased}
+.stub{min-height:70vh;background:var(--off);color:var(--burg);display:grid;place-items:center;font:600 14px Departure,monospace;letter-spacing:.04em;text-transform:uppercase}
+a{color:inherit}
+.mono{font-family:Departure,monospace;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.brandword{font-family:FKRaster,serif;font-weight:400;text-transform:none;line-height:1}
+.brandword::before{content:"";display:inline-block;width:.98em;height:.9em;margin-right:.1em;vertical-align:-.15em;background:url(../../../../public/brand/logo-cream.webp) center/contain no-repeat}
+:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}

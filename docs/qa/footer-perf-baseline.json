@@ -1,0 +1,41 @@
+{
+  "cls_inp_375_4x": {
+    "cls": 0.0402,
+    "inpSamplesMs": [
+      512,
+      512,
+      512,
+      176,
+      176,
+      176
+    ],
+    "maxInpMs": 512,
+    "scrollTopClickMs": 176
+  },
+  "lighthouse_preview": {
+    "mobile": {
+      "scores": {
+        "performance": 95,
+        "accessibility": 100
+      },
+      "metrics": {
+        "first-contentful-paint": "1.1\u00a0s",
+        "largest-contentful-paint": "1.1\u00a0s",
+        "cumulative-layout-shift": "0.005",
+        "total-blocking-time": "220\u00a0ms"
+      }
+    },
+    "desktop": {
+      "scores": {
+        "performance": 60,
+        "accessibility": 96
+      },
+      "metrics": {
+        "first-contentful-paint": "0.3\u00a0s",
+        "largest-contentful-paint": "0.3\u00a0s",
+        "cumulative-layout-shift": "0.007",
+        "total-blocking-time": "13,290\u00a0ms"
+      }
+    }
+  }
+}

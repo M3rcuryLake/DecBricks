@@ -1,0 +1,2 @@
+const c=document.getElementById('c'),t=()=>{c.textContent=new Intl.DateTimeFormat('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit',timeZone:'Asia/Kolkata'}).format(new Date())};t();setInterval(t,1000);
+document.getElementById('cp').onclick=async()=>{try{await navigator.clipboard.writeText('hello@example.invalid')}catch{}const x=document.getElementById('toast');x.textContent='Email copied';x.classList.add('on');setTimeout(()=>x.classList.remove('on'),1800)};

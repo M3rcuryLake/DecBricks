@@ -1,0 +1,242 @@
+{
+ "initial": {
+  "tag": "initial bottom",
+  "path": "/",
+  "canvases": [
+   {
+    "connected": true,
+    "cw": 1280,
+    "ch": 800,
+    "w": 1280,
+    "h": 800
+   },
+   {
+    "connected": true,
+    "cw": 1280,
+    "ch": 800,
+    "w": 1280,
+    "h": 800
+   }
+  ],
+  "footers": 1,
+  "footerH": 498,
+  "scrollMax": 6540,
+  "triggers": 32,
+  "hasWebGL": true
+ },
+ "swaps": [
+  {
+   "tag": "after /services",
+   "path": "/services",
+   "canvases": [
+    {
+     "connected": true,
+     "cw": 1280,
+     "ch": 800,
+     "w": 1280,
+     "h": 800
+    },
+    {
+     "connected": true,
+     "cw": 1280,
+     "ch": 800,
+     "w": 1280,
+     "h": 800
+    }
+   ],
+   "footers": 1,
+   "footerH": 498,
+   "scrollMax": 5523,
+   "triggers": 23,
+   "hasWebGL": true
+  },
+  {
+   "tag": "after /about",
+   "path": "/about",
+   "canvases": [
+    {
+     "connected": true,
+     "cw": 1280,
+     "ch": 800,
+     "w": 1280,
+     "h": 800
+    },
+    {
+     "connected": true,
+     "cw": 1280,
+     "ch": 800,
+     "w": 1280,
+     "h": 800
+    }
+   ],
+   "footers": 1,
+   "footerH": 498,
+   "scrollMax": 6592,
+   "triggers": 24,
+   "hasWebGL": true
+  },
+  {
+   "tag": "after /contact",
+   "path": "/contact",
+   "canvases": [
+    {
+     "connected": true,
+     "cw": 1280,
+     "ch": 800,
+     "w": 1280,
+     "h": 800
+    },
+    {
+     "connected": true,
+     "cw": 1280,
+     "ch": 800,
+     "w": 1280,
+     "h": 800
+    }
+   ],
+   "footers": 1,
+   "footerH": 498,
+   "scrollMax": 3181,
+   "triggers": 14,
+   "hasWebGL": true
+  },
+  {
+   "tag": "after /",
+   "path": "/",
+   "canvases": [
+    {
+     "connected": true,
+     "cw": 1280,
+     "ch": 800,
+     "w": 1280,
+     "h": 800
+    },
+    {
+     "connected": true,
+     "cw": 1280,
+     "ch": 800,
+     "w": 1280,
+     "h": 800
+    }
+   ],
+   "footers": 1,
+   "footerH": 498,
+   "scrollMax": 6540,
+   "triggers": 32,
+   "hasWebGL": true
+  },
+  {
+   "tag": "after /services",
+   "path": "/services",
+   "canvases": [
+    {
+     "connected": true,
+     "cw": 1280,
+     "ch": 800,
+     "w": 1280,
+     "h": 800
+    },
+    {
+     "connected": true,
+     "cw": 1280,
+     "ch": 800,
+     "w": 1280,
+     "h": 800
+    }
+   ],
+   "footers": 1,
+   "footerH": 498,
+   "scrollMax": 5523,
+   "triggers": 23,
+   "hasWebGL": true
+  },
+  {
+   "tag": "after /about",
+   "path": "/about",
+   "canvases": [
+    {
+     "connected": true,
+     "cw": 1280,
+     "ch": 800,
+     "w": 1280,
+     "h": 800
+    },
+    {
+     "connected": true,
+     "cw": 1280,
+     "ch": 800,
+     "w": 1280,
+     "h": 800
+    }
+   ],
+   "footers": 1,
+   "footerH": 498,
+   "scrollMax": 6592,
+   "triggers": 24,
+   "hasWebGL": true
+  }
+ ],
+ "focus": [
+  {
+   "inFooter": true,
+   "tag": "BUTTON",
+   "label": "Rise to the top",
+   "outline": "solid 2px rgb(255, 249, 242)",
+   "boxShadow": "none"
+  },
+  {
+   "inFooter": true,
+   "tag": "A",
+   "label": "Play Our 404 Game",
+   "outline": "solid 2px rgb(255, 249, 242)",
+   "boxShadow": "none"
+  },
+  {
+   "inFooter": true,
+   "tag": "BUTTON",
+   "label": "Manage Cookies",
+   "outline": "solid 2px rgb(255, 249, 242)",
+   "boxShadow": "none"
+  },
+  {
+   "inFooter": false,
+   "tag": "BUTTON",
+   "label": "Accept All",
+   "outline": "solid 2px rgb(255, 249, 242)",
+   "boxShadow": "none"
+  },
+  {
+   "inFooter": false,
+   "tag": "BUTTON",
+   "label": "Manage",
+   "outline": "solid 2px rgb(243, 230, 213)",
+   "boxShadow": "none"
+  }
+ ],
+ "scrollTopRect": {
+  "x": 121.4609375,
+  "y": 84.390625,
+  "w": 170.921875,
+  "h": 44
+ },
+ "cost": {
+  "scriptMs": 123,
+  "taskMs": 2209,
+  "layoutMs": 0,
+  "longtasks": []
+ },
+ "errs": [
+  "warning: [.WebGL-0x3bfc026b6a00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+  "warning: [.WebGL-0x3bfc019ba000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+  "warning: [.WebGL-0x3bfc019ba000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+ ],
+ "footerReqs": [
+  "/brand/logo-cream.webp",
+  "/fonts/fk-raster-roman-compact.woff2",
+  "/fonts/departure-mono-regular.woff2",
+  "/src/scripts/footer.ts",
+  "/src/scripts/webgl/experience.ts",
+  "/src/scripts/webgl/impl.ts",
+  "/node_modules/.vite/deps/three.js?v=21de4d8d"
+ ]
+}

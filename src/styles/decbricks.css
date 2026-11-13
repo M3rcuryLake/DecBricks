@@ -62,8 +62,8 @@
    mark fails on burgundy (median #e00609 vs #800020 = 2.17:1), so these
    sections render the off-white silhouette variant instead (owner decision;
    ≈15:1 on burgundy, matches the white "Decbricks" text beside it). The
-   footer band is coral (`bg-purple` #D45060) on every route — colour body
-   there is 1.22:1, cream 3.34:1 (≥3:1 non-text). Light surfaces (About white
+   footer band is burgundy (`--brand-bg-dark`, repainted in phase 0 R11; the
+   legacy `bg-purple` class is overridden below) — cream mark 10.36:1. Light surfaces (About white
    cards) keep the full-colour file. */
 .structure-menu .font-brand::before,
 .sections-servicesHero .font-brand::before,
@@ -956,7 +956,13 @@ html.has-cookie-banner {
     --cookie-safe-area: 269px;
   }
 }
+/* Footer phase 0 (F5): the reserve lives INSIDE the footer, not under it, so the
+   strip below the footer content is the burgundy footer band (the WebGL plane
+   follows the footer rect) instead of the off-white body behind `.page`. */
 html.has-cookie-banner .page {
+  padding-bottom: 0;
+}
+html.has-cookie-banner .structure-footer {
   padding-bottom: var(--cookie-safe-area);
 }
 html.has-cookie-banner .page div.min-h-svh {
@@ -1018,4 +1024,9 @@ html.has-cookie-banner .page .sections-servicesHero {
   html.has-cookie-banner .page .parts-servicesHeroNavRow {
     margin-top: calc(var(--spacing) * 10);
   }
+}
+
+/* Footer phase 0: 404-game pill reaches the 44px target at all widths. */
+.structure-footer a[href="/the404game"] {
+  min-height: 44px;
 }

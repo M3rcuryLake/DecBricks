@@ -1,0 +1,24 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Footer concept B — Control Room (prototype)</title>
+<link rel="stylesheet" href="../footer-common/common.css"><link rel="stylesheet" href="style.css">
+<div class="stub">Page content above (prototype B · Control Room)</div>
+<footer class="f" aria-label="Site footer">
+ <div class="f__in">
+  <div class="f__top">
+   <p class="mono f__tag">// Decbricks / studio status</p>
+   <h2 class="f__h">Got a build<br>in mind?</h2>
+   <a class="btn" href="#">Start a project <span aria-hidden="true">→</span></a>
+  </div>
+  <div class="f__panel" role="group" aria-label="Studio status">
+   <div class="row"><span class="mono">Local time</span><b class="clock" id="c">--:--:--</b><span class="mono">IST · UTC+5:30</span></div>
+   <div class="row"><span class="mono">Status</span><b><i class="dot"></i>Open for projects</b><span class="mono">proto data</span></div>
+   <div class="row"><span class="mono">Email</span><button class="copy" type="button" id="cp">hello@example.invalid</button><span class="mono" id="hint">click to copy</span></div>
+   <div class="row"><span class="mono">Phone</span><a href="#">+00 00000 00000</a><span class="mono">placeholder</span></div>
+   <div class="bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+  <nav class="f__idx" aria-label="Footer"><a href="#"><em>01</em>Home</a><a href="#"><em>02</em>About</a><a href="#"><em>03</em>Services</a><a href="#"><em>04</em>Contact</a></nav>
+  <div class="f__legal mono"><span>© 2026 <span class="brandword" style="font-size:15px">Decbricks</span>. All rights reserved.</span><a href="#">Privacy</a><a href="#">Terms</a><button class="lk" type="button">Cookie settings</button><button class="lk" type="button">Back to top ↑</button></div>
+ </div>
+ <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</footer>
+<script src="script.js"></script>

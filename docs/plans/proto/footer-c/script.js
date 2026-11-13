@@ -1,0 +1,1 @@
+const s=[...document.querySelectorAll('.stk i')];const up=()=>{const d=document.documentElement,p=d.scrollTop/(d.scrollHeight-innerHeight||1);s.forEach((i,k)=>i.classList.toggle('on',p>=(k+1)/s.length-.001))};addEventListener('scroll',up,{passive:true});up();
