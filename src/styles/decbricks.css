@@ -2366,3 +2366,84 @@ html.has-cookie-banner .page .sections-servicesHero {
     translate: none !important;
   }
 }
+
+/* ==========================================================================
+   /services 7 Blocks & Generative ServiceArtwork — Phase 4
+   ========================================================================== */
+.parts-serviceBlock {
+  scroll-margin-top: 96px;
+}
+.parts-serviceBlock__capChip {
+  height: auto;
+  min-height: 44px;
+  padding-block: 8px;
+  line-height: 1.2;
+}
+@media (min-width: 1280px) {
+  .parts-serviceBlock__capChip {
+    min-height: 45px;
+    padding-block: 10px;
+  }
+}
+@media (min-width: 1660px) {
+  .parts-serviceBlock__capChip {
+    min-height: 52px;
+  }
+}
+.parts-serviceArtwork {
+  position: relative;
+  overflow: hidden;
+}
+.parts-serviceArtwork__code {
+  position: absolute;
+  right: 32px;
+  bottom: 13px;
+  font-family: var(--font-offBit101);
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  pointer-events: none;
+}
+.parts-serviceBlock__actionRow {
+  flex-wrap: wrap;
+  border-top: 1px solid color-mix(in srgb, var(--color-darkPurple) 18%, transparent);
+}
+@media (min-width: 1024px) {
+  .parts-serviceBlock__actionRow {
+    margin-top: auto;
+    padding-top: 18px;
+  }
+  .parts-serviceBlock__actionRow--mediaRight {
+    flex-direction: row-reverse;
+  }
+}
+.parts-serviceBlock__index {
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+}
+.parts-serviceBlock__cta {
+  min-height: 44px;
+  padding-block: 6px;
+  font-size: 12px;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+.parts-serviceBlock__cta:hover,
+.parts-serviceBlock__cta:focus-visible {
+  color: #5A6432;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .parts-serviceArtwork__pulse {
+    transition: opacity 280ms ease, transform 280ms ease;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .parts-serviceBlock:hover .parts-serviceArtwork__pulse {
+    opacity: 0.85;
+    transform: scale(1.04);
+  }
+}
