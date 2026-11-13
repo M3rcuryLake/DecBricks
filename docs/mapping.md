@@ -15,7 +15,7 @@
 | side nav | `ServicesSidebarNav` | add props `{ items, ariaLabel }`; default = SERVICES |
 | clients strip | `ServicesClients` | **omit** on About (1minus1 logos; brief doesn't list it). Verify `services-page.ts` null-guards `.sections-servicesClients` |
 | form | `ContactForm` | add props for smiley copy + heading words (currently hard-coded "Begin your / story", games copy) |
-| footer | `Footer` | rebrand text/links/socials |
+| footer | `Footer` (`FooterCta`, `FooterNav`, `FooterContact`, `FooterStatus`, `FooterWordmark`, `FooterLegal`, `FooterWebgl` + `src/data/footer.ts`) | Concept A "Foundation": brick-laid FK Raster wordmark, data-driven nav/contact/status (empty slots hide until owner data supplied), `cta="auto"` omits redundant CTA on `/contact` (emits `<h2 class="sr-only">Site footer</h2>`) |
 
 About section list → blocks (numeral / eyebrow / H2 / content):
 01 Intro — "Who we are" · H2 "Building Technology. Empowering Businesses. Driving Growth." (the doc's `# About Decbricks` is the page H1 via hero) — 2 paragraphs + "technology should serve a purpose" paragraph
@@ -38,14 +38,14 @@ Blocks 3+4 hide while their arrays are empty (dev warnings; sidebar item no-ops)
 - **VERIFIED (Phase 0):** services-page.ts imports `SERVICES`/`CLIENT_LOGOS` directly and drives all ScrollTrigger + sidebar/hero active-state logic from that array (`SERVICES[0].id`, `SERVICES.forEach`, `SERVICES[length-1]`) — so `initServicesPage()` is not N-generic as-is; Phase 4 adds an optional per-page items override, defaulting to the current import. `.sections-servicesClients` and `.parts-autoplayVideo` are null-guarded (early returns; `CLIENT_LOGOS.length <= slots.length` → rotation off). About/Contact must reuse the `.sections-servicesList` class on their content-island `<section>` for the sidebar script, and keep `#contact` on the ContactForm section.
 - contact.ts form logic VERIFIED: client-side validation only; "success" is cosmetic (`Message Sent!` + reset). Phase 5 adds real fetch submission.
 - ContactForm.astro VERIFIED: `smileyCopy` prop already exists; "Begin your / story" + "Get In Touch" hard-coded; reCAPTCHA note is decorative text with no script — drop in Phase 5 rewrite or keep as copy.
-- footer.ts: `.structure-footer(__inner|__marquee|__social)`, `.parts-btnScrollTop`
+- footer.ts: `.structure-footer(__inner|__wordmarkRow|__wordmark|__copyBtn|__toast|__clock|__brick)`, `.parts-btnScrollTop`, `button[aria-label="Manage Cookies"]`; retired `.structure-footer__marquee` / `initSocialPillsRandomLayout` (null-guarded); `FooterWebgl.astro` isolates the global `canvas.webgl` pair in unchanged DOM order for `reattachCanvases()`
 - testimonials.ts (home): `.tst-band` — P1 spotlight hooks `.tst-*` (card/rail/controls; state machine lands P2). Old drag-canvas hooks `.sections-testimonials*`, `.parts-testimonialCard`, `.parts-testimonialMiniMap*`, `.parts-marqueeCursor` were removed WITH the component rewrite (deliberate no-rename-rule exception; nothing outside the section queried them — verified by grep at rewrite time). Rail disclosure: toggle + collapse only <768 (`mqMobile` = `(max-width: 767px)`); plain column ≥768 (P4, plan §4).
 - services.ts (home): `.sections-services`, `.parts-serviceCard(__inner)`
 - main.ts: `.sections-hero` (home), `.sections-servicesHero`; page transitions via `page-transition.ts`
 - Anchors: block `id` = nav `href="#id"`; heading `id="{id}-heading"` with `aria-labelledby` on the `<article>`.
 
 ## Other template pieces (not part of the brief but they ship 1minus1 identity)
-`Hero`, `CaseStudies`, `ServicesClients`, `index.astro`, `services.astro`, `data/services.ts`, `404.astro`, `the404game.astro`, `Footer` socials, `Header` logo — see open-items.md "Scope decisions". (Testimonials left this list in 2026-11-13 P1: quotes are placeholder-driven data, 1minus1 sticker art/minimap/drag canvas deleted — see open-items.md §E + B2.)
+`Hero`, `CaseStudies`, `ServicesClients`, `index.astro`, `services.astro`, `data/services.ts`, `404.astro`, `the404game.astro`, `Header` logo — see open-items.md "Scope decisions". (Footer left this list in Footer Phase 1–6: template marquee/social links removed, copy/nav/contact data-driven via `src/data/footer.ts`; Testimonials left in 2026-11-13 P1.)
 
 ## Brand typography layer (FONT-SWAP-PROMPT Option A, 2026-11-10)
 - `src/lib/brand.ts` — `BRAND`, `brandify(text)` (HTML-escape → wrap every `Decbricks` word in `<span class="font-brand">`), `hasBrand`. Use at RENDER points; data strings stay verbatim.
@@ -57,8 +57,8 @@ Blocks 3+4 hide while their arrays are empty (dev warnings; sidebar item no-ops)
 | Where | Treatment |
 |---|---|
 | Header wordmark | `<span class="font-brand …">Decbricks</span>` — 2026-11-12 `.font-brand` = **logo lockup** (`::before` logo + FK Raster name); sized 22/26px |
-| Footer wordmark | `<span class="font-brand …">Decbricks</span>` (sized 22/26/30px) |
-| Footer copyright | `brandify('© 2026 Decbricks. All rights reserved.')` inline word (lockup included) |
+| Footer wordmark | Brick-laid `<div class="font-brand structure-footer__wordmark" translate="no">Decbricks</div>` (`clamp(62px, 22.8cqi, 424px)`, centered `0.30em × 0.275em` cream crest, `viewBox="0 0 96 48"` running-bond SVG fill via `background-clip: text`, stepped `clip-path` `.is-built` reveal) |
+| Footer copyright | `brandify('© 2026 Decbricks. All rights reserved.')` with `translate="no"` on `.font-brand` lockup |
 | Hero giant word(s) | `brandify(headingParts[*])` via `set:html` (~6% wider in Departure Mono — visual check §A) |
 | Logo lockup | `.font-brand::before` = `/brand/logo.webp` via `--brand-logo-w/h` (**1.2em/1.1em**, aspect 1.088:1, mark v2 red blob); dark/coral contexts (`.structure-menu`, `.sections-servicesHero`, `.sections-contactForm`, `.structure-footer`) get the **cream variant** `/brand/logo-cream.webp` (owner decision 2026-11-12 — red mark fails 2.17:1 on burgundy, 1.22:1 on the coral footer band); opt-out `.font-brand--no-logo` (**zero opt-outs in use**); giant-context cap hook = set `--brand-logo-w/h` on a context class (none needed today: no giant brand contexts exist — hero H1s have no brand word) |
 | Hero / smiley copy | `brandify(body/smileyCopy)` on sr-only + visual spans |

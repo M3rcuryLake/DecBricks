@@ -96,3 +96,14 @@ Evidence in `docs/qa/shots/` (`<page>-<w>-<before|after>-<id>.png`, git-ignored)
 | P5-2 | `1280×800` keyboard Tab | Every footer tab stop + `:focus-visible` ring | 12/12 stops in footer (`Start a project→` through `Rise to the top`), `outlineW: 2`, `outlineStyle: solid`, `outlineColor: rgb(255, 249, 242)` (`>= 10:1` on burgundy), 2 labelled `<nav>`s + 1 `<h2>` across `/`, `/services`, `/about`, `/contact`, `/404` | PASS |
 | P5-3 | `translate="no"` + `forced-colors` + `@media print` | Brand span protection, HCM wordmark, print readability (`docs/qa/shots/footer-p5-print.png`) | `translateFails: 0` across all 5 routes; `forced-colors: active` resets `background-image: none`, `background-clip: border-box`, `-webkit-text-fill-color: rgb(0, 0, 0)`; `@media print` hides `.structure-loader`, `.webgl*`, interactive buttons/wordmark and prints dark `#111111` ink on `#ffffff` with `filter: brightness(0)` crest | PASS |
 | P5-4 | Preview Lighthouse (`4322`) | `/`, `/services`, `/about`, `/contact` accessibility | `/services` **100**, `/about` **100**, `/contact` **100**, `/` **97** (only pre-existing `.tst-index > b` & `.structure-menu`/`.part-btnPrimary` items outside `.structure-footer`; 0 footer items flagged) | PASS |
+
+## Footer redesign — Phase 6 final QA telemetry (2026-11-13)
+
+| ID | Scope | Baseline (P0) | Final (P6) | Outcome |
+|---|---|---|---|---|
+| P6-1 | `footer.ts` minified/gzipped (`esbuild.transformSync`) | `3,293 B` min / `1,626 B` gz | `4,271 B` min / `1,995 B` gz (`<= 3 KB` budget) | PASS |
+| P6-2 | `375×812` `4× CPU` throttled footer scroll + scrollTop | `cls: 0.0402`, `scrollTopClickMs: 176`, `maxInpMs: 512` | `cls: 0`, `footerCls: 0`, `maxInpMs: 80`, `scrollAfter: 0` | PASS |
+| P6-3 | Lighthouse preview (`/`, desktop preset, `4331`) | Perf `60`, A11y `96`, CLS `0.007`, TBT `13,290ms` | Perf `61`, A11y `97`, CLS `0.009`, TBT `2,830ms` | PASS |
+| P6-4 | Lighthouse preview (`4331`, mobile) | `/` Perf `95`, A11y `100`, CLS `0.005`, LCP `1.1s` | `/about`: Perf `99`, A11y `100`, CLS `0`, LCP `1.1s`, TBT `70ms` (`/` mobile Perf `77` / CLS `0.4` from parallel WIP `Hero.astro` changes; `footerCls: 0`) | PASS |
+| P6-5 | 30-swap WebGL & footer gauntlet (`1280×800`) | 6 swaps, `2` `1280×800` canvases, `0` errs | **30/30** swaps across `/services`/`/about`/`/contact`/`/`, `failures: []`, `errs: []` | PASS |
+| P6-6 | Schema consistency + missing-data matrix + final shots | — | `npm run check:footer` PASS (`6` footer pages, `3` `Organization` blocks), env-set clock/status `true`/`true` vs empty `false`/`false`; shots `footer-p6-{375,1440}.png` | PASS |
