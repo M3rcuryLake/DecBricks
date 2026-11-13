@@ -1,5 +1,6 @@
 import { SITE, SITE_URL } from '../data/site';
 import { EMAIL, PHONES } from '../data/contact';
+import { DECBRICKS_SERVICES, type DecbricksServiceItem } from '../data/services';
 
 const abs = (path: string) => new URL(path, SITE_URL + '/').href.replace(/\/$/, '');
 
@@ -75,5 +76,59 @@ export function contactPageSchema(description: string): Json[] {
     },
     organizationSchema(),
     breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Contact', path: '/contact' }]),
+  ];
+}
+
+/**
+ * Structured data for `/services` covering all 7 Decbricks services from
+ * `DECBRICKS_SERVICES`. Wired into `services.astro` in Phase 4 once visible
+ * Decbricks copy replaces 1minus1 copy on `/services` (Implementation-plan §6).
+ */
+export function servicePageSchema(
+  description: string,
+  services: readonly DecbricksServiceItem[] = DECBRICKS_SERVICES
+): Json[] {
+  const pageUrl = abs('/services');
+  return [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: `Services | ${SITE.name}`,
+      url: pageUrl,
+      description,
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: services.length,
+        itemListElement: services.map((service, idx) => ({
+          '@type': 'ListItem',
+          position: idx + 1,
+          item: {
+            '@type': 'Service',
+            name: service.title,
+            serviceType: service.title,
+            description: [service.tagline, ...service.description].join(' '),
+            url: `${pageUrl}#${service.id}`,
+            provider: {
+              '@type': 'Organization',
+              name: SITE.name,
+              url: SITE_URL,
+            },
+            hasOfferCatalog: {
+              '@type': 'OfferCatalog',
+              name: service.title,
+              itemListElement: service.items.map((capability) => ({
+                '@type': 'Offer',
+                itemOffered: {
+                  '@type': 'Service',
+                  name: capability,
+                },
+              })),
+            },
+          },
+        })),
+      },
+    },
+    organizationSchema(),
+    breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }]),
   ];
 }

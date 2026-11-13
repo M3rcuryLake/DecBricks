@@ -1,3 +1,259 @@
+/**
+ * Canonical 7-service Decbricks catalog (source copy verbatim from
+ * `docs/services-content.md`; UI/SEO fields marked PROPOSED per
+ * `docs/plans/services-7-cards-plan.md` §5).
+ */
+export type ServiceSlug =
+  | 'strategy-consulting'
+  | 'design-branding'
+  | 'web-software-development'
+  | 'mobile-app-development'
+  | 'ai-automation'
+  | 'digital-marketing-growth'
+  | 'business-development-outreach';
+
+export type ServiceMotif =
+  | 'blueprint'
+  | 'swatches'
+  | 'brackets'
+  | 'device'
+  | 'nodes'
+  | 'growth'
+  | 'network';
+
+export type ServiceCardTheme =
+  | 'offwhite'
+  | 'beige'
+  | 'burgundy'
+  | 'sage'
+  | 'brick'
+  | 'beige-alt'
+  | 'deepest';
+
+export interface DecbricksServiceItem {
+  /** PROPOSED anchor slug & route fragment (`/services#<id>`). */
+  id: ServiceSlug;
+  /** Verbatim numeral `'01'`..`'07'`. */
+  number: string;
+  /** PROPOSED 1-word discipline eyebrow (e.g. `'Planning'`). */
+  eyebrow: string;
+  /** Verbatim service title. */
+  title: string;
+  /** PROPOSED short label (`<=15` chars) for Hero & SidebarNav. */
+  navLabel: string;
+  /** Verbatim service tagline (used verbatim on Home teaser cards + /services lead). */
+  tagline: string;
+  /** Verbatim description paragraphs (`1` for 01–06; `3` for 07). */
+  description: readonly string[];
+  /** Verbatim 'Our Services' capability list (`7`–`8` items). */
+  items: readonly string[];
+  /** Generative SVG blueprint plate motif (`ServiceArtwork.astro`). */
+  motif: ServiceMotif;
+  /** PROPOSED architectural plate stamp below `/services` artwork. */
+  plateCode: string;
+  /** Surface colour theme key for the Home diagonal stack. */
+  homeTheme: ServiceCardTheme;
+  /** Optional ecosystem entities named in verbatim description (e.g. Findtern). */
+  ecosystemMentions?: readonly string[];
+  /** Optional future owner-supplied photo/video slot (rendered only when populated). */
+  media?: {
+    kind: 'image' | 'video';
+    src: string;
+    poster?: string;
+    alt: string;
+  };
+  /** Optional future Decbricks project proofs (hidden until owner-supplied). */
+  projects?: readonly string[];
+}
+
+export const SERVICES_SECTION_HEADER = {
+  sectionLabel: 'OUR EXPERTISE',
+  eyebrow: 'WHAT WE DO',
+  heading: 'Complete digital solutions. One trusted partner.',
+  intro:
+    'We bring together technology, design and business growth expertise to help companies build stronger digital foundations and create new opportunities.',
+  ctaLabel: 'Explore All Services',
+  ctaHref: '/services',
+} as const;
+
+export const DECBRICKS_SERVICES_HERO = {
+  srTitle: 'Our Expertise',
+  headingParts: ['Our', 'Expertise'] as const,
+  body: SERVICES_SECTION_HEADER.intro,
+} as const;
+
+export const DECBRICKS_SERVICES: DecbricksServiceItem[] = [
+  {
+    id: 'strategy-consulting',
+    number: '01',
+    eyebrow: 'Planning',
+    title: 'Strategy & Consulting',
+    navLabel: 'Strategy',
+    tagline: 'A clear direction for every big idea.',
+    description: [
+      'We help businesses identify opportunities, define product requirements and choose the right technology and strategies to achieve their objectives.',
+    ],
+    items: [
+      'Technology Consulting',
+      'Digital Strategy',
+      'Product Planning',
+      'Business Process Analysis',
+      'Technical Architecture',
+      'Market Research',
+      'Product Roadmapping',
+    ],
+    motif: 'blueprint',
+    plateCode: 'PLATE 01 · BLUEPRINT',
+    homeTheme: 'offwhite',
+  },
+  {
+    id: 'design-branding',
+    number: '02',
+    eyebrow: 'Crafting',
+    title: 'Design & Branding',
+    navLabel: 'Design',
+    tagline: 'Make your brand impossible to overlook.',
+    description: [
+      'We create thoughtful digital experiences and distinctive brand identities that communicate your value, strengthen your presence and connect with your audience.',
+    ],
+    items: [
+      'Brand Identity & Logo Design',
+      'UI/UX Design',
+      'Website Design',
+      'Application Interface Design',
+      'Graphic & Creative Design',
+      'Social Media Creatives',
+      'Marketing Materials',
+    ],
+    motif: 'swatches',
+    plateCode: 'PLATE 02 · IDENTITY',
+    homeTheme: 'beige',
+  },
+  {
+    id: 'web-software-development',
+    number: '03',
+    eyebrow: 'Building',
+    title: 'Web & Software Development',
+    navLabel: 'Web & Software',
+    tagline: 'Powerful digital products, built for real-world needs.',
+    description: [
+      'We develop modern websites, web applications and customised software that help businesses improve operations, serve customers and scale confidently.',
+    ],
+    items: [
+      'Website Development',
+      'Web Application Development',
+      'E-commerce Development',
+      'Custom Software Development',
+      'Frontend & Backend Development',
+      'SaaS Development',
+      'API Development',
+      'Website Maintenance',
+    ],
+    motif: 'brackets',
+    plateCode: 'PLATE 03 · SYSTEMS',
+    homeTheme: 'burgundy',
+  },
+  {
+    id: 'mobile-app-development',
+    number: '04',
+    eyebrow: 'Shaping',
+    title: 'Mobile App Development',
+    navLabel: 'Mobile Apps',
+    tagline: 'Your business, within reach.',
+    description: [
+      'We build intuitive and scalable mobile applications designed to deliver seamless user experiences and support your business objectives.',
+    ],
+    items: [
+      'Android App Development',
+      'iOS App Development',
+      'Cross-Platform App Development',
+      'Mobile UI/UX Design',
+      'Backend Development',
+      'API Integration',
+      'App Maintenance & Support',
+    ],
+    motif: 'device',
+    plateCode: 'PLATE 04 · MOBILE',
+    homeTheme: 'sage',
+  },
+  {
+    id: 'ai-automation',
+    number: '05',
+    eyebrow: 'Automating',
+    title: 'AI & Automation',
+    navLabel: 'AI & Automation',
+    tagline: 'Make technology work smarter.',
+    description: [
+      'We help businesses use artificial intelligence and automation to streamline workflows, improve efficiency and unlock new possibilities.',
+    ],
+    items: [
+      'AI Agent Development',
+      'AI Chatbot Development',
+      'Generative AI Integration',
+      'Business Process Automation',
+      'Workflow Automation',
+      'AI-Powered Applications',
+      'LLM Integration',
+      'Intelligent Business Systems',
+    ],
+    motif: 'nodes',
+    plateCode: 'PLATE 05 · NEURAL',
+    homeTheme: 'brick',
+  },
+  {
+    id: 'digital-marketing-growth',
+    number: '06',
+    eyebrow: 'Growing',
+    title: 'Digital Marketing & Growth',
+    navLabel: 'Marketing',
+    tagline: 'Get noticed. Reach further. Grow faster.',
+    description: [
+      'We help businesses strengthen their online presence, connect with potential customers and build digital marketing strategies focused on meaningful growth.',
+    ],
+    items: [
+      'Search Engine Optimisation (SEO)',
+      'Social Media Marketing',
+      'Social Media Management',
+      'Performance Marketing',
+      'Content Marketing',
+      'Paid Advertising',
+      'Email Marketing',
+      'Lead Generation',
+    ],
+    motif: 'growth',
+    plateCode: 'PLATE 06 · GROWTH',
+    homeTheme: 'beige-alt',
+  },
+  {
+    id: 'business-development-outreach',
+    number: '07',
+    eyebrow: 'Connecting',
+    title: 'Business Development & Outreach',
+    navLabel: 'Outreach',
+    tagline: 'Create connections that move business forward.',
+    description: [
+      'Business growth takes more than having a great product or service. It requires reaching the right audience, starting meaningful conversations and building relationships.',
+      'At Decbricks, we help businesses identify potential customers and develop structured outreach campaigns. Our experience includes executing email and cold-calling campaigns for startups such as Findtern and Upcoming Engineers.',
+      'From prospect research to campaign execution and follow-ups, we help businesses create new opportunities and strengthen their outreach efforts.',
+    ],
+    items: [
+      'B2B Lead Generation',
+      'LinkedIn Outreach',
+      'Cold Email Campaigns',
+      'Cold Calling Campaigns',
+      'Prospect Research',
+      'Email Campaign Management',
+      'Sales Development Support',
+      'Client Acquisition Support',
+    ],
+    motif: 'network',
+    plateCode: 'PLATE 07 · NETWORK',
+    homeTheme: 'deepest',
+    ecosystemMentions: ['Findtern', 'Upcoming Engineers'],
+  },
+];
+
+/** @deprecated Temporary compatibility export until P2–P3 migrate Hero, ServiceBlock, and ServicesHero. */
 export interface ServiceItem {
   id: 'strategy' | 'creative' | 'web-development' | 'campaigns';
   number: string;
@@ -15,6 +271,7 @@ export interface ServiceItem {
   homeExtraCount?: number;
 }
 
+/** @deprecated Temporary compatibility export removed in P3 along with ServicesClients.astro. */
 export interface ClientLogo {
   id: number;
   name: string;
@@ -24,6 +281,7 @@ export interface ClientLogo {
   height: number;
 }
 
+/** @deprecated Replace with DECBRICKS_SERVICES_HERO in P3. */
 export const SERVICES_HERO = {
   srTitle: 'Our Services',
   headingParts: ['Our', 'Services'] as const,
