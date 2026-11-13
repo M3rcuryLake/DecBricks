@@ -37,7 +37,7 @@ const hasFallbackLinks = !!CAL.bookingUrl || !!EMAIL || PHONES.length > 0;
   <div class:list={['cal-fallback', fallbackVisible ? '' : 'is-hidden']} role="status">
     <p
       class="cal-fallback__title font-neuePower text-[14px] leading-snug font-bold text-darkPurple uppercase"
-      set:html={brandify(hasCal ? 'The booking calendar could not load here.' : 'Online booking is not configured yet.')}
+      set:html={brandify(hasCal ? 'The booking calendar could not load here.' : 'Online booking is coming soon.')}
     />
     {
       hasCal && !hasFallbackLinks ? null : hasFallbackLinks && (
