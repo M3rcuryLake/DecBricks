@@ -169,6 +169,107 @@
   background-color: var(--brand-accent-deep);
 }
 
+/* --------------------------------------------------------------------------
+   Phase 1 foundation tokens (redesign-polish §3, ink approved by owner
+   2026-11-13). Additive aliases only — the @layer theme block in global.css
+   stays untouched; these feed the u-* utilities below and later phases.
+   Surfaces: ink #2A0208 on Off-White ≈13.5:1, on Beige ≈12.5:1, on Sage ≈12:1.
+   -------------------------------------------------------------------------- */
+:root {
+  --color-ink: #2a0208;
+  --color-ink-muted: color-mix(in oklab, #2a0208 62%, #fff9f2);
+  /* 1px hairlines: dark ink-alpha on light surfaces, off-white-alpha on dark. */
+  --hairline: rgba(42, 2, 8, 0.16);
+  --hairline-dark: rgba(255, 249, 242, 0.22);
+  /* Radius scale (§3): 0 · 12 chips/inputs · 20 media thumbs · pill tags.
+     The 40/0/40/40 signature stays expressed per-component (u-btn etc.). */
+  --radius-pill: 999px;
+  /* Motion tokens: micro 150 / standard 250 / reveal 500 ms. */
+  --dur-micro: 150ms;
+  --dur-std: 250ms;
+  --dur-reveal: 500ms;
+  --ease-brand: cubic-bezier(0.22, 0.61, 0.36, 1);
+  /* Fluid type scale (§3), consumed by the u-* type utilities. */
+  --fs-display: clamp(44px, 7.2vw, 104px);
+  --fs-h2: clamp(28px, 3.6vw, 52px);
+  --fs-lede: clamp(17px, 1.4vw, 21px);
+}
+
+/* Fluid type utilities (§3). Applied per-component; hero display moments are
+   NOT restyled here (GSAP-measured, owned by Phase 3) — u-display is defined
+   for them. */
+.u-display {
+  font-size: var(--fs-display);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.015em;
+}
+.u-h2 {
+  font-size: var(--fs-h2);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+}
+.u-lede {
+  font-size: var(--fs-lede);
+  font-weight: 450;
+  line-height: 1.55;
+}
+.u-kicker {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+/* Body/muted ink on light + sage surfaces (owner decision 2026-11-13).
+   Applied explicitly per element — no cascading surface guesses. Headings
+   keep their burgundy treatment. */
+.u-ink {
+  color: var(--color-ink);
+}
+.u-ink-muted {
+  color: var(--color-ink-muted);
+}
+
+/* Section rhythm (§3): one padding value + baseline hairline. Light bands
+   only — inverted (burgundy) bands are excluded (the hairline is ink-alpha). */
+.u-section {
+  padding-block: clamp(56px, 8vw, 120px);
+  border-top: 1px solid var(--hairline);
+}
+
+/* Button system (§3): exactly two shapes + pill tags. Primary = burgundy
+   block with the 40/0/40/40 signature; ghost = hairline outline on light.
+   (u-btn-primary also fixes the submit button's banned burgundy-on-coral
+   text pair, 2.64:1 → 10:1.) */
+.u-btn-primary {
+  border-radius: 40px 0 40px 40px;
+  background-color: var(--brand-bg-dark);
+  color: var(--brand-on-dark);
+  transition: background-color var(--dur-std) var(--ease-brand), transform var(--dur-micro) var(--ease-brand);
+}
+.u-btn-primary:hover {
+  background-color: var(--brand-bg-deeper);
+}
+.u-btn-primary:active {
+  transform: scale(0.98);
+}
+.u-btn-ghost {
+  border-radius: 40px 0 40px 40px;
+  border: 1px solid var(--hairline);
+  background-color: transparent;
+  color: var(--color-ink);
+  transition: background-color var(--dur-std) var(--ease-brand), transform var(--dur-micro) var(--ease-brand);
+}
+.u-btn-ghost:hover {
+  background-color: color-mix(in oklab, #2a0208 6%, transparent);
+}
+.u-btn-ghost:active {
+  transform: scale(0.98);
+}
+
 /* Theme-4 hero service slab: same hue family as coral but deep enough to
    carry the slab's own small text (eyebrow/body = Off-White, 5.1:1). The
    class pair replaces `bg-purple before:bg-purple` in Hero.astro theme 4. */
