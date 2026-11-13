@@ -192,16 +192,29 @@ export function initMenu() {
 
     mm.add(`(max-width: ${bp.lg - 1}px)`, () => {
       const reduced = prefersReducedMotion();
+      const mobileLinks = mobileNav.querySelectorAll('.link');
       menuTl = gsap.timeline({
         paused: true,
         defaults: { duration: reduced ? 0 : 0.5 },
       });
       menuTl.from(mobileNav, { yPercent: -150, duration: reduced ? 0 : 0.75, ease: 'elastic.out(1, 1.25)' });
-      menuTl.from('.link', { yPercent: 100, stagger: 0.1, ease: 'power2.inOut' }, '<-=0.1');
+      if (mobileLinks.length) {
+        menuTl.from(mobileLinks, { yPercent: 100, stagger: 0.1, ease: 'power2.inOut' }, '<-=0.1');
+      }
       if (closeBtn) menuTl.from(closeBtn, { autoAlpha: 0 }, '>-=0.1');
       return () => {
+        if (menuOpenState) {
+          menuOpenState = false;
+          setMobileNavInert(true);
+          openBtn?.setAttribute('aria-expanded', 'false');
+          applyLogoClasses();
+          getLenis()?.start();
+        }
         menuTl?.kill();
         menuTl = null;
+        gsap.set([mobileNav, closeBtn, ...mobileLinks].filter(Boolean), {
+          clearProps: 'transform,opacity,visibility',
+        });
       };
     });
 
@@ -220,9 +233,12 @@ export function initMenu() {
       menuOpenState = false;
       setMobileNavInert(true);
       openBtn?.setAttribute('aria-expanded', 'false');
+      applyLogoClasses();
       menuTl?.timeScale(1).reverse();
-      if (resumeLenis) getLenis()?.start();
-      setTimeout(() => menuButtonRef?.focus());
+      if (resumeLenis) {
+        getLenis()?.start();
+        setTimeout(() => menuButtonRef?.focus());
+      }
     };
 
     closeMenuFn = close;
