@@ -1,4 +1,4 @@
-import { gsap, bp, bus, ScrollTrigger, initSvgRectReveal, prefersReducedMotion } from './core/gsap';
+import { gsap, bus, ScrollTrigger, initSvgRectReveal, prefersReducedMotion } from './core/gsap';
 import { getLenis } from './smooth-scroll';
 
 let didWarnMissing = false;
@@ -33,7 +33,6 @@ async function copyText(text: string): Promise<boolean> {
  * - Studio clock updates via `Intl.DateTimeFormat`, pausing while tab is hidden.
  * - Copy-email button with clipboard + execCommand fallback and `role="status"` toast.
  * - Quantised 6-brick scroll-progress gauge on `.parts-btnScrollTop`.
- * - Scrubbed `.structure-footer__inner` reveal scopes `willChange` to active scroll only.
  * - Full listener / timer / observer / ScrollTrigger teardown across client swaps.
  */
 export function initFooter() {
@@ -51,7 +50,6 @@ export function initFooter() {
 
   initSvgRectReveal(footer);
 
-  const inner = footer.querySelector<HTMLElement>('.structure-footer__inner');
   const marquee = footer.querySelector<HTMLElement>('.structure-footer__marquee');
   const wordmarkRow = footer.querySelector<HTMLElement>('.structure-footer__wordmarkRow');
   const scrollTopBtn = footer.querySelector<HTMLButtonElement>('.parts-btnScrollTop');
@@ -221,43 +219,18 @@ export function initFooter() {
   scrollTopBtn?.addEventListener('click', onScrollTop);
   manageCookiesBtn?.addEventListener('click', onManageCookies);
 
-  // 6. Scrubbed inner reveal & optional marquee guard
+  // 6. Optional legacy marquee guard (kept in flow so CTA stays visible when scrolling in)
   const mm = gsap.matchMedia();
-  mm.add(
-    {
-      isDesktop: `(min-width: ${bp.lg}px)`,
-      isMobile: `(max-width: ${bp.lg - 1}px)`,
-      reduceMotion: '(prefers-reduced-motion: reduce)',
-    },
-    (ctx) => {
-      const { reduceMotion } = ctx.conditions as { reduceMotion: boolean; isDesktop: boolean };
-      if (reduceMotion) return;
+  if (marquee) {
+    mm.add(
+      {
+        reduceMotion: '(prefers-reduced-motion: reduce)',
+      },
+      (ctx) => {
+        const { reduceMotion } = ctx.conditions as { reduceMotion: boolean };
+        if (reduceMotion) return;
 
-      let revealTl: gsap.core.Timeline | null = null;
-      let marqueeTween: gsap.core.Tween | null = null;
-
-      if (inner) {
-        revealTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: footer,
-            start: 'top bottom',
-            end: () => `+=${footer.offsetHeight}px`,
-            scrub: true,
-            invalidateOnRefresh: true,
-            onToggle: (self) => {
-              inner.style.willChange = self.isActive ? 'transform' : '';
-            },
-          },
-        });
-        revealTl.from(inner, {
-          yPercent: -100,
-          ease: 'none',
-          force3D: true,
-        });
-      }
-
-      if (marquee) {
-        marqueeTween = gsap.to(marquee, {
+        const marqueeTween = gsap.to(marquee, {
           x: () => (marquee.offsetWidth + 100) * -0.5,
           duration: 45,
           repeat: -1,
@@ -270,15 +243,13 @@ export function initFooter() {
             invalidateOnRefresh: true,
           },
         });
-      }
 
-      return () => {
-        revealTl?.kill();
-        marqueeTween?.kill();
-        if (inner) inner.style.willChange = '';
-      };
-    }
-  );
+        return () => {
+          marqueeTween.kill();
+        };
+      }
+    );
+  }
 
   return () => {
     disposed = true;

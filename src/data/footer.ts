@@ -75,7 +75,6 @@ export const FOOTER = {
   newsletter: {
     endpoint: import.meta.env.PUBLIC_NEWSLETTER_ENDPOINT || '',
   },
-  game: { label: 'Play Our 404 Game', href: '/the404game' },
   cookieLabel: 'Manage Cookies',
   copyright: '© 2026 Decbricks. All rights reserved.',
   /** Retired marquee adjectives preserved as optional reference copy (open-items C9). */

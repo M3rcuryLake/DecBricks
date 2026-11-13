@@ -42,7 +42,8 @@ const initialLogos = CLIENT_LOGOS.slice(0, 12);
                       height={logo.height}
                       class="block size-full object-contain"
                       sizes="215px"
-                      loading="lazy"
+                      loading="eager"
+                      decoding="async"
                       draggable="false"
                     />
                   </picture>

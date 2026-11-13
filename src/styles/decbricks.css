@@ -199,7 +199,6 @@
    NOT restyled here (GSAP-measured, owned by Phase 3) — u-display is defined
    for them. */
 .u-display {
-  font-family: var(--font-neuePower), system-ui, sans-serif;
   font-size: var(--fs-display);
   font-weight: 800;
   line-height: 0.98;
@@ -269,153 +268,6 @@
 }
 .u-btn-ghost:active {
   transform: scale(0.98);
-}
-
-/* --------------------------------------------------------------------------
-   Phase 3 — hero v2: editorial-brick grid, gated by [data-hero-v2] on the
-   hero <section>. Layout-only; every template class hook preserved. Tilt is
-   removed from the hero (single-tilt rule: the one remaining tilt on the
-   page is the service-card collage). Several responsive utilities needed
-   here (lg:w-320, 2xl:w-480, lg:aspect-3/2, max-lg:min-h-svh, sm:px-30) are
-   NOT in the compiled global.css, so the media queries below supply them.
-   -------------------------------------------------------------------------- */
-[data-hero-v2] .hero-v2-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  align-items: end;
-  margin-block: clamp(18px, 2.4vw, 32px);
-}
-@media (min-width: 1024px) {
-  [data-hero-v2] .hero-v2-row {
-    grid-template-columns: minmax(0, 1fr) auto;
-    column-gap: clamp(18px, 2.4vw, 32px);
-  }
-}
-/* Display word 2 on a deliberate one-step offset — fully contained (R8). */
-[data-hero-v2] .hero-v2-word2 {
-  margin-left: clamp(24px, 8vw, 160px);
-}
-/* Media cell widths/aspects (compiled CSS lacks the responsive variants). */
-[data-hero-v2] .hero-v2-mediaCell {
-  aspect-ratio: 8 / 5;
-  width: 100%;
-}
-/* The media sits 10px inside the tick frame, so the coral corner ticks read
-   on top of / around it (the WebGL texture paints over in-cell HTML). */
-[data-hero-v2] .hero-v2-mediaCell .start-mobile,
-[data-hero-v2] .hero-v2-mediaCell .start {
-  inset: 10px;
-  width: auto;
-  height: auto;
-}
-@media (min-width: 640px) {
-  [data-hero-v2] .hero-v2-mediaCell {
-    width: 480px;
-    max-width: 100%;
-  }
-}
-@media (min-width: 1024px) {
-  [data-hero-v2] .hero-v2-mediaCell {
-    width: 320px;
-    aspect-ratio: 3 / 2;
-  }
-}
-@media (min-width: 1536px) {
-  [data-hero-v2] .hero-v2-mediaCell {
-    width: 480px;
-  }
-}
-/* Hero top padding (sm:px-30 not compiled): 15px mobile, 30px from sm. */
-[data-hero-v2] .hero-top {
-  padding-inline: 15px;
-}
-@media (min-width: 640px) {
-  [data-hero-v2] .hero-top {
-    padding-inline: 30px;
-  }
-}
-/* Mobile frame grows with content instead of a hard h-svh cap. */
-@media (max-width: 1023.98px) {
-  [data-hero-v2] .hero-v2-frame {
-    height: auto;
-    min-height: 100svh;
-  }
-}
-/* Capability pills: Departure Mono row (§3 label role), 44px tap targets. */
-[data-hero-v2] .hero-v2-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: clamp(18px, 2.4vw, 32px);
-  /* explicit on-dark colour — the list inherits body black otherwise and its
-     whitespace text nodes trip the contrast sweep */
-  color: #fff9f2;
-}
-[data-hero-v2] .hero-v2-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  padding-inline: 18px;
-  border: 1px solid var(--hairline-dark);
-  border-radius: var(--radius-pill);
-  color: #fff9f2;
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  transition: background-color var(--dur-std) var(--ease-brand);
-}
-[data-hero-v2] .hero-v2-pill:hover {
-  background-color: rgba(255, 249, 242, 0.08);
-}
-[data-hero-v2] .hero-v2-pill:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
-}
-[data-hero-v2] .hero-v2-pillIndex {
-  color: rgba(255, 249, 242, 0.75);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-}
-
-/* -------------------------------------------------------------------------- */
-/* Phase 3 Task 3 — ServicesHero (shared by /services /about /contact), gated   */
-/* by [data-serviceshero-v2]. Same editorial system as the home hero v2:        */
-/* contained u-display words (R8), offset second word, padded top. The template */
-/* hooks .parts-servicesHeroNavRow / .parts-serviceNavLink* / trail wrappers    */
-/* are untouched; only the pill faces move to the mono system style.            */
-[data-serviceshero-v2] .hero-v2-top {
-  padding-inline: 15px;
-}
-@media (min-width: 640px) {
-  [data-serviceshero-v2] .hero-v2-top {
-    padding-inline: 30px;
-  }
-}
-@media (min-width: 1024px) {
-  /* at lg the trail/nav row align to the page container; the display words
-     keep the 30px editorial padding so they never sit flush at x=0 */
-  [data-serviceshero-v2] .hero-v2-top {
-    padding-inline: 30px;
-  }
-}
-/* Second display word: deliberate one-step offset, fully contained (R8). */
-[data-serviceshero-v2] .hero-v2-word2 {
-  margin-left: clamp(24px, 8vw, 160px);
-}
-/* Jump-to pills → mono system face. Structure/state classes (aria-current,
-   char-roll labels, 44px rects, cookie-banner lift) stay exactly as QA'd. */
-[data-serviceshero-v2] .parts-serviceNavLink {
-  background-color: transparent;
-  border: 1px solid var(--hairline-dark);
-  border-radius: var(--radius-pill);
-  color: #fff9f2;
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-weight: 400;
-  letter-spacing: 0.14em;
 }
 
 /* Theme-4 hero service slab: same hue family as coral but deep enough to
@@ -1003,11 +855,6 @@ html.has-cookie-banner .page .sections-servicesHero {
   }
 }
 
-/* Footer phase 0: 404-game pill reaches the 44px target at all widths. */
-.structure-footer a[href="/the404game"] {
-  min-height: 44px;
-}
-
 /* --------------------------------------------------------------------------
    Footer v2 — Phases 1–3: structure, visual system, brick-laid wordmark,
    and motion / reduced-motion choreography (plan §4, §7-P1–P3).
@@ -1030,12 +877,14 @@ html.has-cookie-banner .page .sections-servicesHero {
 }
 
 .structure-footer__shell {
-  padding: clamp(48px, 7vw, 112px) max(20px, env(safe-area-inset-right, 0px))
-    calc(24px + env(safe-area-inset-bottom, 0px)) max(20px, env(safe-area-inset-left, 0px));
-  gap: clamp(40px, 5vw, 72px);
+  --ft-gap: clamp(20px, 2.3vw, 32px);
+  padding: clamp(88px, 10vw, 104px) max(20px, env(safe-area-inset-right, 0px))
+    calc(16px + env(safe-area-inset-bottom, 0px)) max(20px, env(safe-area-inset-left, 0px));
+  gap: var(--ft-gap);
 }
 @media (min-width: 1024px) {
   .structure-footer__shell {
+    padding-top: clamp(108px, 7.5vw, 120px);
     padding-inline: max(36px, env(safe-area-inset-left, 0px))
       max(36px, env(safe-area-inset-right, 0px));
   }
@@ -1046,16 +895,16 @@ html.has-cookie-banner .page .sections-servicesHero {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-end;
-  gap: 28px 36px;
+  gap: clamp(16px, 2vw, 24px) clamp(20px, 3vw, 36px);
 }
 .structure-footer__ctaTitle {
   font-family: var(--font-neuePower), system-ui, sans-serif;
   font-weight: 700;
-  font-size: clamp(44px, 7.4vw, 128px);
-  line-height: 0.94;
+  font-size: clamp(32px, 4.6vw, 72px);
+  line-height: 0.96;
   letter-spacing: -0.025em;
   text-wrap: balance;
-  max-width: 15.5ch;
+  max-width: 17.5ch;
 }
 .structure-footer__ctaActions {
   display: flex;
@@ -1113,8 +962,8 @@ html.has-cookie-banner .page .sections-servicesHero {
 .structure-footer__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 28px 24px;
-  padding-top: 28px;
+  gap: 24px 24px;
+  padding-top: 20px;
   border-top: 1px solid color-mix(in oklab, var(--brand-on-dark) 22%, transparent);
 }
 @media (min-width: 900px) {
@@ -1124,18 +973,51 @@ html.has-cookie-banner .page .sections-servicesHero {
   }
 }
 
+.structure-footer__mark {
+  display: none;
+}
+@media (min-width: 900px) {
+  .structure-footer__mark {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    grid-column: -2 / -1;
+    justify-self: end;
+    align-self: center;
+    width: clamp(calc(var(--spacing) * 160), 13.5vw, calc(var(--spacing) * 192));
+    aspect-ratio: 277 / 255;
+  }
+  .structure-footer__markImg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform-origin: center center;
+    transition: transform var(--ft-hover) var(--ft-ease);
+  }
+  .structure-footer__mark:hover .structure-footer__markImg {
+    transform: rotate(10deg) scale(1.03);
+  }
+}
+
 .structure-footer__col {
   min-width: 0;
 }
 .structure-footer__colHeading {
-  margin-bottom: 14px;
+  margin-bottom: 8px;
 }
 .structure-footer__colList {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 2px;
+  gap: 0;
+}
+.structure-footer .structure-footer__col .structure-footer__link {
+  min-height: 30px;
+  padding-block: 3px;
+  line-height: 1.15;
+  background-position: 0 calc(100% - 2px);
 }
 .structure-footer__link {
   font-family: var(--font-neuePower), system-ui, sans-serif;
@@ -1165,9 +1047,11 @@ html.has-cookie-banner .page .sections-servicesHero {
   list-style: none;
   margin: 12px 0 0;
   padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 16px;
+  display: grid;
+  gap: 0;
+}
+.structure-footer__colHeading + .structure-footer__socialList {
+  margin-top: 0;
 }
 
 .structure-footer__emailRow {
@@ -1255,12 +1139,12 @@ html.has-cookie-banner .page .sections-servicesHero {
 .structure-footer__wordmarkRow {
   container-type: inline-size;
   width: 100%;
-  padding-top: clamp(16px, 2.5vw, 40px);
+  padding-top: 0;
 }
 .structure-footer__wordmarkBox {
   display: block;
   width: 100%;
-  min-height: clamp(76px, 28cqi, 520px);
+  min-height: clamp(72px, 28.5cqi, 188px);
   text-align: center;
   overflow: hidden;
 }
@@ -1272,20 +1156,32 @@ html.has-cookie-banner .page .sections-servicesHero {
   --ft-brick-h: 0.17em;
   display: inline-block;
   max-width: 100%;
-  font-size: clamp(62px, 22.8cqi, 424px);
+  font-size: clamp(58px, 22.8cqi, 150px);
   line-height: 0.86;
   padding: 0 0.02em 0.04em;
   color: var(--brand-on-dark);
 }
-@media (min-width: 640px) {
-  .structure-footer .structure-footer__wordmark {
-    --ft-brick-w: 0.27em;
-    --ft-brick-h: 0.135em;
-  }
-}
 .structure-footer .structure-footer__wordmark::before {
   display: block;
   margin: 0 auto 0.07em;
+}
+@media (min-width: 640px) {
+  .structure-footer__wordmarkBox {
+    min-height: clamp(114px, 17cqi, 240px);
+  }
+  .structure-footer .structure-footer__wordmark {
+    --ft-brick-w: 0.27em;
+    --ft-brick-h: 0.135em;
+    font-size: clamp(90px, 13.5cqi, 192px);
+  }
+}
+@media (min-width: 900px) {
+  .structure-footer__wordmarkBox {
+    min-height: clamp(82px, 12.6cqi, 176px);
+  }
+  .structure-footer .structure-footer__wordmark::before {
+    content: none;
+  }
 }
 @supports (background-clip: text) or (-webkit-background-clip: text) {
   .structure-footer .structure-footer__wordmark {
@@ -1304,12 +1200,20 @@ html.has-cookie-banner .page .sections-servicesHero {
   }
 }
 
+.structure-footer__legal,
+.structure-footer__legal .u-kicker {
+  font-family: var(--font-neuePower), system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+}
 .structure-footer__legal {
   display: flex;
   flex-direction: column;
   gap: 12px 24px;
-  padding-top: 20px;
-  margin-top: calc(clamp(40px, 5vw, 72px) * -1);
+  padding-top: 16px;
+  margin-top: calc(var(--ft-gap) * -1);
   border-top: 1px solid color-mix(in oklab, var(--brand-on-dark) 22%, transparent);
 }
 @media (min-width: 768px) {
@@ -1397,6 +1301,12 @@ html.has-cookie-banner .page .sections-servicesHero {
     clip-path: none;
     transition: none;
   }
+  .structure-footer__markImg {
+    transition: none;
+  }
+  .structure-footer__mark:hover .structure-footer__markImg {
+    transform: none;
+  }
   .structure-footer__link,
   .structure-footer__ctaBtn,
   .structure-footer__ctaGhost,
@@ -1453,6 +1363,7 @@ html.has-cookie-banner .page .sections-servicesHero {
   .webgl,
   .structure-footer .webgl-background,
   .structure-footer__gridBg,
+  .structure-footer__mark,
   .structure-footer__wordmarkRow,
   .structure-footer__ctaActions,
   .structure-footer__copyBtn,
@@ -1497,6 +1408,7 @@ html.has-cookie-banner .page .sections-servicesHero {
   background: var(--brand-bg-dark);
   border-radius: 20px 20px 0 0;
   padding: clamp(48px, 6vw, 96px) clamp(20px, 3.5vw, 64px);
+  overflow-x: clip;
 }
 .tst-inner {
   max-width: 1920px;
@@ -1653,6 +1565,10 @@ html.has-cookie-banner .page .sections-servicesHero {
   display: grid;
   place-items: center;
 }
+.tst-who {
+  flex: 1 1 150px;
+  min-width: 0;
+}
 .tst-who b {
   display: block;
   color: var(--brand-on-light);
@@ -1672,6 +1588,11 @@ html.has-cookie-banner .page .sections-servicesHero {
   border-radius: 999px;
   padding: 6px 12px;
   white-space: nowrap;
+}
+.tst-stageCol,
+.tst-rail {
+  min-width: 0;
+  max-width: 100%;
 }
 .tst-rail {
   display: flex;
@@ -1881,8 +1802,8 @@ html.has-cookie-banner .page .sections-servicesHero {
 }
 @media (max-width: 1023px) {
   .tst-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(24px, 4vw, 32px);
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -2439,22 +2360,69 @@ html.has-cookie-banner .page .sections-servicesHero {
    "+N more" button are vertical-only affordances.
    ========================================================================== */
 @media (max-width: 767px) {
+  .tst-cardInner {
+    padding: clamp(22px, 4vw, 28px) clamp(18px, 4vw, 24px);
+  }
+  .tst-quote {
+    font-size: clamp(22px, 5.6vw, 28px);
+    line-height: 1.2;
+  }
+  .tst-controls {
+    margin-top: 20px;
+  }
   .tst-railList {
-    --tst-railRowH: 52px;
+    --tst-railRowH: 56px;
+    width: 100%;
+    min-width: 0;
     flex-direction: row;
     align-items: center;
     max-height: none;
     height: var(--tst-railRowH);
+    padding-inline: 2px;
     overflow-y: hidden;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
+    scroll-padding-inline: 2px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .tst-railList::-webkit-scrollbar {
+    display: none;
+  }
+  .tst-railList.is-fadeRight {
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - 24px), transparent);
+    mask-image: linear-gradient(to right, black calc(100% - 24px), transparent);
+  }
+  .tst-railList.is-fadeLeft {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, black 24px);
+    mask-image: linear-gradient(to right, transparent 0, black 24px);
+  }
+  .tst-railList.is-fadeLeft.is-fadeRight {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent);
+    mask-image: linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent);
   }
   .tst-railOpt {
     flex: 0 0 auto;
-    width: min(280px, 78vw);
+    width: clamp(224px, 70vw, 268px);
     scroll-snap-align: start;
+    border: 1px solid color-mix(in oklab, var(--brand-surface-alt) 22%, transparent);
+    background: color-mix(in oklab, var(--brand-surface) 5%, transparent);
+  }
+  .tst-railOpt.is-active {
+    background: var(--brand-surface);
+    border-color: transparent;
   }
   .tst-railMore {
     display: none;
+  }
+}
+@media (max-width: 639px) {
+  .tst-attr {
+    gap: 10px 12px;
+  }
+  .tst-attrDisc {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
   }
 }

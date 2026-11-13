@@ -232,15 +232,19 @@ export function initTestimonials(): (() => void) | void {
 
   // Scroll cues (Amendment A): bottom fade while rows exist below, top fade
   // when scrolled down; the "+N more" button counts rows fully below the
-  // fold (computed from offsets — never hardcoded). The strip (<768) has
-  // neither: it's fully visible by design.
+  // fold (computed from offsets — never hardcoded). On the horizontal strip
+  // (<768), mirror the same edge mask left/right from scrollLeft.
   const updateListCues = () => {
     if (!railList) return;
     if (mqStrip.matches) {
       railList.classList.remove('is-fadeTop', 'is-fadeBottom');
+      const maxLeft = Math.max(0, railList.scrollWidth - railList.clientWidth);
+      railList.classList.toggle('is-fadeLeft', maxLeft > 2 && railList.scrollLeft > 2);
+      railList.classList.toggle('is-fadeRight', maxLeft > 2 && railList.scrollLeft < maxLeft - 2);
       if (moreBtn) moreBtn.hidden = true;
       return;
     }
+    railList.classList.remove('is-fadeLeft', 'is-fadeRight');
     const bottomEdge = railList.scrollTop + railList.clientHeight;
     let hidden = 0;
     for (const row of railOptions) if (row.offsetTop >= bottomEdge - 1) hidden++;

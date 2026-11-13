@@ -1,0 +1,471 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root {
+  --brand-bg-dark: #800020;
+  --brand-bg-deepest: color-mix(in oklab, #800020 78%, black);
+  --brand-bg-deeper: color-mix(in oklab, #800020 88%, black);
+  --brand-muted: color-mix(in oklab, #800020 76%, #fff9f2);
+  --brand-accent: #D45060;
+  /* Darkened accent for fills that sit under text (≥4.5:1 with Off-White). */
+  --brand-accent-deep: color-mix(in oklab, #D45060 72%, #800020);
+  --brand-surface: #fff9f2;
+  --brand-surface-alt: #f3e6d5;
+  --brand-highlight: #f3e6d5;
+  --brand-on-dark: #fff9f2;
+  --brand-on-light: #800020;
+  --brand-error: #B3261E;
+}
+.parts-serviceArtwork {
+  --art-ink: #800020;
+  --art-card: #fff9f2;
+  --art-card-alt: #f3e6d5;
+  --art-accent: #bc3d4d;
+  --art-sage: #c9d3c0;
+  --art-olive: #5a6432;
+  --art-mini-bg: #fff9f2;
+  --art-mini-fg: #800020;
+  --art-mini-stroke: rgba(128, 0, 32, 0.22);
+}
+.parts-serviceArtwork[data-surface='beige-plate'] {
+  background-color: var(--brand-surface-alt, #f3e6d5);
+}
+.parts-serviceArtwork[data-surface='sage-plate'] {
+  background-color: var(--brand-sage, #c9d3c0);
+  --art-ink: #2a0208;
+  --art-card: #fff9f2;
+  --art-card-alt: #f3e6d5;
+}
+.parts-serviceArtwork--plate {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.parts-serviceArtwork--mini {
+  width: 96px;
+  height: 96px;
+  flex: 0 0 auto;
+}
+@media (min-width: 1440px) {
+  .parts-serviceArtwork--mini {
+    width: 112px;
+    height: 112px;
+  }
+}
+.parts-serviceArtwork[data-surface='beige'],
+.parts-serviceArtwork[data-surface='beige-alt'] {
+  --art-mini-bg: #fff9f2;
+  --art-mini-fg: #2a0208;
+  --art-mini-stroke: rgba(128, 0, 32, 0.22);
+}
+.parts-serviceArtwork[data-surface='burgundy'],
+.parts-serviceArtwork[data-surface='deepest'] {
+  --art-mini-bg: #fff9f2;
+  --art-mini-fg: #800020;
+  --art-mini-stroke: rgba(255, 249, 242, 0.4);
+}
+.parts-serviceArtwork[data-surface='sage'] {
+  --art-mini-bg: #fff9f2;
+  --art-mini-fg: #2f3a1e;
+  --art-mini-stroke: rgba(47, 58, 30, 0.35);
+}
+.parts-serviceArtwork[data-surface='brick'] {
+  --art-mini-bg: #5a0014;
+  --art-mini-fg: #fff9f2;
+  --art-mini-stroke: rgba(255, 249, 242, 0.35);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .parts-serviceArtwork__brick {
+    transition: transform var(--dur-std) var(--ease-brand);
+  }
+  .parts-serviceCard:hover .parts-serviceArtwork__brick,
+  .parts-serviceBlock:hover .parts-serviceArtwork__brick {
+    transform: translateY(-3px);
+  }
+}
+
+  body { margin:0; padding:20px; background:#F3E6D5; color:#800020; font-family:sans-serif; }
+  .grid { display:grid; gap:16px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); max-width:1400px; margin:0 auto; }
+</style></head><body>
+  <div class="grid">
+    <div style="border:1px solid rgba(128,0,32,.18);border-radius:16px;padding:12px;background:#FFF9F2;display:grid;gap:10px">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:10px;background:#FFF9F2;font-family:monospace;font-size:12px;color:#800020">
+        <span>01 · blueprint (offwhite)</span>
+        <div class="parts-serviceArtwork parts-serviceArtwork--mini" data-motif="blueprint" data-surface="offwhite"><svg
+      viewBox="0 0 120 120"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="parts-serviceArtwork__svg" style="display:block;width:100%;height:100%"
+    >
+      <rect x="8" y="8" width="104" height="104" rx="16" fill="var(--art-mini-bg)" stroke="var(--art-mini-stroke)" stroke-width="2" />
+
+      
+        <g>
+          <rect x="22" y="22" width="76" height="76" stroke="var(--art-mini-fg)" stroke-opacity="0.35" stroke-width="1.5" stroke-dasharray="4 4" />
+          <rect x="30" y="30" width="26" height="26" rx="4" fill="var(--art-sage)" />
+          <rect x="64" y="30" width="26" height="26" rx="4" fill="var(--art-accent)" />
+          <rect x="30" y="64" width="60" height="26" rx="4" fill="var(--art-mini-fg)" />
+        </g></svg></div>
+      </div>
+      <div class="parts-serviceArtwork parts-serviceArtwork--plate" data-motif="blueprint" data-surface="beige-plate" style="aspect-ratio:4/5;border-radius:28px;border-top-right-radius:0;overflow:hidden"><svg
+      viewBox="0 0 320 400"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="parts-serviceArtwork__svg" style="display:block;width:100%;height:100%"
+    >
+      
+      <rect x="18" y="18" width="284" height="364" rx="22" stroke="var(--art-ink)" stroke-opacity="0.16" stroke-width="1.5" stroke-dasharray="5 5" />
+      <path d="M18 64H302M18 336H302M64 18V382M256 18V382" stroke="var(--art-ink)" stroke-opacity="0.07" stroke-width="1" />
+      
+      <path d="M26 38V26H38M282 26H294V38M26 362V374H38M282 374H294V362" stroke="var(--art-accent)" stroke-width="2" />
+
+      
+        <g class="parts-serviceArtwork__scene">
+          
+          <rect x="44" y="88" width="232" height="224" rx="14" fill="var(--art-card)" stroke="var(--art-ink)" stroke-opacity="0.2" stroke-width="1.5" />
+          <g class="parts-serviceArtwork__brick">
+            <rect x="64" y="114" width="90" height="44" rx="6" fill="var(--art-sage)" stroke="var(--art-olive)" stroke-width="1.5" />
+            <rect x="164" y="114" width="92" height="44" rx="6" fill="var(--art-accent)" />
+            <rect x="64" y="168" width="136" height="44" rx="6" fill="var(--art-ink)" />
+            <rect x="210" y="168" width="46" height="44" rx="6" fill="var(--art-card-alt)" stroke="var(--art-ink)" stroke-width="1.5" />
+            <rect x="64" y="222" width="60" height="64" rx="6" fill="var(--art-olive)" />
+            <rect x="134" y="222" width="122" height="64" rx="6" fill="var(--art-card-alt)" stroke="var(--art-ink)" stroke-opacity="0.25" stroke-width="1.5" />
+          </g>
+          
+          <circle cx="195" cy="254" r="22" stroke="var(--art-ink)" stroke-width="2" stroke-dasharray="4 3" />
+          <circle cx="195" cy="254" r="7" fill="var(--art-accent)" />
+          <path d="M195 224V284M165 254H225" stroke="var(--art-ink)" stroke-opacity="0.45" stroke-width="1.5" />
+        </g></svg></div>
+    </div>
+  
+
+    <div style="border:1px solid rgba(128,0,32,.18);border-radius:16px;padding:12px;background:#FFF9F2;display:grid;gap:10px">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:10px;background:#F3E6D5;font-family:monospace;font-size:12px;color:#800020">
+        <span>02 · swatches (beige)</span>
+        <div class="parts-serviceArtwork parts-serviceArtwork--mini" data-motif="swatches" data-surface="beige"><svg
+      viewBox="0 0 120 120"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="parts-serviceArtwork__svg" style="display:block;width:100%;height:100%"
+    >
+      <rect x="8" y="8" width="104" height="104" rx="16" fill="var(--art-mini-bg)" stroke="var(--art-mini-stroke)" stroke-width="2" />
+
+      
+        <g>
+          <rect x="22" y="26" width="46" height="62" rx="8" fill="var(--art-mini-fg)" />
+          <rect x="52" y="34" width="46" height="60" rx="8" fill="var(--art-olive)" stroke="var(--art-mini-bg)" stroke-width="2" />
+          <circle cx="75" cy="58" r="11" fill="var(--art-card-alt)" />
+        </g></svg></div>
+      </div>
+      <div class="parts-serviceArtwork parts-serviceArtwork--plate" data-motif="swatches" data-surface="sage-plate" style="aspect-ratio:4/5;border-radius:28px;border-top-right-radius:0;overflow:hidden"><svg
+      viewBox="0 0 320 400"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="parts-serviceArtwork__svg" style="display:block;width:100%;height:100%"
+    >
+      
+      <rect x="18" y="18" width="284" height="364" rx="22" stroke="var(--art-ink)" stroke-opacity="0.16" stroke-width="1.5" stroke-dasharray="5 5" />
+      <path d="M18 64H302M18 336H302M64 18V382M256 18V382" stroke="var(--art-ink)" stroke-opacity="0.07" stroke-width="1" />
+      
+      <path d="M26 38V26H38M282 26H294V38M26 362V374H38M282 374H294V362" stroke="var(--art-accent)" stroke-width="2" />
+
+      
+        <g class="parts-serviceArtwork__scene">
+          
+          <g class="parts-serviceArtwork__brick">
+            <rect x="52" y="110" width="136" height="184" rx="16" fill="var(--art-ink)" />
+            <rect x="68" y="126" width="104" height="72" rx="8" fill="var(--art-card-alt)" />
+            <rect x="68" y="212" width="48" height="10" rx="3" fill="var(--art-sage)" />
+            <rect x="68" y="230" width="78" height="8" rx="3" fill="var(--art-card-alt)" fill-opacity="0.5" />
+          </g>
+          <g class="parts-serviceArtwork__brick">
+            <rect x="128" y="138" width="140" height="176" rx="16" fill="var(--art-card)" stroke="var(--art-ink)" stroke-width="2" />
+            <rect x="146" y="156" width="104" height="76" rx="10" fill="var(--art-sage)" />
+            <circle cx="198" cy="194" r="22" fill="var(--art-accent)" />
+            <rect x="146" y="246" width="30" height="30" rx="6" fill="var(--art-olive)" />
+            <rect x="183" y="246" width="30" height="30" rx="6" fill="var(--art-ink)" />
+            <rect x="220" y="246" width="30" height="30" rx="6" fill="var(--art-card-alt)" stroke="var(--art-ink)" stroke-width="1.5" />
+          </g>
+          
+          <path d="M236 92L244 128L254 118L268 132L275 125L261 111L271 101L236 92Z" fill="var(--art-olive)" stroke="var(--art-card)" stroke-width="2" />
+        </g></svg></div>
+    </div>
+  
+
+    <div style="border:1px solid rgba(128,0,32,.18);border-radius:16px;padding:12px;background:#FFF9F2;display:grid;gap:10px">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:10px;background:#800020;font-family:monospace;font-size:12px;color:#FFF9F2">
+        <span>03 · brackets (burgundy)</span>
+        <div class="parts-serviceArtwork parts-serviceArtwork--mini" data-motif="brackets" data-surface="burgundy"><svg
+      viewBox="0 0 120 120"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="parts-serviceArtwork__svg" style="display:block;width:100%;height:100%"
+    >
+      <rect x="8" y="8" width="104" height="104" rx="16" fill="var(--art-mini-bg)" stroke="var(--art-mini-stroke)" stroke-width="2" />
+
+      
+        <g>
+          <rect x="20" y="24" width="80" height="72" rx="10" fill="var(--art-mini-fg)" />
+          <rect x="28" y="34" width="64" height="8" rx="3" fill="var(--art-sage)" />
+          <rect x="28" y="50" width="28" height="34" rx="4" fill="var(--art-accent)" />
+          <rect x="64" y="50" width="28" height="14" rx="4" fill="var(--art-card-alt)" />
+          <rect x="64" y="70" width="28" height="14" rx="4" fill="var(--art-olive)" />
+        </g></svg></div>
+      </div>
+      <div class="parts-serviceArtwork parts-serviceArtwork--plate" data-motif="brackets" data-surface="beige-plate" style="aspect-ratio:4/5;border-radius:28px;border-top-right-radius:0;overflow:hidden"><svg
+      viewBox="0 0 320 400"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="parts-serviceArtwork__svg" style="display:block;width:100%;height:100%"
+    >
+      
+      <rect x="18" y="18" width="284" height="364" rx="22" stroke="var(--art-ink)" stroke-opacity="0.16" stroke-width="1.5" stroke-dasharray="5 5" />
+      <path d="M18 64H302M18 336H302M64 18V382M256 18V382" stroke="var(--art-ink)" stroke-opacity="0.07" stroke-width="1" />
+      
+      <path d="M26 38V26H38M282 26H294V38M26 362V374H38M282 374H294V362" stroke="var(--art-accent)" stroke-width="2" />
+
+      
+        <g class="parts-serviceArtwork__scene">
+          
+          <rect x="44" y="88" width="232" height="224" rx="16" fill="var(--art-ink)" />
+          <circle cx="68" cy="110" r="5" fill="var(--art-card-alt)" />
+          <circle cx="86" cy="110" r="5" fill="var(--art-accent)" />
+          <circle cx="104" cy="110" r="5" fill="var(--art-sage)" />
+          <path d="M44 128H276" stroke="var(--art-card)" stroke-opacity="0.2" stroke-width="1.5" />
+          
+          <g fill="var(--art-card-alt)" class="parts-serviceArtwork__brick">
+            <rect x="74" y="152" width="14" height="10" />
+            <rect x="66" y="162" width="10" height="28" />
+            <rect x="58" y="190" width="10" height="14" />
+            <rect x="66" y="204" width="10" height="28" />
+            <rect x="74" y="232" width="14" height="10" />
+          </g>
+          
+          <g fill="var(--art-sage)" class="parts-serviceArtwork__brick">
+            <rect x="232" y="152" width="14" height="10" />
+            <rect x="244" y="162" width="10" height="28" />
+            <rect x="252" y="190" width="10" height="14" />
+            <rect x="244" y="204" width="10" height="28" />
+            <rect x="232" y="232" width="14" height="10" />
+          </g>
+          
+          <rect x="108" y="158" width="96" height="16" rx="4" fill="var(--art-accent)" />
+          <rect x="108" y="186" width="112" height="16" rx="4" fill="var(--art-card)" />
+          <rect x="108" y="214" width="76" height="16" rx="4" fill="var(--art-sage)" />
+          <rect x="64" y="264" width="192" height="26" rx="6" fill="var(--art-olive)" />
+        </g></svg></div>
+    </div>
+  
+
+    <div style="border:1px solid rgba(128,0,32,.18);border-radius:16px;padding:12px;background:#FFF9F2;display:grid;gap:10px">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:10px;background:#C9D3C0;font-family:monospace;font-size:12px;color:#2A0208">
+        <span>04 · device (sage)</span>
+        <div class="parts-serviceArtwork parts-serviceArtwork--mini" data-motif="device" data-surface="sage"><svg
+      viewBox="0 0 120 120"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="parts-serviceArtwork__svg" style="display:block;width:100%;height:100%"
+    >
+      <rect x="8" y="8" width="104" height="104" rx="16" fill="var(--art-mini-bg)" stroke="var(--art-mini-stroke)" stroke-width="2" />
+
+      
+        <g>
+          <rect x="36" y="18" width="48" height="84" rx="10" fill="var(--art-mini-fg)" />
+          <rect x="43" y="26" width="34" height="58" rx="6" fill="var(--art-card-alt)" />
+          <rect x="48" y="34" width="24" height="18" rx="3" fill="var(--art-accent)" />
+          <rect x="48" y="57" width="24" height="18" rx="3" fill="var(--art-olive)" />
+        </g></svg></div>
+      </div>
+      <div class="parts-serviceArtwork parts-serviceArtwork--plate" data-motif="device" data-surface="sage-plate" style="aspect-ratio:4/5;border-radius:28px;border-top-right-radius:0;overflow:hidden"><svg
+      viewBox="0 0 320 400"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="parts-serviceArtwork__svg" style="display:block;width:100%;height:100%"
+    >
+      
+      <rect x="18" y="18" width="284" height="364" rx="22" stroke="var(--art-ink)" stroke-opacity="0.16" stroke-width="1.5" stroke-dasharray="5 5" />
+      <path d="M18 64H302M18 336H302M64 18V382M256 18V382" stroke="var(--art-ink)" stroke-opacity="0.07" stroke-width="1" />
+      
+      <path d="M26 38V26H38M282 26H294V38M26 362V374H38M282 374H294V362" stroke="var(--art-accent)" stroke-width="2" />
+
+      
+        <g class="parts-serviceArtwork__scene">
+          
+          <rect x="50" y="122" width="220" height="156" rx="16" fill="var(--art-sage)" fill-opacity="0.65" />
+          <circle cx="160" cy="200" r="92" stroke="var(--art-ink)" stroke-opacity="0.16" stroke-width="1.5" stroke-dasharray="6 4" />
+          <g class="parts-serviceArtwork__brick">
+            <rect x="96" y="74" width="128" height="252" rx="22" fill="var(--art-ink)" stroke="var(--art-card)" stroke-width="3" />
+            <rect x="108" y="92" width="104" height="202" rx="14" fill="var(--art-card)" />
+            
+            <rect x="142" y="99" width="36" height="6" rx="3" fill="var(--art-ink)" fill-opacity="0.3" />
+            
+            <rect x="118" y="118" width="84" height="58" rx="8" fill="var(--art-accent)" />
+            <rect x="118" y="186" width="38" height="46" rx="8" fill="var(--art-sage)" />
+            <rect x="164" y="186" width="38" height="46" rx="8" fill="var(--art-olive)" />
+            <rect x="118" y="242" width="84" height="36" rx="8" fill="var(--art-card-alt)" stroke="var(--art-ink)" stroke-opacity="0.25" stroke-width="1.5" />
+            
+            <rect x="138" y="308" width="44" height="6" rx="3" fill="var(--art-card)" fill-opacity="0.7" />
+          </g>
+        </g></svg></div>
+    </div>
+  
+
+    <div style="border:1px solid rgba(128,0,32,.18);border-radius:16px;padding:12px;background:#FFF9F2;display:grid;gap:10px">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:10px;background:#BC3D4D;font-family:monospace;font-size:12px;color:#FFF9F2">
+        <span>05 · nodes (brick)</span>
+        <div class="parts-serviceArtwork parts-serviceArtwork--mini" data-motif="nodes" data-surface="brick"><svg
+      viewBox="0 0 120 120"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="parts-serviceArtwork__svg" style="display:block;width:100%;height:100%"
+    >
+      <rect x="8" y="8" width="104" height="104" rx="16" fill="var(--art-mini-bg)" stroke="var(--art-mini-stroke)" stroke-width="2" />
+
+      
+        <g>
+          <path d="M32 32L88 88M88 32L32 88" stroke="var(--art-mini-fg)" stroke-width="2.5" />
+          <rect x="22" y="22" width="20" height="20" rx="5" fill="var(--art-sage)" />
+          <rect x="78" y="22" width="20" height="20" rx="5" fill="var(--art-olive)" />
+          <rect x="22" y="78" width="20" height="20" rx="5" fill="var(--art-olive)" />
+          <rect x="78" y="78" width="20" height="20" rx="5" fill="var(--art-sage)" />
+          <rect x="44" y="44" width="32" height="32" rx="8" fill="var(--art-accent)" stroke="var(--art-mini-bg)" stroke-width="2" />
+        </g></svg></div>
+      </div>
+      <div class="parts-serviceArtwork parts-serviceArtwork--plate" data-motif="nodes" data-surface="beige-plate" style="aspect-ratio:4/5;border-radius:28px;border-top-right-radius:0;overflow:hidden"><svg
+      viewBox="0 0 320 400"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="parts-serviceArtwork__svg" style="display:block;width:100%;height:100%"
+    >
+      
+      <rect x="18" y="18" width="284" height="364" rx="22" stroke="var(--art-ink)" stroke-opacity="0.16" stroke-width="1.5" stroke-dasharray="5 5" />
+      <path d="M18 64H302M18 336H302M64 18V382M256 18V382" stroke="var(--art-ink)" stroke-opacity="0.07" stroke-width="1" />
+      
+      <path d="M26 38V26H38M282 26H294V38M26 362V374H38M282 374H294V362" stroke="var(--art-accent)" stroke-width="2" />
+
+      
+        <g class="parts-serviceArtwork__scene">
+          
+          <path d="M84 114L160 200M236 114L160 200M76 200H244M84 286L160 200M236 286L160 200" stroke="var(--art-ink)" stroke-width="2" />
+          <rect x="64" y="94" width="40" height="40" rx="8" fill="var(--art-sage)" stroke="var(--art-olive)" stroke-width="2" />
+          <rect x="216" y="94" width="40" height="40" rx="8" fill="var(--art-accent)" />
+          <rect x="52" y="180" width="40" height="40" rx="8" fill="var(--art-olive)" />
+          <rect x="228" y="180" width="40" height="40" rx="8" fill="var(--art-card)" stroke="var(--art-ink)" stroke-width="2" />
+          <rect x="64" y="266" width="40" height="40" rx="8" fill="var(--art-accent)" />
+          <rect x="216" y="266" width="40" height="40" rx="8" fill="var(--art-sage)" stroke="var(--art-olive)" stroke-width="2" />
+          
+          <g class="parts-serviceArtwork__brick">
+            <rect x="122" y="162" width="76" height="76" rx="16" fill="var(--art-ink)" stroke="var(--art-card)" stroke-width="3" />
+            <rect x="142" y="182" width="36" height="36" rx="6" fill="var(--art-card)" />
+            <rect x="152" y="192" width="16" height="16" fill="var(--art-accent)" />
+          </g>
+          
+          <rect x="155" y="98" width="10" height="10" fill="var(--art-olive)" />
+          <rect x="155" y="292" width="10" height="10" fill="var(--art-olive)" />
+        </g></svg></div>
+    </div>
+  
+
+    <div style="border:1px solid rgba(128,0,32,.18);border-radius:16px;padding:12px;background:#FFF9F2;display:grid;gap:10px">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:10px;background:#F3E6D5;font-family:monospace;font-size:12px;color:#800020">
+        <span>06 · growth (beige-alt)</span>
+        <div class="parts-serviceArtwork parts-serviceArtwork--mini" data-motif="growth" data-surface="beige-alt"><svg
+      viewBox="0 0 120 120"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="parts-serviceArtwork__svg" style="display:block;width:100%;height:100%"
+    >
+      <rect x="8" y="8" width="104" height="104" rx="16" fill="var(--art-mini-bg)" stroke="var(--art-mini-stroke)" stroke-width="2" />
+
+      
+        <g>
+          <rect x="22" y="68" width="14" height="26" rx="3" fill="var(--art-sage)" />
+          <rect x="42" y="54" width="14" height="40" rx="3" fill="var(--art-olive)" />
+          <rect x="62" y="38" width="14" height="56" rx="3" fill="var(--art-accent)" />
+          <rect x="82" y="24" width="14" height="70" rx="3" fill="var(--art-mini-fg)" />
+        </g></svg></div>
+      </div>
+      <div class="parts-serviceArtwork parts-serviceArtwork--plate" data-motif="growth" data-surface="sage-plate" style="aspect-ratio:4/5;border-radius:28px;border-top-right-radius:0;overflow:hidden"><svg
+      viewBox="0 0 320 400"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="parts-serviceArtwork__svg" style="display:block;width:100%;height:100%"
+    >
+      
+      <rect x="18" y="18" width="284" height="364" rx="22" stroke="var(--art-ink)" stroke-opacity="0.16" stroke-width="1.5" stroke-dasharray="5 5" />
+      <path d="M18 64H302M18 336H302M64 18V382M256 18V382" stroke="var(--art-ink)" stroke-opacity="0.07" stroke-width="1" />
+      
+      <path d="M26 38V26H38M282 26H294V38M26 362V374H38M282 374H294V362" stroke="var(--art-accent)" stroke-width="2" />
+
+      
+        <g class="parts-serviceArtwork__scene">
+          
+          <line x1="48" y1="304" x2="272" y2="304" stroke="var(--art-ink)" stroke-width="2.5" />
+          <g class="parts-serviceArtwork__brick">
+            <rect x="58" y="246" width="34" height="58" rx="4" fill="var(--art-sage)" stroke="var(--art-olive)" stroke-width="1.5" />
+            <rect x="102" y="214" width="34" height="90" rx="4" fill="var(--art-olive)" />
+            <rect x="146" y="178" width="34" height="126" rx="4" fill="var(--art-accent)" />
+            <rect x="190" y="142" width="34" height="162" rx="4" fill="var(--art-ink)" />
+            <rect x="234" y="102" width="34" height="202" rx="4" fill="var(--art-card)" stroke="var(--art-ink)" stroke-width="2" />
+          </g>
+          
+          <path d="M58 206L114 166L164 148L244 82" stroke="var(--art-accent)" stroke-width="3" stroke-dasharray="6 4" />
+          <rect x="238" y="74" width="16" height="16" rx="3" fill="var(--art-accent)" />
+        </g></svg></div>
+    </div>
+  
+
+    <div style="border:1px solid rgba(128,0,32,.18);border-radius:16px;padding:12px;background:#FFF9F2;display:grid;gap:10px">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:10px;background:#5A0014;font-family:monospace;font-size:12px;color:#FFF9F2">
+        <span>07 · network (deepest)</span>
+        <div class="parts-serviceArtwork parts-serviceArtwork--mini" data-motif="network" data-surface="deepest"><svg
+      viewBox="0 0 120 120"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="parts-serviceArtwork__svg" style="display:block;width:100%;height:100%"
+    >
+      <rect x="8" y="8" width="104" height="104" rx="16" fill="var(--art-mini-bg)" stroke="var(--art-mini-stroke)" stroke-width="2" />
+
+      
+        <g>
+          <path d="M36 42H84M36 42L60 80M84 42L60 80" stroke="var(--art-mini-fg)" stroke-width="2.5" />
+          <rect x="22" y="28" width="28" height="24" rx="6" fill="var(--art-sage)" />
+          <rect x="70" y="28" width="28" height="24" rx="6" fill="var(--art-accent)" />
+          <rect x="44" y="68" width="32" height="24" rx="6" fill="var(--art-olive)" />
+        </g></svg></div>
+      </div>
+      <div class="parts-serviceArtwork parts-serviceArtwork--plate" data-motif="network" data-surface="beige-plate" style="aspect-ratio:4/5;border-radius:28px;border-top-right-radius:0;overflow:hidden"><svg
+      viewBox="0 0 320 400"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="parts-serviceArtwork__svg" style="display:block;width:100%;height:100%"
+    >
+      
+      <rect x="18" y="18" width="284" height="364" rx="22" stroke="var(--art-ink)" stroke-opacity="0.16" stroke-width="1.5" stroke-dasharray="5 5" />
+      <path d="M18 64H302M18 336H302M64 18V382M256 18V382" stroke="var(--art-ink)" stroke-opacity="0.07" stroke-width="1" />
+      
+      <path d="M26 38V26H38M282 26H294V38M26 362V374H38M282 374H294V362" stroke="var(--art-accent)" stroke-width="2" />
+
+      
+        <g class="parts-serviceArtwork__scene">
+          
+          <path d="M160 124L84 214M160 124L236 214M84 214H236M84 214L160 288M236 214L160 288" stroke="var(--art-ink)" stroke-width="2" />
+          
+          <rect x="104" y="84" width="112" height="52" rx="12" fill="var(--art-ink)" />
+          <rect x="118" y="102" width="52" height="16" rx="4" fill="var(--art-card-alt)" />
+          <circle cx="194" cy="110" r="8" fill="var(--art-accent)" />
+          
+          <g class="parts-serviceArtwork__brick">
+            <rect x="44" y="186" width="84" height="52" rx="12" fill="var(--art-olive)" />
+            <rect x="58" y="204" width="56" height="14" rx="4" fill="var(--art-card)" />
+            <rect x="192" y="186" width="84" height="52" rx="12" fill="var(--art-accent)" />
+            <rect x="206" y="204" width="56" height="14" rx="4" fill="var(--art-card)" />
+          </g>
+          
+          <rect x="92" y="264" width="136" height="50" rx="12" fill="var(--art-sage)" stroke="var(--art-olive)" stroke-width="2" />
+          <rect x="114" y="282" width="92" height="14" rx="4" fill="var(--art-ink)" />
+          <circle cx="160" cy="200" r="14" fill="var(--art-card)" stroke="var(--art-ink)" stroke-width="2.5" />
+          <rect x="155" y="195" width="10" height="10" fill="var(--art-accent)" />
+        </g></svg></div>
+    </div>
+  </div>
+</body></html>

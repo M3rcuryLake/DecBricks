@@ -151,6 +151,22 @@ vite.config.ts.timestamp-*
 # Trial/licensed font sources — do NOT redistribute (see docs/open-items.md B1)
 assets/Fonts/
 
-# playwright-mcp artifacts
+# Local QA captures & playwright-mcp artifacts
 .playwright-mcp/
 docs/qa/shots/
+
+# Local AI assistant / MCP config & unregistered skill packs
+.superpowers/
+.geminiignore
+mcp_config.json
+.agents/skills/caveman/
+.agents/skills/design-taste-frontend/
+
+# OS & editor scratch files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/

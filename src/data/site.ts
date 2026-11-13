@@ -29,8 +29,12 @@ export const SITE = {
   locale: 'en',
   themeColor: '#800020',
   email: import.meta.env.PUBLIC_CONTACT_EMAIL || '',
-  /** Social profile URLs (open-items A8) — empty until the owner supplies them. */
-  socials: [] as Array<{ label: string; href: string }>,
+  /** Social profile URLs (resolved open-items A8). */
+  socials: [
+    { label: 'X', href: 'https://x.com/decbricks' },
+    { label: 'Instagram', href: 'https://www.instagram.com/decbricksofficial' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/company/decbricks/' },
+  ] as Array<{ label: string; href: string }>,
   /** Main nav; pages are enabled as they are rebuilt (About+Contact exist from Phase 4/5). */
   nav: [
     { label: 'About', href: '/about', enabled: false },

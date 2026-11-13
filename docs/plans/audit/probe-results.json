@@ -1,0 +1,3674 @@
+{
+  "viewports": {
+    "320x568": {
+      "home": {
+        "innerWidth": 320,
+        "scrollWidth": 320,
+        "docOverflow": false,
+        "servicesSection": {
+          "top": 1137,
+          "height": 1746,
+          "width": 320
+        },
+        "cards": [
+          {
+            "index": 0,
+            "title": "Strategy",
+            "cardRect": {
+              "top": 1137,
+              "h": 485,
+              "w": 431,
+              "left": -92,
+              "right": 339
+            },
+            "innerRect": {
+              "h": 459,
+              "w": 400,
+              "left": -76,
+              "right": 324
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 255,
+              "g": 249,
+              "b": 242,
+              "a": 1
+            },
+            "titleFontSize": "22px",
+            "titleContrast": 10.36,
+            "summaryContrast": 10.36,
+            "eyebrowContrast": 10.36,
+            "numFontSize": "240px",
+            "btnSize": {
+              "w": 175,
+              "h": 44
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Research & Insight",
+                "w": 161,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Workshops",
+                "w": 111,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Brand Strategy",
+                "w": 140,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+6",
+              "contrast": 10.36
+            }
+          },
+          {
+            "index": 1,
+            "title": "Creative",
+            "cardRect": {
+              "top": 1596,
+              "h": 419,
+              "w": 426,
+              "left": -19,
+              "right": 407
+            },
+            "innerRect": {
+              "h": 392,
+              "w": 400,
+              "left": -6,
+              "right": 394
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 243,
+              "g": 230,
+              "b": 213,
+              "a": 1
+            },
+            "titleFontSize": "22px",
+            "titleContrast": 8.82,
+            "summaryContrast": 8.82,
+            "eyebrowContrast": 8.82,
+            "numFontSize": "240px",
+            "btnSize": {
+              "w": 175,
+              "h": 44
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Branding",
+                "w": 98,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Motion",
+                "w": 82,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Marketing Toolkits",
+                "w": 165,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+5",
+              "contrast": 8.82
+            }
+          },
+          {
+            "index": 2,
+            "title": "Web Development",
+            "cardRect": {
+              "top": 1988,
+              "h": 499,
+              "w": 432,
+              "left": -93,
+              "right": 339
+            },
+            "innerRect": {
+              "h": 472,
+              "w": 400,
+              "left": -76,
+              "right": 324
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 128,
+              "g": 0,
+              "b": 32,
+              "a": 1
+            },
+            "titleFontSize": "22px",
+            "titleContrast": 10.36,
+            "summaryContrast": 10.36,
+            "eyebrowContrast": 10.36,
+            "numFontSize": "240px",
+            "btnSize": {
+              "w": 175,
+              "h": 44
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Technical Architecture",
+                "w": 193,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Hosting, Security & Maintenance",
+                "w": 255,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Front & Back-End Development",
+                "w": 242,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+5",
+              "contrast": 10.36
+            }
+          },
+          {
+            "index": 3,
+            "title": "Campaigns",
+            "cardRect": {
+              "top": 2460,
+              "h": 450,
+              "w": 429,
+              "left": -19,
+              "right": 410
+            },
+            "innerRect": {
+              "h": 423,
+              "w": 400,
+              "left": -5,
+              "right": 395
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 128,
+              "g": 0,
+              "b": 32,
+              "a": 1
+            },
+            "titleFontSize": "22px",
+            "titleContrast": 10.36,
+            "summaryContrast": 10.36,
+            "eyebrowContrast": 10.36,
+            "numFontSize": "240px",
+            "btnSize": {
+              "w": 175,
+              "h": 44
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Paid Media",
+                "w": 103,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Key Beat Activations",
+                "w": 171,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Campaign Management",
+                "w": 190,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+7",
+              "contrast": 10.36
+            }
+          }
+        ]
+      },
+      "homeMidScroll": [
+        {
+          "i": 0,
+          "cardTransform": "matrix(1, 0, 0, 1, 0, 0)",
+          "innerTransform": "matrix(0.997564, -0.06976, 0.06976, 0.997564, -3.052, 0)",
+          "top": -120
+        },
+        {
+          "i": 1,
+          "cardTransform": "matrix(0.999853, -0.017147, 0.017147, 0.999853, 4.9124, 0)",
+          "innerTransform": "none",
+          "top": 339
+        },
+        {
+          "i": 2,
+          "cardTransform": "matrix(0.997564, 0.0697565, -0.0697565, 0.997564, -20, 0)",
+          "innerTransform": "none",
+          "top": 731
+        },
+        {
+          "i": 3,
+          "cardTransform": "matrix(0.997564, -0.0697565, 0.0697565, 0.997564, 20, 0)",
+          "innerTransform": "none",
+          "top": 1203
+        }
+      ],
+      "services": {
+        "innerWidth": 320,
+        "innerHeight": 568,
+        "scrollWidth": 320,
+        "docOverflow": false,
+        "totalHeight": 7984,
+        "heroHeight": 711,
+        "heroHeadingSpans": [
+          {
+            "text": "Our",
+            "left": -10,
+            "right": 191,
+            "top": 136,
+            "bottom": 217,
+            "w": 201,
+            "scrollW": 201,
+            "clientW": 201,
+            "fontSize": "90px",
+            "clippedRight": false,
+            "clippedLeft": true
+          },
+          {
+            "text": "Services",
+            "left": -10,
+            "right": 413,
+            "top": 217,
+            "bottom": 298,
+            "w": 423,
+            "scrollW": 423,
+            "clientW": 423,
+            "fontSize": "90px",
+            "clippedRight": true,
+            "clippedLeft": true
+          }
+        ],
+        "heroBodyText": "An award-winning partner for games studios and publishers. We connect strategy, creative, web and campaigns to make you stand out and thrive",
+        "navUlRect": {
+          "w": 290,
+          "h": 101
+        },
+        "navLinks": [
+          {
+            "text": "Strategy",
+            "w": 139,
+            "h": 44,
+            "top": 545,
+            "right": 158,
+            "contrast": 10.36
+          },
+          {
+            "text": "Creative",
+            "w": 139,
+            "h": 44,
+            "top": 545,
+            "right": 301,
+            "contrast": 10.36
+          },
+          {
+            "text": "Web",
+            "w": 139,
+            "h": 44,
+            "top": 594,
+            "right": 158,
+            "contrast": 10.36
+          },
+          {
+            "text": "Campaign",
+            "w": 139,
+            "h": 44,
+            "top": 594,
+            "right": 301,
+            "contrast": 10.36
+          }
+        ],
+        "navWrapRows": 2,
+        "blocks": [
+          {
+            "index": 0,
+            "id": "strategy",
+            "title": "Strategy",
+            "w": 302,
+            "h": 1281,
+            "media": {
+              "w": 272,
+              "h": 340
+            },
+            "capCount": 14,
+            "capSample": {
+              "w": 272,
+              "h": 35,
+              "contrast": 13.56
+            },
+            "projectsCount": 14,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          },
+          {
+            "index": 1,
+            "id": "creative",
+            "title": "Creative",
+            "w": 302,
+            "h": 1242,
+            "media": {
+              "w": 272,
+              "h": 340
+            },
+            "capCount": 14,
+            "capSample": {
+              "w": 272,
+              "h": 35,
+              "contrast": 13.56
+            },
+            "projectsCount": 14,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          },
+          {
+            "index": 2,
+            "id": "web-development",
+            "title": "Web Development",
+            "w": 302,
+            "h": 1245,
+            "media": {
+              "w": 272,
+              "h": 340
+            },
+            "capCount": 14,
+            "capSample": {
+              "w": 272,
+              "h": 35,
+              "contrast": 13.56
+            },
+            "projectsCount": 14,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          },
+          {
+            "index": 3,
+            "id": "campaigns",
+            "title": "Campaigns",
+            "w": 302,
+            "h": 1276,
+            "media": {
+              "w": 272,
+              "h": 340
+            },
+            "capCount": 16,
+            "capSample": {
+              "w": 272,
+              "h": 35,
+              "contrast": 13.56
+            },
+            "projectsCount": 16,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          }
+        ],
+        "sidebar": {
+          "h": 0,
+          "w": 0,
+          "display": "none"
+        },
+        "clientsHeading": "Clients",
+        "clientLogosCount": 12,
+        "h1Count": 1,
+        "metaNoindex": "noindex, nofollow"
+      },
+      "errors": []
+    },
+    "375x812": {
+      "home": {
+        "innerWidth": 375,
+        "scrollWidth": 375,
+        "docOverflow": false,
+        "servicesSection": {
+          "top": 1480,
+          "height": 1565,
+          "width": 375
+        },
+        "cards": [
+          {
+            "index": 0,
+            "title": "Strategy",
+            "cardRect": {
+              "top": 1480,
+              "h": 423,
+              "w": 481,
+              "left": -90,
+              "right": 391
+            },
+            "innerRect": {
+              "h": 392,
+              "w": 455,
+              "left": -76,
+              "right": 379
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 255,
+              "g": 249,
+              "b": 242,
+              "a": 1
+            },
+            "titleFontSize": "22px",
+            "titleContrast": 10.36,
+            "summaryContrast": 10.36,
+            "eyebrowContrast": 10.36,
+            "numFontSize": "240px",
+            "btnSize": {
+              "w": 175,
+              "h": 44
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Research & Insight",
+                "w": 161,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Workshops",
+                "w": 111,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Brand Strategy",
+                "w": 140,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+6",
+              "contrast": 10.36
+            }
+          },
+          {
+            "index": 1,
+            "title": "Creative",
+            "cardRect": {
+              "top": 1872,
+              "h": 406,
+              "w": 480,
+              "left": -16,
+              "right": 464
+            },
+            "innerRect": {
+              "h": 375,
+              "w": 455,
+              "left": -4,
+              "right": 451
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 243,
+              "g": 230,
+              "b": 213,
+              "a": 1
+            },
+            "titleFontSize": "22px",
+            "titleContrast": 8.82,
+            "summaryContrast": 8.82,
+            "eyebrowContrast": 8.82,
+            "numFontSize": "240px",
+            "btnSize": {
+              "w": 175,
+              "h": 44
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Branding",
+                "w": 98,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Motion",
+                "w": 82,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Marketing Toolkits",
+                "w": 165,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+5",
+              "contrast": 8.82
+            }
+          },
+          {
+            "index": 2,
+            "title": "Web Development",
+            "cardRect": {
+              "top": 2247,
+              "h": 454,
+              "w": 483,
+              "left": -92,
+              "right": 391
+            },
+            "innerRect": {
+              "h": 423,
+              "w": 455,
+              "left": -78,
+              "right": 377
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 128,
+              "g": 0,
+              "b": 32,
+              "a": 1
+            },
+            "titleFontSize": "22px",
+            "titleContrast": 10.36,
+            "summaryContrast": 10.36,
+            "eyebrowContrast": 10.36,
+            "numFontSize": "240px",
+            "btnSize": {
+              "w": 175,
+              "h": 44
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Technical Architecture",
+                "w": 193,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Hosting, Security & Maintenance",
+                "w": 255,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Front & Back-End Development",
+                "w": 242,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+5",
+              "contrast": 10.36
+            }
+          },
+          {
+            "index": 3,
+            "title": "Campaigns",
+            "cardRect": {
+              "top": 2670,
+              "h": 406,
+              "w": 480,
+              "left": -16,
+              "right": 464
+            },
+            "innerRect": {
+              "h": 375,
+              "w": 455,
+              "left": -4,
+              "right": 451
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 128,
+              "g": 0,
+              "b": 32,
+              "a": 1
+            },
+            "titleFontSize": "22px",
+            "titleContrast": 10.36,
+            "summaryContrast": 10.36,
+            "eyebrowContrast": 10.36,
+            "numFontSize": "240px",
+            "btnSize": {
+              "w": 175,
+              "h": 44
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Paid Media",
+                "w": 103,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Key Beat Activations",
+                "w": 171,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Campaign Management",
+                "w": 190,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+7",
+              "contrast": 10.36
+            }
+          }
+        ]
+      },
+      "homeMidScroll": [
+        {
+          "i": 0,
+          "cardTransform": "matrix(1, 0, 0, 1, 0, 0)",
+          "innerTransform": "matrix(0.997564, -0.06976, 0.06976, 0.997564, -5.30576, 0)",
+          "top": -120
+        },
+        {
+          "i": 1,
+          "cardTransform": "matrix(0.999998, -0.00200015, 0.00200015, 0.999998, 0.65156, 0)",
+          "innerTransform": "none",
+          "top": 272
+        },
+        {
+          "i": 2,
+          "cardTransform": "matrix(0.999246, 0.0388168, -0.0388168, 0.999246, -12.6526, 0)",
+          "innerTransform": "none",
+          "top": 647
+        },
+        {
+          "i": 3,
+          "cardTransform": "matrix(0.997564, -0.0697565, 0.0697565, 0.997564, 22.75, 0)",
+          "innerTransform": "none",
+          "top": 1070
+        }
+      ],
+      "services": {
+        "innerWidth": 375,
+        "innerHeight": 812,
+        "scrollWidth": 375,
+        "docOverflow": false,
+        "totalHeight": 8015,
+        "heroHeight": 697,
+        "heroHeadingSpans": [
+          {
+            "text": "Our",
+            "left": -10,
+            "right": 199,
+            "top": 136,
+            "bottom": 220,
+            "w": 209,
+            "scrollW": 209,
+            "clientW": 209,
+            "fontSize": "93.75px",
+            "clippedRight": false,
+            "clippedLeft": true
+          },
+          {
+            "text": "Services",
+            "left": -10,
+            "right": 431,
+            "top": 220,
+            "bottom": 305,
+            "w": 441,
+            "scrollW": 441,
+            "clientW": 441,
+            "fontSize": "93.75px",
+            "clippedRight": true,
+            "clippedLeft": true
+          }
+        ],
+        "heroBodyText": "An award-winning partner for games studios and publishers. We connect strategy, creative, web and campaigns to make you stand out and thrive",
+        "navUlRect": {
+          "w": 345,
+          "h": 101
+        },
+        "navLinks": [
+          {
+            "text": "Strategy",
+            "w": 166,
+            "h": 44,
+            "top": 531,
+            "right": 185,
+            "contrast": 10.36
+          },
+          {
+            "text": "Creative",
+            "w": 166,
+            "h": 44,
+            "top": 531,
+            "right": 356,
+            "contrast": 10.36
+          },
+          {
+            "text": "Web",
+            "w": 166,
+            "h": 44,
+            "top": 580,
+            "right": 185,
+            "contrast": 10.36
+          },
+          {
+            "text": "Campaign",
+            "w": 166,
+            "h": 44,
+            "top": 580,
+            "right": 356,
+            "contrast": 10.36
+          }
+        ],
+        "navWrapRows": 2,
+        "blocks": [
+          {
+            "index": 0,
+            "id": "strategy",
+            "title": "Strategy",
+            "w": 357,
+            "h": 1281,
+            "media": {
+              "w": 327,
+              "h": 409
+            },
+            "capCount": 14,
+            "capSample": {
+              "w": 327,
+              "h": 35,
+              "contrast": 13.56
+            },
+            "projectsCount": 14,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          },
+          {
+            "index": 1,
+            "id": "creative",
+            "title": "Creative",
+            "w": 357,
+            "h": 1272,
+            "media": {
+              "w": 327,
+              "h": 409
+            },
+            "capCount": 14,
+            "capSample": {
+              "w": 327,
+              "h": 35,
+              "contrast": 13.56
+            },
+            "projectsCount": 14,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          },
+          {
+            "index": 2,
+            "id": "web-development",
+            "title": "Web Development",
+            "w": 357,
+            "h": 1241,
+            "media": {
+              "w": 327,
+              "h": 409
+            },
+            "capCount": 14,
+            "capSample": {
+              "w": 327,
+              "h": 35,
+              "contrast": 13.56
+            },
+            "projectsCount": 14,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          },
+          {
+            "index": 3,
+            "id": "campaigns",
+            "title": "Campaigns",
+            "w": 357,
+            "h": 1323,
+            "media": {
+              "w": 327,
+              "h": 409
+            },
+            "capCount": 16,
+            "capSample": {
+              "w": 327,
+              "h": 35,
+              "contrast": 13.56
+            },
+            "projectsCount": 16,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          }
+        ],
+        "sidebar": {
+          "h": 0,
+          "w": 0,
+          "display": "none"
+        },
+        "clientsHeading": "Clients",
+        "clientLogosCount": 12,
+        "h1Count": 1,
+        "metaNoindex": "noindex, nofollow"
+      },
+      "errors": []
+    },
+    "768x1024": {
+      "home": {
+        "innerWidth": 768,
+        "scrollWidth": 768,
+        "docOverflow": false,
+        "servicesSection": {
+          "top": 1457,
+          "height": 1417,
+          "width": 768
+        },
+        "cards": [
+          {
+            "index": 0,
+            "title": "Strategy",
+            "cardRect": {
+              "top": 1457,
+              "h": 418,
+              "w": 871,
+              "left": -107,
+              "right": 764
+            },
+            "innerRect": {
+              "h": 360,
+              "w": 848,
+              "left": -95,
+              "right": 753
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 255,
+              "g": 249,
+              "b": 242,
+              "a": 1
+            },
+            "titleFontSize": "40px",
+            "titleContrast": 10.36,
+            "summaryContrast": 10.36,
+            "eyebrowContrast": 10.36,
+            "numFontSize": "420px",
+            "btnSize": {
+              "w": 175,
+              "h": 44
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Research & Insight",
+                "w": 161,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Workshops",
+                "w": 111,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Brand Strategy",
+                "w": 140,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+6",
+              "contrast": 10.36
+            }
+          },
+          {
+            "index": 1,
+            "title": "Creative",
+            "cardRect": {
+              "top": 1817,
+              "h": 400,
+              "w": 870,
+              "left": 4,
+              "right": 874
+            },
+            "innerRect": {
+              "h": 342,
+              "w": 848,
+              "left": 14,
+              "right": 862
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 243,
+              "g": 230,
+              "b": 213,
+              "a": 1
+            },
+            "titleFontSize": "40px",
+            "titleContrast": 8.82,
+            "summaryContrast": 8.82,
+            "eyebrowContrast": 8.82,
+            "numFontSize": "420px",
+            "btnSize": {
+              "w": 175,
+              "h": 44
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Branding",
+                "w": 98,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Motion",
+                "w": 82,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Marketing Toolkits",
+                "w": 165,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+5",
+              "contrast": 8.82
+            }
+          },
+          {
+            "index": 2,
+            "title": "Web Development",
+            "cardRect": {
+              "top": 2159,
+              "h": 431,
+              "w": 872,
+              "left": -108,
+              "right": 764
+            },
+            "innerRect": {
+              "h": 373,
+              "w": 848,
+              "left": -95,
+              "right": 753
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 128,
+              "g": 0,
+              "b": 32,
+              "a": 1
+            },
+            "titleFontSize": "40px",
+            "titleContrast": 10.36,
+            "summaryContrast": 10.36,
+            "eyebrowContrast": 10.36,
+            "numFontSize": "420px",
+            "btnSize": {
+              "w": 175,
+              "h": 44
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Technical Architecture",
+                "w": 193,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Hosting, Security & Maintenance",
+                "w": 255,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Front & Back-End Development",
+                "w": 242,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+5",
+              "contrast": 10.36
+            }
+          },
+          {
+            "index": 3,
+            "title": "Campaigns",
+            "cardRect": {
+              "top": 2532,
+              "h": 400,
+              "w": 870,
+              "left": 4,
+              "right": 874
+            },
+            "innerRect": {
+              "h": 342,
+              "w": 848,
+              "left": 14,
+              "right": 862
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 128,
+              "g": 0,
+              "b": 32,
+              "a": 1
+            },
+            "titleFontSize": "40px",
+            "titleContrast": 10.36,
+            "summaryContrast": 10.36,
+            "eyebrowContrast": 10.36,
+            "numFontSize": "420px",
+            "btnSize": {
+              "w": 175,
+              "h": 44
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Paid Media",
+                "w": 103,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Key Beat Activations",
+                "w": 171,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Campaign Management",
+                "w": 190,
+                "h": 26,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+7",
+              "contrast": 10.36
+            }
+          }
+        ]
+      },
+      "homeMidScroll": [
+        {
+          "i": 0,
+          "cardTransform": "matrix(1, 0, 0, 1, 0, 0)",
+          "innerTransform": "matrix(0.997564, -0.06976, 0.06976, 0.997564, -11.5387, 0)",
+          "top": -120
+        },
+        {
+          "i": 1,
+          "cardTransform": "matrix(1, -0.000127409, 0.000127409, 1, 0.077168, 0)",
+          "innerTransform": "none",
+          "top": 240
+        },
+        {
+          "i": 2,
+          "cardTransform": "matrix(0.999891, 0.0147929, -0.0147929, 0.999891, -8.98456, 0)",
+          "innerTransform": "none",
+          "top": 582
+        },
+        {
+          "i": 3,
+          "cardTransform": "matrix(0.998287, -0.0585119, 0.0585119, 0.998287, 35.5566, 0)",
+          "innerTransform": "none",
+          "top": 955
+        }
+      ],
+      "services": {
+        "innerWidth": 768,
+        "innerHeight": 1024,
+        "scrollWidth": 768,
+        "docOverflow": false,
+        "totalHeight": 9604,
+        "heroHeight": 811,
+        "heroHeadingSpans": [
+          {
+            "text": "Our",
+            "left": -10,
+            "right": 367,
+            "top": 136,
+            "bottom": 288,
+            "w": 377,
+            "scrollW": 377,
+            "clientW": 377,
+            "fontSize": "168.96px",
+            "clippedRight": false,
+            "clippedLeft": true
+          },
+          {
+            "text": "Services",
+            "left": -10,
+            "right": 784,
+            "top": 288,
+            "bottom": 440,
+            "w": 794,
+            "scrollW": 794,
+            "clientW": 794,
+            "fontSize": "168.96px",
+            "clippedRight": true,
+            "clippedLeft": true
+          }
+        ],
+        "heroBodyText": "An award-winning partner for games studios and publishers. We connect strategy, creative, web and campaigns to make you stand out and thrive",
+        "navUlRect": {
+          "w": 627,
+          "h": 101
+        },
+        "navLinks": [
+          {
+            "text": "Strategy",
+            "w": 307,
+            "h": 44,
+            "top": 645,
+            "right": 381,
+            "contrast": 10.36
+          },
+          {
+            "text": "Creative",
+            "w": 307,
+            "h": 44,
+            "top": 645,
+            "right": 694,
+            "contrast": 10.36
+          },
+          {
+            "text": "Web",
+            "w": 307,
+            "h": 44,
+            "top": 694,
+            "right": 381,
+            "contrast": 10.36
+          },
+          {
+            "text": "Campaign",
+            "w": 307,
+            "h": 44,
+            "top": 694,
+            "right": 694,
+            "contrast": 10.36
+          }
+        ],
+        "navWrapRows": 2,
+        "blocks": [
+          {
+            "index": 0,
+            "id": "strategy",
+            "title": "Strategy",
+            "w": 750,
+            "h": 1658,
+            "media": {
+              "w": 720,
+              "h": 900
+            },
+            "capCount": 14,
+            "capSample": {
+              "w": 720,
+              "h": 35,
+              "contrast": 13.56
+            },
+            "projectsCount": 14,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          },
+          {
+            "index": 1,
+            "id": "creative",
+            "title": "Creative",
+            "w": 750,
+            "h": 1619,
+            "media": {
+              "w": 720,
+              "h": 900
+            },
+            "capCount": 14,
+            "capSample": {
+              "w": 720,
+              "h": 35,
+              "contrast": 13.56
+            },
+            "projectsCount": 14,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          },
+          {
+            "index": 2,
+            "id": "web-development",
+            "title": "Web Development",
+            "w": 750,
+            "h": 1641,
+            "media": {
+              "w": 720,
+              "h": 900
+            },
+            "capCount": 14,
+            "capSample": {
+              "w": 720,
+              "h": 35,
+              "contrast": 13.56
+            },
+            "projectsCount": 14,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          },
+          {
+            "index": 3,
+            "id": "campaigns",
+            "title": "Campaigns",
+            "w": 750,
+            "h": 1675,
+            "media": {
+              "w": 720,
+              "h": 900
+            },
+            "capCount": 16,
+            "capSample": {
+              "w": 720,
+              "h": 35,
+              "contrast": 13.56
+            },
+            "projectsCount": 16,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          }
+        ],
+        "sidebar": {
+          "h": 0,
+          "w": 0,
+          "display": "none"
+        },
+        "clientsHeading": "Clients",
+        "clientLogosCount": 12,
+        "h1Count": 1,
+        "metaNoindex": "noindex, nofollow"
+      },
+      "errors": []
+    },
+    "1024x768": {
+      "home": {
+        "innerWidth": 1024,
+        "scrollWidth": 1024,
+        "docOverflow": false,
+        "servicesSection": {
+          "top": 1537,
+          "height": 1676,
+          "width": 1024
+        },
+        "cards": [
+          {
+            "index": 0,
+            "title": "Strategy",
+            "cardRect": {
+              "top": 1637,
+              "h": 565,
+              "w": 1073,
+              "left": -162,
+              "right": 912
+            },
+            "innerRect": {
+              "h": 565,
+              "w": 1073,
+              "left": -201,
+              "right": 872
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 255,
+              "g": 249,
+              "b": 242,
+              "a": 1
+            },
+            "titleFontSize": "48px",
+            "titleContrast": 10.36,
+            "summaryContrast": 10.36,
+            "eyebrowContrast": 10.36,
+            "numFontSize": "776px",
+            "btnSize": {
+              "w": 198,
+              "h": 76
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Research & Insight",
+                "w": 163,
+                "h": 48,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Workshops",
+                "w": 114,
+                "h": 41,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Brand Strategy",
+                "w": 142,
+                "h": 45,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+6",
+              "contrast": 10.36
+            }
+          },
+          {
+            "index": 1,
+            "title": "Creative",
+            "cardRect": {
+              "top": 2014,
+              "h": 546,
+              "w": 1071,
+              "left": 112,
+              "right": 1183
+            },
+            "innerRect": {
+              "h": 546,
+              "w": 1071,
+              "left": 192,
+              "right": 1262
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 243,
+              "g": 230,
+              "b": 213,
+              "a": 1
+            },
+            "titleFontSize": "48px",
+            "titleContrast": 8.82,
+            "summaryContrast": 8.82,
+            "eyebrowContrast": 8.82,
+            "numFontSize": "776px",
+            "btnSize": {
+              "w": 198,
+              "h": 76
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Branding",
+                "w": 101,
+                "h": 39,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Motion",
+                "w": 85,
+                "h": 37,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Marketing Toolkits",
+                "w": 167,
+                "h": 49,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+5",
+              "contrast": 8.82
+            }
+          },
+          {
+            "index": 2,
+            "title": "Web Development",
+            "cardRect": {
+              "top": 2371,
+              "h": 596,
+              "w": 1078,
+              "left": -166,
+              "right": 912
+            },
+            "innerRect": {
+              "h": 596,
+              "w": 1078,
+              "left": -206,
+              "right": 872
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 128,
+              "g": 0,
+              "b": 32,
+              "a": 1
+            },
+            "titleFontSize": "48px",
+            "titleContrast": 10.36,
+            "summaryContrast": 10.36,
+            "eyebrowContrast": 10.36,
+            "numFontSize": "776px",
+            "btnSize": {
+              "w": 198,
+              "h": 76
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Technical Architecture",
+                "w": 195,
+                "h": 53,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Hosting, Security & Maintenance",
+                "w": 256,
+                "h": 61,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Front & Back-End Development",
+                "w": 243,
+                "h": 59,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+5",
+              "contrast": 10.36
+            }
+          },
+          {
+            "index": 3,
+            "title": "Campaigns",
+            "cardRect": {
+              "top": 2779,
+              "h": 622,
+              "w": 1081,
+              "left": 112,
+              "right": 1194
+            },
+            "innerRect": {
+              "h": 622,
+              "w": 1081,
+              "left": 192,
+              "right": 1273
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 128,
+              "g": 0,
+              "b": 32,
+              "a": 1
+            },
+            "titleFontSize": "48px",
+            "titleContrast": 10.36,
+            "summaryContrast": 10.36,
+            "eyebrowContrast": 10.36,
+            "numFontSize": "776px",
+            "btnSize": {
+              "w": 198,
+              "h": 76
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Paid Media",
+                "w": 106,
+                "h": 40,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Key Beat Activations",
+                "w": 173,
+                "h": 49,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Campaign Management",
+                "w": 191,
+                "h": 52,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+7",
+              "contrast": 10.36
+            }
+          }
+        ]
+      },
+      "homeMidScroll": [
+        {
+          "i": 0,
+          "cardTransform": "matrix(1, 0, 0, 1, 0, 0)",
+          "innerTransform": "matrix(0.999967, -0.00817678, 0.00817678, 0.999967, -45.9976, 0)",
+          "top": -20
+        },
+        {
+          "i": 1,
+          "cardTransform": "matrix(0.999884, -0.0152623, 0.0152623, 0.999884, 11.1933, 0)",
+          "innerTransform": "none",
+          "top": 357
+        },
+        {
+          "i": 2,
+          "cardTransform": "matrix(0.993258, 0.115922, -0.115922, 0.993258, -85.207, 0)",
+          "innerTransform": "none",
+          "top": 714
+        },
+        {
+          "i": 3,
+          "cardTransform": "matrix(0.990268, -0.139173, 0.139173, 0.990268, 102.4, 0)",
+          "innerTransform": "none",
+          "top": 1122
+        }
+      ],
+      "services": {
+        "innerWidth": 1024,
+        "innerHeight": 768,
+        "scrollWidth": 1024,
+        "docOverflow": false,
+        "totalHeight": 5528,
+        "heroHeight": 625,
+        "heroHeadingSpans": [
+          {
+            "text": "Our",
+            "left": -15,
+            "right": 473,
+            "top": 91,
+            "bottom": 288,
+            "w": 488,
+            "scrollW": 488,
+            "clientW": 488,
+            "fontSize": "218.665px",
+            "clippedRight": false,
+            "clippedLeft": true
+          },
+          {
+            "text": "Services",
+            "left": 110,
+            "right": 1138,
+            "top": 258,
+            "bottom": 455,
+            "w": 1028,
+            "scrollW": 1028,
+            "clientW": 1028,
+            "fontSize": "218.665px",
+            "clippedRight": true,
+            "clippedLeft": false
+          }
+        ],
+        "heroBodyText": "An award-winning partner for games studios and publishers. We connect strategy, creative, web and campaigns to make you stand out and thrive",
+        "navUlRect": {
+          "w": 587,
+          "h": 50
+        },
+        "navLinks": [
+          {
+            "text": "Strategy",
+            "w": 102,
+            "h": 44,
+            "top": 499,
+            "right": 325,
+            "contrast": 10.36
+          },
+          {
+            "text": "Creative",
+            "w": 98,
+            "h": 44,
+            "top": 499,
+            "right": 457,
+            "contrast": 10.36
+          },
+          {
+            "text": "Web",
+            "w": 169,
+            "h": 44,
+            "top": 499,
+            "right": 661,
+            "contrast": 10.36
+          },
+          {
+            "text": "Campaign",
+            "w": 106,
+            "h": 44,
+            "top": 499,
+            "right": 803,
+            "contrast": 10.36
+          }
+        ],
+        "navWrapRows": 1,
+        "blocks": [
+          {
+            "index": 0,
+            "id": "strategy",
+            "title": "Strategy",
+            "w": 984,
+            "h": 586,
+            "media": {
+              "w": 260,
+              "h": 325
+            },
+            "capCount": 14,
+            "capSample": {
+              "w": 301,
+              "h": 40,
+              "contrast": 13.56
+            },
+            "projectsCount": 14,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          },
+          {
+            "index": 1,
+            "id": "creative",
+            "title": "Creative",
+            "w": 984,
+            "h": 586,
+            "media": {
+              "w": 260,
+              "h": 325
+            },
+            "capCount": 14,
+            "capSample": {
+              "w": 301,
+              "h": 40,
+              "contrast": 13.56
+            },
+            "projectsCount": 14,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          },
+          {
+            "index": 2,
+            "id": "web-development",
+            "title": "Web Development",
+            "w": 984,
+            "h": 552,
+            "media": {
+              "w": 260,
+              "h": 325
+            },
+            "capCount": 14,
+            "capSample": {
+              "w": 301,
+              "h": 40,
+              "contrast": 13.56
+            },
+            "projectsCount": 14,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          },
+          {
+            "index": 3,
+            "id": "campaigns",
+            "title": "Campaigns",
+            "w": 984,
+            "h": 586,
+            "media": {
+              "w": 260,
+              "h": 325
+            },
+            "capCount": 16,
+            "capSample": {
+              "w": 301,
+              "h": 40,
+              "contrast": 13.56
+            },
+            "projectsCount": 16,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          }
+        ],
+        "sidebar": {
+          "h": 206,
+          "w": 58,
+          "display": "block"
+        },
+        "clientsHeading": "Clients",
+        "clientLogosCount": 12,
+        "h1Count": 1,
+        "metaNoindex": "noindex, nofollow"
+      },
+      "errors": []
+    },
+    "1280x720": {
+      "home": {
+        "innerWidth": 1280,
+        "scrollWidth": 1280,
+        "docOverflow": false,
+        "servicesSection": {
+          "top": 1490,
+          "height": 1645,
+          "width": 1280
+        },
+        "cards": [
+          {
+            "index": 0,
+            "title": "Strategy",
+            "cardRect": {
+              "top": 1590,
+              "h": 601,
+              "w": 1327,
+              "left": -187,
+              "right": 1140
+            },
+            "innerRect": {
+              "h": 601,
+              "w": 1327,
+              "left": -227,
+              "right": 1100
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 255,
+              "g": 249,
+              "b": 242,
+              "a": 1
+            },
+            "titleFontSize": "56px",
+            "titleContrast": 10.36,
+            "summaryContrast": 10.36,
+            "eyebrowContrast": 10.36,
+            "numFontSize": "776px",
+            "btnSize": {
+              "w": 198,
+              "h": 76
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Research & Insight",
+                "w": 163,
+                "h": 48,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Workshops",
+                "w": 114,
+                "h": 41,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Brand Strategy",
+                "w": 142,
+                "h": 45,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+6",
+              "contrast": 10.36
+            }
+          },
+          {
+            "index": 1,
+            "title": "Creative",
+            "cardRect": {
+              "top": 1967,
+              "h": 582,
+              "w": 1324,
+              "left": 140,
+              "right": 1465
+            },
+            "innerRect": {
+              "h": 582,
+              "w": 1324,
+              "left": 220,
+              "right": 1544
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 243,
+              "g": 230,
+              "b": 213,
+              "a": 1
+            },
+            "titleFontSize": "56px",
+            "titleContrast": 8.82,
+            "summaryContrast": 8.82,
+            "eyebrowContrast": 8.82,
+            "numFontSize": "776px",
+            "btnSize": {
+              "w": 198,
+              "h": 76
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Branding",
+                "w": 101,
+                "h": 39,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Motion",
+                "w": 85,
+                "h": 37,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Marketing Toolkits",
+                "w": 167,
+                "h": 49,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+5",
+              "contrast": 8.82
+            }
+          },
+          {
+            "index": 2,
+            "title": "Web Development",
+            "cardRect": {
+              "top": 2325,
+              "h": 631,
+              "w": 1331,
+              "left": -192,
+              "right": 1140
+            },
+            "innerRect": {
+              "h": 631,
+              "w": 1331,
+              "left": -231,
+              "right": 1100
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 128,
+              "g": 0,
+              "b": 32,
+              "a": 1
+            },
+            "titleFontSize": "56px",
+            "titleContrast": 10.36,
+            "summaryContrast": 10.36,
+            "eyebrowContrast": 10.36,
+            "numFontSize": "776px",
+            "btnSize": {
+              "w": 198,
+              "h": 76
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Technical Architecture",
+                "w": 195,
+                "h": 53,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Hosting, Security & Maintenance",
+                "w": 256,
+                "h": 61,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Front & Back-End Development",
+                "w": 243,
+                "h": 59,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+5",
+              "contrast": 10.36
+            }
+          },
+          {
+            "index": 3,
+            "title": "Campaigns",
+            "cardRect": {
+              "top": 2732,
+              "h": 626,
+              "w": 1331,
+              "left": 140,
+              "right": 1471
+            },
+            "innerRect": {
+              "h": 626,
+              "w": 1331,
+              "left": 220,
+              "right": 1550
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 128,
+              "g": 0,
+              "b": 32,
+              "a": 1
+            },
+            "titleFontSize": "56px",
+            "titleContrast": 10.36,
+            "summaryContrast": 10.36,
+            "eyebrowContrast": 10.36,
+            "numFontSize": "776px",
+            "btnSize": {
+              "w": 198,
+              "h": 76
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Paid Media",
+                "w": 106,
+                "h": 40,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Key Beat Activations",
+                "w": 173,
+                "h": 49,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              },
+              {
+                "text": "Campaign Management",
+                "w": 191,
+                "h": 52,
+                "contrast": 10.36,
+                "fontSize": "12px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+7",
+              "contrast": 10.36
+            }
+          }
+        ]
+      },
+      "homeMidScroll": [
+        {
+          "i": 0,
+          "cardTransform": "matrix(1, 0, 0, 1, 0, 0)",
+          "innerTransform": "matrix(0.999977, -0.00676659, 0.00676659, 0.999977, -46.2029, 0)",
+          "top": -20
+        },
+        {
+          "i": 1,
+          "cardTransform": "matrix(0.999818, -0.0190927, 0.0190927, 0.999818, 17.504, 0)",
+          "innerTransform": "none",
+          "top": 357
+        },
+        {
+          "i": 2,
+          "cardTransform": "matrix(0.990601, 0.136782, -0.136782, 0.990601, -125.787, 0)",
+          "innerTransform": "none",
+          "top": 715
+        },
+        {
+          "i": 3,
+          "cardTransform": "matrix(0.990268, -0.139173, 0.139173, 0.990268, 128, 0)",
+          "innerTransform": "none",
+          "top": 1122
+        }
+      ],
+      "services": {
+        "innerWidth": 1280,
+        "innerHeight": 720,
+        "scrollWidth": 1280,
+        "docOverflow": false,
+        "totalHeight": 6072,
+        "heroHeight": 744,
+        "heroHeadingSpans": [
+          {
+            "text": "Our",
+            "left": -15,
+            "right": 595,
+            "top": 116,
+            "bottom": 362,
+            "w": 610,
+            "scrollW": 610,
+            "clientW": 610,
+            "fontSize": "273.331px",
+            "clippedRight": false,
+            "clippedLeft": true
+          },
+          {
+            "text": "Services",
+            "left": 140,
+            "right": 1425,
+            "top": 327,
+            "bottom": 573,
+            "w": 1285,
+            "scrollW": 1285,
+            "clientW": 1285,
+            "fontSize": "273.331px",
+            "clippedRight": true,
+            "clippedLeft": false
+          }
+        ],
+        "heroBodyText": "An award-winning partner for games studios and publishers. We connect strategy, creative, web and campaigns to make you stand out and thrive",
+        "navUlRect": {
+          "w": 587,
+          "h": 50
+        },
+        "navLinks": [
+          {
+            "text": "Strategy",
+            "w": 102,
+            "h": 44,
+            "top": 618,
+            "right": 453,
+            "contrast": 10.36
+          },
+          {
+            "text": "Creative",
+            "w": 98,
+            "h": 44,
+            "top": 618,
+            "right": 585,
+            "contrast": 10.36
+          },
+          {
+            "text": "Web",
+            "w": 169,
+            "h": 44,
+            "top": 618,
+            "right": 789,
+            "contrast": 10.36
+          },
+          {
+            "text": "Campaign",
+            "w": 106,
+            "h": 44,
+            "top": 618,
+            "right": 931,
+            "contrast": 10.36
+          }
+        ],
+        "navWrapRows": 1,
+        "blocks": [
+          {
+            "index": 0,
+            "id": "strategy",
+            "title": "Strategy",
+            "w": 1230,
+            "h": 617,
+            "media": {
+              "w": 300,
+              "h": 375
+            },
+            "capCount": 14,
+            "capSample": {
+              "w": 387,
+              "h": 45,
+              "contrast": 13.56
+            },
+            "projectsCount": 14,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          },
+          {
+            "index": 1,
+            "id": "creative",
+            "title": "Creative",
+            "w": 1230,
+            "h": 617,
+            "media": {
+              "w": 300,
+              "h": 375
+            },
+            "capCount": 14,
+            "capSample": {
+              "w": 387,
+              "h": 45,
+              "contrast": 13.56
+            },
+            "projectsCount": 14,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          },
+          {
+            "index": 2,
+            "id": "web-development",
+            "title": "Web Development",
+            "w": 1230,
+            "h": 583,
+            "media": {
+              "w": 300,
+              "h": 375
+            },
+            "capCount": 14,
+            "capSample": {
+              "w": 387,
+              "h": 45,
+              "contrast": 13.56
+            },
+            "projectsCount": 14,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          },
+          {
+            "index": 3,
+            "id": "campaigns",
+            "title": "Campaigns",
+            "w": 1230,
+            "h": 617,
+            "media": {
+              "w": 300,
+              "h": 375
+            },
+            "capCount": 16,
+            "capSample": {
+              "w": 387,
+              "h": 45,
+              "contrast": 13.56
+            },
+            "projectsCount": 16,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          }
+        ],
+        "sidebar": {
+          "h": 206,
+          "w": 58,
+          "display": "block"
+        },
+        "clientsHeading": "Clients",
+        "clientLogosCount": 12,
+        "h1Count": 1,
+        "metaNoindex": "noindex, nofollow"
+      },
+      "errors": []
+    },
+    "1920x1080": {
+      "home": {
+        "innerWidth": 1920,
+        "scrollWidth": 1920,
+        "docOverflow": false,
+        "servicesSection": {
+          "top": 2161,
+          "height": 2044,
+          "width": 1920
+        },
+        "cards": [
+          {
+            "index": 0,
+            "title": "Strategy",
+            "cardRect": {
+              "top": 2261,
+              "h": 796,
+              "w": 1976,
+              "left": -266,
+              "right": 1709
+            },
+            "innerRect": {
+              "h": 796,
+              "w": 1976,
+              "left": -306,
+              "right": 1670
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 255,
+              "g": 249,
+              "b": 242,
+              "a": 1
+            },
+            "titleFontSize": "75px",
+            "titleContrast": 10.36,
+            "summaryContrast": 10.36,
+            "eyebrowContrast": 10.36,
+            "numFontSize": "776px",
+            "btnSize": {
+              "w": 214,
+              "h": 84
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Research & Insight",
+                "w": 207,
+                "h": 66,
+                "contrast": 10.36,
+                "fontSize": "16px"
+              },
+              {
+                "text": "Workshops",
+                "w": 141,
+                "h": 57,
+                "contrast": 10.36,
+                "fontSize": "16px"
+              },
+              {
+                "text": "Brand Strategy",
+                "w": 179,
+                "h": 62,
+                "contrast": 10.36,
+                "fontSize": "16px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+6",
+              "contrast": 10.36
+            }
+          },
+          {
+            "index": 1,
+            "title": "Creative",
+            "cardRect": {
+              "top": 2745,
+              "h": 774,
+              "w": 1972,
+              "left": 211,
+              "right": 2183
+            },
+            "innerRect": {
+              "h": 774,
+              "w": 1972,
+              "left": 290,
+              "right": 2262
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 243,
+              "g": 230,
+              "b": 213,
+              "a": 1
+            },
+            "titleFontSize": "75px",
+            "titleContrast": 8.82,
+            "summaryContrast": 8.82,
+            "eyebrowContrast": 8.82,
+            "numFontSize": "776px",
+            "btnSize": {
+              "w": 214,
+              "h": 84
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Branding",
+                "w": 123,
+                "h": 54,
+                "contrast": 10.36,
+                "fontSize": "16px"
+              },
+              {
+                "text": "Motion",
+                "w": 102,
+                "h": 51,
+                "contrast": 10.36,
+                "fontSize": "16px"
+              },
+              {
+                "text": "Marketing Toolkits",
+                "w": 212,
+                "h": 67,
+                "contrast": 10.36,
+                "fontSize": "16px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+5",
+              "contrast": 8.82
+            }
+          },
+          {
+            "index": 2,
+            "title": "Web Development",
+            "cardRect": {
+              "top": 3207,
+              "h": 816,
+              "w": 1978,
+              "left": -269,
+              "right": 1709
+            },
+            "innerRect": {
+              "h": 816,
+              "w": 1978,
+              "left": -309,
+              "right": 1670
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 128,
+              "g": 0,
+              "b": 32,
+              "a": 1
+            },
+            "titleFontSize": "75px",
+            "titleContrast": 10.36,
+            "summaryContrast": 10.36,
+            "eyebrowContrast": 10.36,
+            "numFontSize": "776px",
+            "btnSize": {
+              "w": 214,
+              "h": 84
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Technical Architecture",
+                "w": 249,
+                "h": 72,
+                "contrast": 10.36,
+                "fontSize": "16px"
+              },
+              {
+                "text": "Hosting, Security & Maintenance",
+                "w": 331,
+                "h": 83,
+                "contrast": 10.36,
+                "fontSize": "16px"
+              },
+              {
+                "text": "Front & Back-End Development",
+                "w": 313,
+                "h": 81,
+                "contrast": 10.36,
+                "fontSize": "16px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+5",
+              "contrast": 10.36
+            }
+          },
+          {
+            "index": 3,
+            "title": "Campaigns",
+            "cardRect": {
+              "top": 3711,
+              "h": 805,
+              "w": 1977,
+              "left": 211,
+              "right": 2188
+            },
+            "innerRect": {
+              "h": 805,
+              "w": 1977,
+              "left": 290,
+              "right": 2267
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 128,
+              "g": 0,
+              "b": 32,
+              "a": 1
+            },
+            "titleFontSize": "75px",
+            "titleContrast": 10.36,
+            "summaryContrast": 10.36,
+            "eyebrowContrast": 10.36,
+            "numFontSize": "776px",
+            "btnSize": {
+              "w": 214,
+              "h": 84
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Paid Media",
+                "w": 130,
+                "h": 55,
+                "contrast": 10.36,
+                "fontSize": "16px"
+              },
+              {
+                "text": "Key Beat Activations",
+                "w": 219,
+                "h": 68,
+                "contrast": 10.36,
+                "fontSize": "16px"
+              },
+              {
+                "text": "Campaign Management",
+                "w": 244,
+                "h": 71,
+                "contrast": 10.36,
+                "fontSize": "16px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+7",
+              "contrast": 10.36
+            }
+          }
+        ]
+      },
+      "homeMidScroll": [
+        {
+          "i": 0,
+          "cardTransform": "matrix(1, 0, 0, 1, 0, 0)",
+          "innerTransform": "matrix(0.999971, -0.00759385, 0.00759385, 0.999971, -50.441, 0)",
+          "top": -20
+        },
+        {
+          "i": 1,
+          "cardTransform": "matrix(0.999934, -0.0115032, 0.0115032, 0.999934, 15.8189, 0)",
+          "innerTransform": "none",
+          "top": 464
+        },
+        {
+          "i": 2,
+          "cardTransform": "matrix(0.995558, 0.0941483, -0.0941483, 0.995558, -129.656, 0)",
+          "innerTransform": "none",
+          "top": 926
+        },
+        {
+          "i": 3,
+          "cardTransform": "matrix(0.990268, -0.139173, 0.139173, 0.990268, 192, 0)",
+          "innerTransform": "none",
+          "top": 1430
+        }
+      ],
+      "services": {
+        "innerWidth": 1920,
+        "innerHeight": 1080,
+        "scrollWidth": 1920,
+        "docOverflow": false,
+        "totalHeight": 7036,
+        "heroHeight": 1035,
+        "heroHeadingSpans": [
+          {
+            "text": "Our",
+            "left": -15,
+            "right": 901,
+            "top": 171,
+            "bottom": 540,
+            "w": 916,
+            "scrollW": 916,
+            "clientW": 916,
+            "fontSize": "409.997px",
+            "clippedRight": false,
+            "clippedLeft": true
+          },
+          {
+            "text": "Services",
+            "left": 210,
+            "right": 2137,
+            "top": 490,
+            "bottom": 859,
+            "w": 1927,
+            "scrollW": 1927,
+            "clientW": 1927,
+            "fontSize": "409.997px",
+            "clippedRight": true,
+            "clippedLeft": false
+          }
+        ],
+        "heroBodyText": "An award-winning partner for games studios and publishers. We connect strategy, creative, web and campaigns to make you stand out and thrive",
+        "navUlRect": {
+          "w": 587,
+          "h": 50
+        },
+        "navLinks": [
+          {
+            "text": "Strategy",
+            "w": 102,
+            "h": 44,
+            "top": 909,
+            "right": 773,
+            "contrast": 10.36
+          },
+          {
+            "text": "Creative",
+            "w": 98,
+            "h": 44,
+            "top": 909,
+            "right": 905,
+            "contrast": 10.36
+          },
+          {
+            "text": "Web",
+            "w": 169,
+            "h": 44,
+            "top": 909,
+            "right": 1109,
+            "contrast": 10.36
+          },
+          {
+            "text": "Campaign",
+            "w": 106,
+            "h": 44,
+            "top": 909,
+            "right": 1251,
+            "contrast": 10.36
+          }
+        ],
+        "navWrapRows": 1,
+        "blocks": [
+          {
+            "index": 0,
+            "id": "strategy",
+            "title": "Strategy",
+            "w": 1850,
+            "h": 746,
+            "media": {
+              "w": 410,
+              "h": 513
+            },
+            "capCount": 14,
+            "capSample": {
+              "w": 548,
+              "h": 60,
+              "contrast": 13.56
+            },
+            "projectsCount": 14,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          },
+          {
+            "index": 1,
+            "id": "creative",
+            "title": "Creative",
+            "w": 1850,
+            "h": 746,
+            "media": {
+              "w": 410,
+              "h": 513
+            },
+            "capCount": 14,
+            "capSample": {
+              "w": 548,
+              "h": 60,
+              "contrast": 13.56
+            },
+            "projectsCount": 14,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          },
+          {
+            "index": 2,
+            "id": "web-development",
+            "title": "Web Development",
+            "w": 1850,
+            "h": 746,
+            "media": {
+              "w": 410,
+              "h": 513
+            },
+            "capCount": 14,
+            "capSample": {
+              "w": 548,
+              "h": 60,
+              "contrast": 13.56
+            },
+            "projectsCount": 14,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          },
+          {
+            "index": 3,
+            "id": "campaigns",
+            "title": "Campaigns",
+            "w": 1850,
+            "h": 780,
+            "media": {
+              "w": 410,
+              "h": 513
+            },
+            "capCount": 16,
+            "capSample": {
+              "w": 548,
+              "h": 60,
+              "contrast": 13.56
+            },
+            "projectsCount": 16,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          }
+        ],
+        "sidebar": {
+          "h": 206,
+          "w": 58,
+          "display": "block"
+        },
+        "clientsHeading": "Clients",
+        "clientLogosCount": 12,
+        "h1Count": 1,
+        "metaNoindex": "noindex, nofollow"
+      },
+      "errors": []
+    },
+    "2560x1440": {
+      "home": {
+        "innerWidth": 2560,
+        "scrollWidth": 2560,
+        "docOverflow": false,
+        "servicesSection": {
+          "top": 2881,
+          "height": 2044,
+          "width": 2560
+        },
+        "cards": [
+          {
+            "index": 0,
+            "title": "Strategy",
+            "cardRect": {
+              "top": 2981,
+              "h": 886,
+              "w": 2609,
+              "left": -330,
+              "right": 2279
+            },
+            "innerRect": {
+              "h": 886,
+              "w": 2609,
+              "left": -370,
+              "right": 2239
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 255,
+              "g": 249,
+              "b": 242,
+              "a": 1
+            },
+            "titleFontSize": "75px",
+            "titleContrast": 10.36,
+            "summaryContrast": 10.36,
+            "eyebrowContrast": 10.36,
+            "numFontSize": "776px",
+            "btnSize": {
+              "w": 214,
+              "h": 84
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Research & Insight",
+                "w": 207,
+                "h": 66,
+                "contrast": 10.36,
+                "fontSize": "16px"
+              },
+              {
+                "text": "Workshops",
+                "w": 141,
+                "h": 57,
+                "contrast": 10.36,
+                "fontSize": "16px"
+              },
+              {
+                "text": "Brand Strategy",
+                "w": 179,
+                "h": 62,
+                "contrast": 10.36,
+                "fontSize": "16px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+6",
+              "contrast": 10.36
+            }
+          },
+          {
+            "index": 1,
+            "title": "Creative",
+            "cardRect": {
+              "top": 3465,
+              "h": 863,
+              "w": 2606,
+              "left": 281,
+              "right": 2887
+            },
+            "innerRect": {
+              "h": 863,
+              "w": 2606,
+              "left": 360,
+              "right": 2966
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 243,
+              "g": 230,
+              "b": 213,
+              "a": 1
+            },
+            "titleFontSize": "75px",
+            "titleContrast": 8.82,
+            "summaryContrast": 8.82,
+            "eyebrowContrast": 8.82,
+            "numFontSize": "776px",
+            "btnSize": {
+              "w": 214,
+              "h": 84
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Branding",
+                "w": 123,
+                "h": 54,
+                "contrast": 10.36,
+                "fontSize": "16px"
+              },
+              {
+                "text": "Motion",
+                "w": 102,
+                "h": 51,
+                "contrast": 10.36,
+                "fontSize": "16px"
+              },
+              {
+                "text": "Marketing Toolkits",
+                "w": 212,
+                "h": 67,
+                "contrast": 10.36,
+                "fontSize": "16px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+5",
+              "contrast": 8.82
+            }
+          },
+          {
+            "index": 2,
+            "title": "Web Development",
+            "cardRect": {
+              "top": 3927,
+              "h": 905,
+              "w": 2612,
+              "left": -333,
+              "right": 2279
+            },
+            "innerRect": {
+              "h": 905,
+              "w": 2612,
+              "left": -373,
+              "right": 2239
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 128,
+              "g": 0,
+              "b": 32,
+              "a": 1
+            },
+            "titleFontSize": "75px",
+            "titleContrast": 10.36,
+            "summaryContrast": 10.36,
+            "eyebrowContrast": 10.36,
+            "numFontSize": "776px",
+            "btnSize": {
+              "w": 214,
+              "h": 84
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Technical Architecture",
+                "w": 249,
+                "h": 72,
+                "contrast": 10.36,
+                "fontSize": "16px"
+              },
+              {
+                "text": "Hosting, Security & Maintenance",
+                "w": 331,
+                "h": 83,
+                "contrast": 10.36,
+                "fontSize": "16px"
+              },
+              {
+                "text": "Front & Back-End Development",
+                "w": 313,
+                "h": 81,
+                "contrast": 10.36,
+                "fontSize": "16px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+5",
+              "contrast": 10.36
+            }
+          },
+          {
+            "index": 3,
+            "title": "Campaigns",
+            "cardRect": {
+              "top": 4431,
+              "h": 894,
+              "w": 2611,
+              "left": 281,
+              "right": 2892
+            },
+            "innerRect": {
+              "h": 894,
+              "w": 2611,
+              "left": 360,
+              "right": 2971
+            },
+            "innerTransform": "none",
+            "cardBgRgb": {
+              "r": 128,
+              "g": 0,
+              "b": 32,
+              "a": 1
+            },
+            "titleFontSize": "75px",
+            "titleContrast": 10.36,
+            "summaryContrast": 10.36,
+            "eyebrowContrast": 10.36,
+            "numFontSize": "776px",
+            "btnSize": {
+              "w": 214,
+              "h": 84
+            },
+            "btnContrast": 10.36,
+            "pills": [
+              {
+                "text": "Paid Media",
+                "w": 130,
+                "h": 55,
+                "contrast": 10.36,
+                "fontSize": "16px"
+              },
+              {
+                "text": "Key Beat Activations",
+                "w": 219,
+                "h": 68,
+                "contrast": 10.36,
+                "fontSize": "16px"
+              },
+              {
+                "text": "Campaign Management",
+                "w": 244,
+                "h": 71,
+                "contrast": 10.36,
+                "fontSize": "16px"
+              }
+            ],
+            "plusBadge": {
+              "text": "+7",
+              "contrast": 10.36
+            }
+          }
+        ]
+      },
+      "homeMidScroll": [
+        {
+          "i": 0,
+          "cardTransform": "matrix(1, 0, 0, 1, 0, 0)",
+          "innerTransform": "matrix(0.999954, -0.00960963, 0.00960963, 0.999954, -57.6205, 0)",
+          "top": -20
+        },
+        {
+          "i": 1,
+          "cardTransform": "matrix(0.999995, -0.00325852, 0.00325852, 0.999995, 5.97504, 0)",
+          "innerTransform": "none",
+          "top": 464
+        },
+        {
+          "i": 2,
+          "cardTransform": "matrix(0.999083, 0.0428121, -0.0428121, 0.999083, -78.5203, 0)",
+          "innerTransform": "none",
+          "top": 926
+        },
+        {
+          "i": 3,
+          "cardTransform": "matrix(0.990601, -0.136782, 0.136782, 0.990601, 251.574, 0)",
+          "innerTransform": "none",
+          "top": 1430
+        }
+      ],
+      "services": {
+        "innerWidth": 2560,
+        "innerHeight": 1440,
+        "scrollWidth": 2560,
+        "docOverflow": false,
+        "totalHeight": 7036,
+        "heroHeight": 1035,
+        "heroHeadingSpans": [
+          {
+            "text": "Our",
+            "left": 305,
+            "right": 1221,
+            "top": 171,
+            "bottom": 540,
+            "w": 916,
+            "scrollW": 916,
+            "clientW": 916,
+            "fontSize": "410px",
+            "clippedRight": false,
+            "clippedLeft": false
+          },
+          {
+            "text": "Services",
+            "left": 530,
+            "right": 2457,
+            "top": 490,
+            "bottom": 859,
+            "w": 1927,
+            "scrollW": 1927,
+            "clientW": 1927,
+            "fontSize": "410px",
+            "clippedRight": false,
+            "clippedLeft": false
+          }
+        ],
+        "heroBodyText": "An award-winning partner for games studios and publishers. We connect strategy, creative, web and campaigns to make you stand out and thrive",
+        "navUlRect": {
+          "w": 587,
+          "h": 50
+        },
+        "navLinks": [
+          {
+            "text": "Strategy",
+            "w": 102,
+            "h": 44,
+            "top": 909,
+            "right": 1093,
+            "contrast": 10.36
+          },
+          {
+            "text": "Creative",
+            "w": 98,
+            "h": 44,
+            "top": 909,
+            "right": 1225,
+            "contrast": 10.36
+          },
+          {
+            "text": "Web",
+            "w": 169,
+            "h": 44,
+            "top": 909,
+            "right": 1429,
+            "contrast": 10.36
+          },
+          {
+            "text": "Campaign",
+            "w": 106,
+            "h": 44,
+            "top": 909,
+            "right": 1571,
+            "contrast": 10.36
+          }
+        ],
+        "navWrapRows": 1,
+        "blocks": [
+          {
+            "index": 0,
+            "id": "strategy",
+            "title": "Strategy",
+            "w": 1850,
+            "h": 746,
+            "media": {
+              "w": 410,
+              "h": 513
+            },
+            "capCount": 14,
+            "capSample": {
+              "w": 548,
+              "h": 60,
+              "contrast": 13.56
+            },
+            "projectsCount": 14,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          },
+          {
+            "index": 1,
+            "id": "creative",
+            "title": "Creative",
+            "w": 1850,
+            "h": 746,
+            "media": {
+              "w": 410,
+              "h": 513
+            },
+            "capCount": 14,
+            "capSample": {
+              "w": 548,
+              "h": 60,
+              "contrast": 13.56
+            },
+            "projectsCount": 14,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          },
+          {
+            "index": 2,
+            "id": "web-development",
+            "title": "Web Development",
+            "w": 1850,
+            "h": 746,
+            "media": {
+              "w": 410,
+              "h": 513
+            },
+            "capCount": 14,
+            "capSample": {
+              "w": 548,
+              "h": 60,
+              "contrast": 13.56
+            },
+            "projectsCount": 14,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          },
+          {
+            "index": 3,
+            "id": "campaigns",
+            "title": "Campaigns",
+            "w": 1850,
+            "h": 780,
+            "media": {
+              "w": 410,
+              "h": 513
+            },
+            "capCount": 16,
+            "capSample": {
+              "w": 548,
+              "h": 60,
+              "contrast": 13.56
+            },
+            "projectsCount": 16,
+            "eyebrowContrast": 10.36,
+            "h2Contrast": 10.36,
+            "leadContrast": 10.36,
+            "bodyContrast": 10.36
+          }
+        ],
+        "sidebar": {
+          "h": 206,
+          "w": 58,
+          "display": "block"
+        },
+        "clientsHeading": "Clients",
+        "clientLogosCount": 12,
+        "h1Count": 1,
+        "metaNoindex": "noindex, nofollow"
+      },
+      "errors": []
+    }
+  },
+  "swaps": {
+    "hops": [
+      {
+        "path": "/services",
+        "bodyBg": "rgb(128, 0, 32)",
+        "serviceCards": 0,
+        "serviceBlocks": 4,
+        "canvases": [
+          {
+            "cls": "webgl pointer-events-none fixed inset-0 z-10 hidden h-full w-full lg:block",
+            "w": 1280,
+            "h": 800,
+            "cw": 1280,
+            "ch": 800
+          },
+          {
+            "cls": "webgl pointer-events-none fixed inset-0 z-0 hidden h-full w-full lg:block",
+            "w": 1280,
+            "h": 800,
+            "cw": 1280,
+            "ch": 800
+          }
+        ]
+      },
+      {
+        "path": "/about",
+        "bodyBg": "rgb(128, 0, 32)",
+        "serviceCards": 0,
+        "serviceBlocks": 7,
+        "canvases": [
+          {
+            "cls": "webgl pointer-events-none fixed inset-0 z-10 hidden h-full w-full lg:block",
+            "w": 1280,
+            "h": 800,
+            "cw": 1280,
+            "ch": 800
+          },
+          {
+            "cls": "webgl pointer-events-none fixed inset-0 z-0 hidden h-full w-full lg:block",
+            "w": 1280,
+            "h": 800,
+            "cw": 1280,
+            "ch": 800
+          }
+        ]
+      },
+      {
+        "path": "/contact",
+        "bodyBg": "rgb(128, 0, 32)",
+        "serviceCards": 0,
+        "serviceBlocks": 2,
+        "canvases": [
+          {
+            "cls": "webgl pointer-events-none fixed inset-0 z-10 hidden h-full w-full lg:block",
+            "w": 1280,
+            "h": 800,
+            "cw": 1280,
+            "ch": 800
+          },
+          {
+            "cls": "webgl pointer-events-none fixed inset-0 z-0 hidden h-full w-full lg:block",
+            "w": 1280,
+            "h": 800,
+            "cw": 1280,
+            "ch": 800
+          }
+        ]
+      },
+      {
+        "path": "/",
+        "bodyBg": "rgb(128, 0, 32)",
+        "serviceCards": 4,
+        "serviceBlocks": 0,
+        "canvases": [
+          {
+            "cls": "webgl pointer-events-none fixed inset-0 z-10 hidden h-full w-full lg:block",
+            "w": 1280,
+            "h": 800,
+            "cw": 1280,
+            "ch": 800
+          },
+          {
+            "cls": "webgl pointer-events-none fixed inset-0 z-0 hidden h-full w-full lg:block",
+            "w": 1280,
+            "h": 800,
+            "cw": 1280,
+            "ch": 800
+          }
+        ]
+      },
+      {
+        "error": "timeout to /services, current=http://127.0.0.1:4398/",
+        "swapErrorsCount": 0
+      }
+    ],
+    "swapErrors": [
+      "NAV_FAIL: page.waitForFunction: Timeout 12000ms exceeded."
+    ]
+  },
+  "reducedMotion": {
+    "rmHome": [
+      {
+        "i": 0,
+        "cardTransform": "none",
+        "innerTransform": "none"
+      },
+      {
+        "i": 1,
+        "cardTransform": "none",
+        "innerTransform": "none"
+      },
+      {
+        "i": 2,
+        "cardTransform": "none",
+        "innerTransform": "none"
+      },
+      {
+        "i": 3,
+        "cardTransform": "none",
+        "innerTransform": "none"
+      }
+    ],
+    "rmVideos": [
+      {
+        "paused": true,
+        "src": null
+      },
+      {
+        "paused": true,
+        "src": null
+      },
+      {
+        "paused": true,
+        "src": null
+      },
+      {
+        "paused": true,
+        "src": null
+      }
+    ]
+  },
+  "keyboardAndFocus": [
+    {
+      "tag": "A",
+      "text": "Skip to main content",
+      "href": "#main-content",
+      "outline": "rgb(212, 80, 96) solid 2px",
+      "boxShadow": "none",
+      "w": 222,
+      "h": 44
+    },
+    {
+      "tag": "A",
+      "text": "Decbricks",
+      "href": "/",
+      "outline": "rgb(255, 249, 242) solid 2px",
+      "boxShadow": "none",
+      "w": 133,
+      "h": 57
+    },
+    {
+      "tag": "A",
+      "text": "01WorkWork",
+      "href": "/",
+      "outline": "rgb(128, 0, 32) solid 3px",
+      "boxShadow": "none",
+      "w": 99,
+      "h": 44
+    },
+    {
+      "tag": "A",
+      "text": "02AboutAbout",
+      "href": "/about",
+      "outline": "rgb(128, 0, 32) solid 3px",
+      "boxShadow": "none",
+      "w": 104,
+      "h": 44
+    },
+    {
+      "tag": "A",
+      "text": "03ServicesServices",
+      "href": "/services",
+      "outline": "rgb(128, 0, 32) solid 3px",
+      "boxShadow": "none",
+      "w": 126,
+      "h": 44
+    },
+    {
+      "tag": "A",
+      "text": "04ContactContact",
+      "href": "/contact",
+      "outline": "rgb(255, 249, 242) solid 2px",
+      "boxShadow": "none",
+      "w": 124,
+      "h": 44
+    },
+    {
+      "tag": "A",
+      "text": "Strategy Strategy",
+      "href": "#strategy",
+      "outline": "rgb(255, 249, 242) solid 2px",
+      "boxShadow": "none",
+      "w": 102,
+      "h": 44
+    },
+    {
+      "tag": "A",
+      "text": "Creative Creative",
+      "href": "#creative",
+      "outline": "rgb(255, 249, 242) solid 2px",
+      "boxShadow": "none",
+      "w": 98,
+      "h": 44
+    },
+    {
+      "tag": "A",
+      "text": "Web Development Web Development",
+      "href": "#web-development",
+      "outline": "rgb(255, 249, 242) solid 2px",
+      "boxShadow": "none",
+      "w": 169,
+      "h": 44
+    },
+    {
+      "tag": "A",
+      "text": "Campaign Campaign",
+      "href": "#campaigns",
+      "outline": "rgb(255, 249, 242) solid 2px",
+      "boxShadow": "none",
+      "w": 106,
+      "h": 44
+    },
+    {
+      "tag": "INPUT",
+      "text": "",
+      "href": null,
+      "outline": "rgb(42, 2, 8) solid 2px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(42, 2, 8) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "w": 1063,
+      "h": 199
+    },
+    {
+      "tag": "INPUT",
+      "text": "",
+      "href": null,
+      "outline": "rgb(42, 2, 8) solid 2px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(42, 2, 8) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "w": 1064,
+      "h": 186
+    },
+    {
+      "tag": "INPUT",
+      "text": "",
+      "href": null,
+      "outline": "rgb(42, 2, 8) solid 2px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(42, 2, 8) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "w": 1064,
+      "h": 186
+    },
+    {
+      "tag": "TEXTAREA",
+      "text": "",
+      "href": null,
+      "outline": "rgb(128, 0, 32) solid 2px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(128, 0, 32) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "w": 1077,
+      "h": 294
+    },
+    {
+      "tag": "INPUT",
+      "text": "",
+      "href": null,
+      "outline": "rgb(0, 0, 0) solid 2px",
+      "boxShadow": "none",
+      "w": 1,
+      "h": 1
+    },
+    {
+      "tag": "BUTTON",
+      "text": "SubmitSubmit",
+      "href": null,
+      "outline": "rgb(255, 249, 242) solid 2px",
+      "boxShadow": "none",
+      "w": 119,
+      "h": 61
+    }
+  ],
+  "networkServices": {
+    "totalRequests": 76,
+    "summaryByType": {
+      "document": {
+        "count": 1,
+        "bytes": 0,
+        "urls": [
+          "/services"
+        ]
+      },
+      "image": {
+        "count": 20,
+        "bytes": 718361,
+        "urls": [
+          "/brand/logo-cream.webp",
+          "/images/contact/computer-back-1600.webp",
+          "/images/contact/computer-front-1600.webp",
+          "/videos/services/strategy.webp",
+          "/videos/services/creative.webp",
+          "/videos/services/web-development.webp",
+          "/videos/services/campaigns.webp",
+          "/images/square-solid.png",
+          "/images/clients/client-01.png",
+          "/images/clients/client-02.png",
+          "/images/clients/client-03.png",
+          "/images/clients/client-04.png",
+          "/images/clients/client-05.png",
+          "/images/clients/client-06.png",
+          "/images/clients/client-07.png",
+          "/images/clients/client-08.png",
+          "/images/clients/client-09.png",
+          "/images/clients/client-10.png",
+          "/images/clients/client-11.png",
+          "/images/clients/client-12.png"
+        ]
+      },
+      "font": {
+        "count": 4,
+        "bytes": 121648,
+        "urls": [
+          "/fonts/bricolage-grotesque-latin.woff2",
+          "/fonts/hanken-grotesk-latin.woff2",
+          "/fonts/fk-raster-roman-compact.woff2",
+          "/fonts/departure-mono-regular.woff2"
+        ]
+      },
+      "script": {
+        "count": 47,
+        "bytes": 3597008,
+        "urls": [
+          "/@id/astro:scripts/page.js",
+          "/@vite/client",
+          "/src/styles/global.css",
+          "/src/pages/services.astro?astro&type=script&index=0&lang.ts",
+          "/node_modules/astro/dist/virtual-modules/prefetch.js?v=21de4d8d",
+          "/src/styles/decbricks.css",
+          "/node_modules/vite/dist/client/env.mjs",
+          "/src/scripts/main.ts",
+          "/node_modules/astro/dist/prefetch/index.js?v=21de4d8d",
+          "/src/scripts/smooth-scroll.ts",
+          "/src/scripts/core/gsap.ts",
+          "/src/scripts/loader.ts",
+          "/src/scripts/hero.ts",
+          "/src/scripts/media.ts",
+          "/src/scripts/cookies.ts",
+          "/src/scripts/smiley-text.ts",
+          "/src/scripts/buttons.ts",
+          "/src/scripts/services-page.ts",
+          "/src/scripts/keywords.ts",
+          "/src/scripts/menu.ts",
+          "/src/scripts/page-transition.ts",
+          "/src/scripts/video-player.ts",
+          "/src/scripts/services.ts",
+          "/src/scripts/case-studies.ts",
+          "/src/scripts/testimonials.ts",
+          "/src/scripts/contact.ts",
+          "/src/scripts/cal-embed.ts",
+          "/src/scripts/webgl/experience.ts",
+          "/src/scripts/footer.ts",
+          "/node_modules/.vite/deps/lenis.js?v=21de4d8d",
+          "/@id/__x00__virtual:astro:adapter-config/client",
+          "/node_modules/.vite/deps/gsap.js?v=21de4d8d",
+          "/node_modules/.vite/deps/gsap_Flip.js?v=21de4d8d",
+          "/node_modules/.vite/deps/gsap_InertiaPlugin.js?v=21de4d8d",
+          "/node_modules/.vite/deps/gsap_Draggable.js?v=21de4d8d",
+          "/node_modules/.vite/deps/gsap_ScrollTrigger.js?v=21de4d8d",
+          "/node_modules/.vite/deps/gsap_SplitText.js?v=21de4d8d",
+          "/src/lib/brand.ts",
+          "/node_modules/.vite/deps/gsap_CustomEase.js?v=21de4d8d",
+          "/src/data/services.ts",
+          "/src/scripts/core/momentum-hover.ts",
+          "/src/scripts/core/horizontal-loop.ts",
+          "/src/data/contact.ts",
+          "/node_modules/.vite/deps/chunk-JVWSFFO4.js?v=21de4d8d",
+          "/node_modules/.vite/deps/chunk-HDZAL2O7.js?v=21de4d8d",
+          "/src/scripts/webgl/impl.ts",
+          "/node_modules/.vite/deps/three.js?v=21de4d8d"
+        ]
+      },
+      "media": {
+        "count": 4,
+        "bytes": 10573908,
+        "urls": [
+          "/videos/services/strategy.mp4",
+          "/videos/services/creative.mp4",
+          "/videos/services/web-development.mp4",
+          "/videos/services/campaigns.mp4"
+        ]
+      }
+    }
+  },
+  "about7ItemSidebarStress": {
+    "1024x768": {
+      "exists": true,
+      "rect": {
+        "top": 209,
+        "bottom": 559,
+        "h": 350,
+        "left": 1024,
+        "right": 1082
+      },
+      "viewportH": 768,
+      "clipsTopOrBottom": false
+    },
+    "1280x720": {
+      "exists": true,
+      "rect": {
+        "top": 185,
+        "bottom": 535,
+        "h": 350,
+        "left": 1280,
+        "right": 1338
+      },
+      "viewportH": 720,
+      "clipsTopOrBottom": false
+    },
+    "1920x1080": {
+      "exists": true,
+      "rect": {
+        "top": 365,
+        "bottom": 715,
+        "h": 350,
+        "left": 1920,
+        "right": 1978
+      },
+      "viewportH": 1080,
+      "clipsTopOrBottom": false
+    },
+    "2560x1440": {
+      "exists": true,
+      "rect": {
+        "top": 545,
+        "bottom": 895,
+        "h": 350,
+        "left": 2560,
+        "right": 2618
+      },
+      "viewportH": 1440,
+      "clipsTopOrBottom": false
+    }
+  },
+  "consoleErrors": [],
+  "pageErrors": []
+}

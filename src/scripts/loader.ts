@@ -5,12 +5,11 @@ const EASE = 'smooth-2';
 const READOUT_DELAY = 0.2;
 const STAGE_OVERLAP = -0.2;
 const RESIZE_THRESHOLD = 140;
-// Redesign-polish §4 Phase 2 (owner-approved "plan default", 2026-11-13):
-// intro plays ≤1.2s on the FIRST visit of a browser session, is skipped on
-// repeat visits, and is hard-capped at 1.5s even if hero media lags.
-// Rollback = remove the sessionStorage gate + timeScale/cap lines below.
-const INTRO_TARGET_S = 1.1; // intro (pre-hold) duration target, ≤1.2s budget
-const HARD_CAP_MS = 1500;
+// Intro plays ~3.0s on the FIRST visit of a browser session (owner update
+// 2026-11-14, reverted from the Phase 2.4 1.1s compression), is skipped on
+// repeat visits, and is capped at 3.8s if hero media lags.
+const INTRO_TARGET_S = 3.0; // intro duration target (~3.0s)
+const HARD_CAP_MS = 3800;
 const LOADER_SEEN_KEY = 'decbricks:loader-seen';
 
 const loaderSeenThisSession = (): boolean => {
@@ -333,13 +332,11 @@ export function initLoader() {
       undefined,
       '<'
     );
-    // Intro compression: speed the whole timeline so the animated intro (up to
-    // the hero hold) lands within the ≤1.2s budget. Sub-timelines (heading
-    // char slides) inherit the parent timeScale.
+    // Target ~3.0s pacing (or natural duration if <= 3.0s). Sub-timelines
+    // (heading char slides) inherit the parent timeScale.
     const natural = tl.duration();
     if (!reduced && natural > INTRO_TARGET_S) tl.timeScale(natural / INTRO_TARGET_S);
-    // Hard cap: even if hero media lags, release the hold and finish within
-    // the 1.5s budget (any remaining tail runs 2× faster).
+    // Hard cap: even if hero media lags, release the hold and finish cleanly.
     capTimer = window.setTimeout(() => {
       heroReady = true;
       if (tl.paused()) tl.play();

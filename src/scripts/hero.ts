@@ -36,6 +36,7 @@ export class Hero {
   private playQueued = false;
   private entranceFinished = false;
   private direction: number | -1 | 1 | null = null;
+  private pinBaseY?: number;
   private dom: ReturnType<Hero['getDom']>;
   private ac = new AbortController();
   /** Initial tilt (deg) captured from the standalone CSS `rotate` property (Tailwind v4 `rotate-14`). */
@@ -226,9 +227,13 @@ export class Hero {
       this.setOrigin(text[1]);
       const s1 = SplitText.create(text[0], { type: 'lines,chars', linesClass: 'line w-max', charsClass: 'char' });
       const s2 = SplitText.create(text[1], { type: 'lines,chars', linesClass: 'line w-max' });
-      // (The old FK-Raster W/Y negative-margin kerning hack was removed with
-      // Phase 3: the hero display words are Bricolage now, and the hack's
-      // innerText check matched via text-transform anyway.)
+      if (isDesktop) {
+        s2.chars.forEach((c) => {
+          const t = (c as HTMLElement).innerText;
+          if (t === 'W') gsap.set(c, { marginRight: -70, marginLeft: -90 });
+          if (t === 'Y') gsap.set(c, { marginRight: -20, marginLeft: -80 });
+        });
+      }
       gsap.set(text, { transformOrigin: '50% 50%' });
       const y = (i: number) => (i % 2 === 0 ? '-100%' : '100%');
       tl.from(text[0], { scale: 0.1, duration: 1, ease: 'smooth' })
@@ -386,6 +391,7 @@ export class Hero {
           },
         }
       );
+      this.pinBaseY = c.y - s.y + (c.height - s.height) / 2;
       if (isMobile && d.startMobileInner) tl.to(d.startMobileInner, { scaleX: sy, scaleY: sx }, 0);
       if (d.text[0] && d.text[1]) {
         const k = reduceMotion ? 0 : isDesktop ? 0.75 : 0.5;
@@ -407,6 +413,7 @@ export class Hero {
       gsap.set(p, { y: s });
       const el = isDesktop ? this.dom.start : this.dom.startMobile;
       if (!el) return;
+      const baseY = this.pinBaseY ?? 0;
       if (isDesktop && (window as any).hasWebGL && this.webGLImage && this.dom.start) {
         const g = (this.dom.start as any)._gsap;
         if (g) {
@@ -419,13 +426,7 @@ export class Hero {
           });
         }
       } else {
-        // Phase 3 fix: pin offset is `s` alone. The old `baseY + s` wrote the
-        // flight's END offset into the element at progress 0, clobbering the
-        // scrubbed flight — on mobile the preview sat ~840px below its cell
-        // at rest (the real source of the "empty burgundy screens" finding).
-        // The flight owns the element's position until this pin's range
-        // starts; from there `s` alone holds it in the viewport.
-        gsap.set(el, { y: s });
+        gsap.set(el, { y: baseY + s });
       }
     };
     this.pin = ScrollTrigger.create({
@@ -441,6 +442,7 @@ export class Hero {
   private resize() {
     this.scrollTl?.kill();
     this.pin?.kill();
+    this.pinBaseY = undefined;
     const { start, startMobile, startMobileInner, player, text } = this.dom;
     gsap.set([start, startMobile].filter(Boolean), { clearProps: 'x,y,scaleX,scaleY,rotate,borderRadius' });
     if (startMobileInner) gsap.set(startMobileInner, { clearProps: 'scaleX,scaleY' });

@@ -10,6 +10,7 @@ import Footer from '../components/Footer.astro';
 import CookieBanner from '../components/CookieBanner.astro';
 import TransitionOverlay from '../components/TransitionOverlay.astro';
 import { ABOUT } from '../data/about';
+import { getBlockImagePreloads } from '../lib/image-preload';
 import { aboutPageSchema } from '../lib/schema';
 
 const title = 'Our Purpose | Digital & Technology Solutions Agency';
@@ -22,6 +23,13 @@ const heroBody = /[.!?…]$/.test(heroBodyRaw.trim()) ? heroBodyRaw : heroBodyRa
 // Smiley sentence: Intro block first paragraph, verbatim (no 1minus1 copy).
 const smileyCopy = ABOUT[0].paragraphs[0];
 const sidebarItems = ABOUT.map(({ id, number, navLabel }) => ({ id, number, navLabel }));
+const imagePreloads = await getBlockImagePreloads(
+  ABOUT.flatMap((section) =>
+    section.image
+      ? [{ src: section.image.src, quality: 50, position: section.image.position }]
+      : []
+  )
+);
 ---
 
 <Base
@@ -33,6 +41,18 @@ const sidebarItems = ABOUT.map(({ id, number, navLabel }) => ({ id, number, navL
   schema={aboutPageSchema(description)}
   bodyClass="bg-darkPurple"
 >
+  <Fragment slot="head">
+    {imagePreloads.map((img) => (
+      <link
+        rel="preload"
+        as="image"
+        type={img.type}
+        imagesrcset={img.imagesrcset}
+        imagesizes={img.imagesizes}
+        fetchpriority={img.fetchpriority}
+      />
+    ))}
+  </Fragment>
   
     <main id="main-content" class="layout overflow-hidden bg-darkPurple">
       <Loader />

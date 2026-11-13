@@ -11,11 +11,19 @@ import Footer from '../components/Footer.astro';
 import CookieBanner from '../components/CookieBanner.astro';
 import TransitionOverlay from '../components/TransitionOverlay.astro';
 import { SERVICES, SERVICES_SECTION_HEADER } from '../data/services';
+import { getBlockImagePreloads } from '../lib/image-preload';
 import { servicesPageSchema } from '../lib/schema';
 
 const title = 'Our Expertise & Services | Decbricks';
 const description =
   'Explore Decbricks services: strategy & consulting, design & branding, web & software development, mobile apps, AI automation, digital marketing and outreach.';
+const imagePreloads = await getBlockImagePreloads(
+  SERVICES.flatMap((service) =>
+    service.media.kind === 'image'
+      ? [{ src: service.media.src, quality: 55, position: service.media.position }]
+      : []
+  )
+);
 ---
 
 <Base
@@ -28,6 +36,18 @@ const description =
   themeColor="#800020"
   bodyClass="bg-darkPurple"
 >
+  <Fragment slot="head">
+    {imagePreloads.map((img) => (
+      <link
+        rel="preload"
+        as="image"
+        type={img.type}
+        imagesrcset={img.imagesrcset}
+        imagesizes={img.imagesizes}
+        fetchpriority={img.fetchpriority}
+      />
+    ))}
+  </Fragment>
   
     <main id="main-content" class="layout overflow-hidden bg-darkPurple">
       <Loader />
@@ -51,7 +71,7 @@ const description =
         </section>
         <ServicesSidebarNav />
         <ServicesClients />
-        <ContactForm smileyCopy={SERVICES_SECTION_HEADER.intro} />
+        <ContactForm smileyCopy={SERVICES_SECTION_HEADER.intro} clipIllustration />
         <Footer />
       </div>
       <CookieBanner />

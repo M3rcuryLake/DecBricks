@@ -12,7 +12,7 @@ Agent: never invent these. Implement safe fallbacks, keep this list current, mar
 | A5 | Team: names, roles, bios, photos (≥800px, consent), LinkedIn | Meet the Team | clearly-marked placeholder cards, `noindex` not needed; no fake faces |
 | A6 | ~~Logo (SVG, light + dark versions), favicon set, designed OG image 1200×630~~ **Partially resolved 2026-11-12:** owner supplied `docs/logo.png` (multi-colour copper blob, transparent bg) — favicon set + OG lockup + `.font-brand` logo lockup shipped (see Design-handoff "Logo lockup"). **Still open:** SVG source + light/dark monochrome variants if the brand wants them; confirm usage rights for the supplied PNG (B1-style licence check) | header, `<head>`, social | shipped from the supplied PNG; SVG/variants slot in via the same `.font-brand::before` mechanism (swap the files, no CSS change) |
 | A7 | Contact-form delivery: endpoint (Web3Forms/Formspree/Resend/own API), recipient inbox, spam strategy | form submit | UI works, shows `mailto:` fallback |
-| A8 | Social profile URLs (LinkedIn, Instagram, X, YouTube…) | footer, schema `sameAs` | omitted (template links are 1minus1's — remove) |
+| A8 | Social profile URLs (LinkedIn, Instagram, X, YouTube…) | footer, schema `sameAs` | **RESOLVED 2026-11-14**: `https://x.com/decbricks`, `https://www.instagram.com/decbricksofficial`, `https://www.linkedin.com/company/decbricks/` in `src/data/site.ts` |
 | A9 | Google Search Console verification token (or DNS method) | GSC | env `PUBLIC_GSC_VERIFICATION` empty ⇒ meta omitted |
 | A10 | Analytics choice (GA4/Plausible) + cookie categories | banner wiring | none |
 | A11 | Privacy Policy + Terms pages (footer links exist: /privacy-policy, /terms) | legal | links removed until pages exist |
@@ -38,7 +38,7 @@ Agent: never invent these. Implement safe fallbacks, keep this list current, mar
 |---|---|---|
 | C1 | Home (`/`) Hero showreel & CaseStudies still contain 1minus1 content (`Hero`, `CaseStudies` 118 KB). Brief covered About + Contact + global brand + SEO, and `/services` 7-service copy is now live (`docs/services-content.md`) | Rebrand colours/fonts/metadata only on remaining Home blocks; **do not** rewrite Hero showreel or CaseStudies copy without owner text; flag as launch blocker via B2. Services copy is resolved via `src/data/services.ts` |
 | C2 | ~~Services-page nav link / sitemap entry while content is still 1minus1's~~ **Resolved 2026-11-14 (Phase 5):** 7 verbatim Decbricks services live | Indexed under `PUBLIC_ENV=production` (`canonical="/services"`), listed in `sitemap.xml.ts`, `Service` + `BreadcrumbList` JSON-LD emitted |
-| C3 | `the404game` easter egg | Keep, `noindex`, retitle |
+| C3 | `the404game` easter egg | Dropped — `/the404game` route, footer link, data entry, and CSS rule removed (2026-11-14) |
 | C4 | `errorRed` colour (needs to differ from coral accent) | warm red derived value; owner may pick |
 | C5 | `neonGreen` replacement (beige vs coral highlight) | Warm Beige; revisit after visual check |
 | C6 | Coral hover fills fail small-text contrast | darken via `color-mix` toward burgundy only where text sits on the fill |

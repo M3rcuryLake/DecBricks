@@ -1,0 +1,2379 @@
+{
+  "viewports": {
+    "320": {
+      "consoleErrors": [],
+      "home": {
+        "docOverflow": false,
+        "bodyScrollWidth": 320,
+        "innerWidth": 320,
+        "sectionHeight": 1746,
+        "cards": [
+          {
+            "index": 0,
+            "title": "Strategy",
+            "cardW": 400,
+            "cardH": 459,
+            "innerW": 431,
+            "innerH": 485,
+            "cardTransform": "matrix(1, 0, 0, 1, 0, 0)",
+            "innerTransform": "matrix(0.997564, -0.06976, 0.06976, 0.997564, -0.0456, 0)",
+            "btnW": 178,
+            "btnH": 56,
+            "pillText": "Research & Insight",
+            "plusText": "+6"
+          },
+          {
+            "index": 1,
+            "title": "Creative",
+            "cardW": 419,
+            "cardH": 412,
+            "innerW": 408,
+            "innerH": 400,
+            "cardTransform": "matrix(0.998788, -0.0492228, 0.0492228, 0.998788, 14.1068, 0)",
+            "innerTransform": "none",
+            "btnW": 176,
+            "btnH": 48,
+            "pillText": "Branding",
+            "plusText": "+5"
+          },
+          {
+            "index": 2,
+            "title": "Web Development",
+            "cardW": 432,
+            "cardH": 499,
+            "innerW": 400,
+            "innerH": 472,
+            "cardTransform": "matrix(0.997564, 0.0697565, -0.0697565, 0.997564, -20, 0)",
+            "innerTransform": "none",
+            "btnW": 175,
+            "btnH": 44,
+            "pillText": "Technical Architecture",
+            "plusText": "+5"
+          },
+          {
+            "index": 3,
+            "title": "Campaigns",
+            "cardW": 429,
+            "cardH": 450,
+            "innerW": 400,
+            "innerH": 423,
+            "cardTransform": "matrix(0.997564, -0.0697565, 0.0697565, 0.997564, 20, 0)",
+            "innerTransform": "none",
+            "btnW": 175,
+            "btnH": 44,
+            "pillText": "Paid Media",
+            "plusText": "+7"
+          }
+        ],
+        "workGapFromSecBottom": 0
+      },
+      "services": {
+        "docOverflow": false,
+        "scrollWidth": 320,
+        "innerWidth": 320,
+        "heroHeight": 711,
+        "h1Text": "Our Services",
+        "heroSpans": [
+          {
+            "text": "Our",
+            "left": -10,
+            "right": 191,
+            "width": 201,
+            "overflowsLeft": true,
+            "overflowsRight": false,
+            "clippedByPx": 10,
+            "fontSize": "90px"
+          },
+          {
+            "text": "Services",
+            "left": -10,
+            "right": 413,
+            "width": 423,
+            "overflowsLeft": true,
+            "overflowsRight": true,
+            "clippedByPx": 103,
+            "fontSize": "90px"
+          }
+        ],
+        "navPills": [
+          {
+            "text": "Strategy",
+            "w": 139,
+            "h": 44,
+            "top": 545,
+            "contrast": 10.36,
+            "ariaCurrent": "true"
+          },
+          {
+            "text": "Creative",
+            "w": 139,
+            "h": 44,
+            "top": 545,
+            "contrast": 10.36,
+            "ariaCurrent": "false"
+          },
+          {
+            "text": "Web Development",
+            "w": 139,
+            "h": 44,
+            "top": 594,
+            "contrast": 10.36,
+            "ariaCurrent": "false"
+          },
+          {
+            "text": "Campaign",
+            "w": 139,
+            "h": 44,
+            "top": 594,
+            "contrast": 10.36,
+            "ariaCurrent": "false"
+          }
+        ],
+        "blocks": [
+          {
+            "id": "strategy",
+            "title": "Strategy",
+            "blockW": 302,
+            "blockH": 1281,
+            "mediaW": 272,
+            "mediaH": 340,
+            "mediaLeft": 24,
+            "chipCount": 14,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "column"
+          },
+          {
+            "id": "creative",
+            "title": "Creative",
+            "blockW": 302,
+            "blockH": 1242,
+            "mediaW": 272,
+            "mediaH": 340,
+            "mediaLeft": 24,
+            "chipCount": 14,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "column"
+          },
+          {
+            "id": "web-development",
+            "title": "Web Development",
+            "blockW": 302,
+            "blockH": 1245,
+            "mediaW": 272,
+            "mediaH": 340,
+            "mediaLeft": 24,
+            "chipCount": 14,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "column"
+          },
+          {
+            "id": "campaigns",
+            "title": "Campaigns",
+            "blockW": 302,
+            "blockH": 1276,
+            "mediaW": 272,
+            "mediaH": 340,
+            "mediaLeft": 24,
+            "chipCount": 16,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "column"
+          }
+        ],
+        "sidebar": {
+          "inert": true,
+          "rect": {
+            "left": 0,
+            "top": 0,
+            "w": 0,
+            "h": 0
+          },
+          "items": [
+            {
+              "href": "#strategy",
+              "w": 0,
+              "h": 0,
+              "ariaCurrent": "false"
+            },
+            {
+              "href": "#creative",
+              "w": 0,
+              "h": 0,
+              "ariaCurrent": "false"
+            },
+            {
+              "href": "#web-development",
+              "w": 0,
+              "h": 0,
+              "ariaCurrent": "false"
+            },
+            {
+              "href": "#campaigns",
+              "w": 0,
+              "h": 0,
+              "ariaCurrent": "false"
+            }
+          ]
+        },
+        "clientsHeight": 336,
+        "headingLevels": [
+          {
+            "tag": "H1",
+            "text": "Our Services"
+          },
+          {
+            "tag": "H2",
+            "text": "Strategy"
+          },
+          {
+            "tag": "H2",
+            "text": "Creative"
+          },
+          {
+            "tag": "H2",
+            "text": "Web Development"
+          },
+          {
+            "tag": "H2",
+            "text": "Campaigns"
+          },
+          {
+            "tag": "H2",
+            "text": "Clients"
+          },
+          {
+            "tag": "H2",
+            "text": "Begin your story"
+          },
+          {
+            "tag": "H3",
+            "text": "Get In Touch"
+          },
+          {
+            "tag": "H2",
+            "text": "Let’s Start Something Great."
+          },
+          {
+            "tag": "H3",
+            "text": "Pages"
+          },
+          {
+            "tag": "H3",
+            "text": "Company"
+          },
+          {
+            "tag": "H3",
+            "text": "Functional"
+          },
+          {
+            "tag": "H3",
+            "text": "Analytics"
+          }
+        ]
+      }
+    },
+    "375": {
+      "consoleErrors": [],
+      "home": {
+        "docOverflow": false,
+        "bodyScrollWidth": 375,
+        "innerWidth": 375,
+        "sectionHeight": 1565,
+        "cards": [
+          {
+            "index": 0,
+            "title": "Strategy",
+            "cardW": 455,
+            "cardH": 392,
+            "innerW": 481,
+            "innerH": 423,
+            "cardTransform": "matrix(1, 0, 0, 1, 0, 0)",
+            "innerTransform": "matrix(0.997564, -0.06976, 0.06976, 0.997564, -0.29302, 0)",
+            "btnW": 178,
+            "btnH": 56,
+            "pillText": "Research & Insight",
+            "plusText": "+6"
+          },
+          {
+            "index": 1,
+            "title": "Creative",
+            "cardW": 462,
+            "cardH": 383,
+            "innerW": 474,
+            "innerH": 398,
+            "cardTransform": "matrix(0.999838, -0.0179934, 0.0179934, 0.999838, 5.86404, 0)",
+            "innerTransform": "none",
+            "btnW": 177,
+            "btnH": 53,
+            "pillText": "Branding",
+            "plusText": "+5"
+          },
+          {
+            "index": 2,
+            "title": "Web Development",
+            "cardW": 483,
+            "cardH": 454,
+            "innerW": 455,
+            "innerH": 423,
+            "cardTransform": "matrix(0.997564, 0.0697565, -0.0697565, 0.997564, -22.75, 0)",
+            "innerTransform": "none",
+            "btnW": 175,
+            "btnH": 44,
+            "pillText": "Technical Architecture",
+            "plusText": "+5"
+          },
+          {
+            "index": 3,
+            "title": "Campaigns",
+            "cardW": 480,
+            "cardH": 406,
+            "innerW": 455,
+            "innerH": 375,
+            "cardTransform": "matrix(0.997564, -0.0697565, 0.0697565, 0.997564, 22.75, 0)",
+            "innerTransform": "none",
+            "btnW": 175,
+            "btnH": 44,
+            "pillText": "Paid Media",
+            "plusText": "+7"
+          }
+        ],
+        "workGapFromSecBottom": 0
+      },
+      "services": {
+        "docOverflow": false,
+        "scrollWidth": 375,
+        "innerWidth": 375,
+        "heroHeight": 697,
+        "h1Text": "Our Services",
+        "heroSpans": [
+          {
+            "text": "Our",
+            "left": -10,
+            "right": 199,
+            "width": 209,
+            "overflowsLeft": true,
+            "overflowsRight": false,
+            "clippedByPx": 10,
+            "fontSize": "93.75px"
+          },
+          {
+            "text": "Services",
+            "left": -10,
+            "right": 431,
+            "width": 441,
+            "overflowsLeft": true,
+            "overflowsRight": true,
+            "clippedByPx": 66,
+            "fontSize": "93.75px"
+          }
+        ],
+        "navPills": [
+          {
+            "text": "Strategy",
+            "w": 166,
+            "h": 44,
+            "top": 531,
+            "contrast": 10.36,
+            "ariaCurrent": "true"
+          },
+          {
+            "text": "Creative",
+            "w": 166,
+            "h": 44,
+            "top": 531,
+            "contrast": 10.36,
+            "ariaCurrent": "false"
+          },
+          {
+            "text": "Web Development",
+            "w": 166,
+            "h": 44,
+            "top": 580,
+            "contrast": 10.36,
+            "ariaCurrent": "false"
+          },
+          {
+            "text": "Campaign",
+            "w": 166,
+            "h": 44,
+            "top": 580,
+            "contrast": 10.36,
+            "ariaCurrent": "false"
+          }
+        ],
+        "blocks": [
+          {
+            "id": "strategy",
+            "title": "Strategy",
+            "blockW": 357,
+            "blockH": 1281,
+            "mediaW": 327,
+            "mediaH": 409,
+            "mediaLeft": 24,
+            "chipCount": 14,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "column"
+          },
+          {
+            "id": "creative",
+            "title": "Creative",
+            "blockW": 357,
+            "blockH": 1272,
+            "mediaW": 327,
+            "mediaH": 409,
+            "mediaLeft": 24,
+            "chipCount": 14,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "column"
+          },
+          {
+            "id": "web-development",
+            "title": "Web Development",
+            "blockW": 357,
+            "blockH": 1241,
+            "mediaW": 327,
+            "mediaH": 409,
+            "mediaLeft": 24,
+            "chipCount": 14,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "column"
+          },
+          {
+            "id": "campaigns",
+            "title": "Campaigns",
+            "blockW": 357,
+            "blockH": 1323,
+            "mediaW": 327,
+            "mediaH": 409,
+            "mediaLeft": 24,
+            "chipCount": 16,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "column"
+          }
+        ],
+        "sidebar": {
+          "inert": true,
+          "rect": {
+            "left": 0,
+            "top": 0,
+            "w": 0,
+            "h": 0
+          },
+          "items": [
+            {
+              "href": "#strategy",
+              "w": 0,
+              "h": 0,
+              "ariaCurrent": "false"
+            },
+            {
+              "href": "#creative",
+              "w": 0,
+              "h": 0,
+              "ariaCurrent": "false"
+            },
+            {
+              "href": "#web-development",
+              "w": 0,
+              "h": 0,
+              "ariaCurrent": "false"
+            },
+            {
+              "href": "#campaigns",
+              "w": 0,
+              "h": 0,
+              "ariaCurrent": "false"
+            }
+          ]
+        },
+        "clientsHeight": 336,
+        "headingLevels": [
+          {
+            "tag": "H1",
+            "text": "Our Services"
+          },
+          {
+            "tag": "H2",
+            "text": "Strategy"
+          },
+          {
+            "tag": "H2",
+            "text": "Creative"
+          },
+          {
+            "tag": "H2",
+            "text": "Web Development"
+          },
+          {
+            "tag": "H2",
+            "text": "Campaigns"
+          },
+          {
+            "tag": "H2",
+            "text": "Clients"
+          },
+          {
+            "tag": "H2",
+            "text": "Begin your story"
+          },
+          {
+            "tag": "H3",
+            "text": "Get In Touch"
+          },
+          {
+            "tag": "H2",
+            "text": "Let’s Start Something Great."
+          },
+          {
+            "tag": "H3",
+            "text": "Pages"
+          },
+          {
+            "tag": "H3",
+            "text": "Company"
+          },
+          {
+            "tag": "H3",
+            "text": "Functional"
+          },
+          {
+            "tag": "H3",
+            "text": "Analytics"
+          }
+        ]
+      }
+    },
+    "768": {
+      "consoleErrors": [],
+      "home": {
+        "docOverflow": false,
+        "bodyScrollWidth": 768,
+        "innerWidth": 768,
+        "sectionHeight": 1417,
+        "cards": [
+          {
+            "index": 0,
+            "title": "Strategy",
+            "cardW": 848,
+            "cardH": 360,
+            "innerW": 871,
+            "innerH": 418,
+            "cardTransform": "matrix(1, 0, 0, 1, 0, 0)",
+            "innerTransform": "matrix(0.997564, -0.06976, 0.06976, 0.997564, -1.20416, 0)",
+            "btnW": 178,
+            "btnH": 56,
+            "pillText": "Research & Insight",
+            "plusText": "+6"
+          },
+          {
+            "index": 1,
+            "title": "Creative",
+            "cardW": 850,
+            "cardH": 348,
+            "innerW": 868,
+            "innerH": 395,
+            "cardTransform": "matrix(0.999977, -0.00676834, 0.00676834, 0.999977, 4.11026, 0)",
+            "innerTransform": "none",
+            "btnW": 178,
+            "btnH": 55,
+            "pillText": "Branding",
+            "plusText": "+5"
+          },
+          {
+            "index": 2,
+            "title": "Web Development",
+            "cardW": 861,
+            "cardH": 404,
+            "innerW": 860,
+            "innerH": 401,
+            "cardTransform": "matrix(0.999312, 0.0370867, -0.0370867, 0.999312, -22.5297, 0)",
+            "innerTransform": "none",
+            "btnW": 177,
+            "btnH": 50,
+            "pillText": "Technical Architecture",
+            "plusText": "+5"
+          },
+          {
+            "index": 3,
+            "title": "Campaigns",
+            "cardW": 870,
+            "cardH": 400,
+            "innerW": 848,
+            "innerH": 342,
+            "cardTransform": "matrix(0.997564, -0.0697565, 0.0697565, 0.997564, 42.4, 0)",
+            "innerTransform": "none",
+            "btnW": 175,
+            "btnH": 44,
+            "pillText": "Paid Media",
+            "plusText": "+7"
+          }
+        ],
+        "workGapFromSecBottom": 0
+      },
+      "services": {
+        "docOverflow": false,
+        "scrollWidth": 768,
+        "innerWidth": 768,
+        "heroHeight": 811,
+        "h1Text": "Our Services",
+        "heroSpans": [
+          {
+            "text": "Our",
+            "left": -10,
+            "right": 367,
+            "width": 377,
+            "overflowsLeft": true,
+            "overflowsRight": false,
+            "clippedByPx": 10,
+            "fontSize": "168.96px"
+          },
+          {
+            "text": "Services",
+            "left": -10,
+            "right": 784,
+            "width": 794,
+            "overflowsLeft": true,
+            "overflowsRight": true,
+            "clippedByPx": 26,
+            "fontSize": "168.96px"
+          }
+        ],
+        "navPills": [
+          {
+            "text": "Strategy",
+            "w": 307,
+            "h": 44,
+            "top": 645,
+            "contrast": 10.36,
+            "ariaCurrent": "true"
+          },
+          {
+            "text": "Creative",
+            "w": 307,
+            "h": 44,
+            "top": 645,
+            "contrast": 10.36,
+            "ariaCurrent": "false"
+          },
+          {
+            "text": "Web Development",
+            "w": 307,
+            "h": 44,
+            "top": 694,
+            "contrast": 10.36,
+            "ariaCurrent": "false"
+          },
+          {
+            "text": "Campaign",
+            "w": 307,
+            "h": 44,
+            "top": 694,
+            "contrast": 10.36,
+            "ariaCurrent": "false"
+          }
+        ],
+        "blocks": [
+          {
+            "id": "strategy",
+            "title": "Strategy",
+            "blockW": 750,
+            "blockH": 1658,
+            "mediaW": 720,
+            "mediaH": 900,
+            "mediaLeft": 24,
+            "chipCount": 14,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "column"
+          },
+          {
+            "id": "creative",
+            "title": "Creative",
+            "blockW": 750,
+            "blockH": 1619,
+            "mediaW": 720,
+            "mediaH": 900,
+            "mediaLeft": 24,
+            "chipCount": 14,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "column"
+          },
+          {
+            "id": "web-development",
+            "title": "Web Development",
+            "blockW": 750,
+            "blockH": 1641,
+            "mediaW": 720,
+            "mediaH": 900,
+            "mediaLeft": 24,
+            "chipCount": 14,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "column"
+          },
+          {
+            "id": "campaigns",
+            "title": "Campaigns",
+            "blockW": 750,
+            "blockH": 1675,
+            "mediaW": 720,
+            "mediaH": 900,
+            "mediaLeft": 24,
+            "chipCount": 16,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "column"
+          }
+        ],
+        "sidebar": {
+          "inert": true,
+          "rect": {
+            "left": 0,
+            "top": 0,
+            "w": 0,
+            "h": 0
+          },
+          "items": [
+            {
+              "href": "#strategy",
+              "w": 0,
+              "h": 0,
+              "ariaCurrent": "false"
+            },
+            {
+              "href": "#creative",
+              "w": 0,
+              "h": 0,
+              "ariaCurrent": "false"
+            },
+            {
+              "href": "#web-development",
+              "w": 0,
+              "h": 0,
+              "ariaCurrent": "false"
+            },
+            {
+              "href": "#campaigns",
+              "w": 0,
+              "h": 0,
+              "ariaCurrent": "false"
+            }
+          ]
+        },
+        "clientsHeight": 336,
+        "headingLevels": [
+          {
+            "tag": "H1",
+            "text": "Our Services"
+          },
+          {
+            "tag": "H2",
+            "text": "Strategy"
+          },
+          {
+            "tag": "H2",
+            "text": "Creative"
+          },
+          {
+            "tag": "H2",
+            "text": "Web Development"
+          },
+          {
+            "tag": "H2",
+            "text": "Campaigns"
+          },
+          {
+            "tag": "H2",
+            "text": "Clients"
+          },
+          {
+            "tag": "H2",
+            "text": "Begin your story"
+          },
+          {
+            "tag": "H3",
+            "text": "Get In Touch"
+          },
+          {
+            "tag": "H2",
+            "text": "Let’s Start Something Great."
+          },
+          {
+            "tag": "H3",
+            "text": "Pages"
+          },
+          {
+            "tag": "H3",
+            "text": "Company"
+          },
+          {
+            "tag": "H3",
+            "text": "Functional"
+          },
+          {
+            "tag": "H3",
+            "text": "Analytics"
+          }
+        ]
+      }
+    },
+    "1024": {
+      "consoleErrors": [],
+      "home": {
+        "docOverflow": false,
+        "bodyScrollWidth": 1024,
+        "innerWidth": 1024,
+        "sectionHeight": 1676,
+        "cards": [
+          {
+            "index": 0,
+            "title": "Strategy",
+            "cardW": 1024,
+            "cardH": 427,
+            "innerW": 1024,
+            "innerH": 427,
+            "cardTransform": "matrix(1, 0.000783653, -0.000783653, 1, -0.574464, 0)",
+            "innerTransform": "none",
+            "btnW": 193,
+            "btnH": 50,
+            "pillText": "Research & Insight",
+            "plusText": "+6"
+          },
+          {
+            "index": 1,
+            "title": "Creative",
+            "cardW": 1049,
+            "cardH": 475,
+            "innerW": 1049,
+            "innerH": 475,
+            "cardTransform": "matrix(0.997805, -0.0662199, 0.0662199, 0.997805, 48.6011, 0)",
+            "innerTransform": "none",
+            "btnW": 196,
+            "btnH": 63,
+            "pillText": "Branding",
+            "plusText": "+5"
+          },
+          {
+            "index": 2,
+            "title": "Web Development",
+            "cardW": 1078,
+            "cardH": 596,
+            "innerW": 1078,
+            "innerH": 596,
+            "cardTransform": "matrix(0.990268, 0.139173, -0.139173, 0.990268, -102.4, 0)",
+            "innerTransform": "none",
+            "btnW": 198,
+            "btnH": 76,
+            "pillText": "Technical Architecture",
+            "plusText": "+5"
+          },
+          {
+            "index": 3,
+            "title": "Campaigns",
+            "cardW": 1081,
+            "cardH": 622,
+            "innerW": 1081,
+            "innerH": 622,
+            "cardTransform": "matrix(0.990268, -0.139173, 0.139173, 0.990268, 102.4, 0)",
+            "innerTransform": "none",
+            "btnW": 198,
+            "btnH": 76,
+            "pillText": "Paid Media",
+            "plusText": "+7"
+          }
+        ],
+        "workGapFromSecBottom": 0
+      },
+      "services": {
+        "docOverflow": false,
+        "scrollWidth": 1024,
+        "innerWidth": 1024,
+        "heroHeight": 625,
+        "h1Text": "Our Services",
+        "heroSpans": [
+          {
+            "text": "Our",
+            "left": -15,
+            "right": 473,
+            "width": 488,
+            "overflowsLeft": true,
+            "overflowsRight": false,
+            "clippedByPx": 15,
+            "fontSize": "218.665px"
+          },
+          {
+            "text": "Services",
+            "left": 110,
+            "right": 1138,
+            "width": 1028,
+            "overflowsLeft": false,
+            "overflowsRight": true,
+            "clippedByPx": 114,
+            "fontSize": "218.665px"
+          }
+        ],
+        "navPills": [
+          {
+            "text": "Strategy",
+            "w": 102,
+            "h": 44,
+            "top": 499,
+            "contrast": 10.36,
+            "ariaCurrent": "true"
+          },
+          {
+            "text": "Creative",
+            "w": 98,
+            "h": 44,
+            "top": 499,
+            "contrast": 10.36,
+            "ariaCurrent": "false"
+          },
+          {
+            "text": "Web Development",
+            "w": 169,
+            "h": 44,
+            "top": 499,
+            "contrast": 10.36,
+            "ariaCurrent": "false"
+          },
+          {
+            "text": "Campaign",
+            "w": 106,
+            "h": 44,
+            "top": 499,
+            "contrast": 10.36,
+            "ariaCurrent": "false"
+          }
+        ],
+        "blocks": [
+          {
+            "id": "strategy",
+            "title": "Strategy",
+            "blockW": 984,
+            "blockH": 586,
+            "mediaW": 260,
+            "mediaH": 325,
+            "mediaLeft": 41,
+            "chipCount": 14,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "row-reverse"
+          },
+          {
+            "id": "creative",
+            "title": "Creative",
+            "blockW": 984,
+            "blockH": 586,
+            "mediaW": 260,
+            "mediaH": 325,
+            "mediaLeft": 723,
+            "chipCount": 14,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "row"
+          },
+          {
+            "id": "web-development",
+            "title": "Web Development",
+            "blockW": 984,
+            "blockH": 552,
+            "mediaW": 260,
+            "mediaH": 325,
+            "mediaLeft": 41,
+            "chipCount": 14,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "row-reverse"
+          },
+          {
+            "id": "campaigns",
+            "title": "Campaigns",
+            "blockW": 984,
+            "blockH": 586,
+            "mediaW": 260,
+            "mediaH": 325,
+            "mediaLeft": 723,
+            "chipCount": 16,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "row"
+          }
+        ],
+        "sidebar": {
+          "inert": false,
+          "rect": {
+            "left": 966,
+            "top": 281,
+            "w": 58,
+            "h": 303
+          },
+          "items": [
+            {
+              "href": "#strategy",
+              "w": 40,
+              "h": 44,
+              "ariaCurrent": "false"
+            },
+            {
+              "href": "#creative",
+              "w": 40,
+              "h": 141,
+              "ariaCurrent": "true"
+            },
+            {
+              "href": "#web-development",
+              "w": 40,
+              "h": 44,
+              "ariaCurrent": "false"
+            },
+            {
+              "href": "#campaigns",
+              "w": 40,
+              "h": 44,
+              "ariaCurrent": "false"
+            }
+          ]
+        },
+        "clientsHeight": 325,
+        "headingLevels": [
+          {
+            "tag": "H1",
+            "text": "Our Services"
+          },
+          {
+            "tag": "H2",
+            "text": "Strategy"
+          },
+          {
+            "tag": "H2",
+            "text": "Creative"
+          },
+          {
+            "tag": "H2",
+            "text": "Web Development"
+          },
+          {
+            "tag": "H2",
+            "text": "Campaigns"
+          },
+          {
+            "tag": "H2",
+            "text": "Clients"
+          },
+          {
+            "tag": "H2",
+            "text": "Begin your story"
+          },
+          {
+            "tag": "H3",
+            "text": "Get In Touch"
+          },
+          {
+            "tag": "H2",
+            "text": "Let’s Start Something Great."
+          },
+          {
+            "tag": "H3",
+            "text": "Pages"
+          },
+          {
+            "tag": "H3",
+            "text": "Company"
+          },
+          {
+            "tag": "H3",
+            "text": "Functional"
+          },
+          {
+            "tag": "H3",
+            "text": "Analytics"
+          }
+        ]
+      }
+    },
+    "1280": {
+      "consoleErrors": [],
+      "home": {
+        "docOverflow": false,
+        "bodyScrollWidth": 1280,
+        "innerWidth": 1280,
+        "sectionHeight": 1645,
+        "cards": [
+          {
+            "index": 0,
+            "title": "Strategy",
+            "cardW": 1280,
+            "cardH": 427,
+            "innerW": 1280,
+            "innerH": 427,
+            "cardTransform": "matrix(1, 0.000546288, -0.000546288, 1, -0.50048, 0)",
+            "innerTransform": "none",
+            "btnW": 193,
+            "btnH": 50,
+            "pillText": "Research & Insight",
+            "plusText": "+6"
+          },
+          {
+            "index": 1,
+            "title": "Creative",
+            "cardW": 1302,
+            "cardH": 483,
+            "innerW": 1302,
+            "innerH": 483,
+            "cardTransform": "matrix(0.998244, -0.0592419, 0.0592419, 0.998244, 54.3398, 0)",
+            "innerTransform": "none",
+            "btnW": 196,
+            "btnH": 61,
+            "pillText": "Branding",
+            "plusText": "+5"
+          },
+          {
+            "index": 2,
+            "title": "Web Development",
+            "cardW": 1331,
+            "cardH": 631,
+            "innerW": 1331,
+            "innerH": 631,
+            "cardTransform": "matrix(0.990268, 0.139173, -0.139173, 0.990268, -128, 0)",
+            "innerTransform": "none",
+            "btnW": 198,
+            "btnH": 76,
+            "pillText": "Technical Architecture",
+            "plusText": "+5"
+          },
+          {
+            "index": 3,
+            "title": "Campaigns",
+            "cardW": 1331,
+            "cardH": 626,
+            "innerW": 1331,
+            "innerH": 626,
+            "cardTransform": "matrix(0.990268, -0.139173, 0.139173, 0.990268, 128, 0)",
+            "innerTransform": "none",
+            "btnW": 198,
+            "btnH": 76,
+            "pillText": "Paid Media",
+            "plusText": "+7"
+          }
+        ],
+        "workGapFromSecBottom": 0
+      },
+      "services": {
+        "docOverflow": false,
+        "scrollWidth": 1280,
+        "innerWidth": 1280,
+        "heroHeight": 744,
+        "h1Text": "Our Services",
+        "heroSpans": [
+          {
+            "text": "Our",
+            "left": -15,
+            "right": 595,
+            "width": 610,
+            "overflowsLeft": true,
+            "overflowsRight": false,
+            "clippedByPx": 15,
+            "fontSize": "273.331px"
+          },
+          {
+            "text": "Services",
+            "left": 140,
+            "right": 1425,
+            "width": 1285,
+            "overflowsLeft": false,
+            "overflowsRight": true,
+            "clippedByPx": 145,
+            "fontSize": "273.331px"
+          }
+        ],
+        "navPills": [
+          {
+            "text": "Strategy",
+            "w": 102,
+            "h": 44,
+            "top": 618,
+            "contrast": 10.36,
+            "ariaCurrent": "true"
+          },
+          {
+            "text": "Creative",
+            "w": 98,
+            "h": 44,
+            "top": 618,
+            "contrast": 10.36,
+            "ariaCurrent": "false"
+          },
+          {
+            "text": "Web Development",
+            "w": 169,
+            "h": 44,
+            "top": 618,
+            "contrast": 10.36,
+            "ariaCurrent": "false"
+          },
+          {
+            "text": "Campaign",
+            "w": 106,
+            "h": 44,
+            "top": 618,
+            "contrast": 10.36,
+            "ariaCurrent": "false"
+          }
+        ],
+        "blocks": [
+          {
+            "id": "strategy",
+            "title": "Strategy",
+            "blockW": 1230,
+            "blockH": 617,
+            "mediaW": 300,
+            "mediaH": 375,
+            "mediaLeft": 51,
+            "chipCount": 14,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "row-reverse"
+          },
+          {
+            "id": "creative",
+            "title": "Creative",
+            "blockW": 1230,
+            "blockH": 617,
+            "mediaW": 300,
+            "mediaH": 375,
+            "mediaLeft": 929,
+            "chipCount": 14,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "row"
+          },
+          {
+            "id": "web-development",
+            "title": "Web Development",
+            "blockW": 1230,
+            "blockH": 583,
+            "mediaW": 300,
+            "mediaH": 375,
+            "mediaLeft": 51,
+            "chipCount": 14,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "row-reverse"
+          },
+          {
+            "id": "campaigns",
+            "title": "Campaigns",
+            "blockW": 1230,
+            "blockH": 617,
+            "mediaW": 300,
+            "mediaH": 375,
+            "mediaLeft": 929,
+            "chipCount": 16,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "row"
+          }
+        ],
+        "sidebar": {
+          "inert": false,
+          "rect": {
+            "left": 1222,
+            "top": 297,
+            "w": 58,
+            "h": 304
+          },
+          "items": [
+            {
+              "href": "#strategy",
+              "w": 40,
+              "h": 142,
+              "ariaCurrent": "true"
+            },
+            {
+              "href": "#creative",
+              "w": 40,
+              "h": 44,
+              "ariaCurrent": "false"
+            },
+            {
+              "href": "#web-development",
+              "w": 40,
+              "h": 44,
+              "ariaCurrent": "false"
+            },
+            {
+              "href": "#campaigns",
+              "w": 40,
+              "h": 44,
+              "ariaCurrent": "false"
+            }
+          ]
+        },
+        "clientsHeight": 405,
+        "headingLevels": [
+          {
+            "tag": "H1",
+            "text": "Our Services"
+          },
+          {
+            "tag": "H2",
+            "text": "Strategy"
+          },
+          {
+            "tag": "H2",
+            "text": "Creative"
+          },
+          {
+            "tag": "H2",
+            "text": "Web Development"
+          },
+          {
+            "tag": "H2",
+            "text": "Campaigns"
+          },
+          {
+            "tag": "H2",
+            "text": "Clients"
+          },
+          {
+            "tag": "H2",
+            "text": "Begin your story"
+          },
+          {
+            "tag": "H3",
+            "text": "Get In Touch"
+          },
+          {
+            "tag": "H2",
+            "text": "Let’s Start Something Great."
+          },
+          {
+            "tag": "H3",
+            "text": "Pages"
+          },
+          {
+            "tag": "H3",
+            "text": "Company"
+          },
+          {
+            "tag": "H3",
+            "text": "Functional"
+          },
+          {
+            "tag": "H3",
+            "text": "Analytics"
+          }
+        ]
+      }
+    },
+    "1440": {
+      "consoleErrors": [],
+      "home": {
+        "docOverflow": false,
+        "bodyScrollWidth": 1440,
+        "innerWidth": 1440,
+        "sectionHeight": 1745,
+        "cards": [
+          {
+            "index": 0,
+            "title": "Strategy",
+            "cardW": 1440,
+            "cardH": 445,
+            "innerW": 1440,
+            "innerH": 445,
+            "cardTransform": "matrix(1, 0.00010821, -0.00010821, 1, -0.11088, 0)",
+            "innerTransform": "none",
+            "btnW": 193,
+            "btnH": 50,
+            "pillText": "Research & Insight",
+            "plusText": "+6"
+          },
+          {
+            "index": 1,
+            "title": "Creative",
+            "cardW": 1459,
+            "cardH": 511,
+            "innerW": 1459,
+            "innerH": 511,
+            "cardTransform": "matrix(0.998924, -0.0463707, 0.0463707, 0.998924, 47.8397, 0)",
+            "innerTransform": "none",
+            "btnW": 195,
+            "btnH": 59,
+            "pillText": "Branding",
+            "plusText": "+5"
+          },
+          {
+            "index": 2,
+            "title": "Web Development",
+            "cardW": 1494,
+            "cardH": 682,
+            "innerW": 1494,
+            "innerH": 682,
+            "cardTransform": "matrix(0.990268, 0.139173, -0.139173, 0.990268, -144, 0)",
+            "innerTransform": "none",
+            "btnW": 198,
+            "btnH": 76,
+            "pillText": "Technical Architecture",
+            "plusText": "+5"
+          },
+          {
+            "index": 3,
+            "title": "Campaigns",
+            "cardW": 1491,
+            "cardH": 665,
+            "innerW": 1491,
+            "innerH": 665,
+            "cardTransform": "matrix(0.990268, -0.139173, 0.139173, 0.990268, 144, 0)",
+            "innerTransform": "none",
+            "btnW": 198,
+            "btnH": 76,
+            "pillText": "Paid Media",
+            "plusText": "+7"
+          }
+        ],
+        "workGapFromSecBottom": 0
+      },
+      "services": {
+        "docOverflow": false,
+        "scrollWidth": 1440,
+        "innerWidth": 1440,
+        "heroHeight": 806,
+        "h1Text": "Our Services",
+        "heroSpans": [
+          {
+            "text": "Our",
+            "left": -15,
+            "right": 672,
+            "width": 687,
+            "overflowsLeft": true,
+            "overflowsRight": false,
+            "clippedByPx": 15,
+            "fontSize": "307.498px"
+          },
+          {
+            "text": "Services",
+            "left": 140,
+            "right": 1585,
+            "width": 1445,
+            "overflowsLeft": false,
+            "overflowsRight": true,
+            "clippedByPx": 145,
+            "fontSize": "307.498px"
+          }
+        ],
+        "navPills": [
+          {
+            "text": "Strategy",
+            "w": 102,
+            "h": 44,
+            "top": 680,
+            "contrast": 10.36,
+            "ariaCurrent": "true"
+          },
+          {
+            "text": "Creative",
+            "w": 98,
+            "h": 44,
+            "top": 680,
+            "contrast": 10.36,
+            "ariaCurrent": "false"
+          },
+          {
+            "text": "Web Development",
+            "w": 169,
+            "h": 44,
+            "top": 680,
+            "contrast": 10.36,
+            "ariaCurrent": "false"
+          },
+          {
+            "text": "Campaign",
+            "w": 106,
+            "h": 44,
+            "top": 680,
+            "contrast": 10.36,
+            "ariaCurrent": "false"
+          }
+        ],
+        "blocks": [
+          {
+            "id": "strategy",
+            "title": "Strategy",
+            "blockW": 1390,
+            "blockH": 617,
+            "mediaW": 300,
+            "mediaH": 375,
+            "mediaLeft": 51,
+            "chipCount": 14,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "row-reverse"
+          },
+          {
+            "id": "creative",
+            "title": "Creative",
+            "blockW": 1390,
+            "blockH": 617,
+            "mediaW": 300,
+            "mediaH": 375,
+            "mediaLeft": 1089,
+            "chipCount": 14,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "row"
+          },
+          {
+            "id": "web-development",
+            "title": "Web Development",
+            "blockW": 1390,
+            "blockH": 583,
+            "mediaW": 300,
+            "mediaH": 375,
+            "mediaLeft": 51,
+            "chipCount": 14,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "row-reverse"
+          },
+          {
+            "id": "campaigns",
+            "title": "Campaigns",
+            "blockW": 1390,
+            "blockH": 617,
+            "mediaW": 300,
+            "mediaH": 375,
+            "mediaLeft": 1089,
+            "chipCount": 16,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "row"
+          }
+        ],
+        "sidebar": {
+          "inert": false,
+          "rect": {
+            "left": 1382,
+            "top": 347,
+            "w": 58,
+            "h": 303
+          },
+          "items": [
+            {
+              "href": "#strategy",
+              "w": 40,
+              "h": 44,
+              "ariaCurrent": "false"
+            },
+            {
+              "href": "#creative",
+              "w": 40,
+              "h": 141,
+              "ariaCurrent": "true"
+            },
+            {
+              "href": "#web-development",
+              "w": 40,
+              "h": 44,
+              "ariaCurrent": "false"
+            },
+            {
+              "href": "#campaigns",
+              "w": 40,
+              "h": 44,
+              "ariaCurrent": "false"
+            }
+          ]
+        },
+        "clientsHeight": 411,
+        "headingLevels": [
+          {
+            "tag": "H1",
+            "text": "Our Services"
+          },
+          {
+            "tag": "H2",
+            "text": "Strategy"
+          },
+          {
+            "tag": "H2",
+            "text": "Creative"
+          },
+          {
+            "tag": "H2",
+            "text": "Web Development"
+          },
+          {
+            "tag": "H2",
+            "text": "Campaigns"
+          },
+          {
+            "tag": "H2",
+            "text": "Clients"
+          },
+          {
+            "tag": "H2",
+            "text": "Begin your story"
+          },
+          {
+            "tag": "H3",
+            "text": "Get In Touch"
+          },
+          {
+            "tag": "H2",
+            "text": "Let’s Start Something Great."
+          },
+          {
+            "tag": "H3",
+            "text": "Pages"
+          },
+          {
+            "tag": "H3",
+            "text": "Company"
+          },
+          {
+            "tag": "H3",
+            "text": "Functional"
+          },
+          {
+            "tag": "H3",
+            "text": "Analytics"
+          }
+        ]
+      }
+    },
+    "1920": {
+      "consoleErrors": [],
+      "home": {
+        "docOverflow": false,
+        "bodyScrollWidth": 1920,
+        "innerWidth": 1920,
+        "sectionHeight": 2044,
+        "cards": [
+          {
+            "index": 0,
+            "title": "Strategy",
+            "cardW": 1920,
+            "cardH": 534,
+            "innerW": 1920,
+            "innerH": 535,
+            "cardTransform": "matrix(1, 0, 0, 1, 0, 0)",
+            "innerTransform": "matrix(1, -3.49066e-05, 3.49066e-05, 1, -40.048, 0)",
+            "btnW": 209,
+            "btnH": 56,
+            "pillText": "Research & Insight",
+            "plusText": "+6"
+          },
+          {
+            "index": 1,
+            "title": "Creative",
+            "cardW": 1939,
+            "cardH": 590,
+            "innerW": 1939,
+            "innerH": 590,
+            "cardTransform": "matrix(0.999161, -0.0409549, 0.0409549, 0.999161, 56.3328, 0)",
+            "innerTransform": "none",
+            "btnW": 211,
+            "btnH": 64,
+            "pillText": "Branding",
+            "plusText": "+5"
+          },
+          {
+            "index": 2,
+            "title": "Web Development",
+            "cardW": 1978,
+            "cardH": 816,
+            "innerW": 1978,
+            "innerH": 816,
+            "cardTransform": "matrix(0.990268, 0.139173, -0.139173, 0.990268, -192, 0)",
+            "innerTransform": "none",
+            "btnW": 214,
+            "btnH": 84,
+            "pillText": "Technical Architecture",
+            "plusText": "+5"
+          },
+          {
+            "index": 3,
+            "title": "Campaigns",
+            "cardW": 1977,
+            "cardH": 805,
+            "innerW": 1977,
+            "innerH": 805,
+            "cardTransform": "matrix(0.990268, -0.139173, 0.139173, 0.990268, 192, 0)",
+            "innerTransform": "none",
+            "btnW": 214,
+            "btnH": 84,
+            "pillText": "Paid Media",
+            "plusText": "+7"
+          }
+        ],
+        "workGapFromSecBottom": 0
+      },
+      "services": {
+        "docOverflow": false,
+        "scrollWidth": 1920,
+        "innerWidth": 1920,
+        "heroHeight": 1035,
+        "h1Text": "Our Services",
+        "heroSpans": [
+          {
+            "text": "Our",
+            "left": -15,
+            "right": 901,
+            "width": 916,
+            "overflowsLeft": true,
+            "overflowsRight": false,
+            "clippedByPx": 15,
+            "fontSize": "409.997px"
+          },
+          {
+            "text": "Services",
+            "left": 210,
+            "right": 2137,
+            "width": 1927,
+            "overflowsLeft": false,
+            "overflowsRight": true,
+            "clippedByPx": 217,
+            "fontSize": "409.997px"
+          }
+        ],
+        "navPills": [
+          {
+            "text": "Strategy",
+            "w": 102,
+            "h": 44,
+            "top": 909,
+            "contrast": 10.36,
+            "ariaCurrent": "true"
+          },
+          {
+            "text": "Creative",
+            "w": 98,
+            "h": 44,
+            "top": 909,
+            "contrast": 10.36,
+            "ariaCurrent": "false"
+          },
+          {
+            "text": "Web Development",
+            "w": 169,
+            "h": 44,
+            "top": 909,
+            "contrast": 10.36,
+            "ariaCurrent": "false"
+          },
+          {
+            "text": "Campaign",
+            "w": 106,
+            "h": 44,
+            "top": 909,
+            "contrast": 10.36,
+            "ariaCurrent": "false"
+          }
+        ],
+        "blocks": [
+          {
+            "id": "strategy",
+            "title": "Strategy",
+            "blockW": 1850,
+            "blockH": 746,
+            "mediaW": 410,
+            "mediaH": 513,
+            "mediaLeft": 71,
+            "chipCount": 14,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "row-reverse"
+          },
+          {
+            "id": "creative",
+            "title": "Creative",
+            "blockW": 1850,
+            "blockH": 746,
+            "mediaW": 410,
+            "mediaH": 513,
+            "mediaLeft": 1439,
+            "chipCount": 14,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "row"
+          },
+          {
+            "id": "web-development",
+            "title": "Web Development",
+            "blockW": 1850,
+            "blockH": 746,
+            "mediaW": 410,
+            "mediaH": 513,
+            "mediaLeft": 71,
+            "chipCount": 14,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "row-reverse"
+          },
+          {
+            "id": "campaigns",
+            "title": "Campaigns",
+            "blockW": 1850,
+            "blockH": 780,
+            "mediaW": 410,
+            "mediaH": 513,
+            "mediaLeft": 1439,
+            "chipCount": 16,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "row"
+          }
+        ],
+        "sidebar": {
+          "inert": false,
+          "rect": {
+            "left": 1862,
+            "top": 437,
+            "w": 58,
+            "h": 304
+          },
+          "items": [
+            {
+              "href": "#strategy",
+              "w": 40,
+              "h": 142,
+              "ariaCurrent": "true"
+            },
+            {
+              "href": "#creative",
+              "w": 40,
+              "h": 44,
+              "ariaCurrent": "false"
+            },
+            {
+              "href": "#web-development",
+              "w": 40,
+              "h": 44,
+              "ariaCurrent": "false"
+            },
+            {
+              "href": "#campaigns",
+              "w": 40,
+              "h": 44,
+              "ariaCurrent": "false"
+            }
+          ]
+        },
+        "clientsHeight": 586,
+        "headingLevels": [
+          {
+            "tag": "H1",
+            "text": "Our Services"
+          },
+          {
+            "tag": "H2",
+            "text": "Strategy"
+          },
+          {
+            "tag": "H2",
+            "text": "Creative"
+          },
+          {
+            "tag": "H2",
+            "text": "Web Development"
+          },
+          {
+            "tag": "H2",
+            "text": "Campaigns"
+          },
+          {
+            "tag": "H2",
+            "text": "Clients"
+          },
+          {
+            "tag": "H2",
+            "text": "Begin your story"
+          },
+          {
+            "tag": "H3",
+            "text": "Get In Touch"
+          },
+          {
+            "tag": "H2",
+            "text": "Let’s Start Something Great."
+          },
+          {
+            "tag": "H3",
+            "text": "Pages"
+          },
+          {
+            "tag": "H3",
+            "text": "Company"
+          },
+          {
+            "tag": "H3",
+            "text": "Functional"
+          },
+          {
+            "tag": "H3",
+            "text": "Analytics"
+          }
+        ]
+      }
+    },
+    "2560": {
+      "consoleErrors": [],
+      "home": {
+        "docOverflow": false,
+        "bodyScrollWidth": 2560,
+        "innerWidth": 2560,
+        "sectionHeight": 2044,
+        "cards": [
+          {
+            "index": 0,
+            "title": "Strategy",
+            "cardW": 2560,
+            "cardH": 534,
+            "innerW": 2560,
+            "innerH": 536,
+            "cardTransform": "matrix(1, 0, 0, 1, 0, 0)",
+            "innerTransform": "matrix(1, -0.000783653, 0.000783653, 1, -41.4387, 0)",
+            "btnW": 209,
+            "btnH": 56,
+            "pillText": "Research & Insight",
+            "plusText": "+6"
+          },
+          {
+            "index": 1,
+            "title": "Creative",
+            "cardW": 2568,
+            "cardH": 554,
+            "innerW": 2568,
+            "innerH": 554,
+            "cardTransform": "matrix(0.999864, -0.0164978, 0.0164978, 0.999864, 30.249, 0)",
+            "innerTransform": "none",
+            "btnW": 209,
+            "btnH": 59,
+            "pillText": "Branding",
+            "plusText": "+5"
+          },
+          {
+            "index": 2,
+            "title": "Web Development",
+            "cardW": 2595,
+            "cardH": 751,
+            "innerW": 2595,
+            "innerH": 751,
+            "cardTransform": "matrix(0.997002, 0.0773751, -0.0773751, 0.997002, -142.006, 0)",
+            "innerTransform": "none",
+            "btnW": 212,
+            "btnH": 72,
+            "pillText": "Technical Architecture",
+            "plusText": "+5"
+          },
+          {
+            "index": 3,
+            "title": "Campaigns",
+            "cardW": 2611,
+            "cardH": 894,
+            "innerW": 2611,
+            "innerH": 894,
+            "cardTransform": "matrix(0.990268, -0.139173, 0.139173, 0.990268, 256, 0)",
+            "innerTransform": "none",
+            "btnW": 214,
+            "btnH": 84,
+            "pillText": "Paid Media",
+            "plusText": "+7"
+          }
+        ],
+        "workGapFromSecBottom": 0
+      },
+      "services": {
+        "docOverflow": false,
+        "scrollWidth": 2560,
+        "innerWidth": 2560,
+        "heroHeight": 1035,
+        "h1Text": "Our Services",
+        "heroSpans": [
+          {
+            "text": "Our",
+            "left": 305,
+            "right": 1221,
+            "width": 916,
+            "overflowsLeft": false,
+            "overflowsRight": false,
+            "clippedByPx": 0,
+            "fontSize": "410px"
+          },
+          {
+            "text": "Services",
+            "left": 530,
+            "right": 2457,
+            "width": 1927,
+            "overflowsLeft": false,
+            "overflowsRight": false,
+            "clippedByPx": 0,
+            "fontSize": "410px"
+          }
+        ],
+        "navPills": [
+          {
+            "text": "Strategy",
+            "w": 102,
+            "h": 44,
+            "top": 909,
+            "contrast": 10.36,
+            "ariaCurrent": "true"
+          },
+          {
+            "text": "Creative",
+            "w": 98,
+            "h": 44,
+            "top": 909,
+            "contrast": 10.36,
+            "ariaCurrent": "false"
+          },
+          {
+            "text": "Web Development",
+            "w": 169,
+            "h": 44,
+            "top": 909,
+            "contrast": 10.36,
+            "ariaCurrent": "false"
+          },
+          {
+            "text": "Campaign",
+            "w": 106,
+            "h": 44,
+            "top": 909,
+            "contrast": 10.36,
+            "ariaCurrent": "false"
+          }
+        ],
+        "blocks": [
+          {
+            "id": "strategy",
+            "title": "Strategy",
+            "blockW": 1850,
+            "blockH": 746,
+            "mediaW": 410,
+            "mediaH": 513,
+            "mediaLeft": 391,
+            "chipCount": 14,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "row-reverse"
+          },
+          {
+            "id": "creative",
+            "title": "Creative",
+            "blockW": 1850,
+            "blockH": 746,
+            "mediaW": 410,
+            "mediaH": 513,
+            "mediaLeft": 1759,
+            "chipCount": 14,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "row"
+          },
+          {
+            "id": "web-development",
+            "title": "Web Development",
+            "blockW": 1850,
+            "blockH": 746,
+            "mediaW": 410,
+            "mediaH": 513,
+            "mediaLeft": 391,
+            "chipCount": 14,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "row-reverse"
+          },
+          {
+            "id": "campaigns",
+            "title": "Campaigns",
+            "blockW": 1850,
+            "blockH": 780,
+            "mediaW": 410,
+            "mediaH": 513,
+            "mediaLeft": 1759,
+            "chipCount": 16,
+            "minChipContrast": 8.82,
+            "bodyColor": "rgb(128, 0, 32)",
+            "flexDir": "row"
+          }
+        ],
+        "sidebar": {
+          "inert": false,
+          "rect": {
+            "left": 2502,
+            "top": 617,
+            "w": 58,
+            "h": 303
+          },
+          "items": [
+            {
+              "href": "#strategy",
+              "w": 40,
+              "h": 44,
+              "ariaCurrent": "false"
+            },
+            {
+              "href": "#creative",
+              "w": 40,
+              "h": 141,
+              "ariaCurrent": "true"
+            },
+            {
+              "href": "#web-development",
+              "w": 40,
+              "h": 44,
+              "ariaCurrent": "false"
+            },
+            {
+              "href": "#campaigns",
+              "w": 40,
+              "h": 44,
+              "ariaCurrent": "false"
+            }
+          ]
+        },
+        "clientsHeight": 586,
+        "headingLevels": [
+          {
+            "tag": "H1",
+            "text": "Our Services"
+          },
+          {
+            "tag": "H2",
+            "text": "Strategy"
+          },
+          {
+            "tag": "H2",
+            "text": "Creative"
+          },
+          {
+            "tag": "H2",
+            "text": "Web Development"
+          },
+          {
+            "tag": "H2",
+            "text": "Campaigns"
+          },
+          {
+            "tag": "H2",
+            "text": "Clients"
+          },
+          {
+            "tag": "H2",
+            "text": "Begin your story"
+          },
+          {
+            "tag": "H3",
+            "text": "Get In Touch"
+          },
+          {
+            "tag": "H2",
+            "text": "Let’s Start Something Great."
+          },
+          {
+            "tag": "H3",
+            "text": "Pages"
+          },
+          {
+            "tag": "H3",
+            "text": "Company"
+          },
+          {
+            "tag": "H3",
+            "text": "Functional"
+          },
+          {
+            "tag": "H3",
+            "text": "Analytics"
+          }
+        ]
+      }
+    }
+  },
+  "homeStack": {},
+  "servicesPage": {},
+  "transitions5x": {
+    "swapErrors": [],
+    "swapStates": [
+      {
+        "path": "/services",
+        "h1": "Our Services",
+        "canvasW": 1440,
+        "canvasH": 900,
+        "stCount": 23
+      },
+      {
+        "path": "/about",
+        "h1": "Our Purpose",
+        "canvasW": 1440,
+        "canvasH": 900,
+        "stCount": 24
+      },
+      {
+        "path": "/services",
+        "h1": "Our Services",
+        "canvasW": 1440,
+        "canvasH": 900,
+        "stCount": 23
+      },
+      {
+        "path": "/contact",
+        "h1": "Contact Decbricks",
+        "canvasW": 1440,
+        "canvasH": 900,
+        "stCount": 14
+      },
+      {
+        "path": "/services",
+        "h1": "Our Services",
+        "canvasW": 1440,
+        "canvasH": 900,
+        "stCount": 23
+      }
+    ]
+  },
+  "reducedMotion": {
+    "homeReduced": [
+      {
+        "i": 0,
+        "cardTransform": "none",
+        "innerTransform": "none"
+      },
+      {
+        "i": 1,
+        "cardTransform": "none",
+        "innerTransform": "none"
+      },
+      {
+        "i": 2,
+        "cardTransform": "none",
+        "innerTransform": "none"
+      },
+      {
+        "i": 3,
+        "cardTransform": "none",
+        "innerTransform": "none"
+      }
+    ],
+    "servicesReduced": {
+      "pausedCount": 4,
+      "totalVideos": 4
+    }
+  },
+  "keyboardFocus": [
+    {
+      "tag": "A",
+      "cls": "parts-btnBlock flex items-center bg-darkPurple duration-500 ",
+      "text": "04ContactContact",
+      "outlineStyle": "solid",
+      "outlineWidth": "2px",
+      "boxShadow": "none"
+    },
+    {
+      "tag": "A",
+      "cls": "parts-serviceNavLink flex h-30 items-center justify-center r",
+      "text": "Strategy  Strategy",
+      "outlineStyle": "solid",
+      "outlineWidth": "2px",
+      "boxShadow": "none"
+    },
+    {
+      "tag": "A",
+      "cls": "parts-serviceNavLink flex h-30 items-center justify-center r",
+      "text": "Creative  Creative",
+      "outlineStyle": "solid",
+      "outlineWidth": "2px",
+      "boxShadow": "none"
+    },
+    {
+      "tag": "A",
+      "cls": "parts-serviceNavLink flex h-30 items-center justify-center r",
+      "text": "Web Development  Web Developme",
+      "outlineStyle": "solid",
+      "outlineWidth": "2px",
+      "boxShadow": "none"
+    },
+    {
+      "tag": "A",
+      "cls": "parts-serviceNavLink flex h-30 items-center justify-center r",
+      "text": "Campaign  Campaign",
+      "outlineStyle": "solid",
+      "outlineWidth": "2px",
+      "boxShadow": "none"
+    },
+    {
+      "tag": "INPUT",
+      "cls": "border-transparent hover:border-purple focus:border-purple f",
+      "text": "",
+      "outlineStyle": "solid",
+      "outlineWidth": "2px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(42, 2, 8) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+    },
+    {
+      "tag": "INPUT",
+      "cls": "border-transparent hover:border-purple focus:border-purple f",
+      "text": "",
+      "outlineStyle": "solid",
+      "outlineWidth": "2px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(42, 2, 8) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+    },
+    {
+      "tag": "INPUT",
+      "cls": "border-transparent hover:border-purple focus:border-purple f",
+      "text": "",
+      "outlineStyle": "solid",
+      "outlineWidth": "2px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(42, 2, 8) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+    },
+    {
+      "tag": "TEXTAREA",
+      "cls": "border-transparent hover:border-purple focus:border-purple f",
+      "text": "",
+      "outlineStyle": "solid",
+      "outlineWidth": "2px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(128, 0, 32) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+    },
+    {
+      "tag": "INPUT",
+      "cls": "sr-only",
+      "text": "",
+      "outlineStyle": "solid",
+      "outlineWidth": "2px",
+      "boxShadow": "none"
+    },
+    {
+      "tag": "BUTTON",
+      "cls": "u-btn-primary part-btnPrimary group flex items-center justif",
+      "text": "SubmitSubmit",
+      "outlineStyle": "solid",
+      "outlineWidth": "2px",
+      "boxShadow": "none"
+    },
+    {
+      "tag": "A",
+      "cls": "structure-footer__ctaBtn",
+      "text": "Start a project→",
+      "outlineStyle": "solid",
+      "outlineWidth": "2px",
+      "boxShadow": "none"
+    }
+  ],
+  "networkServices": {
+    "totalRequests": 20,
+    "videoCount": 6,
+    "videoBytes": 5581835,
+    "clientLogoRequests": 0,
+    "failed": []
+  }
+}

@@ -5,7 +5,7 @@ import { SITE_URL } from '../data/site';
  * Hand-written sitemap (zero-dep, per Implementation-plan §6).
  * Lists indexable pages only:
  * - `/`, `/about`, `/services` (7 Decbricks services landed 2026-11-14), `/contact`.
- * - `/the404game` and `/404` are easter-egg/system pages, `noindex`.
+ * - `/404` is a system error page (`noindex`).
  * Add a route here when a page becomes indexable.
  */
 export const GET: APIRoute = () => {

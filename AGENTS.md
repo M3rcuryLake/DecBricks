@@ -12,7 +12,7 @@ Astro ^5, TypeScript, GSAP ^3.15 (+ScrollTrigger), Lenis smooth scroll, three ^0
 ## Layout
 ```
 src/layouts/Base.astro          <head>, SEO props, font preload, JSON-LD slot
-src/pages/                      index, services, contact (BROKEN, rewrite), 404, the404game
+src/pages/                      index, services, contact (BROKEN, rewrite), 404
 src/components/                 Header, Footer, Loader, TransitionOverlay, CookieBanner, ContactForm,
                                 ServicesHero, ServicesSidebarNav, ServiceBlock, ServicesClients,
                                 Hero, CaseStudies(118KB), Testimonials(59KB)

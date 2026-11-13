@@ -245,47 +245,7 @@ No new dependencies. No class renames; one additive hook (`.parts-servicesHeroNa
 
 **Verification:** probes `/tmp/opencode/p1-t1.cjs` (tokens), `p1-t2.cjs` (applications), `p1-t5.cjs` (§3 contrast sweep — ink 18.08:1), `p1-t6.cjs` (reduced-motion baseline); full audit + transitions re-run clean; Phase-0 cookie probes still GREEN. Evidence `docs/qa/shots/phase1-{before,after}-*.png`.
 
-## Phase 3 — Task 1+2: home hero v2 + hero→content band (2026-11-13, commit 061fc01)
-
-**What:** home hero rebuilt behind a `[data-hero-v2]` gate on `.sections-hero` (Hero.astro): two contained `u-display` words (Distinct / Always, Bricolage 800), body copy in its own grid column, the video preview in a ticked media cell (corner ticks at −1px on the CELL, media inset 10px via decbricks.css so the WebGL texture can't paint over them), a Departure Mono capability row (4 pills → `/services#id`, 44px targets), tilt removed from the hero (single-tilt rule; the collage keeps the page's one tilt). Task 2: `.end` row `lg:min-h-screen` slack removed; `#services` `lg:pt-100`→`lg:pt-45` (280px dead burgundy → 45px). All template class hooks preserved (`.sections-hero*`, `.start`, `.start-mobile*`, `.end`, `.pin-trigger__mobile`, `.parts-*`, `#services`, trails).
-
-**Why / rulings:**
-- Display face = Bricolage per plan §3 (FK Raster collapses below ~140px; v1 set it ~230px). `u-display` now carries `font-family: var(--font-neuePower)` — it had none, falling to system-ui (caught on shots).
-- `initServicesPin` mobile branch bug fixed (`y: s`, not `baseY + s`): the old formula wrote the flight's END offset at rest — the real source of the mobile "empty burgundy screens" (F35). `pinBaseY` became write-only → removed.
-- FK W/Y kerning hack removed: `innerText` reflects `text-transform: uppercase`, so it matched lowercase w/y and wrecked Bricolage metrics (F36). Rule of thumb recorded: char-level logic on uppercase elements must use `textContent`.
-- Departure Mono preloaded (was a fallback face): hero mono rows re-wrapped on late swap, /@375 CLS 0.205 → 0.0002 (F37). New pills `<ul>` needed explicit `color` or its whitespace nodes failed the contrast sweep (F38).
-- /@768 LCP 152 → ~440-500ms ACCEPTED: the pin fix surfaces the preview video, which legitimately becomes the LCP element at 768 (F39). Owner copy for `/` still pending (A12/C1) — words held verbatim per approved holding pattern.
-
-**Files:** Hero.astro, hero.ts, decbricks.css (gated Phase-3 block: hero-v2-row/mediaCell/pills/word2/frame/hero-top padding — supplies responsive utilities absent from compiled global.css: `lg:w-320`, `2xl:w-480`, `lg:aspect-3/2`, `max-lg:min-h-svh`, `sm:px-30`), Base.astro. main.ts untouched (BUG-015 rule).
-
-**Verification:** probe `/tmp/opencode/p3-t1.cjs` RED 12 → GREEN 20/20; audit-main ALL CLEAN ×20; build/check/check:brand pass; shots `docs/qa/shots/phase3-t1b/t1c/t1d-hero-*`, `phase3-t1-scroll-*`. Reduced-motion: entrance path unchanged (Phase-1 p1-t6 baseline still applies); no new motion added.
-
-## Phase 3 — Task 3: ServicesHero rebuild (2026-11-13, commit 4bb8fc0)
-
-**What:** shared services/about/contact hero (ServicesHero.astro) rebuilt behind `[data-serviceshero-v2]`: contained `u-display` Bricolage-800 words (word2 one-step offset via `hero-v2-word2`), padded top (15/30px), body cell right-aligned as before; "Jump to" pills moved to the mono system face (outline + hairline border + tracking) via a gated CSS override. All template hooks untouched: `.parts-servicesHeroNavRow`, `.parts-serviceNavLink` + `__label` char-roll double labels + `aria-current` machinery, `.sections-servicesHero__trail(Wrapper)`, `.parts-smileyText`, section class + cookie rules.
-
-**Why / rulings:**
-- The Phase-0 cookie-banner lg nav-lift translate was tuned to the old hero's height; after the rebuild it placed the pills INSIDE the body text (found on shots, F41). Removed — the shorter hero clears the banner zone naturally at lg (content ends ~400px; banner top ≥499px at the 768px min-lg viewport height). p0-t2/p0-t2-desktop re-verified GREEN.
-- Home v2 mobile frame is content-sized (v1 was fixed-height), so the banner-aware height shrink can't cap it: at 375×812 the scroll button dipped ~69px under the card (F42). Fixed with a banner-visible-only compression of discretionary spacing (~106px), reverting on dismiss. Ruling: compression instead of forcing the frame height — the v2 media cell is in flow by design (the v1 absolute preview was the R1 breakage).
-- Pills keep the char-roll SplitText hover/focus (services-page.ts) — masks measured exact-fit with mono tracking (no clipping).
-- `heading-3.5xl` is no longer used anywhere (scripts/styles/components verified); words align to the home hero's display scale (one system).
-
-**Files:** ServicesHero.astro, decbricks.css (gated `[data-serviceshero-v2]` block + cookie-banner compression rules). services-page.ts, main.ts untouched.
-
-**Verification:** p3-t3 GREEN 100/100 (6 page-width combos, incl. pills/body/word overlap checks in the banner-visible state); p0-t2 + p0-t2-desktop GREEN; audit-behav transitions 0 errors + canvases 1280×900 after swaps; p3-cls375 0.0001; build/check/check:brand pass; shots `docs/qa/shots/phase3-t3{,b}-hero-*`.
-
-## Phase 3 — Tasks 4+5: scale verification + LCP-safe hero media (2026-11-13, commit b7ee964)
-
-**Task 4 (scale):** /about + /contact inherit the Task-3 rebuild via ServicesHero props — no spacing changes needed. Verified: p3-t3 GREEN includes both pages × 1280/375; 1920 shots composed (same 104px `--fs-display` cap as home — one system scale).
-
-**Task 5 (LCP-safe media):** poster frames extracted from the actual hero videos with ffmpeg (`hero-preview-poster.webp` 13.8KB, `showreel-poster.webp` 6.3KB → `public/images/heroes/`) and wired to the two preview variants + the `preload="none"` showreel player. Posters are real frames of the real videos — no invented imagery. The showreel poster sits behind the GSAP opacity-0 overlay until play, where it removes the black flash. Lazy source injection (media.ts, active variant only) untouched. Display faces all load at first paint (Departure Mono preloaded in 3.1) — no font swap. `/@768` LCP 436-508 → 168ms, superseding the F39 ruling.
-
-**Files:** Hero.astro (3 poster attrs), public/images/heroes/*, Base.astro (from 3.1). No new deps (ffmpeg is a local tool).
-
-**Verification:** p3-t5 GREEN 12/12; audit-main ALL CLEAN ×20 (CLS ≤0.0002 on /@375, LCP inside ±10% everywhere); build/check/check:brand pass.
-
 ## Footer redesign — Phase 1 (2026-11-13)
-
 **What:** Split `Footer.astro` into a thin shell composing `src/components/footer/{FooterCta,FooterNav,FooterContact,FooterStatus,FooterWordmark,FooterLegal,FooterWebgl}.astro` backed by typed `src/data/footer.ts` (`FOOTER`, `FOOTER_CONTACT`). Added scoped `.structure-footer__*` layout/type rules in `src/styles/decbricks.css`. Updated `src/scripts/footer.ts` to retire `initSocialPillsRandomLayout` (social data empty under A8), emit once-per-session dev warnings for `[data-dev-missing]`, keep `initSvgRectReveal(footer)` and `.structure-footer__inner` scrub reveal with `invalidateOnRefresh: true`, and guard `.structure-footer__marquee`.
 
 **Decisions:**
@@ -295,7 +255,6 @@ No new dependencies. No class renames; one additive hook (`.parts-servicesHeroNa
 - **Hidden missing-data slots (`A2`/`A3`/`A4`/`A8`/`A11`/`C1`):** Services column (`links: []`), phones/email/Cal/socials, TZ/availability, and legal links render nothing in prod and log once-per-session dev warnings (`data-dev-missing` omitted in prod builds). Added `A18` and `A19` to `docs/open-items.md`.
 
 **Files:** `src/data/footer.ts`, `src/components/footer/*.astro`, `src/components/Footer.astro`, `src/scripts/footer.ts`, `src/styles/decbricks.css`, `docs/open-items.md`.
-
 
 ## Footer redesign — Phase 2 (2026-11-13)
 
@@ -309,8 +268,6 @@ No new dependencies. No class renames; one additive hook (`.parts-servicesHeroNa
 
 **Skill precedence log:** Kept Departure Mono `u-kicker` headings/legal labels per AGENTS.md/plan §5.7 despite `frontend-design` generic mono-label caution.
 
-
-
 ## Footer redesign — Phase 3 (2026-11-13)
 
 **What:** Added stepped brick-laying choreography, hover/active states, reduced-motion branches, and runtime-scoped `will-change` cleanup across [Footer.astro](file:///home/ankit/GitHub/decbricks/src/components/Footer.astro), [footer.ts](file:///home/ankit/GitHub/decbricks/src/scripts/footer.ts), and [decbricks.css](file:///home/ankit/GitHub/decbricks/src/styles/decbricks.css).
@@ -320,9 +277,6 @@ No new dependencies. No class renames; one additive hook (`.parts-servicesHeroNa
 - **Scoped `will-change`:** Removed permanent `will-change-transform` from `.structure-footer__inner`; `initFooter()` sets `inner.style.willChange = 'transform'` only while the scrub ScrollTrigger `onToggle` is active and resets it to `''` on leave and teardown.
 - **Reduced-motion scroll & hover:** `onScrollTop` uses `lenis.scrollTo(0, { immediate: true })` (or `window.scrollTo({ top: 0, behavior: 'auto' })`) when `prefersReducedMotion()` is true; `.structure-footer__ctaBtn`, `.structure-footer__ctaGhost`, and `.structure-footer__topBtn .svgs-arrowUp` drop transform transitions and shrink hovers to colour/underline under `@media (prefers-reduced-motion: reduce)`.
 
-
-
-
 ## Footer redesign — Phase 4 (2026-11-13)
 
 **What:** Implemented functional controls in [FooterContact.astro](file:///home/ankit/GitHub/decbricks/src/components/footer/FooterContact.astro), [FooterStatus.astro](file:///home/ankit/GitHub/decbricks/src/components/footer/FooterStatus.astro), [FooterLegal.astro](file:///home/ankit/GitHub/decbricks/src/components/footer/FooterLegal.astro), [footer.ts](file:///home/ankit/GitHub/decbricks/src/scripts/footer.ts), and [decbricks.css](file:///home/ankit/GitHub/decbricks/src/styles/decbricks.css). P4b newsletter remains deferred (blocked until A7 endpoint + A11 privacy page).
@@ -331,6 +285,26 @@ No new dependencies. No class renames; one additive hook (`.parts-servicesHeroNa
 - **Studio clock & availability (`FooterStatus`):** SSR renders `--:--` inside `min-width: 5ch` FK Raster tabular numerals (`clamp(48px, 5vw, 84px)`) so layout never jumps on hydrate and invalid `PUBLIC_STUDIO_TZ` degrades cleanly via `try/catch`. `footer.ts` updates via `Intl.DateTimeFormat` (`en-GB`, 24-hour) only when the formatted minute string changes, pauses the interval on `document.hidden === true` (`visibilitychange`), and clears both interval and listener on teardown. Availability dots encode state by shape as well as colour (solid sage + calm step-blink for `open`, beige for `limited`, hollow ring for `closed`).
 - **Copy-email + fallback (`FooterContact`):** Preserves `mailto:` beside a ≥44×44px `"Copy"` pill and `role="status" aria-live="polite"` toast (`"Email copied"` / fallback `"Copy failed – select the address"`). Uses `navigator.clipboard.writeText` with an off-screen `<textarea>` + `document.execCommand('copy')` fallback; guarded by `disposed` flag and cleared timer on teardown. When `EMAIL === ''`, the entire email row and copy/toast controls stay absent.
 - **6-brick scroll-progress `"Rise to the top"` (`FooterLegal`):** Replaced `.svgs-arrowUp` with a 3-course staggered running-bond 6-brick stack (`data-brick="1..6"`), while keeping `.parts-btnScrollTop` and `.parts-btnScrollTop__label` intact for `buttons.ts` char-slide hover. Driven by a single `ScrollTrigger` (`start: 0, end: 'max'`, killed on teardown), clamped to `0` at top (`scrollY <= 2` or `p <= 0.02`) and `6` at bottom (`p >= 0.985`), updating DOM classes only when `filled` changes; `lenis.scrollTo(0, { duration: 0.55 })` keeps scroll-to-top under 1 s across `/` (reduced-motion uses `immediate: true`).
+
+## Footer redesign — Phase 5 (2026-11-13)
+
+**What:** Responsive, touch, and accessibility hardening across [FooterLegal.astro](file:///home/ankit/GitHub/decbricks/src/components/footer/FooterLegal.astro) and [decbricks.css](file:///home/ankit/GitHub/decbricks/src/styles/decbricks.css), plus visual/Playwright audit logged in [findings.md](file:///home/ankit/GitHub/decbricks/docs/qa/findings.md).
+
+**Decisions:**
+- **44px touch targets & cookie safe-area (`decbricks.css`):** Enforced `min-width: 44px; min-height: 44px; touch-action: manipulation` on all `.structure-footer a, .structure-footer button` and added `env(safe-area-inset-left/right/bottom, 0px)` padding on `.structure-footer__shell`, keeping the bottom control clear (`lastCtrlBottom: 602 < bannerTop: 626` at `375×812`).
+- **Focus & forced colors (`decbricks.css`):** Scoped `.structure-footer a:focus-visible, .structure-footer button:focus-visible` to `2px solid var(--brand-on-dark)` (`outline-offset: 3px`) and added `@media (forced-colors: active)` fallback resetting `.structure-footer__wordmark` to solid `CanvasText` (`background-image: none; background-clip: border-box`) and `.structure-footer__brick.is-filled` to `Highlight`.
+- **`translate="no"` brand guard (`FooterLegal.astro`):** Added `translate="no"` on the copyright `.font-brand` lockup span alongside `FooterWordmark.astro` so auto-translators preserve `"Decbricks"`.
+- **`@media print` sheet (`decbricks.css`):** Hides `.structure-loader` (caught via screenshot inspect where the fixed loader overlay masked scrolled print captures on fresh page loads), `.webgl`, `.structure-footer .webgl-background`, `.structure-footer__gridBg`, `.structure-footer__wordmarkRow`, `.structure-footer__ctaActions`, `.structure-footer__copyBtn`, `.structure-footer__topBtn`, `.structure-footer__legalBtn`; resets `.structure-footer__inner` transform, sets `.structure-footer { background: #ffffff !important }` with `#111111` ink, and switches the copyright `.font-brand::before` crest to `/brand/logo.webp` + `filter: brightness(0)` so the mark stays legible on paper.
+
+## Footer redesign — Phase 6 (2026-11-13)
+
+**What:** Added automated footer/schema consistency verification ([check-footer-schema.mjs](file:///home/ankit/GitHub/decbricks/scripts/check-footer-schema.mjs) wired as `npm run check:footer` in [package.json](file:///home/ankit/GitHub/decbricks/package.json)), ran full Lighthouse, throttled CLS/INP, 30-swap WebGL gauntlet, and env-matrix QA, and closed documentation ([PROGRESS.md](file:///home/ankit/GitHub/decbricks/docs/PROGRESS.md), [mapping.md](file:///home/ankit/GitHub/decbricks/docs/mapping.md), [tokens.md](file:///home/ankit/GitHub/decbricks/docs/tokens.md), [open-items.md](file:///home/ankit/GitHub/decbricks/docs/open-items.md), [findings.md](file:///home/ankit/GitHub/decbricks/docs/qa/findings.md)).
+
+**Decisions:**
+- **Optional canvas relocation spike skipped intentionally:** Plan §10 explicitly keeps global `canvas.webgl` inside `FooterWebgl.astro` (`reattachCanvases()` in [impl.ts](file:///home/ankit/GitHub/decbricks/src/scripts/webgl/impl.ts)). The 30-swap gauntlet across `/services`, `/about`, `/contact`, and `/` completed **30/30** transitions (`0` failures, `0` console/page errors, `2` connected `1280×800` canvases, `hasWebGL: true`), confirming relocation is unnecessary.
+- **Footer/schema gate (`scripts/check-footer-schema.mjs`):** Parses built `.structure-footer` HTML and `Organization` JSON-LD across `dist/` without runtime dependencies, asserting `1` `<h2>`, no empty/broken `href`/`mailto:`/`tel:` attributes, `Organization.logo` file presence, and exact set equality for `email`, `contactPoint[].telephone`, and `sameAs`.
+- **Bundle & perf budgets:** `src/scripts/footer.ts` measures `4,271 B` minified / `1,995 B` gzipped (vs `1,626 B` gzipped P0 baseline; well under the `<= 3 KB` gzipped budget) with zero new dependencies or network requests. Throttled `375px` `4× CPU` footer scroll+scrollTop probe improved from P0 (`cls: 0.0402`, `scrollTopClickMs: 176`, `maxInpMs: 512`) to `cls: 0`, `footerCls: 0`, `maxInpMs: 80`. Lighthouse desktop reached Perf `61` / A11y `97` / TBT `2,830ms` (vs P0 `60` / `96` / `13,290ms`); `/about` mobile scored Perf `99` / A11y `100` / CLS `0` / LCP `1.1s` / TBT `70ms` (`/` mobile showed `CLS 0.4` from pre-existing WIP `Hero.astro` changes with `0` footer shift).
+- **Skill precedence summary (Phases 0–6):** Kept template init+teardown lifecycle in [main.ts](file:///home/ankit/GitHub/decbricks/src/scripts/main.ts), unlayered styles in [decbricks.css](file:///home/ankit/GitHub/decbricks/src/styles/decbricks.css), FK Raster `.font-brand` / Bricolage / Hanken / Departure Mono type system, and Burgundy/Warm Beige/Off-White palette per `AGENTS.md` over `frontend-design` / `astro-best-practices` island/token advice.
 
 
 
@@ -367,15 +341,6 @@ Plan §8 P2 (interaction). Decisions worth remembering:
 - **Mobile disclosure is JS-gated on purpose:** CSS collapses the rail <1024px only when the script adds `.is-collapsed`, so a no-JS mobile visit still sees every rail button. Desktop hides the toggle via `min-width: 1024px` and ignores the collapse class (rule is scoped inside `max-width: 1023px`), so resize can't strand content.
 - The prototype's "Arrow keys work too" hint stays omitted (still not re-added; progress bar + live region communicate state).
 
-## Footer redesign — Phase 5 (2026-11-13)
-
-**What:** Responsive, touch, and accessibility hardening across [FooterLegal.astro](file:///home/ankit/GitHub/decbricks/src/components/footer/FooterLegal.astro) and [decbricks.css](file:///home/ankit/GitHub/decbricks/src/styles/decbricks.css), plus visual/Playwright audit logged in [findings.md](file:///home/ankit/GitHub/decbricks/docs/qa/findings.md).
-
-**Decisions:**
-- **44px touch targets & cookie safe-area (`decbricks.css`):** Enforced `min-width: 44px; min-height: 44px; touch-action: manipulation` on all `.structure-footer a, .structure-footer button` and added `env(safe-area-inset-left/right/bottom, 0px)` padding on `.structure-footer__shell`, keeping the bottom control clear (`lastCtrlBottom: 602 < bannerTop: 626` at `375×812`).
-- **Focus & forced colors (`decbricks.css`):** Scoped `.structure-footer a:focus-visible, .structure-footer button:focus-visible` to `2px solid var(--brand-on-dark)` (`outline-offset: 3px`) and added `@media (forced-colors: active)` fallback resetting `.structure-footer__wordmark` to solid `CanvasText` (`background-image: none; background-clip: border-box`) and `.structure-footer__brick.is-filled` to `Highlight`.
-- **`translate="no"` brand guard (`FooterLegal.astro`):** Added `translate="no"` on the copyright `.font-brand` lockup span alongside `FooterWordmark.astro` so auto-translators preserve `"Decbricks"`.
-- **`@media print` sheet (`decbricks.css`):** Hides `.structure-loader` (caught via screenshot inspect where the fixed loader overlay masked scrolled print captures on fresh page loads), `.webgl`, `.structure-footer .webgl-background`, `.structure-footer__gridBg`, `.structure-footer__wordmarkRow`, `.structure-footer__ctaActions`, `.structure-footer__copyBtn`, `.structure-footer__topBtn`, `.structure-footer__legalBtn`; resets `.structure-footer__inner` transform, sets `.structure-footer { background: #ffffff !important }` with `#111111` ink, and switches the copyright `.font-brand::before` crest to `/brand/logo.webp` + `filter: brightness(0)` so the mark stays legible on paper.
 ## Testimonials redesign — Phase 3 (2026-11-13)
 
 Plan §8 P3 (motion polish). Small phase, two real findings:
@@ -384,6 +349,7 @@ Plan §8 P3 (motion polish). Small phase, two real findings:
 - **Reduced-motion overrides must come after their base rules:** putting the tst reduced-motion block mid-file (before the Phase-2/3 additions) silently lost the cascade to later same-specificity rules — chevron and numeral kept animating under emulation until the override was re-homed at EOF. Comment left in the CSS so the ordering constraint survives future edits.
 - Numeral micro-crossfade is class-replay based (`.is-swap` + forced reflow), skipped for reduced motion by CSS; the `/ 08` denominator never animates.
 - Long tasks on home at 1440 are pre-existing (WebGL loop, ~57/4s idle, no container attribution); the section contributes none (identical idle vs swap rates; 375 fully clean).
+
 ## Testimonials redesign — Phase 4 (2026-11-13)
 
 Plan §8 P4 (hardening + full verification battery). Findings:
@@ -394,15 +360,6 @@ Plan §8 P4 (hardening + full verification battery). Findings:
 - **Probe lesson (tooling, not product):** this Playwright version has no `page.accessibility` — SR snapshots come from CDP `Accessibility.getFullAXTree`, and the walk must descend *through* `ignored` generic nodes (skip the row, keep recursing) or whole subtrees silently vanish.
 - Page-level CLS 0 (0.0001 input-inclusive); long tasks unchanged idle-vs-swap (pre-existing WebGL loop); all §4 contrast pairs ≥6.08:1.
 
-## Footer redesign — Phase 6 (2026-11-13)
-
-**What:** Added automated footer/schema consistency verification ([check-footer-schema.mjs](file:///home/ankit/GitHub/decbricks/scripts/check-footer-schema.mjs) wired as `npm run check:footer` in [package.json](file:///home/ankit/GitHub/decbricks/package.json)), ran full Lighthouse, throttled CLS/INP, 30-swap WebGL gauntlet, and env-matrix QA, and closed documentation ([PROGRESS.md](file:///home/ankit/GitHub/decbricks/docs/PROGRESS.md), [mapping.md](file:///home/ankit/GitHub/decbricks/docs/mapping.md), [tokens.md](file:///home/ankit/GitHub/decbricks/docs/tokens.md), [open-items.md](file:///home/ankit/GitHub/decbricks/docs/open-items.md), [findings.md](file:///home/ankit/GitHub/decbricks/docs/qa/findings.md)).
-
-**Decisions:**
-- **Optional canvas relocation spike skipped intentionally:** Plan §10 explicitly keeps global `canvas.webgl` inside `FooterWebgl.astro` (`reattachCanvases()` in [impl.ts](file:///home/ankit/GitHub/decbricks/src/scripts/webgl/impl.ts)). The 30-swap gauntlet across `/services`, `/about`, `/contact`, and `/` completed **30/30** transitions (`0` failures, `0` console/page errors, `2` connected `1280×800` canvases, `hasWebGL: true`), confirming relocation is unnecessary.
-- **Footer/schema gate (`scripts/check-footer-schema.mjs`):** Parses built `.structure-footer` HTML and `Organization` JSON-LD across `dist/` without runtime dependencies, asserting `1` `<h2>`, no empty/broken `href`/`mailto:`/`tel:` attributes, `Organization.logo` file presence, and exact set equality for `email`, `contactPoint[].telephone`, and `sameAs`.
-- **Bundle & perf budgets:** `src/scripts/footer.ts` measures `4,271 B` minified / `1,995 B` gzipped (vs `1,626 B` gzipped P0 baseline; well under the `<= 3 KB` gzipped budget) with zero new dependencies or network requests. Throttled `375px` `4× CPU` footer scroll+scrollTop probe improved from P0 (`cls: 0.0402`, `scrollTopClickMs: 176`, `maxInpMs: 512`) to `cls: 0`, `footerCls: 0`, `maxInpMs: 80`. Lighthouse desktop reached Perf `61` / A11y `97` / TBT `2,830ms` (vs P0 `60` / `96` / `13,290ms`); `/about` mobile scored Perf `99` / A11y `100` / CLS `0` / LCP `1.1s` / TBT `70ms` (`/` mobile showed `CLS 0.4` from pre-existing WIP `Hero.astro` changes with `0` footer shift).
-- **Skill precedence summary (Phases 0–6):** Kept template init+teardown lifecycle in [main.ts](file:///home/ankit/GitHub/decbricks/src/scripts/main.ts), unlayered styles in [decbricks.css](file:///home/ankit/GitHub/decbricks/src/styles/decbricks.css), FK Raster `.font-brand` / Bricolage / Hanken / Departure Mono type system, and Burgundy/Warm Beige/Off-White palette per `AGENTS.md` over `frontend-design` / `astro-best-practices` island/token advice.
 ## Testimonials redesign — Phase 5 (2026-11-13)
 
 Plan §8 P5 (final QA + docs + launch checklist). Small phase; the audit found real polish:
@@ -411,6 +368,12 @@ Plan §8 P5 (final QA + docs + launch checklist). Small phase; the audit found r
 - **Controls got `touch-action: manipulation`** (double-tap zoom delay), the index counter `font-variant-numeric: tabular-nums` (no width jitter across the numeral crossfade), and the title `text-wrap: balance` — all `web-design-guidelines` findings, fixed same phase, re-verified by probe (swipe works, selection suppressed mid-gesture only, vertical scroll pass-through intact at 165px delta).
 - **Accepted deviation from the guidelines:** "URL reflects state" — the deep link is deliberately read-only (`#t-N` restores state, URL never written), per the owner-approved P2 decision; evidence in findings T-9.
 - All consolidated evidence lives in `docs/qa/findings.md` §"Testimonials redesign — Phase 5" (T-1…T-12). `check:placeholders` sits in open-items §E5 as the launch gate; the section ships hidden in prod until real consented quotes land (plan §10 owner inputs).
+
+## Footer CTA visibility & header clearance fix (2026-11-13)
+
+- **Root cause:** (1) `src/scripts/footer.ts` ran a `yPercent: -100` GSAP scrub reveal on `.structure-footer__inner` designed for the old ~380px template footer; because the redesigned footer exceeded viewport height on mobile and desktop (`870–1387px`), `inner` stayed negatively translated (`top < 0`) and clipped inside `.structure-footer` (`overflow: hidden`) across scroll positions, pushing `"Let’s Start Something Great."` and `"Start a project →"` off-screen on desktop and behind the fixed header on mobile. (2) `.structure-footer__shell` top padding (`clamp(48px, 7vw, 112px)`) was shorter than the fixed `.structure-menu` height (`62px` `<1024px`, `83px` `>=1024px`), and desktop wordmark/CTA/gap proportions pushed total footer height over standard viewports (`800–900px`).
+- **Fix:** Removed the `yPercent: -100` scrub reveal on `.structure-footer__inner` in `src/scripts/footer.ts` (preserving the brick-laying `.is-built` wordmark reveal, WebGL trail, and null-guarded marquee hook). In `src/styles/decbricks.css`, raised `.structure-footer__shell` top padding to `clamp(88px, 10vw, 104px)` (`clamp(108px, 7.5vw, 120px)` at `>=1024px`) for guaranteed fixed-header clearance, synced `--ft-gap` (`clamp(20px, 2.3vw, 32px)`) with `.structure-footer__legal`, and scaled `.structure-footer__ctaTitle` (`clamp(32px, 4.6vw, 72px)`) and `>=640px` wordmark box (`clamp(114px, 17cqi, 240px)`) so the entire footer fits cleanly inside `375×812` (`756px`), `1280×800` (`787px`), `1440×900` (`834px`), and `1920×1080` (`864px`).
+
 ## Testimonials — rail scroll + kinetic hover (2026-11-13)
 
 Plan `docs/plans/testimonials-rail-kinetic-plan.md`. Owner request; both features reuse template machinery — no new motion code:
@@ -419,16 +382,6 @@ Plan `docs/plans/testimonials-rail-kinetic-plan.md`. Owner request; both feature
 - **`.tst-cardInner` is a motion-only mount, zero CSS:** the card's crossfade uses a CSS transform transition; GSAP on the same element would fight it. This is exactly CaseStudies' slide/`__inner` split, so MomentumHover moves the inner and the crossfade keeps the outer.
 - **Calmer kinetic config than CaseStudies** (7/4.5/90/120/7 vs 10/7.5/50/270/15) — quote cards are much larger than the 26vw case cards and this section is the calm editorial one. Gated `(hover:hover) and (pointer:fine)` + ≥1024 + reduced-motion (MomentumHover's internal check alone is too lenient for touch laptops).
 - **`data-lenis-prevent` + `overscroll-behavior: contain`** on the rail list: Lenis otherwise hijacks the wheel over scrollable regions; contain stops scroll chaining to the page. Keyboard reach is free — the 8 buttons are focusable, so focus scrolls clipped buttons into view.
-## Testimonials — stage + identity rail upgrade (2026-11-14)
-
-Plan `docs/plans/testimonials-upgrade-plan.md` (owner-approved in conversation; supersedes the layout parts of the P0–P5 Concept A plan — its placeholder guard, data shape and a11y floor carry forward). Key decisions beyond the plan text:
-
-- **All cards are now `position: absolute; inset: 0` and the stage height is JS-set exactly** (was: active card `relative` + JS `minHeight`). The old trick made the active card content-sized — shorter quotes left dead band space below the card; and measuring via card `scrollHeight` had a latent P3-era feedback loop (an absolute card's scrollHeight ≥ the stage's own height, so the stage could grow but never shrink — verified stuck at 480px after a 1440→768 resize). `equalizeStageHeight()` now clones each `.tst-cardInner` at `height: auto` into a hidden probe at stage width and takes the max; runs on init/resize/`fonts.ready` only. CSS `.tst-stage` fallback floor lowered 340→260 to match.
-- **`.tst-dot` class handover**: the mobile selector dots needed the `.tst-dot` name per plan §4, so the card's initials disc renamed to `.tst-attrDisc` (grep-verified nothing queried the old hook). JS syncs `.tst-railBtn` and `.tst-dots .tst-dot` as two independent index-aligned lists — both exist in the DOM at all widths (CSS decides visibility), so the sync loop never depends on media queries.
-- **Dot hit targets on narrow screens**: 8 exact 44px targets + gaps don't fit below ~416px of band width; flex was silently shrinking them to 37px. Fixed with `flex: none` + negative inline margins (hit targets overlap slightly, visual dot centred; ≤415px −3.5px, ≤345px −6px) — measured 44×44 at 390.
-- **Reduced-motion swap**: CSS transitions are zeroed there, so the JS phase timer (140ms) would leave a blank stage between the outgoing cut and the incoming pop. `LEAVE_MS = prefersReducedMotion() ? 0 : 140` — reduced motion completes the swap synchronously. Also added `.tst-card.is-active`/`.is-leaving` to both reduced-motion blocks (the enter transition lives on the compound selector and out-specificity-loses a bare `.tst-card` zeroing).
-- **Rail aria-label "All clients"** (rows are people, not quotes); visible "All quotes" title + toggle deleted — one control model per breakpoint: rail ≥1024, dots <1024.
-- `data-lenis-prevent` removed from the rail list with the P6 scroll machinery (no scroll container anymore).
 
 ## Testimonials — stage + identity rail upgrade (2026-11-14)
 
@@ -442,35 +395,10 @@ Plan `docs/plans/testimonials-upgrade-plan.md` (owner-approved in conversation; 
 - `data-lenis-prevent` removed from the rail list with the P6 scroll machinery (no scroll container anymore).
 
 **Review fixes (fresh-context review of d53caad, 0 Critical / 1 Important / 3 Minor):**
-- **Important, fixed:** the claimed CSS floor 340→260 was lost from `decbricks.css` between probe and commit (the parallel session rewrote the file mid-flight; the shrink probe had passed on the tree state at that moment, then the tree was restored underneath). At d53caad the effective mobile floor was 340 — the JS 260 was dead below 1024. Fixed: `.tst-stage { min-height: 260px }` — now in HEAD (it reached the file via the parallel session's whole-file commit sweep in `8e21500`; shrink probe re-run on COMPUTED height: 480→260→480 ✓; measure: stage 343@390 / 260@768 / 480@≥1024).
+- **Important, fixed:** the claimed CSS floor 340→260 was lost from `decbricks.css` between probe and commit (the parallel session rewrote the file mid-flight; the shrink probe had passed on the tree state at that moment, then the tree was restored underneath). At d53caad the effective mobile floor was 340 — the JS 260 was dead below 1024. Fixed: `.tst-stage { min-height: 260px }` (shrink probe re-run on COMPUTED height: 480→260→480 ✓; measure: stage 343@390 / 260@768 / 480@≥1024).
 - **Minor, fixed:** `go()` no longer calls `equalizeStageHeight()` — the stage size is the max over all cards at constant width and cannot change between navigations; the call cost 8 clones + forced reflows per click. Runs on init/resize/`fonts.ready` only.
 - **Minor, deferred:** `LEAVE_MS` is evaluated once at init — a mid-session OS reduced-motion toggle leaves the JS 140ms phase until the next init (CSS already hard-cuts; same one-shot pattern as the MomentumHover gate, template-consistent).
 - **Minor, deferred (documented):** incoming card enters from the 12px base offset, plan §5 said 6px — code comment in `.tst-card.is-active` documents the actual value.
-
-## Services 4 → 7 Expansion (2026-11-14)
-
-- **What / Why:** Expanded Decbricks' service catalogue from 4 placeholder 1minus1 items to 7 verbatim services sourced from `docs/services-content.md` across `/` (`Hero.astro` stacked cards) and `/services` (`ServicesHero.astro`, `ServicesSidebarNav.astro`, `ServiceBlock.astro`), removed all 41 legacy 1minus1 service videos and client logos (`11,028,019` bytes), and upgraded `/services` SEO + JSON-LD.
-- **Files:** `src/data/services.ts`, `src/lib/schema.ts`, `src/components/Hero.astro`, `src/components/ServicesHero.astro`, `src/components/ServicesSidebarNav.astro`, `src/components/ServiceBlock.astro`, `src/components/ServiceArtwork.astro`, `src/components/ServicesClients.astro`, `src/pages/services.astro`, `src/pages/sitemap.xml.ts`, `src/scripts/services.ts`, `src/scripts/services-page.ts`, `src/styles/decbricks.css`, `docs/open-items.md`.
-- **Single source of truth (`src/data/services.ts`):** Typed `Service` model with `slug`, `index`, `title`, `shortLabel`, `homeSummary`, `pageDescription`, `tags` (`7–8` capabilities per service), `homeCardTheme` (`--t1..--t7`), `artworkMotif`, and optional `media` override slot for future owner photos/videos. Both `/` and `/services` import directly from `SERVICES`; unpopulated `PROJECTS` tag rows and `CLIENT_LOGOS` strip fail gracefully by hiding until real data exists (`docs/open-items.md`).
-- **Generative 7-motif `ServiceArtwork.astro`:** Zero-request brick/pixel SVG compositions per service (`strategy`, `design`, `web`, `mobile`, `ai`, `growth`, `outreach`) paired with a documented `media` override slot so owner photography/video can drop in without layout edits.
-- **Non-green 7-card `/` stack (`Phase 5.5` owner decision):** Replaced initial green theme rotation with 7 non-green `--t1..--t7` high-contrast burgundy / warm-beige / off-white pairs where no two adjacent cards share a background (`Hero.astro` + `decbricks.css`), removed `.sections-services__intro` above the stack, and kept breathable vertical padding (`150–180px`) with `-55..-65px` card overlaps while preserving `min-h` and ScrollTrigger clearance (`card7` → Work `>= 15px` across all viewports).
-- **7-item `/services` hero nav & sidebar:** Short `shortLabel` values (`Strategy`, `Design`, `Web & Software`, `Mobile Apps`, `AI & Automation`, `Growth`, `Outreach`) keep all 7 nav items compact; `<768px` switches to a 2-column grid with a `grid-column: 1 / -1` orphan rule on the 7th item (`Outreach`). Hash deep links (`/services#<slug>`) resolve cleanly under the sticky header via `scroll-margin-top` and `services-page.ts` hash jump + ScrollTrigger sidebar active sync.
-- **SEO & JSON-LD (`src/lib/schema.ts`, `src/pages/services.astro`, `src/pages/sitemap.xml.ts`):** Removed the temporary `/services` `noindex` block (`robots="index, follow"` when `PUBLIC_ENV === 'production'`), restored `/services` to `sitemap.xml.ts`, and generated `Service` + `BreadcrumbList` JSON-LD directly from `SERVICES`.
-- **Skill vs. `AGENTS.md` note:** Followed `AGENTS.md` over `frontend-design` / `frontend-ui-engineering` defaults by keeping the compiled CSS / `decbricks.css` setup, `brandify()`, zero new packages, and existing `.sections-*` / `.parts-*` JS class hooks intact.
-
-
-## Testimonials — Amendment A: 6-row scroll listbox + content-sized card (2026-11-14)
-
-Owner-locked layout (plan `docs/plans/testimonials-upgrade-plan.md` §10 — not re-debated). Decisions worth remembering:
-
-- **The 6-row cap is token math, not pixels**: `max-height: calc(6 * var(--tst-railRowH) + 5 * var(--tst-railGap))` with rows at a FIXED `height: var(--tst-railRowH)` (52px) — the spec's "can't drift" requirement. Rows stopped being `min-height` deliberately.
-- **Fades are `mask-image` on the list** (no overlay element), three states (bottom / top / both) toggled by a passive scroll listener — `hidden` rows are counted from real row offsets, never from constants, so font/zoom changes can't desync the "+N more" count.
-- **Auto-scroll deliberately avoids `scrollIntoView`** (it can scroll ancestor scrollers = page movement). Direct `scrollTop`/`scrollLeft` math with `nearest` semantics: no movement when the row is already visible; wrap 8→1 lands at scrollTop 0 naturally (row 0 is above the viewport then). The list is `position: relative` so option `offsetTop` resolves list-relative.
-- **Listbox over tabs** (owner-sanctioned both): rows are `div[role=option]` with `aria-selected` + roving tabindex — the scroll container itself needs no tabindex ("focusable only if it needs to be"). Focus STAYS on the option for ArrowUp/Down (APG listbox); Left/Right remain the section-level quote navigation.
-- **Controls moved into the stage column** (`tst-stageCol` wrapper): they sit under the card at every breakpoint, not under whichever grid row is tallest.
-- **The card is content-sized now** (floors dropped): stage height = tallest quote's natural content via the clone-probe; the author row pinned with `margin-top: auto` makes shorter quotes' slack read deliberate; quote bumped to `clamp(28px, 3.2vw, 52px)`. Band height dropped 869→763 @1440, 781→619 @1024.
-- **Dots deleted** (markup/JS/CSS): the strip is the mobile selector; `.tst-dot` is free again, `.tst-attrDisc` keeps the card disc name.
-- `data-lenis-prevent` returned to the rail list with its scroll container role (P6 lesson: Lenis hijacks wheel over scrollables).
 
 ## Testimonials — Amendment A: 6-row scroll listbox + content-sized card (2026-11-14)
 
@@ -490,3 +418,22 @@ Owner-locked layout (plan `docs/plans/testimonials-upgrade-plan.md` §10 — not
 - **Important, fixed — "+N more" dropped focus to `<body>`:** the button hides itself on its first click (2 hidden rows → one page = end of list), taking keyboard focus with it. `updateListCues` now hands focus to the active option (`preventScroll`) before hiding a focused button.
 - **Minor, fixed — listbox focus killed the glide:** `railOptions[next].focus()` scrolled synchronously; now `focus({ preventScroll: true })` so the smooth auto-scroll survives (probe: scrollTop 99/120 at 80ms = gliding).
 - **Minor, accepted:** mask fades also fade the scrollbar tips (cosmetic, inherent to mask-on-container); classic-scrollbar platforms could clip strip row text (niche; overlay scrollbars are the norm at strip widths).
+## Services 4 → 7 Expansion (2026-11-14)
+
+- **What / Why:** Expanded Decbricks' service catalogue from 4 placeholder 1minus1 items to 7 verbatim services sourced from `docs/services-content.md` across `/` (`Hero.astro` stacked cards) and `/services` (`ServicesHero.astro`, `ServicesSidebarNav.astro`, `ServiceBlock.astro`), removed all 41 legacy 1minus1 service videos and client logos (`11,028,019` bytes), and upgraded `/services` SEO + JSON-LD.
+- **Files:** `src/data/services.ts`, `src/lib/schema.ts`, `src/components/Hero.astro`, `src/components/ServicesHero.astro`, `src/components/ServicesSidebarNav.astro`, `src/components/ServiceBlock.astro`, `src/components/ServiceArtwork.astro`, `src/components/ServicesClients.astro`, `src/pages/services.astro`, `src/pages/sitemap.xml.ts`, `src/scripts/services.ts`, `src/scripts/services-page.ts`, `src/styles/decbricks.css`, `docs/open-items.md`.
+- **Single source of truth (`src/data/services.ts`):** Typed `Service` model with `slug`, `index`, `title`, `shortLabel`, `homeSummary`, `pageDescription`, `tags` (`7–8` capabilities per service), `homeCardTheme` (`--t1..--t7`), `artworkMotif`, and optional `media` override slot for future owner photos/videos. Both `/` and `/services` import directly from `SERVICES`; unpopulated `PROJECTS` tag rows and `CLIENT_LOGOS` strip fail gracefully by hiding until real data exists (`docs/open-items.md`).
+- **Generative 7-motif `ServiceArtwork.astro`:** Zero-request brick/pixel SVG compositions per service (`strategy`, `design`, `web`, `mobile`, `ai`, `growth`, `outreach`) paired with a documented `media` override slot so owner photography/video can drop in without layout edits.
+- **Non-green 7-card `/` stack (`Phase 5.5` owner decision):** Replaced initial green theme rotation with 7 non-green `--t1..--t7` high-contrast burgundy / warm-beige / off-white pairs where no two adjacent cards share a background (`Hero.astro` + `decbricks.css`), removed `.sections-services__intro` above the stack, and kept breathable vertical padding (`150–180px`) with `-55..-65px` card overlaps while preserving `min-h` and ScrollTrigger clearance (`card7` → Work `>= 15px` across all viewports).
+- **7-item `/services` hero nav & sidebar:** Short `shortLabel` values (`Strategy`, `Design`, `Web & Software`, `Mobile Apps`, `AI & Automation`, `Growth`, `Outreach`) keep all 7 nav items compact; `<768px` switches to a 2-column grid with a `grid-column: 1 / -1` orphan rule on the 7th item (`Outreach`). Hash deep links (`/services#<slug>`) resolve cleanly under the sticky header via `scroll-margin-top` and `services-page.ts` hash jump + ScrollTrigger sidebar active sync.
+- **SEO & JSON-LD (`src/lib/schema.ts`, `src/pages/services.astro`, `src/pages/sitemap.xml.ts`):** Removed the temporary `/services` `noindex` block (`robots="index, follow"` when `PUBLIC_ENV === 'production'`), restored `/services` to `sitemap.xml.ts`, and generated `Service` + `BreadcrumbList` JSON-LD directly from `SERVICES`.
+- **Skill vs. `AGENTS.md` note:** Followed `AGENTS.md` over `frontend-design` / `frontend-ui-engineering` defaults by keeping the compiled CSS / `decbricks.css` setup, `brandify()`, zero new packages, and existing `.sections-*` / `.parts-*` JS class hooks intact.
+
+## Loader timing revert to ~3.0s (2026-11-14)
+- **What / Why:** Reverted `src/scripts/loader.ts` from the Phase 2.4 `1.1s` compressed timing (`INTRO_TARGET_S = 1.1`, `HARD_CAP_MS = 1500`) back to **`3.0s`** (`INTRO_TARGET_S = 3.0`, `HARD_CAP_MS = 3800`) per owner request, keeping the repeat-visit `sessionStorage` skip, pure-transform `placeChrome()` CLS fix, and `prefers-reduced-motion` instant release unchanged.
+
+## Image Preloading & Route Warming (2026-11-14)
+- **What / Why:** Switched `/about`, `/services`, team, client-logo, and footer imagery from `loading="lazy"` to eager loading and added `<link rel="preload" as="image" type="image/avif" imagesrcset=... imagesizes=...>` in `<head>` of `about.astro` and `services.astro`, plus idle/hover route asset warming and `waitForEagerImages(..., 1200)` in `src/scripts/page-transition.ts`, so both direct loads (behind the 3s loader) and client-side transitions arrive with images ready and zero duplicate downloads or unused-preload console warnings.
+- **Files:** `src/lib/image-preload.ts`, `src/components/AboutBlock.astro`, `src/components/ServiceBlock.astro`, `src/components/Footer.astro`, `src/components/TeamSection.astro`, `src/components/ServicesClients.astro`, `src/pages/about.astro`, `src/pages/services.astro`, `src/scripts/page-transition.ts`.
+- **Single-config `<Picture>` parity:** `getBlockImagePreloads()` in `src/lib/image-preload.ts` shares `BLOCK_IMAGE_WIDTHS` and `BLOCK_IMAGE_SIZES` and forwards `quality` + optional `position` to `getImage({ format: 'avif', ... })` so preload URLs match `<Picture>`'s `<source type="image/avif">` byte-for-byte without generating duplicate optimized files in `dist/`.
+- **Client-side swap readiness:** After initial `animationsEnabled`, `page-transition.ts` warms `/about` and `/services` HTML (`routeHtmlCache`) and responsive preload candidates into retained `Image` objects (skipping when `navigator.connection.saveData` is enabled, also triggered on link `pointerenter`/`focusin`), and `runRouteTransition()` awaits eager images up to `1200ms` under the transition curtain before sliding off. `CaseStudies.astro` `.sticker` (`public/videos/` / sticker assets) stays unchanged (`loading="lazy"`) outside this scope.

@@ -98,10 +98,6 @@ const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION || undefined;
     <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/bricolage-grotesque-latin.woff2" />
     <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/hanken-grotesk-latin.woff2" />
     <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/fk-raster-roman-compact.woff2" />
-    <!-- Departure Mono: hero mono rows re-wrap when it swaps in late (Phase 3
-         /@375 CLS 0.17 regression) — preloaded so the mono face is active at
-         first paint. Task-5 "no font swap of the display faces". -->
-    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/departure-mono-regular.woff2" />
     {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
     <slot name="head" />
   </head>

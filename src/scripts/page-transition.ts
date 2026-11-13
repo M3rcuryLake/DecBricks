@@ -49,6 +49,94 @@ let transitionStarted = false;
 // temporarily hold another route's markup while a transition is in flight).
 let trackedCurrentPath = normalizePath(window.location.pathname);
 
+const ROUTE_WARM_TARGETS = ['/about', '/services'] as const;
+const routeHtmlCache = new Map<string, Promise<string | null>>();
+const warmedRoutes = new Set<string>();
+const retainedWarmImages: HTMLImageElement[] = [];
+
+const isSaveDataEnabled = (): boolean =>
+  Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData);
+
+let avifSupportPromise: Promise<boolean> | null = null;
+const supportsAvif = (): Promise<boolean> => {
+  if (!avifSupportPromise) {
+    avifSupportPromise = new Promise((resolve) => {
+      const probe = new Image();
+      probe.onload = () => resolve(probe.width > 0);
+      probe.onerror = () => resolve(false);
+      probe.src =
+        'data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAEAAAABAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=';
+    });
+  }
+  return avifSupportPromise;
+};
+
+function fetchRouteHtml(targetPath: string): Promise<string | null> {
+  const key = normalizePath(targetPath);
+  const existing = routeHtmlCache.get(key);
+  if (existing) return existing;
+  const req = fetch(key, { credentials: 'same-origin' })
+    .then((res) => (res.ok ? res.text() : null))
+    .catch(() => {
+      routeHtmlCache.delete(key);
+      return null;
+    });
+  routeHtmlCache.set(key, req);
+  return req;
+}
+
+async function warmRouteAssets(targetPath: string): Promise<void> {
+  const key = normalizePath(targetPath);
+  if (warmedRoutes.has(key) || isSaveDataEnabled()) return;
+  warmedRoutes.add(key);
+
+  const html = await fetchRouteHtml(key);
+  if (!html) return;
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  const canAvif = await supportsAvif();
+  const preloadLinks = Array.from(
+    doc.head.querySelectorAll<HTMLLinkElement>('link[rel="preload"][as="image"]')
+  );
+
+  for (const link of preloadLinks) {
+    if (link.type === 'image/avif' && !canAvif) continue;
+    const srcset = link.getAttribute('imagesrcset');
+    const sizes = link.getAttribute('imagesizes');
+    const href = link.getAttribute('href');
+    if (!srcset && !href) continue;
+
+    const img = new Image();
+    if (sizes) img.sizes = sizes;
+    if (srcset) img.srcset = srcset;
+    else if (href) img.src = href;
+    retainedWarmImages.push(img);
+  }
+}
+
+async function waitForEagerImages(container: Element, timeoutMs = 1200): Promise<void> {
+  const eager = Array.from(container.querySelectorAll<HTMLImageElement>('img')).filter(
+    (img) => img.loading !== 'lazy'
+  );
+  if (eager.length === 0) return;
+
+  const ready = Promise.allSettled(
+    eager.map((img) => {
+      if (img.complete) return img.decode?.().catch(() => {}) ?? Promise.resolve();
+      return new Promise<void>((resolve) => {
+        const done = () => {
+          img.removeEventListener('load', done);
+          img.removeEventListener('error', done);
+          resolve();
+        };
+        img.addEventListener('load', done, { once: true });
+        img.addEventListener('error', done, { once: true });
+      });
+    })
+  );
+
+  await Promise.race([ready, new Promise<void>((r) => window.setTimeout(r, timeoutMs))]);
+}
+
 export function initPageTransition(callbacks: PageTransitionCallbacks) {
   const overlayEl = document.querySelector<HTMLElement>('.structure-transitionOverlay');
   if (!overlayEl) return;
@@ -321,9 +409,8 @@ export function initPageTransition(callbacks: PageTransitionCallbacks) {
 
     let fetchedDoc: Document | null = null;
     try {
-      const res = await fetch(targetPath, { credentials: 'same-origin' });
-      const html = await res.text();
-      fetchedDoc = new DOMParser().parseFromString(html, 'text/html');
+      const html = await fetchRouteHtml(targetPath);
+      if (html) fetchedDoc = new DOMParser().parseFromString(html, 'text/html');
     } catch (err) {
       console.error('[PageTransition] Failed to fetch route:', err);
     }
@@ -383,6 +470,7 @@ export function initPageTransition(callbacks: PageTransitionCallbacks) {
     );
     callbacks.onAfterSwap(targetPath, anchor);
     await heroReadyPromise;
+    if (currentPageEl) await waitForEagerImages(currentPageEl, 1200);
 
     // Exact settle & pending-anchor resolution from yeE2xDWO.js h()
     await new Promise<void>((resolve) => {
@@ -531,7 +619,7 @@ export function initPageTransition(callbacks: PageTransitionCallbacks) {
     if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) {
       return;
     }
-    const link = (e.target as HTMLElement | null)?.closest<HTMLAnchorElement>('a[href]');
+    const link = e.target instanceof Element ? e.target.closest<HTMLAnchorElement>('a[href]') : null;
     if (!link) return;
 
     const rawHref = link.getAttribute('href') || '';
@@ -569,6 +657,44 @@ export function initPageTransition(callbacks: PageTransitionCallbacks) {
     // Cross-route navigation: run the neon-green pixelated skyline transition
     runRouteTransition(targetPath, anchor, true);
   });
+
+  // Warm secondary routes' HTML + responsive image preloads once initial load/loader finishes.
+  const scheduleIdleWarm = () => {
+    const run = () => {
+      for (const route of ROUTE_WARM_TARGETS) {
+        if (normalizePath(route) !== normalizePath(window.location.pathname)) {
+          void warmRouteAssets(route);
+        }
+      }
+    };
+    const ric = (window as Window & { requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => void }).requestIdleCallback;
+    if (ric) ric(run, { timeout: 600 });
+    else window.setTimeout(run, 300);
+  };
+  if ((window as Window & { animationsEnabled?: boolean }).animationsEnabled) {
+    scheduleIdleWarm();
+  } else {
+    const onInitialReady = () => {
+      bus.off('animationsEnabled', onInitialReady);
+      scheduleIdleWarm();
+    };
+    bus.on('animationsEnabled', onInitialReady);
+  }
+
+  // Also warm internal route assets on hover/focus intent before click.
+  const onLinkIntent = (e: Event) => {
+    const link =
+      e.target instanceof Element ? e.target.closest<HTMLAnchorElement>('a[href^="/"]') : null;
+    if (!link) return;
+    const rawHref = link.getAttribute('href') || '';
+    const [pathPart] = rawHref.split('#');
+    const targetPath = normalizePath(pathPart || '/');
+    if (targetPath !== normalizePath(window.location.pathname)) {
+      void warmRouteAssets(targetPath);
+    }
+  };
+  document.addEventListener('pointerenter', onLinkIntent, { capture: true, passive: true });
+  document.addEventListener('focusin', onLinkIntent, { passive: true });
 
   // Browser back/forward navigation
   window.addEventListener('popstate', () => {

@@ -11,47 +11,49 @@ const hasContact = Boolean(email || phones.length > 0 || socials.length > 0);
       <h3 class="structure-footer__colHeading subheading u-kicker text-darkPurple uppercase">
         Reach us
       </h3>
-      <ul class="structure-footer__colList">
-        {email && (
-          <li class="structure-footer__emailRow">
-            <a href={`mailto:${email}`} class="structure-footer__link text-darkPurple">
-              {email}
-            </a>
-            <button
-              type="button"
-              class="structure-footer__copyBtn subheading u-kicker text-darkPurple uppercase"
-              data-copy-email={email}
-              aria-label={`Copy email address ${email}`}
-            >
-              Copy
-            </button>
-            <span
-              class="structure-footer__copyStatus subheading u-kicker text-darkPurple uppercase"
-              role="status"
-              aria-live="polite"
-              data-copy-status
-            ></span>
-          </li>
-        )}
-        {phones.map((phone) => (
-          <li>
-            <a href={`tel:${phone.e164}`} class="structure-footer__link text-darkPurple">
-              {phone.display}
-            </a>
-            {phone.whatsapp && (
-              <a
-                href={phone.whatsapp}
-                class="structure-footer__link structure-footer__link--sub subheading u-kicker text-darkPurple uppercase"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`WhatsApp ${phone.label}`}
-              >
-                WhatsApp
+      {(email || phones.length > 0) && (
+        <ul class="structure-footer__colList">
+          {email && (
+            <li class="structure-footer__emailRow">
+              <a href={`mailto:${email}`} class="structure-footer__link text-darkPurple">
+                {email}
               </a>
-            )}
-          </li>
-        ))}
-      </ul>
+              <button
+                type="button"
+                class="structure-footer__copyBtn subheading u-kicker text-darkPurple uppercase"
+                data-copy-email={email}
+                aria-label={`Copy email address ${email}`}
+              >
+                Copy
+              </button>
+              <span
+                class="structure-footer__copyStatus subheading u-kicker text-darkPurple uppercase"
+                role="status"
+                aria-live="polite"
+                data-copy-status
+              ></span>
+            </li>
+          )}
+          {phones.map((phone) => (
+            <li>
+              <a href={`tel:${phone.e164}`} class="structure-footer__link text-darkPurple">
+                {phone.display}
+              </a>
+              {phone.whatsapp && (
+                <a
+                  href={phone.whatsapp}
+                  class="structure-footer__link structure-footer__link--sub subheading u-kicker text-darkPurple uppercase"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`WhatsApp ${phone.label}`}
+                >
+                  WhatsApp
+                </a>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
       {socials.length > 0 && (
         <ul class="structure-footer__socialList" aria-label="Social links">
           {socials.map((s) => (

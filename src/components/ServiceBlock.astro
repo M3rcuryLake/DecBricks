@@ -1,11 +1,9 @@
 ---
 import type { ServiceItem } from '../data/services';
 import { brandify } from '../lib/brand';
+import { BLOCK_IMAGE_SIZES, BLOCK_IMAGE_WIDTHS } from '../lib/image-preload';
 import { Picture } from 'astro:assets';
 import ServiceArtwork from './ServiceArtwork.astro';
-
-const IMAGE_SIZES =
-  '(min-width: 1920px) 410px, (min-width: 1660px) 360px, (min-width: 1280px) 300px, (min-width: 1024px) 260px, calc(100vw - 47px)';
 
 export interface Props {
   service: ServiceItem;
@@ -139,11 +137,12 @@ const isEven = index % 2 === 0;
             fallbackFormat="webp"
             src={service.media.src}
             alt={service.media.alt}
-            widths={[328, 660, 736, 820]}
-            sizes={IMAGE_SIZES}
+            widths={[...BLOCK_IMAGE_WIDTHS]}
+            sizes={BLOCK_IMAGE_SIZES}
             quality={55}
-            loading="lazy"
+            loading="eager"
             decoding="async"
+            fetchpriority={index === 0 ? 'high' : undefined}
             {...(service.media.position ? { position: service.media.position } : {})}
             class="block h-full w-full object-cover"
           />
