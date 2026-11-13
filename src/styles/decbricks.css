@@ -1778,8 +1778,13 @@ html.has-cookie-banner .page .sections-servicesHero {
   color: var(--brand-on-light);
 }
 .tst-railOpt:focus-visible {
-  outline: 2px solid var(--brand-on-dark);
-  outline-offset: 3px;
+  /* Inset + currentColor (review fix): a ring drawn OUTSIDE the row is
+     clipped by the list/strip edges (strip rows are exactly row-height,
+     `overflow-y: hidden`), and a fixed beige ring vanishes on the active
+     row's beige background. Inset + currentColor is visible in every row
+     state and never clipped. */
+  outline: 2px solid currentColor;
+  outline-offset: -3px;
 }
 .tst-railDisc {
   width: 28px;

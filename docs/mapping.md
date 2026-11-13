@@ -45,7 +45,7 @@ Blocks 3+4 hide while their arrays are empty (dev warnings; sidebar item no-ops)
 - Anchors: block `id` = nav `href="#id"`; heading `id="{id}-heading"` with `aria-labelledby` on the `<article>`.
 
 ## Other template pieces (not part of the brief but they ship 1minus1 identity)
-`Hero`, `CaseStudies`, `ServicesClients`, `index.astro`, `services.astro`, `data/services.ts`, `404.astro`, `the404game.astro`, `Header` logo — see open-items.md "Scope decisions". (Footer left this list in Footer Phase 1–6: template marquee/social links removed, copy/nav/contact data-driven via `src/data/footer.ts`; Testimonials left in 2026-11-13 P1.)
+`Hero`, `CaseStudies`, `ServicesClients`, `index.astro`, `services.astro`, `data/services.ts`, `404.astro`, `Header` logo — see open-items.md "Scope decisions". (Footer left this list in Footer Phase 1–6: template marquee/social links removed, copy/nav/contact data-driven via `src/data/footer.ts`; Testimonials left in 2026-11-13 P1.)
 
 ## Brand typography layer (FONT-SWAP-PROMPT Option A, 2026-11-10)
 - `src/lib/brand.ts` — `BRAND`, `brandify(text)` (HTML-escape → wrap every `Decbricks` word in `<span class="font-brand">`), `hasBrand`. Use at RENDER points; data strings stay verbatim.

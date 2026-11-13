@@ -225,7 +225,9 @@ export function initTestimonials(): (() => void) | void {
     else next = total - 1;
     if (next === current) return;
     go(next, { listScroll: prefersReducedMotion() ? 'auto' : 'smooth' });
-    railOptions[next]?.focus();
+    // preventScroll: a synchronous focus() would snap the list instantly and
+    // cancel the smooth glide go() just started (review fix).
+    railOptions[next]?.focus({ preventScroll: true });
   };
 
   // Scroll cues (Amendment A): bottom fade while rows exist below, top fade
@@ -250,6 +252,10 @@ export function initTestimonials(): (() => void) | void {
         moreBtn.textContent = `+${hidden} more`;
         moreBtn.setAttribute('aria-label', `Show ${hidden} more quotes`);
       } else {
+        // Hiding a focused button drops focus to <body> (review fix) — hand
+        // focus to the active option first (roving tabindex keeps it in the
+        // listbox).
+        if (moreBtn.matches(':focus')) railOptions[current]?.focus({ preventScroll: true });
         moreBtn.hidden = true;
       }
     }

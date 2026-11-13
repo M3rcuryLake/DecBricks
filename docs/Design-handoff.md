@@ -471,3 +471,22 @@ Owner-locked layout (plan `docs/plans/testimonials-upgrade-plan.md` §10 — not
 - **The card is content-sized now** (floors dropped): stage height = tallest quote's natural content via the clone-probe; the author row pinned with `margin-top: auto` makes shorter quotes' slack read deliberate; quote bumped to `clamp(28px, 3.2vw, 52px)`. Band height dropped 869→763 @1440, 781→619 @1024.
 - **Dots deleted** (markup/JS/CSS): the strip is the mobile selector; `.tst-dot` is free again, `.tst-attrDisc` keeps the card disc name.
 - `data-lenis-prevent` returned to the rail list with its scroll container role (P6 lesson: Lenis hijacks wheel over scrollables).
+
+## Testimonials — Amendment A: 6-row scroll listbox + content-sized card (2026-11-14)
+
+Owner-locked layout (plan `docs/plans/testimonials-upgrade-plan.md` §10 — not re-debated). Decisions worth remembering:
+
+- **The 6-row cap is token math, not pixels**: `max-height: calc(6 * var(--tst-railRowH) + 5 * var(--tst-railGap))` with rows at a FIXED `height: var(--tst-railRowH)` (52px) — the spec's "can't drift" requirement. Rows stopped being `min-height` deliberately.
+- **Fades are `mask-image` on the list** (no overlay element), three states (bottom / top / both) toggled by a passive scroll listener — `hidden` rows are counted from real row offsets, never from constants, so font/zoom changes can't desync the "+N more" count.
+- **Auto-scroll deliberately avoids `scrollIntoView`** (it can scroll ancestor scrollers = page movement). Direct `scrollTop`/`scrollLeft` math with `nearest` semantics: no movement when the row is already visible; wrap 8→1 lands at scrollTop 0 naturally (row 0 is above the viewport then). The list is `position: relative` so option `offsetTop` resolves list-relative.
+- **Listbox over tabs** (owner-sanctioned both): rows are `div[role=option]` with `aria-selected` + roving tabindex — the scroll container itself needs no tabindex ("focusable only if it needs to be"). Focus STAYS on the option for ArrowUp/Down (APG listbox); Left/Right remain the section-level quote navigation.
+- **Controls moved into the stage column** (`tst-stageCol` wrapper): they sit under the card at every breakpoint, not under whichever grid row is tallest.
+- **The card is content-sized now** (JS floors dropped; `.tst-stage { min-height: 240px }` remains as the no-JS fallback): stage height = tallest quote's natural content via the clone-probe; the author row pinned with `margin-top: auto` makes shorter quotes' slack read deliberate; quote bumped to `clamp(28px, 3.2vw, 52px)`. Band height dropped 869→763 @1440, 781→619 @1024.
+- **Dots deleted** (markup/JS/CSS): the strip is the mobile selector; `.tst-dot` is free again, `.tst-attrDisc` keeps the card disc name.
+- `data-lenis-prevent` returned to the rail list with its scroll container role (P6 lesson: Lenis hijacks wheel over scrollables).
+
+**Review fixes (fresh-context review of the amendment, 0 Critical / 2 Important / 4 Minor):**
+- **Important, fixed — strip focus ring clipped:** strip rows are exactly row-height inside an `overflow-y: hidden` box, so an outside focus ring painted only two side bars. Options now use an INSET ring (`outline-offset: -3px`) with `outline-color: currentColor` — visible on inactive (beige-on-maroon) and active (burgundy-on-beige) rows alike, never clipped.
+- **Important, fixed — "+N more" dropped focus to `<body>`:** the button hides itself on its first click (2 hidden rows → one page = end of list), taking keyboard focus with it. `updateListCues` now hands focus to the active option (`preventScroll`) before hiding a focused button.
+- **Minor, fixed — listbox focus killed the glide:** `railOptions[next].focus()` scrolled synchronously; now `focus({ preventScroll: true })` so the smooth auto-scroll survives (probe: scrollTop 99/120 at 80ms = gliding).
+- **Minor, accepted:** mask fades also fade the scrollbar tips (cosmetic, inherent to mask-on-container); classic-scrollbar platforms could clip strip row text (niche; overlay scrollbars are the norm at strip widths).
