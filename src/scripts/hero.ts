@@ -39,6 +39,7 @@ export class Hero {
   private pinBaseY?: number;
   private dom: ReturnType<Hero['getDom']>;
   private ac = new AbortController();
+  private onRefreshEvaluate?: () => void;
   /** Initial tilt (deg) captured from the standalone CSS `rotate` property (Tailwind v4 `rotate-14`). */
   private tilt = 0;
   private tiltCaptured = false;
@@ -272,6 +273,7 @@ export class Hero {
     };
     evaluate();
     requestAnimationFrame(evaluate);
+    this.onRefreshEvaluate = evaluate;
     ScrollTrigger.addEventListener('refresh', evaluate);
   }
 
@@ -460,7 +462,12 @@ export class Hero {
   }
 
   destroy() {
+    window.clearTimeout(this.refreshTimeout);
     ScrollTrigger.removeEventListener('refreshInit', this.onRefreshInit);
+    if (this.onRefreshEvaluate) {
+      ScrollTrigger.removeEventListener('refresh', this.onRefreshEvaluate);
+      this.onRefreshEvaluate = undefined;
+    }
     this.ac.abort();
     this.mm.revert();
     this.scrollTl?.kill();
