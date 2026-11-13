@@ -307,3 +307,28 @@ Plan `docs/plans/testimonials-redesign-plan.md` (owner-approved, Concept A spotl
 - **Script:** `testimonials.ts` sticker placement now skipped when the section has no stickers; drag-canvas init/teardown wiring in `main.ts` unchanged (still registered in boot + `onAfterSwap`; 3-swap gauntlet clean). Draggable/Inertia registrations in `core/gsap` deliberately untouched — they die in Phase 1 with the drag canvas.
 - **Skill conflict log:** `astro-best-practices` (islands/hydration, scoped component styles) conflicts with the template's init+teardown architecture and the decbricks.css convention — AGENTS.md precedence wins; no islands introduced, styles land in `decbricks.css` (P1+).
 - **Interim state accepted:** the drag canvas keeps its known a11y/cut-card issues until Phase 1 replaces it; placeholders make it visibly interim ("Client Name — Role, Company" attribution).
+
+## Footer redesign — Phase 2 (2026-11-13)
+
+**What:** Shipped Concept A ("Foundation") visual system and signature moment across [Footer.astro](file:///home/ankit/GitHub/decbricks/src/components/Footer.astro), [FooterWordmark.astro](file:///home/ankit/GitHub/decbricks/src/components/footer/FooterWordmark.astro), and [decbricks.css](file:///home/ankit/GitHub/decbricks/src/styles/decbricks.css).
+
+**Decisions & fixes vs prototype:**
+- **Wordmark sizing + `.font-brand` lockup crest:** Measured FK Raster Roman Compact `"Decbricks"` width in Chromium at `4.25em` (`425×86` @ 100px). Using container query sizing (`.structure-footer__wordmarkRow { container-type: inline-size }` + `clamp(62px, 22.8cqi, 424px)` with `min-height: clamp(76px, 28cqi, 520px)` on `.structure-footer__wordmarkBox`) fills ~97% of the padded container width with zero right-edge clipping from `320` to `2560px` and `0` footer CLS. Capped `--brand-logo-w: 0.30em; --brand-logo-h: 0.275em` on `.font-brand::before` as a centered crest above the wordmark (`display: block; margin: 0 auto 0.07em; -webkit-text-fill-color: initial` inside `@supports (background-clip: text)`).
+- **2× DPR brick-tile artefact fix:** Replaced prototype stroked `92×44` SVG (which lacked a `viewBox` and doubled horizontal tile seams `3+2px`) with an exact-integer `<rect>` running-bond module (`viewBox="0 0 96 48"`, `3px` mortar, uniform courses across tile wraps), scaled `em`-relatively (`0.34em × 0.17em` below `640px`, `0.27em × 0.135em` ≥ `640px`).
+- **25px grid texture:** `.structure-footer__gridBg` sits at `z-index: 15` (above WebGL `z-0`/`z-10` canvases and below `.structure-footer__inner` `z-20`) with a static `25px × 25px` 6% Off-White `linear-gradient` pair; no desktop CSS glow overlay (WebGL trail handles pointer reactivity).
+- **CTA & columns rhythm:** Set CTA title to `clamp(44px, 7.4vw, 128px)` with `max-width: 15.5ch` (clean 2-line wrap at `1440px`) and fixed 4-column desktop grid (`repeat(4, minmax(0, 1fr))` ≥ `900px`, 2-up below) so `Pages` and `Company` occupy predictable left tracks. All footer text pairs use full Off-White (`10.36:1` on burgundy, `5.13:1` over `#BC3D4D` trail) except `.structure-footer__ctaBtn` (`10.36:1` burgundy on Off-White).
+
+**Skill precedence log:** Kept Departure Mono `u-kicker` headings/legal labels per AGENTS.md/plan §5.7 despite `frontend-design` generic mono-label caution.
+
+
+
+## Testimonials redesign — Phase 0 (2026-11-13)
+
+Plan `docs/plans/testimonials-redesign-plan.md` (owner-approved, Concept A spotlight), evidence `docs/plans/audit/testimonials-current.md`. What/why/files:
+
+- **Data extraction:** `src/data/testimonials.ts` (typed, mirrors `services.ts` pattern) holds 8 clearly-marked placeholder quotes derived from the template's own set — sentiments and length variety kept, all real clients/"1minus1" removed, `service` mapped to the real Strategy/Creative/Web-Development/Campaigns taxonomy. The old 9 hardcoded cards (incl. the Team17 duplicate) are gone.
+- **IP removal in `Testimonials.astro` (1011 → ~90 lines):** all 10 sticker `<picture>` blocks (1minus1 "Group 508xx" art), the one-off service chip, the 45 pixel-cross "rating" SVGs (owner decision: stars stay off until a real ratings policy exists), minimap chip, counter chip, vertical "Testimonials" span and the drag-cursor marquee. Underlying image files stay in `public/images/case-studies/` (possibly referenced elsewhere); unused-hash cull list recorded in open-items B2.
+- **Placeholder launch guard:** prod renders nothing while any `placeholder: true` exists unless `PUBLIC_SHOW_PLACEHOLDER_TESTIMONIALS=true` (preview-only — `check-placeholders.mjs` fails if the flag is raised while placeholders lack consent); dev always previews + `console.warn`. Zero-dep script + `check:placeholders` npm script. No Review/AggregateRating schema now or later (Google: self-serving Organization reviews are ineligible — stated in plan §6).
+- **Script:** `testimonials.ts` sticker placement now skipped when the section has no stickers; drag-canvas init/teardown wiring in `main.ts` unchanged (still registered in boot + `onAfterSwap`; 3-swap gauntlet clean). Draggable/Inertia registrations in `core/gsap` deliberately untouched — they die in Phase 1 with the drag canvas.
+- **Skill conflict log:** `astro-best-practices` (islands/hydration, scoped component styles) conflicts with the template's init+teardown architecture and the decbricks.css convention — AGENTS.md precedence wins; no islands introduced, styles land in `decbricks.css` (P1+).
+- **Interim state accepted:** the drag canvas keeps its known a11y/cut-card issues until Phase 1 replaces it; placeholders make it visibly interim ("Client Name — Role, Company" attribution).

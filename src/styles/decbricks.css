@@ -1032,13 +1032,24 @@ html.has-cookie-banner .page .sections-servicesHero {
 }
 
 /* --------------------------------------------------------------------------
-   Footer v2 — Phase 1: structure & content architecture (plan §4, §7-P1).
-   Layout, landmarks, responsive columns, CTA, contact/status hooks, legal row.
-   Brick-laid wordmark, grid texture & motion polish arrive in Phases 2–3.
+   Footer v2 — Phases 1–2: structure, visual system & brick-laid signature
+   wordmark (plan §4, §7-P1, §7-P2). Stepped clip-path reveal & hover polish
+   arrive in Phase 3.
    -------------------------------------------------------------------------- */
+.structure-footer__gridBg {
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(255, 249, 242, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 249, 242, 0.06) 1px, transparent 1px);
+  background-size: 25px 25px;
+}
+
 .structure-footer__shell {
-  padding: clamp(56px, 6vw, 96px) 20px 24px;
-  gap: clamp(32px, 4.5vw, 64px);
+  padding: clamp(48px, 7vw, 112px) 20px 24px;
+  gap: clamp(40px, 5vw, 72px);
 }
 @media (min-width: 1024px) {
   .structure-footer__shell {
@@ -1051,16 +1062,16 @@ html.has-cookie-banner .page .sections-servicesHero {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-end;
-  gap: 24px 32px;
+  gap: 28px 36px;
 }
 .structure-footer__ctaTitle {
   font-family: var(--font-neuePower), system-ui, sans-serif;
   font-weight: 700;
-  font-size: clamp(36px, 5.8vw, 96px);
-  line-height: 0.96;
+  font-size: clamp(44px, 7.4vw, 128px);
+  line-height: 0.94;
   letter-spacing: -0.025em;
   text-wrap: balance;
-  max-width: 14ch;
+  max-width: 15.5ch;
 }
 .structure-footer__ctaActions {
   display: flex;
@@ -1074,7 +1085,7 @@ html.has-cookie-banner .page .sections-servicesHero {
   font-size: 16px;
   line-height: 1;
   min-height: 52px;
-  padding: 16px 24px;
+  padding: 18px 26px;
   border-radius: 8px;
   display: inline-flex;
   align-items: center;
@@ -1118,9 +1129,9 @@ html.has-cookie-banner .page .sections-servicesHero {
   padding-top: 28px;
   border-top: 1px solid color-mix(in oklab, var(--brand-on-dark) 22%, transparent);
 }
-@media (min-width: 768px) {
+@media (min-width: 900px) {
   .structure-footer__grid {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 32px;
   }
 }
@@ -1129,7 +1140,7 @@ html.has-cookie-banner .page .sections-servicesHero {
   min-width: 0;
 }
 .structure-footer__colHeading {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 .structure-footer__colList {
   list-style: none;
@@ -1141,7 +1152,7 @@ html.has-cookie-banner .page .sections-servicesHero {
 .structure-footer__link {
   font-family: var(--font-neuePower), system-ui, sans-serif;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.2;
   min-height: 44px;
   display: inline-flex;
@@ -1172,12 +1183,55 @@ html.has-cookie-banner .page .sections-servicesHero {
 }
 
 .structure-footer__wordmarkRow {
-  padding-top: 8px;
-  border-top: 1px solid color-mix(in oklab, var(--brand-on-dark) 22%, transparent);
+  container-type: inline-size;
+  width: 100%;
+  padding-top: clamp(16px, 2.5vw, 40px);
 }
-.structure-footer__wordmark {
+.structure-footer__wordmarkBox {
+  display: block;
+  width: 100%;
+  min-height: clamp(76px, 28cqi, 520px);
+  text-align: center;
+  overflow: hidden;
+}
+.structure-footer .structure-footer__wordmark {
+  --brand-logo-w: 0.30em;
+  --brand-logo-h: 0.275em;
+  --brand-logo-shift: 0;
+  --ft-brick-w: 0.34em;
+  --ft-brick-h: 0.17em;
   display: inline-block;
-  font-size: clamp(28px, 4vw, 48px);
+  max-width: 100%;
+  font-size: clamp(62px, 22.8cqi, 424px);
+  line-height: 0.86;
+  padding: 0 0.02em 0.04em;
+  color: var(--brand-on-dark);
+}
+@media (min-width: 640px) {
+  .structure-footer .structure-footer__wordmark {
+    --ft-brick-w: 0.27em;
+    --ft-brick-h: 0.135em;
+  }
+}
+.structure-footer .structure-footer__wordmark::before {
+  display: block;
+  margin: 0 auto 0.07em;
+}
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .structure-footer .structure-footer__wordmark {
+    background-color: var(--brand-on-dark);
+    /* Seamless 2:1 running-bond brick module in exact integers (zero tile-seam doubling at 1x/2x DPR). */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 48'%3E%3Cg fill='%23800020'%3E%3Crect width='96' height='3'/%3E%3Crect y='3' width='3' height='21'/%3E%3Crect y='24' width='96' height='3'/%3E%3Crect x='48' y='27' width='3' height='21'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: var(--ft-brick-w) var(--ft-brick-h);
+    background-repeat: repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .structure-footer .structure-footer__wordmark::before {
+    -webkit-text-fill-color: initial;
+  }
 }
 
 .structure-footer__legal {
@@ -1185,6 +1239,7 @@ html.has-cookie-banner .page .sections-servicesHero {
   flex-direction: column;
   gap: 12px 24px;
   padding-top: 20px;
+  margin-top: calc(clamp(40px, 5vw, 72px) * -1);
   border-top: 1px solid color-mix(in oklab, var(--brand-on-dark) 22%, transparent);
 }
 @media (min-width: 768px) {
