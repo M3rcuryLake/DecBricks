@@ -1,5 +1,5 @@
 ---
-import { SERVICES, SERVICES_SECTION_HEADER } from '../data/services';
+import { SERVICES } from '../data/services';
 import { brandify } from '../lib/brand';
 
 const HOME_CARD_STYLES = [
@@ -404,63 +404,9 @@ const HOME_CARD_STYLES = [
     ></div
   ><div
     id="services"
-    class="sections-services pointer-events-none relative z-20 lg:pt-60 pin-trigger"
+    class="sections-services pointer-events-none relative z-20 lg:pt-45 pin-trigger"
     style="transform: translateZ(0px)"
-    ><div class="sections-services__introWrap pointer-events-auto relative z-30 mx-auto max-w-1920">
-      <div class="sections-services__intro">
-        <div class="sections-services__introHead">
-          <p class="sections-services__introEyebrow">
-            <svg
-              class="svgs-doubleSlash block w-15 shrink-0"
-              viewBox="0 0 18 10"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <rect x="8" y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 8 9.27246)" fill="currentColor" />
-              <rect x="11.0938" y="6.18066" width="3.09091" height="3.09091" transform="rotate(-90 11.0938 6.18066)" fill="currentColor" />
-              <rect x="14.1797" y="3.09082" width="3.09091" height="3.09091" transform="rotate(-90 14.1797 3.09082)" fill="currentColor" />
-              <rect y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 0 9.27246)" fill="currentColor" />
-              <rect x="3.09375" y="6.18066" width="3.09091" height="3.09091" transform="rotate(-90 3.09375 6.18066)" fill="currentColor" />
-              <rect x="6.17969" y="3.09082" width="3.09091" height="3.09091" transform="rotate(-90 6.17969 3.09082)" fill="currentColor" />
-            </svg>
-            <span>{SERVICES_SECTION_HEADER.eyebrow}</span>
-          </p>
-          <h2 class="sections-services__introHeading">
-            {SERVICES_SECTION_HEADER.heading}
-          </h2>
-        </div>
-        <div class="sections-services__introBodyCol">
-          <p class="sections-services__introCopy">
-            {SERVICES_SECTION_HEADER.intro}
-          </p>
-          <a
-            href={SERVICES_SECTION_HEADER.ctaHref}
-            class="sections-services__introCta part-btnPrimary group flex w-fit items-center justify-center gap-12 rounded-8 px-24 py-15 lg:py-17 transition-colors duration-300 cursor-pointer"
-          >
-            <span class="relative flex overflow-hidden">
-              <span class="part-btnPrimary__text uppercase btn-text-lg">{SERVICES_SECTION_HEADER.ctaLabel}</span>
-              <span class="part-btnPrimary__text absolute inset-x-0 top-full text-center uppercase btn-text-lg" aria-hidden="true">
-                {SERVICES_SECTION_HEADER.ctaLabel}
-              </span>
-            </span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 7 10"
-              class="block w-6 min-w-6 lg:w-8 lg:min-w-8 lg:-mt-1"
-              aria-hidden="true"
-            >
-              <path
-                fill="currentColor"
-                d="M0 9.637V6.546h3.091v3.091zM3.094 6.546V3.455h3.09v3.09zM0 3.455V.365h3.09v3.09z"
-              />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="relative mx-auto flex w-full flex-col">
+    ><div class="relative mx-auto flex w-full flex-col">
         {
           SERVICES.map((service, index) => {
             const style = HOME_CARD_STYLES[index % HOME_CARD_STYLES.length];
@@ -487,7 +433,7 @@ const HOME_CARD_STYLES = [
                     </span>
                   </div>
                   <div
-                    class="parts-serviceCard__content relative mx-auto flex h-full max-w-1920 flex-col items-start px-70 pt-20 pb-50 sm:px-80 lg:flex-row lg:pt-50 lg:pr-60 lg:pl-60 2xl:pl-80 3xl:pt-60 3xl:pl-110"
+                    class="parts-serviceCard__content relative mx-auto flex h-full max-w-1920 flex-col items-start px-70 pt-20 pb-70 sm:px-80 lg:flex-row lg:pt-50 lg:pr-60 lg:pl-60 2xl:pl-80 3xl:pt-60 3xl:pl-110"
                   >
                     <div class="mb-20 w-full lg:mb-0 lg:w-1/2 lg:pr-40">
                       <div class="mb-7 flex items-center gap-12 lg:mb-20 lg:gap-14">
@@ -557,7 +503,6 @@ const HOME_CARD_STYLES = [
                           <div class="parts-keyword w-max" data-parallax="false">
                             <span
                               class:list={[
-                                style.pillBg,
                                 capIdx % 2 === 0 && 'rounded-tr-none',
                                 'parts-keyword__inner block cursor-default rounded-40 px-17 py-7 subheading uppercase will-change-transform lg:text-[12px] 2xl:py-11 2xl:text-[14px] 3xl:text-[16px]',
                               ]}
@@ -567,7 +512,7 @@ const HOME_CARD_STYLES = [
                           </div>
                         ))}
                         <span
-                          class={`${style.moreBadgeBg} ml-4 block rounded-8 px-7 py-7 subheading uppercase lg:px-9 lg:text-[12px] 2xl:py-11 2xl:text-[14px] 3xl:text-[16px]`}
+                          class="parts-serviceCard__more ml-4 block rounded-8 px-7 py-7 subheading uppercase lg:px-9 lg:text-[12px] 2xl:py-11 2xl:text-[14px] 3xl:text-[16px]"
                         >
                           +{service.homeExtraCount ?? service.capabilities.length - 3}
                         </span>
@@ -579,7 +524,7 @@ const HOME_CARD_STYLES = [
                       <a
                         href={`/services#${service.id}`}
                         data-anchor={`#${service.id}`}
-                        class={`part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transition-colors duration-300 cursor-pointer ${style.btnClass} flex-row px-24 py-15 lg:py-17 3xl:py-19`}
+                        class="parts-serviceCard__btn part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transition-colors duration-300 cursor-pointer flex-row px-24 py-15 lg:py-17 3xl:py-19"
                         aria-label={`Find Out More about ${service.title}`}
                       >
                         <div class="relative flex overflow-hidden">

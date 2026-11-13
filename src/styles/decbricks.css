@@ -2013,99 +2013,13 @@ html.has-cookie-banner .page .sections-servicesHero {
 }
 
 /* ==========================================================================
-   Landing / #services — Phase 3 (section intro, 7 palette cards, stack spacing,
-   and prefers-reduced-motion static level stack)
+   Landing / #services — Phase 3 & 5.5 (7 non-green palette cards, breathable
+   stack spacing, and prefers-reduced-motion static level stack)
    ========================================================================== */
-.sections-services__introWrap {
-  padding: 0 16px 28px;
-}
-.sections-services__intro {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  padding: 24px 20px;
-  border-radius: 18px;
-  background: rgba(90, 0, 20, 0.92);
-  border: 1px solid rgba(243, 230, 213, 0.24);
-  color: #FFF9F2;
-  backdrop-filter: blur(8px);
-}
-.sections-services__introEyebrow {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-neuePower);
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #F3E6D5;
-  margin-bottom: 10px;
-}
-.sections-services__introHeading {
-  font-family: var(--font-neuePower);
-  font-size: clamp(24px, 3vw, 44px);
-  font-weight: 700;
-  line-height: 1.02;
-  text-transform: uppercase;
-  color: #FFF9F2;
-}
-.sections-services__introBodyCol {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 18px;
-}
-.sections-services__introCopy {
-  font-family: var(--font-nohemi);
-  font-size: 15px;
-  line-height: 1.45;
-  color: #F3E6D5;
-  max-width: 560px;
-}
-.sections-services__introCta {
-  min-height: 44px;
-  background-color: #FFF9F2;
-  color: #800020;
-}
-.sections-services__introCta:hover,
-.sections-services__introCta:focus-visible {
-  background-color: #F3E6D5;
-  color: #800020;
-}
-@media (min-width: 1024px) {
-  .sections-services__introWrap {
-    padding: 0 36px 40px;
-  }
-  .sections-services__intro {
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 40px;
-    padding: 32px 44px;
-    border-radius: 24px;
-  }
-  .sections-services__introHead {
-    width: 52%;
-  }
-  .sections-services__introBodyCol {
-    width: 44%;
-  }
-  .sections-services__introCopy {
-    font-size: 16px;
-  }
-}
-
-/* 7-card stack spacing & overlap tuning */
-.sections-services,
-.sections-services__introWrap {
+.sections-services {
   scroll-margin-top: 96px;
 }
 .sections-services .parts-serviceCard {
-  margin-bottom: -12px;
-}
-.sections-services .parts-serviceCard:last-child {
   margin-bottom: 0;
 }
 @media (max-width: 1023px) {
