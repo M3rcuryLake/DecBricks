@@ -218,3 +218,20 @@ scrollable-free (8 × 44px hit targets fit 390 with 8px gaps: 8×44=352 ✓).
   console/pageerror collector.
 - Commands per AGENTS.md: `npm run build`, `npm run check`,
   `npm run check:brand`, `npm run check:placeholders`, `npm run headings`.
+
+## 9. Execution tasks (added at implementation, 2026-11-14)
+
+### Task 1: Code — identity rail, dots, two-phase swap, counter move, deletions
+
+**Files:** `src/components/Testimonials.astro` (rail rows → initials disc + name + role/company + service tag; dots row <1024; counter `<p class="tst-index">` into controls row; delete `.tst-qmark`, `.tst-railToggle`, disclosure attrs) · `src/scripts/testimonials.ts` (two-phase swap with `.is-leaving` 140ms; `railButtons` = `'.tst-railBtn, .tst-dot'`; delete disclosure block + P6 pin in `equalizeStageHeight()`; teardown stores/clears phase timeout; MomentumHover untouched) · `src/styles/decbricks.css` (quote → `--font-offBit` clamp(26px,2.8vw,44px)/1.15; rail-row internals 48px rows, 28px disc, gap 8px; `.tst-dot`; `.tst-index` 22px tabular-nums; `.is-leaving` transition classes; delete P6 pin/scroll block + disclosure + qmark/railTitle/toggle rules; stage floor ~480px ≥1024).
+
+**Interfaces:** consumes existing state machine hooks (`.tst-railBtn` aria contract, `equalizeStageHeight`); produces `.tst-dot`, `.tst-railDisc`, `.is-leaving` hooks for Task 2 verification.
+
+- [ ] RED probes first: rail-row content model, dots at 390/768, swap frame sequence (no overlap), CLS 0, keyboard walk, reduced-motion hard cut, 44px targets, contrast.
+- [ ] Implement, re-run probes GREEN, `npm run check` clean.
+
+### Task 2: Docs, gates, commit
+
+- [ ] `docs/mapping.md` (add `.tst-dot/.tst-railDisc/.is-leaving`, remove dead hooks, note P6-pin supersession) · `docs/PROGRESS.md` + `docs/Design-handoff.md` (HEAD+dedup+append, per-phase keep-last).
+- [ ] Gates: `npm run build` · `check` · `check:brand` · `check:placeholders` · `headings` · prod guard (0 `tst-band` in `dist/index.html`).
+- [ ] Swap gauntlet ×3; before/after screenshots at 1440/1024/768/390 → `docs/qa/shots/testi-up-*.png`; isolated commit; fresh-context review.
