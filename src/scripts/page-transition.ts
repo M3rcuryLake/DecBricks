@@ -4,7 +4,11 @@ import { getLenis } from './smooth-scroll';
 const TRANSITION_CONFIG = {
   DESKTOP_COLS: 12,
   MOBILE_COLS: 6,
-  DURATION: 0.7,
+  // Phase 2 polish (§4.5): cover/reveal aligned to the brand motion token
+  // --dur-reveal (500ms) — snappier page swaps, same architecture. Stagger
+  // and easing are the template's original values (untouched, BUG-015 rule:
+  // swap lifecycle and canvas reattachment live elsewhere and stay as-is).
+  DURATION: 0.5,
   COL_STAGGER: 0.025,
   ITEM_STAGGER: 0.005,
   EASE: 'power2.inOut',
