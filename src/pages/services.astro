@@ -10,14 +10,21 @@ import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
 import CookieBanner from '../components/CookieBanner.astro';
 import TransitionOverlay from '../components/TransitionOverlay.astro';
-import { SERVICES } from '../data/services';
+import { SERVICES, SERVICES_SECTION_HEADER } from '../data/services';
+import { servicesPageSchema } from '../lib/schema';
+
+const title = 'Our Expertise & Services | Decbricks';
+const description =
+  'Explore Decbricks services: strategy & consulting, design & branding, web & software development, mobile apps, AI automation, digital marketing and outreach.';
 ---
 
 <Base
-  title="Services | Decbricks"
-  description="An award-winning partner for games studios and publishers. We connect strategy, creative, web and campaigns to make you stand out and thrive."
-  ogTitle="Services | Decbricks"
-  ogDescription="An award-winning partner for games studios and publishers. We connect strategy, creative, web and campaigns to make you stand out and thrive."
+  title={title}
+  description={description}
+  canonical="/services"
+  ogTitle={title}
+  ogDescription={description}
+  schema={servicesPageSchema(description)}
   themeColor="#800020"
   bodyClass="bg-darkPurple"
 >
@@ -44,7 +51,7 @@ import { SERVICES } from '../data/services';
         </section>
         <ServicesSidebarNav />
         <ServicesClients />
-        <ContactForm smileyCopy="We’re a games industry creative leader that will put your player first. Drop us a message!" />
+        <ContactForm smileyCopy={SERVICES_SECTION_HEADER.intro} />
         <Footer />
       </div>
       <CookieBanner />

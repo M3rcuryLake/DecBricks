@@ -1,6 +1,6 @@
 import { SITE, SITE_URL } from '../data/site';
 import { EMAIL, PHONES } from '../data/contact';
-import { DECBRICKS_SERVICES, type DecbricksServiceItem } from '../data/services';
+import { SERVICES, type ServiceItem } from '../data/services';
 
 const abs = (path: string) => new URL(path, SITE_URL + '/').href.replace(/\/$/, '');
 
@@ -79,34 +79,29 @@ export function contactPageSchema(description: string): Json[] {
   ];
 }
 
-/**
- * Structured data for `/services` covering all 7 Decbricks services from
- * `DECBRICKS_SERVICES`. Wired into `services.astro` in Phase 4 once visible
- * Decbricks copy replaces 1minus1 copy on `/services` (Implementation-plan §6).
- */
-export function servicePageSchema(
+export function servicesPageSchema(
   description: string,
-  services: readonly DecbricksServiceItem[] = DECBRICKS_SERVICES
+  services: readonly ServiceItem[] = SERVICES
 ): Json[] {
   const pageUrl = abs('/services');
   return [
     {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
-      name: `Services | ${SITE.name}`,
+      name: `Our Expertise & Services | ${SITE.name}`,
       url: pageUrl,
       description,
       mainEntity: {
         '@type': 'ItemList',
         numberOfItems: services.length,
-        itemListElement: services.map((service, idx) => ({
+        itemListElement: services.map((service, index) => ({
           '@type': 'ListItem',
-          position: idx + 1,
+          position: index + 1,
           item: {
             '@type': 'Service',
             name: service.title,
             serviceType: service.title,
-            description: [service.tagline, ...service.description].join(' '),
+            description: [service.lead, ...service.paragraphs].join(' '),
             url: `${pageUrl}#${service.id}`,
             provider: {
               '@type': 'Organization',
@@ -115,8 +110,8 @@ export function servicePageSchema(
             },
             hasOfferCatalog: {
               '@type': 'OfferCatalog',
-              name: service.title,
-              itemListElement: service.items.map((capability) => ({
+              name: `${service.title} capabilities`,
+              itemListElement: service.capabilities.map((capability) => ({
                 '@type': 'Offer',
                 itemOffered: {
                   '@type': 'Service',
