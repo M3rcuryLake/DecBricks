@@ -235,3 +235,62 @@ scrollable-free (8 × 44px hit targets fit 390 with 8px gaps: 8×44=352 ✓).
 - [ ] `docs/mapping.md` (add `.tst-dot/.tst-railDisc/.is-leaving`, remove dead hooks, note P6-pin supersession) · `docs/PROGRESS.md` + `docs/Design-handoff.md` (HEAD+dedup+append, per-phase keep-last).
 - [ ] Gates: `npm run build` · `check` · `check:brand` · `check:placeholders` · `headings` · prod guard (0 `tst-band` in `dist/index.html`).
 - [ ] Swap gauntlet ×3; before/after screenshots at 1440/1024/768/390 → `docs/qa/shots/testi-up-*.png`; isolated commit; fresh-context review.
+
+## 10. Amendment A — 6-row capped scroll list + content-sized card (owner-locked, 2026-11-14)
+
+Owner decision, not open for re-debate. The identity rail returns at ≥768, capped at 6 visible
+rows and scrolling inside its own container; the card becomes content-sized. Supersedes the
+"dots <1024 / full 8-row rail ≥1024" model from §1/§3 (dots deleted; `.tst-dot` freed again).
+
+- **List container**: height = exactly 6 rows + 5 gaps, derived from tokens
+  (`--tst-railRowH: 52px`, `--tst-railGap: 8px` → `calc(6*row + 5*gap)`), never hardcoded.
+  Rows are FIXED 52px (content ellipsises). `overflow-y: auto`, `overscroll-behavior: contain`,
+  `position: relative` (offsetTop math), `data-lenis-prevent` (Lenis wheel hijack — P6 lesson),
+  `scrollbar-gutter: stable`.
+- **Mobile <768**: vertical list becomes a horizontal swipe strip — `scroll-snap-type: x
+  mandatory`, same identity-row content, fixed row width `min(280px, 78vw)`, no nested vertical
+  scroll. 768–1023 keeps the vertical list full-width (single column, 6-row cap).
+- **Cue 1 — fades**: `mask-image` on the list (no overlay element; `-webkit-` duplicated).
+  Bottom fade only while rows exist below; top fade only when scrolled down. Driven from the
+  list's scroll position (scroll listener), classes `.is-fadeTop` / `.is-fadeBottom`.
+- **Cue 2 — auto-scroll**: on every quote change the active row is scrolled into view inside
+  the list only, via `scrollTop`/`scrollLeft` math on the list (never `scrollIntoView`, which
+  can scroll ancestors). Smooth unless `prefers-reduced-motion` (then jump). Wrap 8→1 scrolls
+  the list back to top explicitly. Init/deep-link jump without animation.
+- **Cue 3 — scrollbar + "+N more"**: slim always-visible scrollbar
+  (`scrollbar-width: thin`, brand-tone `scrollbar-color` ≥3:1, `::-webkit-scrollbar` fallback).
+  A real `<button class="tst-railMore">` below the list shows `+N more` (N = rows fully below
+  the fold, computed from row offsets — never hardcoded), hidden at the end of the list,
+  click = scroll one page. Copy sentence case: visible `+N more`, aria-label
+  `Show N more quotes`.
+- **Card**: height = its content (longest quote ≈ 3 lines + author row), no longer floored to
+  480/260 — `equalizeStageHeight()` keeps only the max-content computation. Quote type
+  increased to `clamp(28px, 3.2vw, 52px)`. Author row pinned to the card bottom
+  (`.tst-cardInner` flex column + `.tst-attr { margin-top: auto }`, min gap via quote margin) so
+  the gap above reads deliberate in shorter quotes. List and card top-aligned
+  (`align-items: start`); controls moved into the stage column so they sit right under the card
+  at every breakpoint. Expected section height drops (~869 → ~770 at 1440).
+- **List a11y (listbox pattern, owner-sanctioned)**: `.tst-railList` gets `role="listbox"`
+  + `aria-label="All clients"` (nav wrapper demoted to plain div); rows become
+  `div role="option"` (class renamed `.tst-railBtn` → `.tst-railOpt`), `aria-selected` on the
+  active row, roving `tabindex` (active 0, rest −1 — so the scroll container itself needs no
+  tabindex). Keyboard: ArrowUp/Down move selection (and auto-scroll), Home/End jump,
+  Left/Right stay section-level (existing handler). Visible `:focus-visible` ring on options.
+- **Dots deleted** everywhere (markup/JS/CSS — the strip is the mobile selector; tapping a
+  strip row selects it).
+
+### Task 3: 6-row list + cues + listbox + content-sized card
+
+Files: `Testimonials.astro` (stageCol wrapper: stage + live + controls; rail → listbox options
++ more button; dots block deleted) · `testimonials.ts` (options sync: aria-selected + roving
+tabindex; auto-scroll + cues + more-count; listbox keyboard; equalize drops floors; dots JS
+deleted) · `decbricks.css` (tokens + cap + scrollbar + masks + more button + strip + pinned
+attr + bigger quote; dots styles deleted).
+
+- [ ] RED probe first: 6-row cap math at 1440/1024; fades top/middle/end; +N more count/click/
+      hide; auto-scroll without page movement incl. wrap-to-top; card = content (no empty band),
+      attr pinned, bigger quote, top-aligned; strip at 390; listbox a11y; section shorter.
+- [ ] Re-run struct/motion/shrink/kinetic/gauntlet probes (expectations updated to the new
+      model) + gates.
+
+### Task 4: Docs, gates, commit, review
