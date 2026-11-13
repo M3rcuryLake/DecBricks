@@ -128,3 +128,24 @@ Consolidated per-phase evidence (P0–P4 probes, all console/pageerror-clean) + 
 | T-12 | web-design-guidelines audit | Final review | 4 findings, all fixed same phase: swipe text-selection guard (`.tst-stage.is-swiping`), `touch-action: manipulation` on `.tst-btn/.tst-railBtn/.tst-railToggle`, `font-variant-numeric: tabular-nums` on `.tst-index`, `text-wrap: balance` on `.tst-title`. 1 accepted deviation: deep link is read-only (URL reflects state on read, never written — owner-approved P2 decision, logged in Design-handoff) | ✅ fixed / accepted |
 
 Re-verified gates after the T-12 fixes: build ✅ · check ✅ (0 err) · check:brand ✅ · check:placeholders ✅ · check-headings ✅ · prod guard (no `tst-band` in dist) ✅.
+
+---
+
+## Services 4 → 7 Expansion — Phase 6 QA Audit (2026-11-14)
+
+Multi-viewport Playwright verification (`320, 375, 768, 1024, 1280, 1920, 2560`), Lighthouse (`mobile` + `desktop`), 5-route client-side swap + `#ai-automation` deep-link pass, `prefers-reduced-motion` emulation, keyboard `Tab` `:focus-visible` sweep, asset audit, and `web-design-guidelines` review against `dist/` preview (`http://127.0.0.1:4325` / `4326`).
+
+| ID | Category | Finding / Check | Evidence / Action | Status |
+|---|---|---|---|---|
+| S-1 | Multi-viewport `/` cards | All 7 cards render (`cardCount: 7`), `.sections-services__intro` removed (`introCount: 0`), `anyGreen: false`, `adjacentSame: false` across `--t1..--t7` themes, `overflowX: 0`, card 7 → Work gap `15–148px` (`>= 15px`) across `320–2560` | Verified in `qa_phase6_full.cjs` + visual inspection (`services-p6-home-1280.png`, `services-p6-home-375.png`) | ✅ pass |
+| S-2 | Multi-viewport `/services` | Hero words unclipped (`word1Clips: false`, `word2Clips: false`), 7 hero pills + 7 blocks + 7 SVGs (`navCount: 7`, `blockCount: 7`, `artworkCount: 7`), `navOverflow: false`, `cookieOverlapsNav: false`, `clientsVisible: false`, tap targets (`minChipH >= 44`, `minCtaH: 44`), `overflowX: 0` across `320–2560` | Verified in `qa_phase6_full.cjs` + visual inspection (`services-p6-hero-1280.png`, `services-p6-blocks-1280.png`, `services-p6-mobile-375.png`) | ✅ pass |
+| S-3 | Client swaps + deep link | 5 transitions (`/` → `/services` → `/about` → `/services` → `/contact` → `/`) + `/services#ai-automation` click: WebGL canvas reattached (`1280x800`), `#ai-automation` scrolled under sticky header (`top: 99px`), active sidebar `05 AI & Automation`, `errors: []`, `legacyMediaRequests: []` | Verified in `qa_phase6_full.cjs` | ✅ pass |
+| S-4 | `prefers-reduced-motion` | Home cards + inners resolve `transform: none` cleanly (`cardsNone: true`, `innersNone: true`); `/services` pulse transition `0s` and all 7 blocks render statically | Verified in `qa_phase6_full.cjs` | ✅ pass |
+| S-5 | Asset cleanup | Phase 5 removed 41 legacy `public/videos/services/*` & `public/images/clients/*` files totaling `11,028,019` bytes (~10.52 MiB / 11.03 MB), replaced by inline 7-motif `ServiceArtwork.astro` SVGs (0 video/client requests) | Verified via `git ls-tree -rl 3be67f5~1` + zero legacy requests on preview | ✅ pass |
+| S-6 | `web-design-guidelines` SVG/DOM hygiene | Decorative `.parts-serviceCard__slash`, duplicate `.part-btnPrimary__text` roll span, and CTA arrow `<svg>` on `/` lacked `aria-hidden="true"` | Fixed in `src/components/Hero.astro`; zero assistive-tech duplication | ✅ fixed |
+| S-7 | `web-design-guidelines` touch, numerals & focus | Added `touch-action: manipulation`, `font-variant-numeric: tabular-nums`, and explicit `2px solid` `:focus-visible` rings in `src/styles/decbricks.css`; verified via real `Tab` navigation (`matchesFocusVisible: true` on `.parts-serviceNavLink`, `.parts-serviceBlock__cta`, `.parts-serviceCard__btn`) | Fixed & re-verified (`qa_phase6_focus_shot.cjs`) | ✅ fixed |
+| S-8 | Lighthouse `/services` Desktop | `performance: 100`, `accessibility: 96`, `best-practices: 100`, `seo: 69` (`FCP: 0.3s`, `LCP: 0.3s`, `CLS: 0.027`, `TBT: 30ms`). Both desktop a11y flags (`color-contrast` on `.parts-btnBlock__index`, `label-content-name-mismatch` on `a.parts-btnBlock`) are inside pre-existing `Header.astro`; 0 failures in Services components | `seo: 69` caused by intentional `PUBLIC_ENV !== 'production'` `noindex` + `robots.txt` guard (`open-items.md` §E) | ℹ️ pre-existing / expected |
+| S-9 | Lighthouse `/services` Mobile | `performance: 81`, `accessibility: 100`, `best-practices: 100`, `seo: 69` (`FCP: 1.1s`, `LCP: 1.1s`, `CLS: 0.374`, `TBT: 70ms`), `failed_a11y: []` | Elevated mobile `CLS` stems from pre-existing GSAP entrance/font reveal on `.parts-servicesHeroNavRow` shared by `/services`, `/about`, `/contact` | ℹ️ documented |
+
+Re-verified gates after Phase 6 fixes: `build` ✅ · `check` ✅ (0 err) · `check:brand` ✅ · `headings` ✅ · `links` ✅ · `check:placeholders` ✅ · `check:footer` ✅.
+

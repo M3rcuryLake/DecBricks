@@ -2029,7 +2029,7 @@ html.has-cookie-banner .page .sections-servicesHero {
 }
 @media (min-width: 1024px) {
   .sections-services .parts-serviceCard {
-    margin-bottom: -75px;
+    margin-bottom: -55px;
   }
   .sections-services .parts-serviceCard:last-child {
     margin-bottom: 0;
@@ -2042,21 +2042,24 @@ html.has-cookie-banner .page .sections-servicesHero {
   }
   .sections-services .parts-serviceCard__content {
     padding-inline: 88px;
-    padding-bottom: 110px;
+    padding-bottom: 150px;
   }
   .sections-services .parts-serviceCard:last-child .parts-serviceCard__content {
-    padding-bottom: 130px;
+    padding-bottom: 165px;
   }
 }
 @media (min-width: 1280px) {
   .sections-services .parts-serviceCard {
-    margin-bottom: -85px;
+    margin-bottom: -60px;
   }
   .sections-services .parts-serviceCard:last-child {
     margin-bottom: 0;
   }
   .sections-services .parts-serviceCard__content {
-    padding-bottom: 120px;
+    padding-bottom: 160px;
+  }
+  .sections-services .parts-serviceCard:last-child .parts-serviceCard__content {
+    padding-bottom: 175px;
   }
 }
 @media (min-width: 1440px) {
@@ -2071,15 +2074,21 @@ html.has-cookie-banner .page .sections-servicesHero {
   }
 }
 @media (min-width: 1660px) {
+  .sections-services .parts-serviceCard {
+    margin-bottom: -65px;
+  }
+  .sections-services .parts-serviceCard:last-child {
+    margin-bottom: 0;
+  }
   .sections-services .parts-serviceCard__content {
-    padding-bottom: 135px;
+    padding-bottom: 180px;
   }
   .sections-services .parts-serviceCard:last-child .parts-serviceCard__content {
-    padding-bottom: 150px;
+    padding-bottom: 190px;
   }
 }
 
-/* 7 measured card themes (all text contrast >= 5.13:1, coral >= 3.9:1 on light only) */
+/* 7 measured non-green card themes (adjacent surfaces distinct; text >= 5.13:1, slash >= 3.34:1) */
 .parts-serviceCard--t1 .parts-serviceCard__inner,
 .parts-serviceCard--t1 .parts-serviceCard__inner::before {
   background-color: #FFF9F2;
@@ -2114,17 +2123,17 @@ html.has-cookie-banner .page .sections-servicesHero {
   color: #800020;
 }
 .parts-serviceCard--t2 .parts-serviceCard__numeral {
-  color: rgba(255, 255, 255, 0.42);
+  color: rgba(255, 249, 242, 0.45);
 }
 .parts-serviceCard--t2 .parts-serviceCard__slash {
-  color: #5A6432;
+  color: #D45060;
 }
 .parts-serviceCard--t2 .parts-keyword__inner {
   background-color: #FFF9F2;
   color: #800020;
 }
 .parts-serviceCard--t2 .parts-serviceCard__more {
-  background-color: #5A6432;
+  background-color: #5A0014;
   color: #FFF9F2;
 }
 .parts-serviceCard--t2 .parts-serviceCard__btn {
@@ -2153,8 +2162,8 @@ html.has-cookie-banner .page .sections-servicesHero {
   color: #FFF9F2;
 }
 .parts-serviceCard--t3 .parts-serviceCard__more {
-  background-color: #C9D3C0;
-  color: #2A0208;
+  background-color: #F3E6D5;
+  color: #800020;
 }
 .parts-serviceCard--t3 .parts-serviceCard__btn {
   background-color: #FFF9F2;
@@ -2166,28 +2175,31 @@ html.has-cookie-banner .page .sections-servicesHero {
 
 .parts-serviceCard--t4 .parts-serviceCard__inner,
 .parts-serviceCard--t4 .parts-serviceCard__inner::before {
-  background-color: #C9D3C0;
+  background-color: #FFF9F2;
 }
 .parts-serviceCard--t4 .parts-serviceCard__content {
-  color: #2A0208;
+  color: #800020;
 }
 .parts-serviceCard--t4 .parts-serviceCard__numeral {
-  color: rgba(42, 2, 8, 0.1);
+  color: color-mix(in oklab, #800020 10%, transparent);
 }
 .parts-serviceCard--t4 .parts-serviceCard__slash {
-  color: #5A6432;
+  color: #BC3D4D;
 }
 .parts-serviceCard--t4 .parts-keyword__inner {
-  background-color: #5A6432;
+  background-color: #5A0014;
   color: #FFF9F2;
 }
-.parts-serviceCard--t4 .parts-serviceCard__more,
+.parts-serviceCard--t4 .parts-serviceCard__more {
+  background-color: #BC3D4D;
+  color: #FFF9F2;
+}
 .parts-serviceCard--t4 .parts-serviceCard__btn {
   background-color: #800020;
   color: #FFF9F2;
 }
 .parts-serviceCard--t4 .parts-serviceCard__btn:active {
-  background-color: #5A0014;
+  background-color: #BC3D4D;
 }
 
 .parts-serviceCard--t5 .parts-serviceCard__inner,
@@ -2203,8 +2215,14 @@ html.has-cookie-banner .page .sections-servicesHero {
 .parts-serviceCard--t5 .parts-serviceCard__slash {
   color: #FFF9F2;
 }
-.parts-serviceCard--t5 .parts-keyword__inner,
-.parts-serviceCard--t5 .parts-serviceCard__more,
+.parts-serviceCard--t5 .parts-keyword__inner {
+  background-color: #800020;
+  color: #FFF9F2;
+}
+.parts-serviceCard--t5 .parts-serviceCard__more {
+  background-color: #5A0014;
+  color: #FFF9F2;
+}
 .parts-serviceCard--t5 .parts-serviceCard__btn {
   background-color: #800020;
   color: #FFF9F2;
@@ -2215,31 +2233,31 @@ html.has-cookie-banner .page .sections-servicesHero {
 
 .parts-serviceCard--t6 .parts-serviceCard__inner,
 .parts-serviceCard--t6 .parts-serviceCard__inner::before {
-  background-color: #5A6432;
+  background-color: #F3E6D5;
 }
 .parts-serviceCard--t6 .parts-serviceCard__content {
-  color: #FFF9F2;
+  color: #800020;
 }
 .parts-serviceCard--t6 .parts-serviceCard__numeral {
-  color: rgba(255, 249, 242, 0.15);
+  color: rgba(255, 249, 242, 0.45);
 }
 .parts-serviceCard--t6 .parts-serviceCard__slash {
-  color: #F3E6D5;
+  color: #BC3D4D;
 }
 .parts-serviceCard--t6 .parts-keyword__inner {
-  background-color: #F3E6D5;
-  color: #800020;
+  background-color: #800020;
+  color: #FFF9F2;
 }
 .parts-serviceCard--t6 .parts-serviceCard__more {
-  background-color: #FFF9F2;
-  color: #2A0208;
+  background-color: #BC3D4D;
+  color: #FFF9F2;
 }
 .parts-serviceCard--t6 .parts-serviceCard__btn {
-  background-color: #FFF9F2;
-  color: #800020;
+  background-color: #5A0014;
+  color: #FFF9F2;
 }
 .parts-serviceCard--t6 .parts-serviceCard__btn:active {
-  background-color: #F3E6D5;
+  background-color: #BC3D4D;
 }
 
 .parts-serviceCard--t7 .parts-serviceCard__inner,
@@ -2256,8 +2274,8 @@ html.has-cookie-banner .page .sections-servicesHero {
   color: #F3E6D5;
 }
 .parts-serviceCard--t7 .parts-keyword__inner {
-  background-color: #C9D3C0;
-  color: #2A0208;
+  background-color: #F3E6D5;
+  color: #800020;
 }
 .parts-serviceCard--t7 .parts-serviceCard__more {
   background-color: #BC3D4D;
@@ -2360,4 +2378,35 @@ html.has-cookie-banner .page .sections-servicesHero {
     opacity: 0.85;
     transform: scale(1.04);
   }
+}
+
+/* ==========================================================================
+   Services 7-Cards — Phase 6 QA hardening (web-design-guidelines)
+   ========================================================================== */
+.parts-serviceCard__btn,
+.parts-serviceNavLink,
+.sections-servicesSidebarNavItem,
+.parts-serviceBlock__cta {
+  touch-action: manipulation;
+}
+.parts-serviceCard__numeral,
+.parts-serviceBlock__index,
+.sections-servicesSidebarNavItem__index {
+  font-variant-numeric: tabular-nums;
+}
+.parts-serviceCard__btn:focus-visible {
+  outline: 2px solid #800020;
+  outline-offset: 3px;
+}
+.parts-serviceCard--t3 .parts-serviceCard__btn:focus-visible,
+.parts-serviceCard--t5 .parts-serviceCard__btn:focus-visible,
+.parts-serviceCard--t7 .parts-serviceCard__btn:focus-visible,
+.parts-serviceNavLink:focus-visible {
+  outline: 2px solid #FFF9F2;
+  outline-offset: 3px;
+}
+.sections-servicesSidebarNavItem:focus-visible,
+.parts-serviceBlock__cta:focus-visible {
+  outline: 2px solid #5A6432;
+  outline-offset: 3px;
 }
