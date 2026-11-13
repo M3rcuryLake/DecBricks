@@ -1556,7 +1556,9 @@ html.has-cookie-banner .page .sections-servicesHero {
 }
 .tst-stage {
   position: relative;
-  min-height: 260px;
+  /* No-JS fallback; JS sizes the stage exactly to the tallest quote's
+     content (Amendment A — content-sized card, no floors). */
+  min-height: 240px;
   /* Pan-y (not `none`): vertical scrolling stays native and always passes
      through; horizontal drags are delivered to the page so the Phase-2 swipe
      handler receives pointerup instead of a browser pointercancel. Pinch
@@ -1588,6 +1590,10 @@ html.has-cookie-banner .page .sections-servicesHero {
   border-radius: 16px;
   background: var(--brand-surface);
   padding: clamp(28px, 3vw, 48px) clamp(24px, 3vw, 48px) clamp(24px, 2.5vw, 40px);
+  /* Amendment A: author row pinned to the card bottom — the space above it
+     is the card's slack vs the tallest quote, so it reads deliberate. */
+  display: flex;
+  flex-direction: column;
 }
 .tst-card.is-active {
   opacity: 1;
@@ -1613,12 +1619,14 @@ html.has-cookie-banner .page .sections-servicesHero {
 }
 .tst-quote {
   /* The one bold move (upgrade plan §1): the quote in FK Raster — the
-     template's display face. Everything else stays quiet. */
+     template's display face. Everything else stays quiet. Amendment A
+     bumps the size so the content-sized card fills properly. */
   margin: 0;
+  margin-bottom: clamp(20px, 2.5vw, 36px); /* min gap above the pinned author row */
   font-family: var(--font-offBit);
   font-weight: 400;
   color: var(--brand-on-light);
-  font-size: clamp(26px, 2.8vw, 44px);
+  font-size: clamp(28px, 3.2vw, 52px);
   line-height: 1.15;
   text-wrap: balance;
 }
@@ -1626,12 +1634,12 @@ html.has-cookie-banner .page .sections-servicesHero {
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-top: clamp(20px, 2.5vw, 36px);
+  margin-top: auto; /* pinned to the card bottom (Amendment A) */
   flex-wrap: wrap;
 }
 /* Initials disc in the featured card's attribution row. (Renamed from
-   `.tst-dot` in the upgrade plan — that class now belongs to the mobile
-   selector dots; nothing queried the disc, verified by grep.) */
+   `.tst-dot` in the upgrade plan — that class belonged to the since-deleted
+   mobile selector dots; nothing queried the disc, verified by grep.) */
 .tst-attrDisc {
   flex: none;
   width: 44px;
@@ -1669,15 +1677,80 @@ html.has-cookie-banner .page .sections-servicesHero {
   display: flex;
   flex-direction: column;
 }
-/* Identity rail (upgrade plan §1): initials disc + name + role/company +
-   service tag — one line each. No truncated quote text. Desktop (≥1024)
-   only; below 1024 the `.tst-dot` row replaces it. */
+/* Identity rail listbox (Amendment A, owner-locked): capped at exactly
+   6 rows + gaps (token math — never a hardcoded pixel height), scrolling
+   inside itself. Rows are FIXED height so the math can't drift. */
 .tst-railList {
+  --tst-railRowH: 52px;
+  --tst-railGap: 8px;
+  position: relative; /* rows' offsetTop resolve against the list (JS math) */
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--tst-railGap);
+  max-height: calc(6 * var(--tst-railRowH) + 5 * var(--tst-railGap));
+  overflow-y: auto;
+  overscroll-behavior: contain; /* wheel at the end never hijacks the page */
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklab, var(--brand-surface-alt) 55%, transparent) transparent;
+  scrollbar-gutter: stable;
 }
-.tst-railBtn {
+.tst-railList::-webkit-scrollbar {
+  width: 8px;
+}
+.tst-railList::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--brand-surface-alt) 55%, transparent);
+  border-radius: 8px;
+}
+.tst-railList::-webkit-scrollbar-track {
+  background: color-mix(in oklab, var(--brand-surface-alt) 15%, transparent);
+  border-radius: 8px;
+}
+/* Scroll cues: mask-image edge fades (no overlay element). JS toggles the
+   classes from the list's scroll position — bottom fade only while rows
+   exist below, top fade only when scrolled down. `-webkit-` duplicated
+   for older Chromium/Safari. */
+.tst-railList.is-fadeBottom {
+  -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 28px), transparent);
+  mask-image: linear-gradient(to bottom, black calc(100% - 28px), transparent);
+}
+.tst-railList.is-fadeTop {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 28px);
+  mask-image: linear-gradient(to bottom, transparent 0, black 28px);
+}
+.tst-railList.is-fadeTop.is-fadeBottom {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 28px, black calc(100% - 28px), transparent);
+  mask-image: linear-gradient(to bottom, transparent 0, black 28px, black calc(100% - 28px), transparent);
+}
+/* +N more (Cue 3): real button, count computed in JS; [hidden] must beat
+   the display below. */
+.tst-railMore {
+  all: unset;
+  box-sizing: border-box;
+  align-self: flex-start;
+  margin-top: 10px;
+  padding: 6px 12px;
+  border: 1px solid color-mix(in oklab, var(--brand-surface-alt) 35%, transparent);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--brand-surface-alt);
+  cursor: pointer;
+  display: inline-flex;
+  transition:
+    background var(--dur-micro) var(--ease-brand),
+    color var(--dur-micro) var(--ease-brand);
+}
+.tst-railMore[hidden] {
+  display: none;
+}
+.tst-railMore:hover {
+  background: color-mix(in oklab, var(--brand-surface) 8%, transparent);
+}
+.tst-railMore:focus-visible {
+  outline: 2px solid var(--brand-on-dark);
+  outline-offset: 3px;
+}
+.tst-railOpt {
   all: unset;
   box-sizing: border-box;
   display: grid;
@@ -1685,24 +1758,26 @@ html.has-cookie-banner .page .sections-servicesHero {
   align-items: center;
   gap: 10px;
   width: 100%;
-  min-height: 48px;
+  height: var(--tst-railRowH); /* FIXED — the 6-row cap math depends on it */
+  flex: none;
   text-align: left;
   padding: 8px 12px;
   border-radius: 10px;
   cursor: pointer;
   color: var(--brand-surface-alt);
+  touch-action: manipulation;
   transition:
     background var(--dur-micro) var(--ease-brand),
     color var(--dur-micro) var(--ease-brand);
 }
-.tst-railBtn:hover {
+.tst-railOpt:hover {
   background: color-mix(in oklab, var(--brand-surface) 8%, transparent);
 }
-.tst-railBtn.is-active {
+.tst-railOpt.is-active {
   background: var(--brand-surface);
   color: var(--brand-on-light);
 }
-.tst-railBtn:focus-visible {
+.tst-railOpt:focus-visible {
   outline: 2px solid var(--brand-on-dark);
   outline-offset: 3px;
 }
@@ -1718,7 +1793,7 @@ html.has-cookie-banner .page .sections-servicesHero {
   display: grid;
   place-items: center;
 }
-.tst-railBtn.is-active .tst-railDisc {
+.tst-railOpt.is-active .tst-railDisc {
   background: var(--brand-on-light);
   color: var(--brand-surface-alt);
 }
@@ -1740,7 +1815,7 @@ html.has-cookie-banner .page .sections-servicesHero {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.tst-railBtn.is-active .tst-railWho span {
+.tst-railOpt.is-active .tst-railWho span {
   color: var(--color-ink-muted);
 }
 .tst-railChip {
@@ -1753,7 +1828,7 @@ html.has-cookie-banner .page .sections-servicesHero {
   padding: 5px 10px;
   white-space: nowrap;
 }
-.tst-railBtn.is-active .tst-railChip {
+.tst-railOpt.is-active .tst-railChip {
   color: var(--brand-olive);
   border-color: var(--brand-olive);
 }
@@ -1804,16 +1879,13 @@ html.has-cookie-banner .page .sections-servicesHero {
     grid-template-columns: 1fr;
     gap: 32px;
   }
-  .tst-rail {
-    display: none;
-  }
 }
 @media (prefers-reduced-motion: reduce) {
   .tst-card,
   .tst-card.is-active,
   .tst-card.is-leaving,
   .tst-bar,
-  .tst-railBtn,
+  .tst-railOpt,
   .tst-btn {
     transition: none;
   }
@@ -1826,60 +1898,6 @@ html.has-cookie-banner .page .sections-servicesHero {
    ========================================================================== */
 .tst-live {
   margin: 0;
-}
-.tst-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 16px;
-}
-.tst-dot {
-  all: unset;
-  box-sizing: border-box;
-  flex: none;
-  width: 44px;
-  height: 44px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  cursor: pointer;
-}
-/* 8 exact 44px targets + gaps don't fit below ~416px of band width; the
-   hit targets overlap slightly instead of shrinking (the visual dot stays
-   centred, taps near a boundary land on the later sibling). */
-@media (max-width: 415px) {
-  .tst-dot {
-    margin-inline: -3.5px;
-  }
-}
-@media (max-width: 345px) {
-  .tst-dot {
-    margin-inline: -6px;
-  }
-}
-.tst-dot i {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  /* ≥60% beige over burgundy keeps the inactive dots ≥3:1 (UI-component
-     contrast); the active dot is full beige. */
-  background: color-mix(in oklab, var(--brand-surface-alt) 60%, transparent);
-  transition: background var(--dur-micro) var(--ease-brand);
-}
-.tst-dot:hover i {
-  background: var(--brand-surface);
-}
-.tst-dot.is-active i {
-  background: var(--brand-surface-alt);
-}
-.tst-dot:focus-visible {
-  outline: 2px solid var(--brand-on-dark);
-  outline-offset: 3px;
-}
-@media (min-width: 1024px) {
-  .tst-dots {
-    display: none;
-  }
 }
 
 /* ==========================================================================
@@ -1909,9 +1927,8 @@ html.has-cookie-banner .page .sections-servicesHero {
   .tst-card.is-active,
   .tst-card.is-leaving,
   .tst-bar,
-  .tst-railBtn,
-  .tst-btn,
-  .tst-dot i {
+  .tst-railOpt,
+  .tst-btn {
     transition: none;
   }
   .tst-index b.is-swap {
@@ -1939,8 +1956,7 @@ html.has-cookie-banner .page .sections-servicesHero {
    ========================================================================== */
 /* Kill the double-tap-zoom delay on the section's controls. */
 .tst-btn,
-.tst-railBtn,
-.tst-dot {
+.tst-railOpt {
   touch-action: manipulation;
 }
 /* While a horizontal swipe intent is detected (JS adds .is-swiping after
@@ -2409,4 +2425,31 @@ html.has-cookie-banner .page .sections-servicesHero {
 .parts-serviceBlock__cta:focus-visible {
   outline: 2px solid #5A6432;
   outline-offset: 3px;
+}
+
+/* ==========================================================================
+   Testimonials — Amendment A: mobile strip (<768)
+   The vertical listbox becomes a horizontal swipe strip: same identity-row
+   content, scroll-snap, no nested vertical scroll on touch. Fades and the
+   "+N more" button are vertical-only affordances.
+   ========================================================================== */
+@media (max-width: 767px) {
+  .tst-railList {
+    --tst-railRowH: 52px;
+    flex-direction: row;
+    align-items: center;
+    max-height: none;
+    height: var(--tst-railRowH);
+    overflow-y: hidden;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+  .tst-railOpt {
+    flex: 0 0 auto;
+    width: min(280px, 78vw);
+    scroll-snap-align: start;
+  }
+  .tst-railMore {
+    display: none;
+  }
 }
