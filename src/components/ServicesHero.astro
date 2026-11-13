@@ -31,6 +31,7 @@ const {
 
 <section
   data-theme="dark"
+  data-serviceshero-v2
   class="sections-servicesHero relative overflow-hidden bg-darkPurple pb-20 text-white lg:pb-80"
 >
   <div class="relative mx-auto w-full max-w-1920 pt-135 lg:pt-90 xl:pt-115 3xl:pt-150 4xl:pt-170">
@@ -63,15 +64,15 @@ const {
       ></path>
     </svg>
     <h1 class="sr-only" set:html={brandify(srTitle)} />
-    <div class="flex flex-col">
+    <div class="hero-v2-top relative z-10">
       <div class="contents lg:flex lg:items-start">
         <span
-          class="relative z-20 order-1 -ml-10 block w-max heading-3.5xl font-offBit101 font-normal text-neonGreen uppercase lg:order-none lg:-ml-15"
+          class="sections-servicesHero__word relative z-20 block w-fit u-display text-neonGreen uppercase"
           aria-hidden="true"
           set:html={brandify(headingParts[0])}
         ></span>
         <p
-          class="parts-smileyText relative z-20 order-3 mx-15 mt-35 max-w-330 font-neuePower text-[20px] leading-[1.05] font-bold md:max-w-495 lg:order-none lg:mt-50 lg:mr-115 lg:ml-auto lg:w-440 lg:max-w-none xl:mt-60 xl:mr-215 xl:w-480 xl:text-[22px] 3xl:mt-80 3xl:mr-325 3xl:w-575 3xl:text-[26px] 4xl:mt-90 4xl:mr-465"
+          class="parts-smileyText relative z-20 mt-35 max-w-330 font-neuePower text-[20px] leading-[1.05] font-bold md:max-w-495 lg:ml-auto lg:mt-50 lg:w-440 lg:max-w-none xl:mt-60 xl:w-480 xl:text-[22px] 3xl:mt-80 3xl:w-575 3xl:text-[26px]"
           ><span class="sr-only" set:html={brandify(body)}></span
           ><span
             aria-hidden="true"
@@ -81,14 +82,14 @@ const {
           /></p>
       </div>
       <span
-        class="relative z-1 order-2 -ml-10 block w-max heading-3.5xl text-neonGreen uppercase lg:z-0 lg:order-none lg:-mt-30 lg:ml-110 xl:-mt-35 xl:ml-140 3xl:-mt-45 3xl:ml-180 4xl:-mt-50 4xl:ml-210"
+        class="sections-servicesHero__word hero-v2-word2 relative z-1 mt-12 block w-fit u-display text-neonGreen uppercase lg:z-0"
         aria-hidden="true"
         set:html={brandify(headingParts[1])}
       ></span>
     </div>
     <div class="parts-servicesHeroNavRow relative z-20 mt-50 pb-50 lg:mt-9 lg:flex lg:justify-center lg:pb-0 xl:mt-10 3xl:mt-15 4xl:mt-15">
       <nav class="px-15 lg:px-0" aria-label={navLabel}>
-        <p class="mb-20 flex items-center justify-center gap-8 font-neuePower text-[12px] leading-none font-bold uppercase">
+        <p class="u-kicker mb-20 flex items-center justify-center gap-8 uppercase">
           <svg
             class="svgs-doubleSlash block w-15 text-purple"
             viewBox="0 0 18 10"

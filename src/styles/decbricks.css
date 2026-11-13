@@ -381,6 +381,43 @@
   letter-spacing: 0.1em;
 }
 
+/* -------------------------------------------------------------------------- */
+/* Phase 3 Task 3 — ServicesHero (shared by /services /about /contact), gated   */
+/* by [data-serviceshero-v2]. Same editorial system as the home hero v2:        */
+/* contained u-display words (R8), offset second word, padded top. The template */
+/* hooks .parts-servicesHeroNavRow / .parts-serviceNavLink* / trail wrappers    */
+/* are untouched; only the pill faces move to the mono system style.            */
+[data-serviceshero-v2] .hero-v2-top {
+  padding-inline: 15px;
+}
+@media (min-width: 640px) {
+  [data-serviceshero-v2] .hero-v2-top {
+    padding-inline: 30px;
+  }
+}
+@media (min-width: 1024px) {
+  /* at lg the trail/nav row align to the page container; the display words
+     keep the 30px editorial padding so they never sit flush at x=0 */
+  [data-serviceshero-v2] .hero-v2-top {
+    padding-inline: 30px;
+  }
+}
+/* Second display word: deliberate one-step offset, fully contained (R8). */
+[data-serviceshero-v2] .hero-v2-word2 {
+  margin-left: clamp(24px, 8vw, 160px);
+}
+/* Jump-to pills → mono system face. Structure/state classes (aria-current,
+   char-roll labels, 44px rects, cookie-banner lift) stay exactly as QA'd. */
+[data-serviceshero-v2] .parts-serviceNavLink {
+  background-color: transparent;
+  border: 1px solid var(--hairline-dark);
+  border-radius: var(--radius-pill);
+  color: #fff9f2;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+}
+
 /* Theme-4 hero service slab: same hue family as coral but deep enough to
    carry the slab's own small text (eyebrow/body = Off-White, 5.1:1). The
    class pair replaces `bg-purple before:bg-purple` in Hero.astro theme 4. */
@@ -935,20 +972,42 @@ html.has-cookie-banner .page .sections-servicesHero {
   min-height: 100svh;
   padding-bottom: calc(var(--spacing) * 80 + var(--cookie-safe-area));
 }
-@media (min-width: 1024px) {
-  /* At lg the pills row's position is fixed by the tall content above it, so
-     bottom padding cannot lift it. While the banner is visible, translate the
-     nav up past the card (safe area + mb 62 − 40px clearance, so the 44px
-     pills from R12 clear with ~30px to spare). Reverts on dismiss. */
-  html.has-cookie-banner .page .sections-servicesHero nav {
-    translate: 0 calc(22px - var(--cookie-safe-area));
-  }
-}
+/* Phase 3: the editorial rebuild made the hero content ~2x shorter (words
+   230px -> 104px scale), so at lg the pills row now ends ~400px — clear of the
+   banner zone (banner top = 100svh - 269px, >= 499px at the 768px min lg
+   viewport height) WITHOUT the old nav translate. That translate was tuned to
+   the old geometry and slammed the pills into the hero body after the rebuild
+   — removed. Decorative arrows (-bottom-60) may graze the banner top edge only
+   below ~vh 730 (aria-hidden decor, accepted). */
 @media not all and (min-width: 1024px) {
   /* The home hero pins to 100svh via .max-lg:h-svh — override the height too,
      or the min-height shrink has no effect while height wins. */
   html.has-cookie-banner .page div.max-lg\:h-svh {
     height: calc(100svh - var(--cookie-safe-area));
+  }
+  /* Phase 3: the v2 home frame is content-sized (height:auto), so the v1
+     height-shrink cannot cap it — at 375x812 the content dipped the scroll
+     button ~69px under the card. While the banner is visible the frame's
+     discretionary spacing compresses (~-106px: padding, row margins, 16:9
+     cell, word2/pills/body margins) so every interactive element clears the
+     banner top at scroll-0 on short phones. Transient — reverts on dismiss. */
+  html.has-cookie-banner .page [data-hero-v2] .hero-v2-frame {
+    padding-top: 24px;
+  }
+  html.has-cookie-banner .page [data-hero-v2] .hero-v2-row {
+    margin-block: 10px;
+  }
+  html.has-cookie-banner .page [data-hero-v2] .hero-v2-mediaCell {
+    aspect-ratio: 16 / 9;
+  }
+  html.has-cookie-banner .page [data-hero-v2] .hero-v2-word2 {
+    margin-top: 8px;
+  }
+  html.has-cookie-banner .page [data-hero-v2] .hero-v2-pills {
+    margin-top: 10px;
+  }
+  html.has-cookie-banner .page [data-hero-v2] .parts-smileyText.mb-20 {
+    margin-bottom: 10px;
   }
   /* ServicesHero pills wrap to 2+ rows below lg; at 44px tap height (R12) the
      wrapped rows dip under the card (row-2 bottom 647 vs card top 626 on
