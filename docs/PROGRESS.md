@@ -141,3 +141,11 @@ Plan: `docs/plans/footer-redesign-plan.md`. Baseline + gauntlet probes: `docs/qa
   - `initServicesHero()`: tracked hero `timelines` and an `AbortController` (`ac.abort()`) inside `mmRoll.add(...)` revert; fixed `' hero-transition-start'.trim()` to `'hero-transition-start'`; cleanup now kills `heroTriggers`, `entranceTl`, calls `webGLTrail?.destroy()`, and reverts `mmRoll`.
   - `initServicesSidebarNav()`: attached `{ signal: navAc.signal }` on sidebar and hero jump-link click handlers, and cleanup now calls `navAc.abort()`, `removeHoldListeners()`, kills each `item.tl`, and reverts `mm`.
 - Baseline & swap verification (`localhost:4321` @ `1280×800`, 5 client-side swaps `/ -> /services -> / -> /services -> /about -> /services`): 2 connected `canvas.webgl` canvases (`1280×800`), 4 `.parts-serviceBlock` / `.parts-serviceNavLink` / `.sections-servicesSidebarNavItem` elements, `0` horizontal overflow, clean `#creative` jump scroll (`0 -> 1644`), and `0` console/page errors. Gates (`npm run build`, `npm run check`, `npm run check:brand`, `npm run headings`, `npm run links`, `npm run check:placeholders`, `npm run check:footer`) passed. Ready for owner approval to start Phase 1.
+
+## Services 7-Cards Expansion — Phase 1 (2026-11-14, 7-service data SSOT & component guards) ✅
+- Rewrote `src/data/services.ts` with `ServiceId`, `ServiceMedia` (`'artwork' | 'image' | 'video'`), `SERVICES_SECTION_HEADER`, updated `SERVICES_HERO`, empty `CLIENT_LOGOS: []`, and all 7 Decbricks services (`01..07`) verbatim from `docs/services-content.md` (including Service 07's 3 description paragraphs and `7/7/8/7/8/8/8` capability counts).
+- Guarded consumers so the site builds cleanly at Phase 1 ahead of Phases 2–4 layout work:
+  - `src/components/Hero.astro`: indexed `HOME_CARD_STYLES[index % HOME_CARD_STYLES.length]` and wrapped `service.homeSummary` in `brandify()`.
+  - `src/components/ServiceBlock.astro`: switched `service.paragraphs.map(...)` with `brandify()`, added `service.media.kind` branches (temporary palette card for `'artwork'` prior to Phase 4 `ServiceArtwork`), and guarded `service.projects?.length > 0`.
+  - `src/components/ServicesClients.astro`: guarded `<section>` behind `initialLogos.length > 0`.
+- Verified build + static checks + live render of 7 cards/blocks on `/` and `/services`. Ready for owner approval to start Phase 2.

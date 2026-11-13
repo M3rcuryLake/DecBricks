@@ -4,50 +4,54 @@ import { CLIENT_LOGOS } from '../data/services';
 const initialLogos = CLIENT_LOGOS.slice(0, 12);
 ---
 
-<section
-  data-theme="dark"
-  class="sections-servicesClients relative bg-darkPurple px-9 pt-40 lg:px-20 lg:pt-30 xl:px-25 xl:pt-35 3xl:px-35 3xl:pt-40 4xl:pt-45"
-  aria-labelledby="servicesClients-heading"
->
-  <div
-    class="relative z-1 mx-auto w-full max-w-1850 border border-purple/50 px-30 pt-15 pb-45 lg:px-50 lg:pt-30 lg:pb-50 xl:px-70 xl:pt-35 xl:pb-60 3xl:px-90 3xl:pt-45 3xl:pb-70 4xl:px-110 4xl:pt-50 4xl:pb-80"
-  >
-    <span class="absolute -top-px -left-px size-9 bg-purple" aria-hidden="true"></span>
-    <span class="absolute -top-px -right-px size-9 bg-purple" aria-hidden="true"></span>
-    <span class="absolute -bottom-px -left-px size-9 bg-purple" aria-hidden="true"></span>
-    <span class="absolute -right-px -bottom-px size-9 bg-purple" aria-hidden="true"></span>
-    <h2
-      id="servicesClients-heading"
-      class="u-h2 text-center font-neuePower text-[18px] leading-[0.88] font-bold text-neonGreen uppercase lg:text-[28px] xl:text-[32px] 3xl:text-[38px] 4xl:text-[44px]"
+{
+  initialLogos.length > 0 && (
+    <section
+      data-theme="dark"
+      class="sections-servicesClients relative bg-darkPurple px-9 pt-40 lg:px-20 lg:pt-30 xl:px-25 xl:pt-35 3xl:px-35 3xl:pt-40 4xl:pt-45"
+      aria-labelledby="servicesClients-heading"
     >
-      Clients
-    </h2>
-    <ul
-      class="mt-25 grid grid-cols-3 items-center gap-x-20 gap-y-20 lg:mt-45 lg:grid-cols-6 lg:gap-x-30 lg:gap-y-40 xl:mt-55 xl:gap-y-50 3xl:mt-70 3xl:gap-y-60 4xl:mt-80 4xl:gap-y-75"
-    >
-      {
-        initialLogos.map((logo, idx) => (
-          <li
-            class="mx-auto grid h-30 w-full max-w-100 grid-cols-1 grid-rows-1 lg:h-45 lg:max-w-130 xl:h-60 xl:max-w-160 3xl:h-80 3xl:max-w-190 4xl:h-100 4xl:max-w-215"
-            data-slot={idx}
-          >
-            <div class="col-start-1 row-start-1 size-full transition-opacity duration-700 ease-in-out">
-              <picture class="parts-webPicture">
-                <img
-                  alt={logo.alt}
-                  src={logo.src}
-                  width={logo.width}
-                  height={logo.height}
-                  class="block size-full object-contain"
-                  sizes="215px"
-                  loading="lazy"
-                  draggable="false"
-                />
-              </picture>
-            </div>
-          </li>
-        ))
-      }
-    </ul>
-  </div>
-</section>
+      <div
+        class="relative z-1 mx-auto w-full max-w-1850 border border-purple/50 px-30 pt-15 pb-45 lg:px-50 lg:pt-30 lg:pb-50 xl:px-70 xl:pt-35 xl:pb-60 3xl:px-90 3xl:pt-45 3xl:pb-70 4xl:px-110 4xl:pt-50 4xl:pb-80"
+      >
+        <span class="absolute -top-px -left-px size-9 bg-purple" aria-hidden="true"></span>
+        <span class="absolute -top-px -right-px size-9 bg-purple" aria-hidden="true"></span>
+        <span class="absolute -bottom-px -left-px size-9 bg-purple" aria-hidden="true"></span>
+        <span class="absolute -right-px -bottom-px size-9 bg-purple" aria-hidden="true"></span>
+        <h2
+          id="servicesClients-heading"
+          class="u-h2 text-center font-neuePower text-[18px] leading-[0.88] font-bold text-neonGreen uppercase lg:text-[28px] xl:text-[32px] 3xl:text-[38px] 4xl:text-[44px]"
+        >
+          Clients
+        </h2>
+        <ul
+          class="mt-25 grid grid-cols-3 items-center gap-x-20 gap-y-20 lg:mt-45 lg:grid-cols-6 lg:gap-x-30 lg:gap-y-40 xl:mt-55 xl:gap-y-50 3xl:mt-70 3xl:gap-y-60 4xl:mt-80 4xl:gap-y-75"
+        >
+          {
+            initialLogos.map((logo, idx) => (
+              <li
+                class="mx-auto grid h-30 w-full max-w-100 grid-cols-1 grid-rows-1 lg:h-45 lg:max-w-130 xl:h-60 xl:max-w-160 3xl:h-80 3xl:max-w-190 4xl:h-100 4xl:max-w-215"
+                data-slot={idx}
+              >
+                <div class="col-start-1 row-start-1 size-full transition-opacity duration-700 ease-in-out">
+                  <picture class="parts-webPicture">
+                    <img
+                      alt={logo.alt}
+                      src={logo.src}
+                      width={logo.width}
+                      height={logo.height}
+                      class="block size-full object-contain"
+                      sizes="215px"
+                      loading="lazy"
+                      draggable="false"
+                    />
+                  </picture>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+  )
+}

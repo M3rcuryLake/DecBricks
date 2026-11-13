@@ -1,5 +1,6 @@
 ---
 import { SERVICES } from '../data/services';
+import { brandify } from '../lib/brand';
 
 const HOME_CARD_STYLES = [
   {
@@ -461,12 +462,12 @@ const HOME_CARD_STYLES = [
     ></div
   ><div
     id="services"
-    class="sections-services pointer-events-none relative z-20 lg:pt-45 pin-trigger"
+    class="sections-services pointer-events-none relative z-20 lg:pt-100 pin-trigger"
     style="transform: translateZ(0px)"
     ><div class="relative mx-auto flex w-full flex-col">
         {
           SERVICES.map((service, index) => {
-            const style = HOME_CARD_STYLES[index];
+            const style = HOME_CARD_STYLES[index % HOME_CARD_STYLES.length];
             return (
               <div
                 class={`parts-serviceCard pointer-events-auto flex items-start max-lg:-mx-40 ${style.outerOrigin} lg:-mb-50`}
@@ -571,9 +572,10 @@ const HOME_CARD_STYLES = [
                           +{service.homeExtraCount ?? service.capabilities.length - 3}
                         </span>
                       </div>
-                      <p class="mb-20 w-full max-w-475 font-neuePower text-[16px] leading-[110%] font-bold lg:mb-25 lg:text-[18px] lg:leading-[105%] 2xl:text-[20px] 3xl:text-[22px]">
-                        {service.homeSummary}
-                      </p>
+                      <p
+                        class="mb-20 w-full max-w-475 font-neuePower text-[16px] leading-[110%] font-bold lg:mb-25 lg:text-[18px] lg:leading-[105%] 2xl:text-[20px] 3xl:text-[22px]"
+                        set:html={brandify(service.homeSummary)}
+                      />
                       <a
                         href={`/services#${service.id}`}
                         data-anchor={`#${service.id}`}

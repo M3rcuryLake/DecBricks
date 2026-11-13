@@ -1,5 +1,6 @@
 ---
 import type { ServiceItem } from '../data/services';
+import { brandify } from '../lib/brand';
 
 export interface Props {
   service: ServiceItem;
@@ -74,11 +75,17 @@ const isEven = index % 2 === 0;
         >
           {service.lead}
         </p>
-        <p
-          class="mt-45 font-nohemi text-[16px] leading-[22px] text-darkPurple lg:mt-25 lg:max-w-455 lg:text-[14px] lg:leading-[20px] xl:mt-30 3xl:mt-40 3xl:text-[16px] 3xl:leading-[22px]"
-        >
-          {service.body}
-        </p>
+        {
+          service.paragraphs.map((paragraph, pIdx) => (
+            <p
+              class:list={[
+                pIdx === 0 ? 'mt-45 lg:mt-25 xl:mt-30 3xl:mt-40' : 'mt-15 lg:mt-16',
+                'font-nohemi text-[16px] leading-[22px] text-darkPurple lg:max-w-455 lg:text-[14px] lg:leading-[20px] 3xl:text-[16px] 3xl:leading-[22px]',
+              ]}
+              set:html={brandify(paragraph)}
+            />
+          ))
+        }
       </div>
     </div>
     <ul class="mt-30 flex flex-col gap-4 lg:mt-0 lg:grid lg:grid-cols-2 lg:gap-x-25 lg:gap-y-10">
@@ -106,71 +113,100 @@ const isEven = index % 2 === 0;
   </div>
   <div class="relative z-1 mt-40 flex flex-col lg:mt-0 lg:w-260 lg:shrink-0 xl:w-300 3xl:w-360 4xl:w-410">
     <div class="aspect-4/5 w-full overflow-hidden rounded-40 rounded-tr-none">
-      <div class="parts-autoplayVideo h-full w-full">
-        <video
-          muted
-          loop
-          playsinline
-          preload="none"
-          poster={service.videoSrc.replace('.mp4', '.webp')}
-          data-src={service.videoSrc}
-          crossorigin="anonymous"
-          class="block h-full w-full object-cover"
-          aria-label="Video player"
-        >
-        </video>
-      </div>
+      {
+        service.media.kind === 'video' ? (
+          <div class="parts-autoplayVideo h-full w-full">
+            <video
+              muted
+              loop
+              playsinline
+              preload="none"
+              poster={service.media.poster}
+              data-src={service.media.src}
+              crossorigin="anonymous"
+              class="block h-full w-full object-cover"
+              aria-label={service.media.alt || 'Video player'}
+            />
+          </div>
+        ) : service.media.kind === 'image' ? (
+          <img
+            src={service.media.src.src}
+            width={service.media.src.width}
+            height={service.media.src.height}
+            alt={service.media.alt}
+            class="block h-full w-full object-cover"
+            style={service.media.position ? `object-position: ${service.media.position}` : undefined}
+            loading="lazy"
+          />
+        ) : (
+          <div
+            class:list={[
+              isEven ? 'bg-neonGreen text-darkPurple' : 'bg-sage text-darkPurple',
+              'flex h-full w-full items-end justify-between p-20',
+            ]}
+            aria-hidden="true"
+          >
+            <span class="font-offBit101 text-[12px] tracking-widest uppercase opacity-75">
+              {service.media.code}
+            </span>
+          </div>
+        )
+      }
     </div>
-    <div
-      class:list={[
-        isEven ? 'lg:items-start' : 'lg:items-end',
-        'mt-25 flex flex-col items-center lg:mt-auto lg:pt-40',
-      ]}
-    >
-      <p class="flex items-center gap-8 font-neuePower text-[12px] leading-none font-bold text-darkPurple uppercase">
-        <svg
-          class="svgs-doubleSlash w-15 shrink-0 text-purple"
-          viewBox="0 0 18 10"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
+    {
+      service.projects && service.projects.length > 0 && (
+        <div
+          class:list={[
+            isEven ? 'lg:items-start' : 'lg:items-end',
+            'mt-25 flex flex-col items-center lg:mt-auto lg:pt-40',
+          ]}
         >
-          <rect x="8" y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 8 9.27246)" fill="currentColor" />
-          <rect x="11.0938" y="6.18066" width="3.09091" height="3.09091" transform="rotate(-90 11.0938 6.18066)" fill="currentColor" />
-          <rect x="14.1797" y="3.09082" width="3.09091" height="3.09091" transform="rotate(-90 14.1797 3.09082)" fill="currentColor" />
-          <rect y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 0 9.27246)" fill="currentColor" />
-          <rect x="3.09375" y="6.18066" width="3.09091" height="3.09091" transform="rotate(-90 3.09375 6.18066)" fill="currentColor" />
-          <rect x="6.17969" y="3.09082" width="3.09091" height="3.09091" transform="rotate(-90 6.17969 3.09082)" fill="currentColor" />
-        </svg>
-        Projects
-      </p>
-      <ul
-        class:list={[
-          isEven ? 'lg:justify-start' : 'lg:justify-end',
-          'mt-15 flex flex-wrap justify-center gap-5 lg:mt-20 lg:gap-9',
-        ]}
-      >
-        {
-          service.projects.map((project) => (
-            <li class="flex h-25 items-center gap-7 rounded-6 bg-neonGreen px-10 font-neuePower text-[12px] leading-none font-bold text-darkPurple uppercase lg:text-[14px]">
-              <svg
-                class="svgs-cross w-6 shrink-0"
-                viewBox="0 0 12 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <rect x="4" y="8" width="4" height="4" transform="rotate(-90 4 8)" fill="currentColor" />
-                <rect x="8" y="4" width="4" height="4" transform="rotate(-90 8 4)" fill="currentColor" />
-                <rect y="4" width="4" height="4" transform="rotate(-90 0 4)" fill="currentColor" />
-                <rect y="12" width="4" height="4" transform="rotate(-90 0 12)" fill="currentColor" />
-                <rect x="8" y="12" width="4" height="4" transform="rotate(-90 8 12)" fill="currentColor" />
-              </svg>
-              <span>{project}</span>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
+          <p class="flex items-center gap-8 font-neuePower text-[12px] leading-none font-bold text-darkPurple uppercase">
+            <svg
+              class="svgs-doubleSlash w-15 shrink-0 text-purple"
+              viewBox="0 0 18 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <rect x="8" y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 8 9.27246)" fill="currentColor" />
+              <rect x="11.0938" y="6.18066" width="3.09091" height="3.09091" transform="rotate(-90 11.0938 6.18066)" fill="currentColor" />
+              <rect x="14.1797" y="3.09082" width="3.09091" height="3.09091" transform="rotate(-90 14.1797 3.09082)" fill="currentColor" />
+              <rect y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 0 9.27246)" fill="currentColor" />
+              <rect x="3.09375" y="6.18066" width="3.09091" height="3.09091" transform="rotate(-90 3.09375 6.18066)" fill="currentColor" />
+              <rect x="6.17969" y="3.09082" width="3.09091" height="3.09091" transform="rotate(-90 6.17969 3.09082)" fill="currentColor" />
+            </svg>
+            Projects
+          </p>
+          <ul
+            class:list={[
+              isEven ? 'lg:justify-start' : 'lg:justify-end',
+              'mt-15 flex flex-wrap justify-center gap-5 lg:mt-20 lg:gap-9',
+            ]}
+          >
+            {
+              service.projects.map((project) => (
+                <li class="flex h-25 items-center gap-7 rounded-6 bg-neonGreen px-10 font-neuePower text-[12px] leading-none font-bold text-darkPurple uppercase lg:text-[14px]">
+                  <svg
+                    class="svgs-cross w-6 shrink-0"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <rect x="4" y="8" width="4" height="4" transform="rotate(-90 4 8)" fill="currentColor" />
+                    <rect x="8" y="4" width="4" height="4" transform="rotate(-90 8 4)" fill="currentColor" />
+                    <rect y="4" width="4" height="4" transform="rotate(-90 0 4)" fill="currentColor" />
+                    <rect y="12" width="4" height="4" transform="rotate(-90 0 12)" fill="currentColor" />
+                    <rect x="8" y="12" width="4" height="4" transform="rotate(-90 8 12)" fill="currentColor" />
+                  </svg>
+                  <span>{project}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      )
+    }
   </div>
 </article>
