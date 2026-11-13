@@ -157,3 +157,15 @@ Plan: `docs/plans/footer-redesign-plan.md`. Baseline + gauntlet probes: `docs/qa
   - Removed the `lg+` `translate: 0 calc(22px - var(--cookie-safe-area))` shift on `.sections-servicesHero nav` in `src/styles/decbricks.css` and set `padding-top: 76px` on `.sections-servicesHero > div` when `html.has-cookie-banner` is present so the hero and 7-pill bar clear both the display word and the bottom cookie banner naturally.
   - Replaced `lg:w-max` nav overflow with centered wrapping `.sections-servicesHero__navList`, hid dividers cleanly below `1280px` (`@media (min-width: 1024px) and (max-width: 1279px)`), spanned the 7th pill full-width on `<1024px` (`grid-column: 1 / -1`), and scaled mobile pills below `456px` so `320px` has zero text truncation.
 - Verified across `320, 375, 768, 1024, 1280, 1440, 1920, 2560` on `/services` (plus `/about` `320/1280`): `overflowX: 0`, `word1Clips: false`, `word2Clips: false`, `navOverlapsWord2: false`, `cookieOverlapWithNav: false`, `ulOverflows: false`, `anyPillClipped: false`, sidebar `1024×768` bounds `209..713px` (`fitsIn768: true`), `0` console/page errors. Ready for owner approval to start Phase 3.
+
+## Services 7-Cards Expansion — Phase 3 (2026-11-14, Landing `/` intro & 7-card stack) ✅
+- Added `SERVICES_SECTION_HEADER` intro panel and `Explore All Services` CTA inside `#services` (`src/components/Hero.astro`, `src/styles/decbricks.css`):
+  - High-contrast dark burgundy backdrop (`rgba(90, 0, 20, 0.92)` with subtle cream border over the pinned showreel backdrop; contrast ratios: heading `13.9:1`, body `11.83:1`, CTA `10.36:1`) plus `scroll-margin-top: 96px`.
+- Implemented 7 measured card themes (`.parts-serviceCard--t1` .. `--t7`) in `src/components/Hero.astro` + `src/styles/decbricks.css`:
+  - Off-White (`01`), Warm Beige (`02`), Burgundy (`03`, with Beige `//` `8.82:1` replacing low-contrast Coral-on-Burgundy `2.64:1`), Sage (`04`), Brick (`05`), Olive (`06`), Deepest Burgundy (`07`, finishing dark cleanly above `#work`).
+  - Every card text/pill/`+N`/CTA contrast ratio verified `>= 5.13:1` (slash graphics `>= 3.93:1`), interactive CTAs `50px`–`62px`.
+- Tuned stack density, tilt/shift & reduced motion:
+  - Compacted card bottom padding (`lg:pb-110` / `xl:pb-120` / `3xl:pb-135`) and overlaps (`-12px` mobile, `-75px` `lg`, `-85px` `xl+`); `#services` height = `2349px` (`2.94× vh`) at `1280×800` with zero `#work` overlap (`card7Bottom: -637, workTop: 0`).
+  - Softened `src/scripts/services.ts` scrub motion (`isMobile ? 2 : 3.5` deg rotate, `isMobile ? 2 : 4`% `xPercent`) + widened `.parts-serviceCard__content` horizontal insets so tilted text stays inside `320px–2560px` viewports.
+  - Added `@media (prefers-reduced-motion: reduce)` transform/rotate/translate reset (`allTransformNone: true`, `allRotateNone: true`, `allTranslateNone: true` verified at `375px` and `1280px`).
+- Verified across `320, 375, 768, 1024, 1280, 1920, 2560` (`overflowX: 0`, `0` console/page errors). Ready for owner approval to start Phase 4.

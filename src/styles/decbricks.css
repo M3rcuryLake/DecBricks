@@ -1556,7 +1556,7 @@ html.has-cookie-banner .page .sections-servicesHero {
 }
 .tst-stage {
   position: relative;
-  min-height: 340px;
+  min-height: 260px;
   /* Pan-y (not `none`): vertical scrolling stays native and always passes
      through; horizontal drags are delivered to the page so the Phase-2 swipe
      handler receives pointerup instead of a browser pointercancel. Pinch
@@ -2009,5 +2009,360 @@ html.has-cookie-banner .page .sections-servicesHero {
 @media (min-width: 1024px) and (max-width: 1279px) {
   .sections-servicesHero .sections-servicesHero__navDivider {
     display: none;
+  }
+}
+
+/* ==========================================================================
+   Landing / #services — Phase 3 (section intro, 7 palette cards, stack spacing,
+   and prefers-reduced-motion static level stack)
+   ========================================================================== */
+.sections-services__introWrap {
+  padding: 0 16px 28px;
+}
+.sections-services__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 24px 20px;
+  border-radius: 18px;
+  background: rgba(90, 0, 20, 0.92);
+  border: 1px solid rgba(243, 230, 213, 0.24);
+  color: #FFF9F2;
+  backdrop-filter: blur(8px);
+}
+.sections-services__introEyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-neuePower);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #F3E6D5;
+  margin-bottom: 10px;
+}
+.sections-services__introHeading {
+  font-family: var(--font-neuePower);
+  font-size: clamp(24px, 3vw, 44px);
+  font-weight: 700;
+  line-height: 1.02;
+  text-transform: uppercase;
+  color: #FFF9F2;
+}
+.sections-services__introBodyCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+.sections-services__introCopy {
+  font-family: var(--font-nohemi);
+  font-size: 15px;
+  line-height: 1.45;
+  color: #F3E6D5;
+  max-width: 560px;
+}
+.sections-services__introCta {
+  min-height: 44px;
+  background-color: #FFF9F2;
+  color: #800020;
+}
+.sections-services__introCta:hover,
+.sections-services__introCta:focus-visible {
+  background-color: #F3E6D5;
+  color: #800020;
+}
+@media (min-width: 1024px) {
+  .sections-services__introWrap {
+    padding: 0 36px 40px;
+  }
+  .sections-services__intro {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 32px 44px;
+    border-radius: 24px;
+  }
+  .sections-services__introHead {
+    width: 52%;
+  }
+  .sections-services__introBodyCol {
+    width: 44%;
+  }
+  .sections-services__introCopy {
+    font-size: 16px;
+  }
+}
+
+/* 7-card stack spacing & overlap tuning */
+.sections-services,
+.sections-services__introWrap {
+  scroll-margin-top: 96px;
+}
+.sections-services .parts-serviceCard {
+  margin-bottom: -12px;
+}
+.sections-services .parts-serviceCard:last-child {
+  margin-bottom: 0;
+}
+@media (max-width: 1023px) {
+  .sections-services .parts-serviceCard__content {
+    padding-inline: 58px;
+  }
+}
+@media (min-width: 1024px) {
+  .sections-services .parts-serviceCard {
+    margin-bottom: -75px;
+  }
+  .sections-services .parts-serviceCard:last-child {
+    margin-bottom: 0;
+  }
+  .sections-services .parts-serviceCard__inner--even {
+    translate: -24px 0;
+  }
+  .sections-services .parts-serviceCard__inner--odd {
+    translate: 24px 0;
+  }
+  .sections-services .parts-serviceCard__content {
+    padding-inline: 88px;
+    padding-bottom: 110px;
+  }
+  .sections-services .parts-serviceCard:last-child .parts-serviceCard__content {
+    padding-bottom: 130px;
+  }
+}
+@media (min-width: 1280px) {
+  .sections-services .parts-serviceCard {
+    margin-bottom: -85px;
+  }
+  .sections-services .parts-serviceCard:last-child {
+    margin-bottom: 0;
+  }
+  .sections-services .parts-serviceCard__content {
+    padding-bottom: 120px;
+  }
+}
+@media (min-width: 1440px) {
+  .sections-services .parts-serviceCard__inner--even {
+    translate: -40px 0;
+  }
+  .sections-services .parts-serviceCard__inner--odd {
+    translate: 60px 0;
+  }
+  .sections-services .parts-serviceCard__content {
+    padding-inline: 110px;
+  }
+}
+@media (min-width: 1660px) {
+  .sections-services .parts-serviceCard__content {
+    padding-bottom: 135px;
+  }
+  .sections-services .parts-serviceCard:last-child .parts-serviceCard__content {
+    padding-bottom: 150px;
+  }
+}
+
+/* 7 measured card themes (all text contrast >= 5.13:1, coral >= 3.9:1 on light only) */
+.parts-serviceCard--t1 .parts-serviceCard__inner,
+.parts-serviceCard--t1 .parts-serviceCard__inner::before {
+  background-color: #FFF9F2;
+}
+.parts-serviceCard--t1 .parts-serviceCard__content {
+  color: #800020;
+}
+.parts-serviceCard--t1 .parts-serviceCard__numeral {
+  color: color-mix(in oklab, #800020 10%, transparent);
+}
+.parts-serviceCard--t1 .parts-serviceCard__slash {
+  color: #D45060;
+}
+.parts-serviceCard--t1 .parts-keyword__inner,
+.parts-serviceCard--t1 .parts-serviceCard__btn {
+  background-color: #800020;
+  color: #FFF9F2;
+}
+.parts-serviceCard--t1 .parts-serviceCard__btn:active {
+  background-color: #BC3D4D;
+}
+.parts-serviceCard--t1 .parts-serviceCard__more {
+  background-color: #F3E6D5;
+  color: #800020;
+}
+
+.parts-serviceCard--t2 .parts-serviceCard__inner,
+.parts-serviceCard--t2 .parts-serviceCard__inner::before {
+  background-color: #F3E6D5;
+}
+.parts-serviceCard--t2 .parts-serviceCard__content {
+  color: #800020;
+}
+.parts-serviceCard--t2 .parts-serviceCard__numeral {
+  color: rgba(255, 255, 255, 0.42);
+}
+.parts-serviceCard--t2 .parts-serviceCard__slash {
+  color: #5A6432;
+}
+.parts-serviceCard--t2 .parts-keyword__inner {
+  background-color: #FFF9F2;
+  color: #800020;
+}
+.parts-serviceCard--t2 .parts-serviceCard__more {
+  background-color: #5A6432;
+  color: #FFF9F2;
+}
+.parts-serviceCard--t2 .parts-serviceCard__btn {
+  background-color: #800020;
+  color: #FFF9F2;
+}
+.parts-serviceCard--t2 .parts-serviceCard__btn:active {
+  background-color: #BC3D4D;
+}
+
+.parts-serviceCard--t3 .parts-serviceCard__inner,
+.parts-serviceCard--t3 .parts-serviceCard__inner::before {
+  background-color: #800020;
+}
+.parts-serviceCard--t3 .parts-serviceCard__content {
+  color: #FFF9F2;
+}
+.parts-serviceCard--t3 .parts-serviceCard__numeral {
+  color: rgba(243, 230, 213, 0.1);
+}
+.parts-serviceCard--t3 .parts-serviceCard__slash {
+  color: #F3E6D5;
+}
+.parts-serviceCard--t3 .parts-keyword__inner {
+  background-color: #5A0014;
+  color: #FFF9F2;
+}
+.parts-serviceCard--t3 .parts-serviceCard__more {
+  background-color: #C9D3C0;
+  color: #2A0208;
+}
+.parts-serviceCard--t3 .parts-serviceCard__btn {
+  background-color: #FFF9F2;
+  color: #800020;
+}
+.parts-serviceCard--t3 .parts-serviceCard__btn:active {
+  background-color: #F3E6D5;
+}
+
+.parts-serviceCard--t4 .parts-serviceCard__inner,
+.parts-serviceCard--t4 .parts-serviceCard__inner::before {
+  background-color: #C9D3C0;
+}
+.parts-serviceCard--t4 .parts-serviceCard__content {
+  color: #2A0208;
+}
+.parts-serviceCard--t4 .parts-serviceCard__numeral {
+  color: rgba(42, 2, 8, 0.1);
+}
+.parts-serviceCard--t4 .parts-serviceCard__slash {
+  color: #5A6432;
+}
+.parts-serviceCard--t4 .parts-keyword__inner {
+  background-color: #5A6432;
+  color: #FFF9F2;
+}
+.parts-serviceCard--t4 .parts-serviceCard__more,
+.parts-serviceCard--t4 .parts-serviceCard__btn {
+  background-color: #800020;
+  color: #FFF9F2;
+}
+.parts-serviceCard--t4 .parts-serviceCard__btn:active {
+  background-color: #5A0014;
+}
+
+.parts-serviceCard--t5 .parts-serviceCard__inner,
+.parts-serviceCard--t5 .parts-serviceCard__inner::before {
+  background-color: #BC3D4D;
+}
+.parts-serviceCard--t5 .parts-serviceCard__content {
+  color: #FFF9F2;
+}
+.parts-serviceCard--t5 .parts-serviceCard__numeral {
+  color: rgba(255, 249, 242, 0.15);
+}
+.parts-serviceCard--t5 .parts-serviceCard__slash {
+  color: #FFF9F2;
+}
+.parts-serviceCard--t5 .parts-keyword__inner,
+.parts-serviceCard--t5 .parts-serviceCard__more,
+.parts-serviceCard--t5 .parts-serviceCard__btn {
+  background-color: #800020;
+  color: #FFF9F2;
+}
+.parts-serviceCard--t5 .parts-serviceCard__btn:active {
+  background-color: #5A0014;
+}
+
+.parts-serviceCard--t6 .parts-serviceCard__inner,
+.parts-serviceCard--t6 .parts-serviceCard__inner::before {
+  background-color: #5A6432;
+}
+.parts-serviceCard--t6 .parts-serviceCard__content {
+  color: #FFF9F2;
+}
+.parts-serviceCard--t6 .parts-serviceCard__numeral {
+  color: rgba(255, 249, 242, 0.15);
+}
+.parts-serviceCard--t6 .parts-serviceCard__slash {
+  color: #F3E6D5;
+}
+.parts-serviceCard--t6 .parts-keyword__inner {
+  background-color: #F3E6D5;
+  color: #800020;
+}
+.parts-serviceCard--t6 .parts-serviceCard__more {
+  background-color: #FFF9F2;
+  color: #2A0208;
+}
+.parts-serviceCard--t6 .parts-serviceCard__btn {
+  background-color: #FFF9F2;
+  color: #800020;
+}
+.parts-serviceCard--t6 .parts-serviceCard__btn:active {
+  background-color: #F3E6D5;
+}
+
+.parts-serviceCard--t7 .parts-serviceCard__inner,
+.parts-serviceCard--t7 .parts-serviceCard__inner::before {
+  background-color: #5A0014;
+}
+.parts-serviceCard--t7 .parts-serviceCard__content {
+  color: #FFF9F2;
+}
+.parts-serviceCard--t7 .parts-serviceCard__numeral {
+  color: rgba(255, 249, 242, 0.1);
+}
+.parts-serviceCard--t7 .parts-serviceCard__slash {
+  color: #F3E6D5;
+}
+.parts-serviceCard--t7 .parts-keyword__inner {
+  background-color: #C9D3C0;
+  color: #2A0208;
+}
+.parts-serviceCard--t7 .parts-serviceCard__more {
+  background-color: #BC3D4D;
+  color: #FFF9F2;
+}
+.parts-serviceCard--t7 .parts-serviceCard__btn {
+  background-color: #FFF9F2;
+  color: #800020;
+}
+.parts-serviceCard--t7 .parts-serviceCard__btn:active {
+  background-color: #F3E6D5;
+}
+
+/* Reduced-motion fallback: static level vertical card stack */
+@media (prefers-reduced-motion: reduce) {
+  .sections-services .parts-serviceCard,
+  .sections-services .parts-serviceCard__inner {
+    transform: none !important;
+    rotate: 0deg !important;
+    translate: none !important;
   }
 }

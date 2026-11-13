@@ -1,137 +1,79 @@
 ---
-import { SERVICES } from '../data/services';
+import { SERVICES, SERVICES_SECTION_HEADER } from '../data/services';
 import { brandify } from '../lib/brand';
 
 const HOME_CARD_STYLES = [
-  {
-    outerOrigin: 'origin-top-left',
-    innerClass:
-      'bg-white before:bg-white origin-left max-lg:-rotate-4 max-lg:rounded-t-6 lg:-translate-x-40 lg:rounded-tr-24',
-    numColor: 'text-palePurple/40',
-    contentText: 'text-darkPurple lg:pb-170 3xl:pb-190',
-    slashColor: 'text-purple',
-    // coral cannot carry small text (3.9:1 on off-white, 2.6 on burgundy) —
-    // tag pills use the burgundy surface instead (off-white text, 10:1).
-    pillBg: 'bg-darkPurple text-white',
-    moreBadgeBg: 'bg-palePurple text-darkPurple',
-    btnClass: 'bg-darkPurple text-white active:bg-purple',
-  },
-  {
-    outerOrigin: 'origin-top-right',
-    innerClass:
-      'bg-neonGreen before:bg-neonGreen origin-right max-lg:rotate-4 max-lg:rounded-t-6 lg:translate-x-80 lg:rounded-tl-24',
-    numColor: 'text-white/27',
-    contentText: 'text-darkPurple lg:pb-170 3xl:pb-190',
-    slashColor: 'text-purple',
-    pillBg: 'bg-white text-darkPurple',
-    moreBadgeBg: 'bg-white/50 text-darkPurple',
-    btnClass: 'bg-darkPurple text-white active:bg-purple',
-  },
-  {
-    outerOrigin: 'origin-top-left',
-    innerClass:
-      'bg-darkPurple before:bg-darkPurple origin-left max-lg:-rotate-4 max-lg:rounded-t-6 lg:-translate-x-40 lg:rounded-tr-24',
-    numColor: 'text-palePurple/10',
-    contentText: 'text-white lg:pb-170 3xl:pb-190',
-    slashColor: 'text-purple',
-    // see note at first theme: coral can't carry small text
-    pillBg: 'bg-darkPurple text-white',
-    moreBadgeBg: 'bg-palePurple/13 text-white',
-    btnClass: 'bg-white text-darkPurple active:bg-purple active:text-white',
-  },
-  {
-    outerOrigin: 'origin-top-right',
-    innerClass:
-      'bg-brick before:bg-brick origin-right max-lg:rotate-4 max-lg:rounded-t-6 lg:translate-x-80 lg:rounded-tl-24',
-    numColor: 'text-white/15',
-    contentText: 'text-white lg:pb-215 3xl:pb-245',
-    slashColor: 'text-white',
-    pillBg: 'bg-darkPurple text-white',
-    // white/25 veil over the slab bg left "+N" at ~3:1 — solid burgundy chip
-    // like the tag pills (off-white text, 10:1).
-    moreBadgeBg: 'bg-darkPurple text-white',
-    btnClass: 'bg-darkPurple text-white active:bg-purple',
-  },
-];
+  { theme: 't1', isEven: true },
+  { theme: 't2', isEven: false },
+  { theme: 't3', isEven: true },
+  { theme: 't4', isEven: false },
+  { theme: 't5', isEven: true },
+  { theme: 't6', isEven: false },
+  { theme: 't7', isEven: true },
+] as const;
 ---
 
-<section class="sections-hero relative overflow-hidden bg-darkPurple" aria-labelledby="hero-heading" data-hero-v2
-  ><div class="hero-v2-frame flex max-h-1080 min-h-svh flex-col pt-70 max-lg:min-h-svh lg:pt-155" data-theme="dark"
+<section class="sections-hero relative overflow-hidden bg-darkPurple" aria-labelledby="hero-heading"
+  ><div class="flex max-h-1080 min-h-svh flex-col pt-70 max-lg:h-svh lg:pt-155" data-theme="dark"
     ><div class="hidden flex-grow lg:block"></div
     ><div
-      class="hero-top relative mx-auto flex w-full max-w-1920 flex-grow flex-col justify-center px-15 sm:px-30 lg:justify-start lg:pb-0"
+      class="hero-top relative mx-auto flex w-full max-w-1920 flex-grow flex-col justify-center sm:justify-center lg:justify-start lg:pb-0"
       ><h2 id="hero-heading" class="sr-only">Distinct Always</h2
       ><div class="relative"
         ><span
           aria-hidden="true"
-          class="sections-hero__heading relative z-22 block w-fit u-display text-neonGreen uppercase"
+          class="sections-hero__heading relative z-22 block w-fit heading-3xl text-neonGreen uppercase lg:z-11 lg:-mb-50 lg:-ml-20"
           data-text="Distinct"
           ><span class="sections-hero__headingInner pointer-default block"> Distinct </span></span
-        ><div class="hero-v2-row"
+        ><div class="mb-52 flex w-fit min-w-full items-center justify-between lg:mb-0"
           ><h1 class="sr-only">
             Award-winning creative agency for video games. Brand shapers, game marketeers &amp; web engineers.</h1
           ><span
-            class="parts-smileyText sections-hero__body relative z-20 hidden w-4/12 min-w-4/12 heading text-white lg:block"
+            class="parts-smileyText sections-hero__body relative z-20 hidden w-4/12 min-w-4/12 pl-64 heading text-white 2xl:mb-40 2xl:block 3xl:pr-42"
             style="font-kerning: none; text-rendering: optimizeSpeed"
             ><span class="sr-only"
               >Award-winning creative agency for video games. Brand shapers, game marketeers &amp; web engineers.</span
             ><span aria-hidden="true" role="presentation" style="font-kerning: none; text-rendering: optimizeSpeed"
               >Award-winning creative agency for video games. Brand shapers, game marketeers &amp; web engineers.</span
             ></span
-          ><div class="hero-v2-mediaCell relative aspect-8/5 w-full sm:w-480 lg:aspect-3/2 lg:w-320 2xl:w-480"
-            ><span class="absolute -top-px -left-px z-30 size-9 bg-purple" data-hero-tick aria-hidden="true"></span
-            ><span class="absolute -top-px -right-px z-30 size-9 bg-purple" data-hero-tick aria-hidden="true"></span
-            ><span class="absolute -bottom-px -left-px z-30 size-9 bg-purple" data-hero-tick aria-hidden="true"></span
-            ><span class="absolute -right-px -bottom-px z-30 size-9 bg-purple" data-hero-tick aria-hidden="true"></span
-            ><div
-              class="pin-trigger__mobile start-mobile absolute inset-0 z-20 overflow-hidden rounded-40 rounded-tr-none lg:hidden"
-              ><video
-                data-preview-mp4="/videos/219063fa94bc3a4eb8ae3dad65571723.mp4"
-                poster="/images/heroes/hero-preview-poster.webp"
-                class="sections-hero__videoPreviewMobile start-mobile-inner h-full w-full webgl-video parts-webglPreview overflow-hidden object-cover"
-                playsinline
-                loop
-                preload="metadata"
-                muted
-                autoplay
-                crossorigin="anonymous"
-              ></video></div
-            ><video
-              data-preview-mp4="/videos/219063fa94bc3a4eb8ae3dad65571723.mp4"
-              poster="/images/heroes/hero-preview-poster.webp"
-              class="sections-hero__videoPreview start absolute inset-0 z-10 hidden h-full w-full rounded-40 rounded-tr-none overflow-hidden lg:invisible lg:block webgl-video parts-webglPreview object-cover"
-              classname="lg:opacity-0"
-              playsinline
-              loop
-              preload="metadata"
-              muted
-              autoplay
-              crossorigin="anonymous"
-            ></video></div></div
-        ><span
-          class="sections-hero__heading hero-v2-word2 relative z-10 block w-fit u-display text-neonGreen uppercase"
-          data-font="OffBitTrial-101"
-          data-text="Always"
-          aria-hidden="true"
-          ><span class="sections-hero__headingInner pointer-default block"> Always </span></span
-        ><ul class="hero-v2-pills" aria-label="Our services">
-          {SERVICES.map((service) => (
-            <li>
-              <a data-hero-pill href={`/services#${service.id}`} class="hero-v2-pill">
-                <span class="hero-v2-pillIndex" aria-hidden="true">{service.number}</span>
-                {service.navLabel}
-              </a>
-            </li>
-          ))}
-        </ul></div
+          ><span
+            class="sections-hero__heading relative z-10 ml-auto block heading-3xl font-offBit101 font-normal text-neonGreen uppercase lg:w-min 2xl:-mr-40"
+            data-font="OffBitTrial-101"
+            data-text="Always"
+            aria-hidden="true"
+            ><span class="sections-hero__headingInner pointer-default block"> Always </span></span
+          ></div
+        ><div
+          class="pin-trigger__mobile start-mobile absolute -top-120 -right-100 z-20 aspect-8/5 w-320 rotate-14 overflow-hidden rounded-20 rounded-tr-none sm:w-480 lg:hidden"
+          ><video
+            data-preview-mp4="/videos/219063fa94bc3a4eb8ae3dad65571723.mp4"
+            class="sections-hero__videoPreviewMobile start-mobile-inner h-full w-full webgl-video parts-webglPreview overflow-hidden object-cover"
+            playsinline
+            loop
+            preload="metadata"
+            muted
+            autoplay
+            crossorigin="anonymous"
+          ></video></div></div
       ><span
-        class="parts-smileyText relative z-6 mb-20 w-11/12 pl-16 heading text-white sm:w-6/12 lg:hidden"
+        class="parts-smileyText relative z-6 mb-20 w-11/12 pl-16 heading text-white sm:w-6/12 lg:z-20 2xl:hidden"
         style="font-kerning: none; text-rendering: optimizeSpeed"
         ><span class="sr-only"
           >Award-winning creative agency for video games. Brand shapers, game marketeers &amp; web engineers.</span
         ><span aria-hidden="true" role="presentation" style="font-kerning: none; text-rendering: optimizeSpeed"
           >Award-winning creative agency for video games. Brand shapers, game marketeers &amp; web engineers.</span
         ></span
+      ><video
+        data-preview-mp4="/videos/219063fa94bc3a4eb8ae3dad65571723.mp4"
+        class="sections-hero__videoPreview start absolute top-40 right-1/12 z-10 hidden aspect-3/2 w-320 rotate-14 overflow-hidden rounded-40 rounded-tr-none lg:invisible lg:block 2xl:w-480 webgl-video parts-webglPreview overflow-hidden object-cover"
+        classname="lg:opacity-0"
+        playsinline
+        loop
+        preload="metadata"
+        muted
+        autoplay
+        crossorigin="anonymous"
+      ></video
       ><svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -462,37 +404,95 @@ const HOME_CARD_STYLES = [
     ></div
   ><div
     id="services"
-    class="sections-services pointer-events-none relative z-20 lg:pt-100 pin-trigger"
+    class="sections-services pointer-events-none relative z-20 lg:pt-60 pin-trigger"
     style="transform: translateZ(0px)"
-    ><div class="relative mx-auto flex w-full flex-col">
+    ><div class="sections-services__introWrap pointer-events-auto relative z-30 mx-auto max-w-1920">
+      <div class="sections-services__intro">
+        <div class="sections-services__introHead">
+          <p class="sections-services__introEyebrow">
+            <svg
+              class="svgs-doubleSlash block w-15 shrink-0"
+              viewBox="0 0 18 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <rect x="8" y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 8 9.27246)" fill="currentColor" />
+              <rect x="11.0938" y="6.18066" width="3.09091" height="3.09091" transform="rotate(-90 11.0938 6.18066)" fill="currentColor" />
+              <rect x="14.1797" y="3.09082" width="3.09091" height="3.09091" transform="rotate(-90 14.1797 3.09082)" fill="currentColor" />
+              <rect y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 0 9.27246)" fill="currentColor" />
+              <rect x="3.09375" y="6.18066" width="3.09091" height="3.09091" transform="rotate(-90 3.09375 6.18066)" fill="currentColor" />
+              <rect x="6.17969" y="3.09082" width="3.09091" height="3.09091" transform="rotate(-90 6.17969 3.09082)" fill="currentColor" />
+            </svg>
+            <span>{SERVICES_SECTION_HEADER.eyebrow}</span>
+          </p>
+          <h2 class="sections-services__introHeading">
+            {SERVICES_SECTION_HEADER.heading}
+          </h2>
+        </div>
+        <div class="sections-services__introBodyCol">
+          <p class="sections-services__introCopy">
+            {SERVICES_SECTION_HEADER.intro}
+          </p>
+          <a
+            href={SERVICES_SECTION_HEADER.ctaHref}
+            class="sections-services__introCta part-btnPrimary group flex w-fit items-center justify-center gap-12 rounded-8 px-24 py-15 lg:py-17 transition-colors duration-300 cursor-pointer"
+          >
+            <span class="relative flex overflow-hidden">
+              <span class="part-btnPrimary__text uppercase btn-text-lg">{SERVICES_SECTION_HEADER.ctaLabel}</span>
+              <span class="part-btnPrimary__text absolute inset-x-0 top-full text-center uppercase btn-text-lg" aria-hidden="true">
+                {SERVICES_SECTION_HEADER.ctaLabel}
+              </span>
+            </span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 7 10"
+              class="block w-6 min-w-6 lg:w-8 lg:min-w-8 lg:-mt-1"
+              aria-hidden="true"
+            >
+              <path
+                fill="currentColor"
+                d="M0 9.637V6.546h3.091v3.091zM3.094 6.546V3.455h3.09v3.09zM0 3.455V.365h3.09v3.09z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="relative mx-auto flex w-full flex-col">
         {
           SERVICES.map((service, index) => {
             const style = HOME_CARD_STYLES[index % HOME_CARD_STYLES.length];
+            const outerOrigin = style.isEven ? 'origin-top-left' : 'origin-top-right';
+            const innerShape = style.isEven
+              ? 'origin-left max-lg:-rotate-4 max-lg:rounded-t-6 lg:rounded-tr-24 parts-serviceCard__inner--even'
+              : 'origin-right max-lg:rotate-4 max-lg:rounded-t-6 lg:rounded-tl-24 parts-serviceCard__inner--odd';
             return (
               <div
-                class={`parts-serviceCard pointer-events-auto flex items-start max-lg:-mx-40 ${style.outerOrigin} lg:-mb-50`}
+                class={`parts-serviceCard parts-serviceCard--${style.theme} pointer-events-auto flex items-start max-lg:-mx-40 ${outerOrigin}`}
                 style={`z-index: ${index}`}
               >
                 <div
-                  class={`${style.innerClass} parts-serviceCard__inner relative w-full will-change-transform before:absolute before:inset-x-0 before:top-full before:h-screen`}
+                  class={`${innerShape} parts-serviceCard__inner relative w-full will-change-transform before:absolute before:inset-x-0 before:top-full before:h-screen`}
                 >
                   <div
                     aria-hidden="true"
                     class="pointer-events-none absolute inset-x-0 top-0 -bottom-800 overflow-hidden rounded-[inherit]"
                   >
                     <span
-                      class={`${style.numColor} absolute -top-12 left-30 font-offBit text-[240px] leading-[98%] font-bold md:text-[420px] lg:-top-30 lg:-left-25 lg:text-[776px]`}
+                      class="parts-serviceCard__numeral absolute -top-12 left-30 font-offBit text-[240px] leading-[98%] font-bold md:text-[420px] lg:-top-30 lg:-left-25 lg:text-[776px]"
                     >
                       {service.number}
                     </span>
                   </div>
                   <div
-                    class={`${style.contentText} relative mx-auto flex h-full max-w-1920 flex-col items-start px-70 pt-20 pb-70 sm:px-80 lg:flex-row lg:pt-50 lg:pr-60 lg:pl-60 2xl:pl-80 3xl:pt-60 3xl:pl-110`}
+                    class="parts-serviceCard__content relative mx-auto flex h-full max-w-1920 flex-col items-start px-70 pt-20 pb-50 sm:px-80 lg:flex-row lg:pt-50 lg:pr-60 lg:pl-60 2xl:pl-80 3xl:pt-60 3xl:pl-110"
                   >
                     <div class="mb-20 w-full lg:mb-0 lg:w-1/2 lg:pr-40">
                       <div class="mb-7 flex items-center gap-12 lg:mb-20 lg:gap-14">
                         <svg
-                          class={`svgs-doubleSlash block w-16 min-w-16 lg:w-28 lg:min-w-28 ${style.slashColor}`}
+                          class="parts-serviceCard__slash svgs-doubleSlash block w-16 min-w-16 lg:w-28 lg:min-w-28"
                           viewBox="0 0 18 10"
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
