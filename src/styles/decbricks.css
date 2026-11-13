@@ -1551,6 +1551,7 @@ html.has-cookie-banner .page .sections-servicesHero {
   color: var(--brand-on-dark);
   font-size: clamp(28px, 3.2vw, 44px);
   line-height: 1.05;
+  text-wrap: balance;
 }
 .tst-index {
   margin: 0;
@@ -1559,6 +1560,8 @@ html.has-cookie-banner .page .sections-servicesHero {
   line-height: 1;
   color: var(--brand-surface-alt);
   white-space: nowrap;
+  /* Counter digits stay equal-width across the micro-crossfade. */
+  font-variant-numeric: tabular-nums;
 }
 .tst-index b {
   /* Coral (2.63:1) failed Lighthouse's 3:1 large-text bar — the numeral is
@@ -1894,4 +1897,23 @@ html.has-cookie-banner .page .sections-servicesHero {
   .tst-grid {
     grid-template-columns: minmax(0, 1fr) 320px;
   }
+}
+
+/* ==========================================================================
+   Testimonials — Phase 5 additions (web-design-guidelines final review)
+   Touch & selection hardening found by the audit; see docs/qa/findings.md.
+   ========================================================================== */
+/* Kill the double-tap-zoom delay on the section's controls. */
+.tst-btn,
+.tst-railBtn,
+.tst-railToggle {
+  touch-action: manipulation;
+}
+/* While a horizontal swipe intent is detected (JS adds .is-swiping after
+   12px horizontal-dominant movement) text selection is suppressed — an
+   accidental drag-select would otherwise fight the swipe. Never applied
+   statically: quotes stay selectable via long-press/keyboard. */
+.tst-stage.is-swiping {
+  user-select: none;
+  -webkit-user-select: none;
 }

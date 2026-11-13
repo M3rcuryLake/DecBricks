@@ -4,9 +4,10 @@
  * Carousel state machine (docs/plans/testimonials-redesign-plan.md §6/§8):
  * - prev/next + rail clicks, ArrowLeft/Right scoped to the section (focus
  *   follows to the featured card, which is `tabindex="-1"`);
- * - pointer swipe on the stage (48px horizontal-dominant threshold, no
- *   `touch-action` overrides — vertical scroll always passes through); swipe
- *   never moves focus;
+ * - pointer swipe on the stage (48px horizontal-dominant threshold, `pan-y`
+ *   `touch-action` keeps vertical scroll native); swipe never moves focus,
+ *   and once horizontal intent is detected text selection is suppressed so
+ *   an accidental drag doesn't fight the swipe (`.is-swiping` guard);
  * - deep link: `location.hash` `#t-3` opens that quote on init (also across
  *   client-side page swaps, since `initTestimonials()` re-runs after each
  *   swap). The URL is never written — read-only deep link (decision logged
@@ -116,16 +117,26 @@ export function initTestimonials(): (() => void) | void {
     if (e.pointerType === 'mouse' && e.button !== 0) return;
     swipeStart = { x: e.clientX, y: e.clientY };
   };
+  // Horizontal-dominant intent (12px) mid-gesture: suppress accidental text
+  // selection; never applied statically, so quotes remain selectable.
+  const onPointerMove = (e: PointerEvent) => {
+    if (!swipeStart) return;
+    const dx = e.clientX - swipeStart.x;
+    const dy = e.clientY - swipeStart.y;
+    if (Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy)) stage.classList.add('is-swiping');
+  };
   const onPointerUp = (e: PointerEvent) => {
     if (!swipeStart) return;
     const dx = e.clientX - swipeStart.x;
     const dy = e.clientY - swipeStart.y;
+    stage.classList.remove('is-swiping');
     swipeStart = null;
     if (Math.abs(dx) < SWIPE_THRESHOLD || Math.abs(dx) <= Math.abs(dy)) return;
     go(dx < 0 ? current + 1 : current - 1); // no focus move on swipe
   };
   const onPointerCancel = () => {
     swipeStart = null;
+    stage.classList.remove('is-swiping');
   };
 
   // Deep link: #t-3 opens quote 3. Read-only — the URL is never mutated.
@@ -160,6 +171,7 @@ export function initTestimonials(): (() => void) | void {
   railList.addEventListener('click', onRailClick);
   toggle?.addEventListener('click', onToggle);
   stage.addEventListener('pointerdown', onPointerDown);
+  stage.addEventListener('pointermove', onPointerMove);
   stage.addEventListener('pointerup', onPointerUp);
   stage.addEventListener('pointercancel', onPointerCancel);
   section.addEventListener('keydown', onKeyDown);
@@ -171,6 +183,7 @@ export function initTestimonials(): (() => void) | void {
     railList.removeEventListener('click', onRailClick);
     toggle?.removeEventListener('click', onToggle);
     stage.removeEventListener('pointerdown', onPointerDown);
+    stage.removeEventListener('pointermove', onPointerMove);
     stage.removeEventListener('pointerup', onPointerUp);
     stage.removeEventListener('pointercancel', onPointerCancel);
     section.removeEventListener('keydown', onKeyDown);

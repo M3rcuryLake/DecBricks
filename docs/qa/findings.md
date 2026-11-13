@@ -107,3 +107,24 @@ Evidence in `docs/qa/shots/` (`<page>-<w>-<before|after>-<id>.png`, git-ignored)
 | P6-4 | Lighthouse preview (`4331`, mobile) | `/` Perf `95`, A11y `100`, CLS `0.005`, LCP `1.1s` | `/about`: Perf `99`, A11y `100`, CLS `0`, LCP `1.1s`, TBT `70ms` (`/` mobile Perf `77` / CLS `0.4` from parallel WIP `Hero.astro` changes; `footerCls: 0`) | PASS |
 | P6-5 | 30-swap WebGL & footer gauntlet (`1280×800`) | 6 swaps, `2` `1280×800` canvases, `0` errs | **30/30** swaps across `/services`/`/about`/`/contact`/`/`, `failures: []`, `errs: []` | PASS |
 | P6-6 | Schema consistency + missing-data matrix + final shots | — | `npm run check:footer` PASS (`6` footer pages, `3` `Organization` blocks), env-set clock/status `true`/`true` vs empty `false`/`false`; shots `footer-p6-{375,1440}.png` | PASS |
+
+## Testimonials redesign — Phase 5 final QA (2026-11-13, plan `docs/plans/testimonials-redesign-plan.md`)
+
+Consolidated per-phase evidence (P0–P4 probes, all console/pageerror-clean) + the `web-design-guidelines` final review. IDs prefixed `T-`.
+
+| ID | Viewport / Mode | Scope | Measured evidence | Outcome |
+|---|---|---|---|---|
+| T-1 | Lighthouse 13.6 (dev `4321`, desktop) | Accessibility | Score **1.0**, zero failed audits (was 0.97 — coral index numeral 2.63:1; recolored beige `--brand-surface-alt` 8.82:1 in P4) | ✅ fixed |
+| T-2 | CDP `Accessibility.getFullAXTree` `1440×900` | SR snapshot | region "What our clients say" → kicker → h2 → article "1 of 8" (blockquote) → nav "All quotes" → 8 named rail buttons → status (live) → prev/next; 0 unlabeled images | ✅ pass |
+| T-3 | `1440×900` keyboard | Tab battery + arrows | 9 stops after first rail button, all ≥44px, solid `:focus-visible`; ArrowRight from rail → active `t-2`, focus follows, live "Quote 2 of 8" | ✅ pass |
+| T-4 | `1440+375×900`, scroll + swap | Page CLS / long tasks | CLS **0** (0.0001 input-inclusive); long tasks idle 46–54/4s vs 36–44 during 6 swaps = pre-existing WebGL loop; 375 fully clean | ✅ pass |
+| T-5 | `1440×900` computed styles | §4 contrast pairs | numeral 8.82 · kicker 8.82 · title/quote/railActive/whoName 10.36 · railMeta/railQuote 8.82 · chip 6.08 · whoSpan 6.15 | ✅ pass |
+| T-6 | 320→2560 (7 widths) | Cut-card / overflow / type steps | `cardOK: true` everywhere, `ovX: 0`; quote 24/28/28/37/44, numeral 40/56/72; shots `docs/qa/shots/testi-p4-*.png` | ✅ pass |
+| T-7 | 30-swap gauntlet (1440) | Boot/teardown across client-side swaps | 5×5 clean, `{active: t-1, rail: 8}` every return | ✅ pass |
+| T-8 | Touch `1440×900` coarse | Swipe + scroll pass-through | horizontal swipe changes quote (`.is-swiping` guard toggles mid-gesture, `user-select:none` while active, cleared on release); vertical touch drag scrolls 165px with no quote change | ✅ pass (P5 fix: selection guard) |
+| T-9 | Deep link `/#t-3` | Read-only hash restore | quote 3 active after client-side nav; Back/Forward via `hashchange`; URL never written | ✅ pass |
+| T-10 | Reduced-motion emulation | Swap instant, numeral static | card/bar/rail/btn/chevron transitions 0s, numeral `getAnimations()` 0 | ✅ pass |
+| T-11 | `grep -ri 1minus1 dist/` + sticker-hash scan | No 1minus1 strings/art in section | section absent from prod dist (placeholder guard); data/component/script hits are code comments only; 0 sticker hashes in dist; remaining `/` hits are Hero/CaseStudies = known BUG-001/002 blocker | ✅ pass (section) |
+| T-12 | web-design-guidelines audit | Final review | 4 findings, all fixed same phase: swipe text-selection guard (`.tst-stage.is-swiping`), `touch-action: manipulation` on `.tst-btn/.tst-railBtn/.tst-railToggle`, `font-variant-numeric: tabular-nums` on `.tst-index`, `text-wrap: balance` on `.tst-title`. 1 accepted deviation: deep link is read-only (URL reflects state on read, never written — owner-approved P2 decision, logged in Design-handoff) | ✅ fixed / accepted |
+
+Re-verified gates after the T-12 fixes: build ✅ · check ✅ (0 err) · check:brand ✅ · check:placeholders ✅ · check-headings ✅ · prod guard (no `tst-band` in dist) ✅.
