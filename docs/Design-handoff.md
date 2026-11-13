@@ -200,3 +200,17 @@ Owner replaced `docs/logo.png` after the lockup shipped: copper multi-colour blo
 **Open:** poster in-image credit "Zeka Design" → open-items B4 (rights before launch). Crop behaviour note: build output keeps source aspect; the 4:5 crop is done by CSS `object-cover` (identical visual to a baked crop).
 
 **Update (2026-11-12, second batch):** owner added 2 more pictures → all seven sections now carry cards (`rocketposter` on 01, `knight` on 05); alternation is a perfect L/R/L/R/L/R/L. Values-crowding worry resolved by measurement: sage cards still get 301px each at 1024 (h3 251px), no overflow at any width. Both new images are native 4:5 (1080×1350) — zero crop risk.
+
+## Phase 0 — redesign-polish stabilise (2026-11-13)
+
+Plan `docs/plans/redesign-polish-plan.md`, executed inline with per-task RED→GREEN probes; full decision trail in `.superpowers/sdd/redesign-polish-plan/progress.md`, findings in `docs/qa/findings.md` F21–F26. Key non-obvious decisions:
+
+- **Cal fallback copy (R5)**: visitor-neutral in both envs ("Online booking is coming soon.") — AGENTS.md rule 6's dev-visibility requirement is met via console.warn + sr-only status, not on-page copy.
+- **Cookie safe area (R9)**: reservation happens **pre-paint** (inline head script in `Base.astro` adds `.has-cookie-banner` when no `essential-consent` cookie + CSS defaults 186px <lg / 269px lg+) so the banner appearing causes zero CLS; `cookies.ts` re-measures for manage mode. Mid-scroll overlap of scrolling content is accepted as inherent to fixed overlays. /about's 7-item pill stack cannot geometrically clear the banner zone at <lg → accepted residual, open-items A17.
+- **Footer band (R11)**: repaint is pure CSS (`.structure-footer .webgl-background`) because the three.js shader samples the element's computed background-color — single source of truth. Trail recoloured `rgb(188,61,77)` (`--brand-accent-deep`) so strokes stay visible on burgundy without washing out Off-White text.
+- **Tap targets (R12)**: promoted the coarse-pointer 44px block to **all pointers** (padding/min-height, not type size). This grew the ServicesHero pills and re-triggered the R9 overlap at <lg and lg — fixed in phase 0.2b with an additive hook `.parts-servicesHeroNavRow` (mt 50→10 <lg) and a deeper lg nav translate (offset 62→22px). Lesson recorded: re-run p0-t2 after any pill-size change.
+- **CLS (R14)**: plan hypothesis disproven empirically — the video slot is aspect-resolved; residual CLS is font-swap reflow behind the opaque loader + deliberate GSAP entrance choreography (transform-only tweens emit no shift entries; verified with isolated pages). CLS ≤0.01 metric target moved to Phase 7.
+- **Display-word clipping (R8)**: no defect at 375/1280/1920; one-edge bleeds are the intended motif.
+- Deferred minors: header `Menu` 36px / `Close` 34px / skip link 40px tap sizes → Phase 2.
+
+No new dependencies. No class renames; one additive hook (`.parts-servicesHeroNavRow`). No skill conflicts.

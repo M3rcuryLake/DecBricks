@@ -165,6 +165,7 @@ Every phase: independently shippable, `npm run build` + `npm run check` + `npm r
 - **Skills**: astro-best-practices, webapp-testing.
 - **Acceptance**: probe table shows targets met; three.js absent from network on reduced-motion/contact-only visits (if lazy path chosen).
 - **Deps**: Phases 3–4. **Owner inputs**: none.
+- **Phase-0 note (2026-11-13)**: the home-video-slot CLS hypothesis was disproven (slot is aspect-resolved). Residual CLS sources to attack here: (a) t≈350ms font-swap reflow (fonts land ~313ms behind the opaque loader) — candidates: metric-adjusted fallbacks already exist for Bricolage/Hanken, FK Raster needs one, or `font-display` tuning; (b) t≈3.5s deliberate GSAP entrance choreography on `/` (~0.19 in one run, ~0.02–0.08 in others — timing-dependent) — candidate: gate entrance behind `animationsEnabled`/loader completion consistently. Banner-appear CLS is already solved pre-paint (phase 0.2b). `/@768` measured 0.025–0.075 across runs.
 
 ### Phase 8 — Final QA & handoff (S)
 - **Tasks**: full matrix re-run (5 routes × 7 widths + behaviour probes), update `docs/BUG_REPORT.md`/`PROGRESS.md`/`open-items.md`, known-issues list, tag release candidate.
