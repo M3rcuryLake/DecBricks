@@ -1509,6 +1509,11 @@ html.has-cookie-banner .page .sections-servicesHero {
 .tst-stage {
   position: relative;
   min-height: 340px;
+  /* Pan-y (not `none`): vertical scrolling stays native and always passes
+     through; horizontal drags are delivered to the page so the Phase-2 swipe
+     handler receives pointerup instead of a browser pointercancel. Pinch
+     zoom stays available. */
+  touch-action: pan-y pinch-zoom;
 }
 .tst-card {
   position: absolute;
@@ -1702,5 +1707,53 @@ html.has-cookie-banner .page .sections-servicesHero {
   .tst-railBtn,
   .tst-btn {
     transition: none;
+  }
+}
+
+/* ==========================================================================
+   Testimonials — Phase 2 additions (mobile rail disclosure, live region)
+   ========================================================================== */
+.tst-live {
+  margin: 0;
+}
+.tst-railToggle {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid color-mix(in oklab, var(--brand-surface-alt) 30%, transparent);
+  border-radius: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-surface-alt);
+  cursor: pointer;
+}
+.tst-railToggleChevron {
+  transition: transform var(--dur-micro) var(--ease-brand);
+}
+.tst-rail:not(.is-collapsed) .tst-railToggleChevron {
+  transform: rotate(180deg);
+}
+.tst-railToggle:focus-visible {
+  outline: 2px solid var(--brand-on-dark);
+  outline-offset: 3px;
+}
+@media (max-width: 1023px) {
+  .tst-railTitle {
+    display: none;
+  }
+  .tst-rail.is-collapsed .tst-railList {
+    display: none;
+  }
+}
+@media (min-width: 1024px) {
+  .tst-railToggle {
+    display: none;
   }
 }

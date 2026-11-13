@@ -69,6 +69,7 @@ const initials = (name: string) =>
                 aria-roledescription="quote"
                 aria-label={`${i + 1} of ${total}`}
                 aria-hidden={i === 0 ? 'false' : 'true'}
+                tabindex="-1"
                 data-testid={`testimonial-${t.id}`}
               >
                 <span class="tst-qmark" aria-hidden="true">
@@ -95,7 +96,19 @@ const initials = (name: string) =>
 
           <nav class="tst-rail" aria-label="All quotes">
             <p class="tst-railTitle">All quotes</p>
-            <div class="tst-railList" data-testid="testimonials-rail">
+            <button
+              type="button"
+              class="tst-railToggle"
+              aria-expanded="false"
+              aria-controls="tst-railList"
+              data-testid="testimonials-railToggle"
+            >
+              <span>All quotes</span>
+              <svg class="tst-railToggleChevron" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.6" />
+              </svg>
+            </button>
+            <div class="tst-railList" id="tst-railList" data-testid="testimonials-rail">
               {TESTIMONIALS.map((t, i) => (
                 <button
                   type="button"
@@ -113,6 +126,8 @@ const initials = (name: string) =>
             </div>
           </nav>
         </div>
+
+        <p class="tst-live sr-only" role="status" data-testid="testimonials-live"></p>
 
         <div class="tst-controls">
           <button type="button" class="tst-btn tst-prev" aria-label="Previous quote" data-testid="testimonials-prev">
