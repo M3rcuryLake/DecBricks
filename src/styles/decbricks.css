@@ -109,23 +109,22 @@
 }
 
 /* --------------------------------------------------------------------------
-   Touch targets (WCAG 2.5.8 / best practice ≥44px on coarse pointers).
-   Several template text-buttons are <24px tall — too small for phones.
-   Desktop (fine pointer) is untouched: the compact template look stays.
+   Touch targets (WCAG 2.5.8 / best practice ≥44px). Phase 0 (R12) promotes
+   the former coarse-pointer-only block to all pointers: padding/min-height,
+   not font size — the compact template look keeps its type, the boxes grow.
    -------------------------------------------------------------------------- */
-@media (pointer: coarse) {
-  .parts-serviceNavLink,
-  .parts-btnBlock,
-  .parts-btnScrollTop,
-  .parts-btnText {
-    min-height: 44px;
-  }
-  .parts-btnScrollTop,
-  .parts-btnText {
-    display: inline-flex;
-    align-items: center;
-    vertical-align: middle;
-  }
+.parts-serviceNavLink,
+.parts-btnBlock,
+.parts-btnScrollTop,
+.parts-btnText,
+.parts-scrollButton {
+  min-height: 44px;
+}
+.parts-btnScrollTop,
+.parts-btnText {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
 }
 
 /* Semantic brand aliases (source of truth for values is the @layer theme token
