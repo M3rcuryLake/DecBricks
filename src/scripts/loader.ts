@@ -214,16 +214,42 @@ export function initLoader() {
     width: Math.round(cfg.stages[i].width * scale),
     height: Math.round(cfg.stages[i].height * scale),
   });
+  // Corner ticks + dimension readout, anchored at the box's static top-left
+  // and positioned with transforms from the animated `size` object (visual
+  // size = size × scale). Pure-transform movement ⇒ no layout-shift entries
+  // from the scale-in or stage tweens, at any animation speed.
+  const ticks = [...box.querySelectorAll<HTMLElement>('.svgs-cross')];
+  // Neutralise the template's corner-anchor classes (top/right/bottom/left)
+  // with inline styles: layout anchor becomes the box's static top-left for
+  // every tick; transforms below do the corner placement (CLS-exempt).
+  if (ticks.length) gsap.set(ticks, { top: 0, left: 0, right: 'auto', bottom: 'auto' });
+  const placeChrome = () => {
+    if (!ticks.length) return;
+    // Box LAYOUT size (what the width/height stage tweens change), not the
+    // `size` numeral object — during stage 0 the box layout is already at its
+    // stage size (setBoxStart) while the numerals count up, matching the
+    // template's original tick placement.
+    const w = box.offsetWidth;
+    const h = box.offsetHeight;
+    const tickW = 12 * scale; // ticks size via width: calc(12px * --loader-scale)
+    const tickH = tickW;
+    const side = cfg.readoutPlacement === 'side';
+    const x = side ? w + cfg.readoutOffset * scale : Math.max(0, w - readout.offsetWidth);
+    const y = side ? h : h + 10;
+    gsap.set(readout, { x, y });
+    if (ticks[1]) gsap.set(ticks[1], { x: w - tickW, y: 0 });
+    if (ticks[2]) gsap.set(ticks[2], { x: 0, y: h - tickH });
+    if (ticks[3]) gsap.set(ticks[3], { x: w - tickW, y: h - tickH });
+  };
   const applyConfig = () => {
     cfg = configFor(window.innerWidth);
     scale = computeScale();
     root.style.setProperty('--loader-scale', String(scale));
-    root.style.setProperty('--readout-offset', `${cfg.readoutOffset}px`);
-    readout.classList.toggle('top-full', cfg.readoutPlacement === 'side');
-    readout.classList.toggle('top-[calc(100%+10px)]', cfg.readoutPlacement !== 'side');
-    readout.classList.toggle('right-0', cfg.readoutPlacement !== 'side');
-    readout.style.left =
-      cfg.readoutPlacement === 'side' ? 'calc(100% + var(--readout-offset) * var(--loader-scale))' : '';
+    // Chrome positioning is transform-driven (placeChrome): the readout/ticks
+    // anchor at the box's static top-left and are moved via transforms only,
+    // so the scale-in and stage tweens never shift them through layout
+    // (transform movement is excluded from CLS).
+    placeChrome();
   };
   const setBoxStart = () => {
     const s = stageSize(0);
@@ -231,6 +257,7 @@ export function initLoader() {
   };
   let readoutRaf: number | null = null;
   const updateReadout = () => {
+    placeChrome();
     if (readoutRaf === null) {
       readoutRaf = requestAnimationFrame(() => {
         widthEl.textContent = String(Math.floor(size.width * scale));
@@ -284,7 +311,12 @@ export function initLoader() {
       },
     });
     tl.to(box, { scale: 1, duration: reduced ? 0 : DURATION, ease: EASE });
-    cfg.stages.forEach((_, i) => addStage(i, i === 0 ? '<' : `>${STAGE_OVERLAP}`, reduced));
+    // Stage 0 starts AFTER the scale-in completes, not overlapping it: GSAP
+    // animating transform AND width/height on the same element in the same
+    // frames makes Chrome report the whole sweep as one giant layout-shift
+    // entry (CLS 0.19 on /@768). Sequenced (and each alone) it measures
+    // ≤0.008. Visually identical — stage 0's size equals the start size.
+    cfg.stages.forEach((_, i) => addStage(i, i === 0 ? '>' : `>${STAGE_OVERLAP}`, reduced));
     // Hold at the end until the hero is ready (reduced motion: no animation to
     // sync — release immediately, the intro is already instant).
     tl.addPause('<', () => {
