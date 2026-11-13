@@ -148,7 +148,10 @@ export function initTestimonials(): (() => void) | void {
     }
     if (bar) bar.style.width = `${((current + 1) / total) * 100}%`;
     if (live) live.textContent = `Quote ${current + 1} of ${total}`;
-    equalizeStageHeight();
+    // NOTE: equalizeStageHeight() is deliberately NOT called here — the
+    // stage size is the max over ALL cards at a constant width, so it can't
+    // change between navigations (review fix; it runs on
+    // init/resize/fonts.ready only, see above).
     // Focus follows programmatic changes (keyboard/rail/buttons) — never a swipe.
     if (opts.focus && active) active.focus({ preventScroll: true });
 
