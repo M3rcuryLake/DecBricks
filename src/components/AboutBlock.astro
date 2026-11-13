@@ -56,7 +56,7 @@ const [first, ...rest] = section.paragraphs;
     <div class="flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-25">
       <div>
         <p
-          class="flex items-center gap-15 font-neuePower text-[12px] leading-none font-bold text-darkPurple uppercase lg:gap-10 xl:text-[14px] 3xl:text-[16px] 4xl:text-[18px]"
+          class="u-kicker flex items-center gap-15 font-neuePower text-[12px] leading-none font-bold text-darkPurple uppercase lg:gap-10 xl:text-[14px] 3xl:text-[16px] 4xl:text-[18px]"
         >
           <svg
             class="svgs-doubleSlash w-15 shrink-0 text-purple xl:w-20 4xl:w-25"
@@ -76,7 +76,7 @@ const [first, ...rest] = section.paragraphs;
         </p>
         <h2
           id={`${section.id}-heading`}
-          class="mt-5 pl-30 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPurple uppercase lg:mt-10 lg:pl-0 lg:text-[36px] xl:text-[44px] 3xl:mt-15 3xl:text-[52px] 4xl:text-[60px]"
+          class="u-h2 mt-5 pl-30 font-neuePower text-[22px] leading-[0.88] font-bold text-darkPurple uppercase lg:mt-10 lg:pl-0 lg:text-[36px] xl:text-[44px] 3xl:mt-15 3xl:text-[52px] 4xl:text-[60px]"
           set:html={brandify(section.title)}
         ></h2>
       </div>
@@ -87,7 +87,7 @@ const [first, ...rest] = section.paragraphs;
         ></p>
         {rest.map((paragraph) => (
           <p
-            class="mt-45 font-nohemi text-[16px] leading-[22px] text-darkPurple lg:mt-25 lg:max-w-455 lg:text-[14px] lg:leading-[20px] xl:mt-30 3xl:mt-40 3xl:text-[16px] 3xl:leading-[22px]"
+            class="u-ink mt-45 font-nohemi text-[16px] leading-[22px] text-darkPurple lg:mt-25 lg:max-w-455 lg:text-[14px] lg:leading-[20px] xl:mt-30 3xl:mt-40 3xl:text-[16px] 3xl:leading-[22px]"
             set:html={brandify(paragraph)}
           ></p>
         ))}
