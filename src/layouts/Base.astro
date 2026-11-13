@@ -54,6 +54,16 @@ const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION || undefined;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {/* Phase 0 (R9): decide the cookie-banner reservation before first paint so
+        the safe-area never causes a runtime layout shift. Mirrors the banner's
+        own condition in scripts/cookies.ts (no essential-consent cookie). The
+        reserved height default lives in decbricks.css; cookies.ts keeps
+        re-measuring so manage mode stays accurate. */}
+    <script is:inline>
+      if (!document.cookie.includes('essential-consent')) {
+        document.documentElement.classList.add('has-cookie-banner');
+      }
+    </script>
     <title>{title}</title>
     <meta name="theme-color" content={themeColor} />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />

@@ -600,6 +600,19 @@ li {
 :root {
   --cookie-safe-area: 0px;
 }
+/* Pre-paint defaults measured from the banner card (phase 0): 136px card +
+   50px margin below lg, 207px card + 62px margin at lg+. The inline head
+   script in Base.astro adds .has-cookie-banner synchronously when consent is
+   missing, so this reserves the footprint before first paint and the banner
+   simply appears into it. cookies.ts re-measures for manage mode. */
+html.has-cookie-banner {
+  --cookie-safe-area: 186px;
+}
+@media (min-width: 1024px) {
+  html.has-cookie-banner {
+    --cookie-safe-area: 269px;
+  }
+}
 html.has-cookie-banner .page {
   padding-bottom: var(--cookie-safe-area);
 }
@@ -619,10 +632,10 @@ html.has-cookie-banner .page .sections-servicesHero {
 @media (min-width: 1024px) {
   /* At lg the pills row's position is fixed by the tall content above it, so
      bottom padding cannot lift it. While the banner is visible, translate the
-     nav up by the card's height (safe area minus its bottom margin) so the
-     last pill clears the card. Reverts on dismiss. */
+     nav up past the card (safe area + mb 62 − 40px clearance, so the 44px
+     pills from R12 clear with ~30px to spare). Reverts on dismiss. */
   html.has-cookie-banner .page .sections-servicesHero nav {
-    translate: 0 calc(62px - var(--cookie-safe-area));
+    translate: 0 calc(22px - var(--cookie-safe-area));
   }
 }
 @media not all and (min-width: 1024px) {
@@ -630,5 +643,14 @@ html.has-cookie-banner .page .sections-servicesHero {
      or the min-height shrink has no effect while height wins. */
   html.has-cookie-banner .page div.max-lg\:h-svh {
     height: calc(100svh - var(--cookie-safe-area));
+  }
+  /* ServicesHero pills wrap to 2+ rows below lg; at 44px tap height (R12) the
+     wrapped rows dip under the card (row-2 bottom 647 vs card top 626 on
+     /contact). Trimming the row's top margin 50→10 lifts the whole stack 40px
+     clear while the banner is visible; reverts on dismiss. Heroes with tall
+     pill stacks (/about, 7 items) cannot fully clear a 236px banner zone —
+     residual overlap accepted there (one-tap dismiss), see open-items A17. */
+  html.has-cookie-banner .page .parts-servicesHeroNavRow {
+    margin-top: calc(var(--spacing) * 10);
   }
 }
