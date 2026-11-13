@@ -1561,7 +1561,9 @@ html.has-cookie-banner .page .sections-servicesHero {
   white-space: nowrap;
 }
 .tst-index b {
-  color: var(--brand-accent); /* display numeral, aria-hidden */
+  /* Coral (2.63:1) failed Lighthouse's 3:1 large-text bar — the numeral is
+     live position info, not decoration. Beige passes at ~8.8:1. */
+  color: var(--brand-surface-alt);
   font-weight: 400;
 }
 .tst-grid {
@@ -1612,7 +1614,7 @@ html.has-cookie-banner .page .sections-servicesHero {
   font-weight: 600;
   color: var(--brand-on-light);
   font-size: clamp(24px, 2.6vw, 44px);
-  line-height: 1.15;
+  line-height: 1.2;
   text-wrap: balance;
 }
 .tst-attr {
@@ -1808,7 +1810,7 @@ html.has-cookie-banner .page .sections-servicesHero {
   outline: 2px solid var(--brand-on-dark);
   outline-offset: 3px;
 }
-@media (max-width: 1023px) {
+@media (max-width: 767px) {
   .tst-railTitle {
     display: none;
   }
@@ -1816,7 +1818,7 @@ html.has-cookie-banner .page .sections-servicesHero {
     display: none;
   }
 }
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .tst-railToggle {
     display: none;
   }
@@ -1854,5 +1856,42 @@ html.has-cookie-banner .page .sections-servicesHero {
   }
   .tst-index b.is-swap {
     animation: none;
+  }
+}
+
+/* ==========================================================================
+   Testimonials — Phase 4 additions (plan §4 breakpoint reconciliation)
+   Index/quote/title steps per breakpoint; 320px rail column at ≥1920.
+   ========================================================================== */
+@media (min-width: 640px) {
+  .tst-index {
+    font-size: 56px;
+  }
+  .tst-quote {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+}
+@media (min-width: 1024px) {
+  .tst-index {
+    font-size: 72px;
+  }
+  .tst-quote {
+    font-size: clamp(28px, 2.6vw, 40px);
+    line-height: 1.15;
+  }
+}
+@media (min-width: 1920px) {
+  .tst-index {
+    font-size: 72px;
+  }
+  .tst-quote {
+    font-size: 44px;
+  }
+  .tst-title {
+    font-size: 52px;
+  }
+  .tst-grid {
+    grid-template-columns: minmax(0, 1fr) 320px;
   }
 }

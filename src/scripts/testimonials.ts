@@ -140,8 +140,9 @@ export function initTestimonials(): (() => void) | void {
   fromHash();
 
   // Mobile rail disclosure: collapse by default on small viewports (JS only —
-  // a no-JS mobile visit keeps the rail open). Desktop ignores the class.
-  const mqMobile = window.matchMedia('(max-width: 1023px)');
+  // a no-JS mobile visit keeps the rail open). Per plan §4 the rail is open
+  // above 768px; only <768 collapses. Desktop ignores the class entirely.
+  const mqMobile = window.matchMedia('(max-width: 767px)');
   let collapsed = false;
   if (toggle && mqMobile.matches) {
     collapsed = true;

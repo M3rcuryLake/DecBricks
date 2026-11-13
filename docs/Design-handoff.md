@@ -384,3 +384,12 @@ Plan §8 P3 (motion polish). Small phase, two real findings:
 - **Reduced-motion overrides must come after their base rules:** putting the tst reduced-motion block mid-file (before the Phase-2/3 additions) silently lost the cascade to later same-specificity rules — chevron and numeral kept animating under emulation until the override was re-homed at EOF. Comment left in the CSS so the ordering constraint survives future edits.
 - Numeral micro-crossfade is class-replay based (`.is-swap` + forced reflow), skipped for reduced motion by CSS; the `/ 08` denominator never animates.
 - Long tasks on home at 1440 are pre-existing (WebGL loop, ~57/4s idle, no container attribution); the section contributes none (identical idle vs swap rates; 375 fully clean).
+## Testimonials redesign — Phase 4 (2026-11-13)
+
+Plan §8 P4 (hardening + full verification battery). Findings:
+
+- **Plan §4 vs implemented breakpoints diverged in P1** (quote clamp + rail disclosure at 1024). Reconciled to the approved spec: quote 24 → 28 @640 → `clamp(28px,2.6vw,40px)` @1024 → 44px @≥1920 (line-height 1.2 below 1024, 1.15 above); index 40/56/72; title 52px and 320px rail column at ≥1920.
+- **Rail disclosure moved 1024→768:** at 1024–1919 the old code rendered a *collapsed by default* rail with no toggle (toggle is display:none ≥1024) — unopenable content. Per §4 the rail is a plain column above 768; only <768 collapses with the toggle. JS `mqMobile` now `(max-width: 767px)`.
+- **The coral index numeral failed Lighthouse's 3:1 large-text bar (2.63:1)** — the numeral is live position info, not decoration, so it can't claim the decorative exemption. Recolored beige (`--brand-surface-alt`, 8.82:1); the head keeps its two-tone rhythm via the coral kicker slashes. Rationale comment lives in the CSS next to the rule.
+- **Probe lesson (tooling, not product):** this Playwright version has no `page.accessibility` — SR snapshots come from CDP `Accessibility.getFullAXTree`, and the walk must descend *through* `ignored` generic nodes (skip the row, keep recursing) or whole subtrees silently vanish.
+- Page-level CLS 0 (0.0001 input-inclusive); long tasks unchanged idle-vs-swap (pre-existing WebGL loop); all §4 contrast pairs ≥6.08:1.
