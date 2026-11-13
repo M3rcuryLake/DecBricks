@@ -1917,3 +1917,22 @@ html.has-cookie-banner .page .sections-servicesHero {
   user-select: none;
   -webkit-user-select: none;
 }
+
+/* ==========================================================================
+   Testimonials — Phase 6 additions (owner request: rail scroll + kinetic)
+   Rail column pinned to the stage height ≥1024 (JS in testimonials.ts);
+   the rail list scrolls internally. `data-lenis-prevent` on the list keeps
+   Lenis from hijacking the wheel; `overscroll-behavior` stops scroll
+   chaining to the page. Below 1024 the grid stacks — no pin, no clip.
+   ========================================================================== */
+@media (min-width: 1024px) {
+  .tst-railList {
+    flex: 1 1 0;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(243, 230, 213, 0.35) transparent;
+    scrollbar-gutter: stable;
+  }
+}

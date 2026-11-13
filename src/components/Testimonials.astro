@@ -72,23 +72,25 @@ const initials = (name: string) =>
                 tabindex="-1"
                 data-testid={`testimonial-${t.id}`}
               >
-                <span class="tst-qmark" aria-hidden="true">
-                  ///
-                </span>
-                <blockquote class="tst-quote">
-                  <p>{t.quote}</p>
-                </blockquote>
-                <div class="tst-attr">
-                  <span class="tst-dot" aria-hidden="true">
-                    {initials(t.name)}
+                <div class="tst-cardInner">
+                  <span class="tst-qmark" aria-hidden="true">
+                    ///
                   </span>
-                  <div class="tst-who">
-                    <b>{t.name}</b>
-                    <span>
-                      {t.role}, {t.company}
+                  <blockquote class="tst-quote">
+                    <p>{t.quote}</p>
+                  </blockquote>
+                  <div class="tst-attr">
+                    <span class="tst-dot" aria-hidden="true">
+                      {initials(t.name)}
                     </span>
+                    <div class="tst-who">
+                      <b>{t.name}</b>
+                      <span>
+                        {t.role}, {t.company}
+                      </span>
+                    </div>
+                    <span class="tst-chip">{t.service}</span>
                   </div>
-                  <span class="tst-chip">{t.service}</span>
                 </div>
               </article>
             ))}
@@ -108,7 +110,7 @@ const initials = (name: string) =>
                 <path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.6" />
               </svg>
             </button>
-            <div class="tst-railList" id="tst-railList" data-testid="testimonials-rail">
+            <div class="tst-railList" id="tst-railList" data-testid="testimonials-rail" data-lenis-prevent>
               {TESTIMONIALS.map((t, i) => (
                 <button
                   type="button"

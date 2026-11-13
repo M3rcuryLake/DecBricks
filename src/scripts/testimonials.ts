@@ -23,6 +23,9 @@
  * registered in `main.ts` boot + `onAfterSwap` (unchanged).
  */
 
+import { prefersReducedMotion } from './core/gsap';
+import { MomentumHover } from './core/momentum-hover';
+
 const SWIPE_THRESHOLD = 48; // px, horizontal-dominant
 
 export function initTestimonials(): (() => void) | void {
@@ -53,10 +56,17 @@ export function initTestimonials(): (() => void) | void {
   // raise the stage to the tallest quote (Phase 3 motion polish: swaps are
   // then pure opacity/transform with zero layout shift).
   const STAGE_MIN_H = 340;
+  // ≥1024 the rail is a right column: pin it to the stage's height so the
+  // list scrolls internally instead of driving the section height (plan:
+  // testimonials-rail-kinetic §Task 2). Below 1024 the grid stacks — no pin.
+  const mqDesktop = window.matchMedia('(min-width: 1024px)');
   const equalizeStageHeight = () => {
     if (!stage) return;
     const maxH = cards.reduce((m, c) => Math.max(m, c.scrollHeight), STAGE_MIN_H);
     if (maxH > 0) stage.style.minHeight = `${maxH}px`;
+    if (rail) {
+      rail.style.height = mqDesktop.matches ? `${Math.round(stage.getBoundingClientRect().height)}px` : '';
+    }
   };
   equalizeStageHeight();
   window.addEventListener('resize', equalizeStageHeight);
@@ -177,7 +187,24 @@ export function initTestimonials(): (() => void) | void {
   section.addEventListener('keydown', onKeyDown);
   window.addEventListener('hashchange', fromHash);
 
+  // Kinetic hover (plan: testimonials-rail-kinetic §Task 1) — the template's
+  // own MomentumHover (same split as CaseStudies: card outer / inner target,
+  // so the CSS crossfade transform on the card is never fought by GSAP).
+  // Calmer config than CaseStudies (10/7.5/50/270/15): quote cards are larger
+  // and this section is the calm editorial one. Desktop + fine pointer only,
+  // never under reduced motion.
+  const mmHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+  let momentum: MomentumHover | null = null;
+  if (!prefersReducedMotion() && window.innerWidth >= 1024 && mmHover.matches) {
+    momentum = new MomentumHover(
+      section,
+      cards.map((card) => ({ element: card, target: card.querySelector<HTMLElement>('.tst-cardInner') })),
+      { xyMultiplier: 7, rotationMultiplier: 4.5, inertiaResistance: 90, clampXY: 120, clampRotation: 7 }
+    );
+  }
+
   return () => {
+    momentum?.destroy();
     prevBtn.removeEventListener('click', onPrev);
     nextBtn.removeEventListener('click', onNext);
     railList.removeEventListener('click', onRailClick);
