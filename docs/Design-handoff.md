@@ -283,3 +283,16 @@ No new dependencies. No class renames; one additive hook (`.parts-servicesHeroNa
 **Files:** Hero.astro (3 poster attrs), public/images/heroes/*, Base.astro (from 3.1). No new deps (ffmpeg is a local tool).
 
 **Verification:** p3-t5 GREEN 12/12; audit-main ALL CLEAN ×20 (CLS ≤0.0002 on /@375, LCP inside ±10% everywhere); build/check/check:brand pass.
+
+## Footer redesign — Phase 1 (2026-11-13)
+
+**What:** Split `Footer.astro` into a thin shell composing `src/components/footer/{FooterCta,FooterNav,FooterContact,FooterStatus,FooterWordmark,FooterLegal,FooterWebgl}.astro` backed by typed `src/data/footer.ts` (`FOOTER`, `FOOTER_CONTACT`). Added scoped `.structure-footer__*` layout/type rules in `src/styles/decbricks.css`. Updated `src/scripts/footer.ts` to retire `initSocialPillsRandomLayout` (social data empty under A8), emit once-per-session dev warnings for `[data-dev-missing]`, keep `initSvgRectReveal(footer)` and `.structure-footer__inner` scrub reveal with `invalidateOnRefresh: true`, and guard `.structure-footer__marquee`.
+
+**Decisions:**
+- **Inverted `.structure-footer__ctaBtn` vs `.u-btn-primary`:** `.u-btn-primary` is burgundy-on-light (`#2a0208` / `#800020`), invisible on the burgundy footer field, so `.structure-footer__ctaBtn` inverts to Off-White `#FFF9F2` fill with burgundy `#800020` text (10.36:1).
+- **Retired `C9` marquee + `initSocialPillsRandomLayout`:** Removed 1minus1 adjective marquee from DOM (words archived in `FOOTER.marqueeRetiredWords`) and removed unused ~120-line random social pill physics; `.structure-footer__marquee` remains null-guarded in `footer.ts`.
+- **`cta="auto"` on `/contact`:** Auto-suppresses the redundant "Let's Start Something Great" `<h2>` CTA on `/contact` and emits `<h2 class="sr-only">Site footer</h2>` so the single-`<h1>` and no-skipped-heading gates hold without duplicating the contact page CTA.
+- **Hidden missing-data slots (`A2`/`A3`/`A4`/`A8`/`A11`/`C1`):** Services column (`links: []`), phones/email/Cal/socials, TZ/availability, and legal links render nothing in prod and log once-per-session dev warnings (`data-dev-missing` omitted in prod builds). Added `A18` and `A19` to `docs/open-items.md`.
+
+**Files:** `src/data/footer.ts`, `src/components/footer/*.astro`, `src/components/Footer.astro`, `src/scripts/footer.ts`, `src/styles/decbricks.css`, `docs/open-items.md`.
+

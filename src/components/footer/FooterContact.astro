@@ -1,0 +1,60 @@
+---
+import { FOOTER_CONTACT } from '../../data/footer';
+
+const { email, phones, socials } = FOOTER_CONTACT;
+const hasContact = Boolean(email || phones.length > 0 || socials.length > 0);
+---
+
+{
+  hasContact && (
+    <div class="structure-footer__col structure-footer__contact">
+      <h3 class="structure-footer__colHeading subheading u-kicker text-darkPurple uppercase">
+        Reach us
+      </h3>
+      <ul class="structure-footer__colList">
+        {email && (
+          <li>
+            <a href={`mailto:${email}`} class="structure-footer__link text-darkPurple">
+              {email}
+            </a>
+          </li>
+        )}
+        {phones.map((phone) => (
+          <li>
+            <a href={`tel:${phone.e164}`} class="structure-footer__link text-darkPurple">
+              {phone.display}
+            </a>
+            {phone.whatsapp && (
+              <a
+                href={phone.whatsapp}
+                class="structure-footer__link structure-footer__link--sub subheading u-kicker text-darkPurple uppercase"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`WhatsApp ${phone.label}`}
+              >
+                WhatsApp
+              </a>
+            )}
+          </li>
+        ))}
+      </ul>
+      {socials.length > 0 && (
+        <ul class="structure-footer__socialList" aria-label="Social links">
+          {socials.map((s) => (
+            <li>
+              <a
+                href={s.href}
+                class="structure-footer__social structure-footer__link text-darkPurple"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${s.label} (opens in a new tab)`}
+              >
+                {s.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  )
+}

@@ -1,252 +1,54 @@
 ---
-import { brandify } from '../lib/brand';
+import { FOOTER, FOOTER_CONTACT } from '../data/footer';
+import FooterCta from './footer/FooterCta.astro';
+import FooterNav from './footer/FooterNav.astro';
+import FooterContact from './footer/FooterContact.astro';
+import FooterStatus from './footer/FooterStatus.astro';
+import FooterWordmark from './footer/FooterWordmark.astro';
+import FooterLegal from './footer/FooterLegal.astro';
+import FooterWebgl from './footer/FooterWebgl.astro';
+
+interface Props {
+  cta?: 'auto' | 'show' | 'hide';
+}
+
+const { cta = 'auto' } = Astro.props;
+const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const showCta = cta === 'show' || (cta === 'auto' && pathname !== '/contact');
+
+const missingDev: string[] = [];
+if (import.meta.env.DEV) {
+  if (!FOOTER_CONTACT.email) missingDev.push('email (open-items A4)');
+  if (FOOTER_CONTACT.phones.length === 0) missingDev.push('phones (open-items A3)');
+  if (!FOOTER_CONTACT.cal.link && !FOOTER_CONTACT.cal.bookingUrl) missingDev.push('cal (open-items A2)');
+  if (FOOTER_CONTACT.socials.length === 0) missingDev.push('socials (open-items A8)');
+  if (FOOTER.legal.every((l) => !l.enabled)) missingDev.push('legal pages /privacy-policy & /terms (open-items A11)');
+  if (!FOOTER.studio.timeZone) missingDev.push('studio timezone PUBLIC_STUDIO_TZ');
+}
 ---
-<footer class="structure-footer relative overflow-hidden" role="contentinfo" aria-label="Site footer"
-  ><div class="structure-footer__inner relative z-20 overflow-hidden will-change-transform"
-    ><div class="mx-auto flex w-full max-w-1920 flex-col"
-      ><div class="mb-40 flex px-20 pt-20 lg:px-36 lg:pt-30"
-        ><button class="parts-btnScrollTop mr-auto" aria-label="Rise to the top" type="button"
-          ><div class="relative flex items-center gap-11 overflow-hidden"
-            ><svg
-              class="svgs-arrowUp block w-12 min-w-12 text-darkPurple sm:w-20 sm:min-w-20"
-              viewBox="0 0 20 12"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <rect x="8" y="12" width="4" height="4" transform="rotate(-90 8 12)" fill="currentColor" />
-              <rect y="12" width="4" height="4" transform="rotate(-90 0 12)" fill="currentColor" />
-              <rect x="4" y="8" width="4" height="4" transform="rotate(-90 4 8)" fill="currentColor" />
-              <rect x="8" y="4" width="4" height="4" transform="rotate(-90 8 4)" fill="currentColor" />
-              <rect x="8" y="5.54101e-08" width="4" height="4" fill="currentColor" />
-              <rect x="12" y="4" width="4" height="4" fill="currentColor" />
-              <rect x="16" y="8" width="4" height="4" fill="currentColor" /></svg
-            ><span class="parts-btnScrollTop__label subheading u-kicker text-darkPurple uppercase" aria-hidden="true"
-              >Rise to the top</span
-            ><span class="parts-btnScrollTop__label absolute top-full right-0 text-center subheading u-kicker text-darkPurple uppercase"
-              >Rise to the top</span
-            ></div
-          ></button
-        ><span
-          class="font-brand block whitespace-nowrap text-[22px] text-darkPurple sm:text-[26px] lg:text-[30px]"
-          aria-label="Decbricks"
-        >
-          Decbricks
-        </span></div
-      ><div class="relative"
-        ><div class="structure-footer__marquee flex w-max items-center gap-100" role="presentation" aria-hidden="true"
-          ><span class="block heading-4xl whitespace-nowrap text-darkPurple uppercase">Innovative</span
-          ><span class="block heading-4xl whitespace-nowrap text-darkPurple uppercase">Distinct</span
-          ><span class="block heading-4xl whitespace-nowrap text-darkPurple uppercase">Authentic</span
-          ><span class="block heading-4xl whitespace-nowrap text-darkPurple uppercase">Creative</span
-          ><span class="block heading-4xl whitespace-nowrap text-darkPurple uppercase">Brave</span
-          ><span class="block heading-4xl whitespace-nowrap text-darkPurple uppercase">Innovative</span
-          ><span class="block heading-4xl whitespace-nowrap text-darkPurple uppercase">Distinct</span
-          ><span class="block heading-4xl whitespace-nowrap text-darkPurple uppercase">Authentic</span
-          ><span class="block heading-4xl whitespace-nowrap text-darkPurple uppercase">Creative</span
-          ><span class="block heading-4xl whitespace-nowrap text-darkPurple uppercase">Brave</span></div>
+
+<footer
+  class="structure-footer relative overflow-hidden"
+  role="contentinfo"
+  aria-label="Site footer"
+  data-dev-missing={import.meta.env.DEV && missingDev.length ? missingDev.join('|') : undefined}
+>
+  <div class="structure-footer__inner relative z-20 overflow-hidden will-change-transform">
+    <div class="structure-footer__shell mx-auto flex w-full max-w-1920 flex-col">
+      <FooterCta show={showCta} />
+      <div class="structure-footer__grid">
+        <FooterNav />
+        <FooterContact />
+        <FooterStatus />
       </div>
-        <!-- Social pill links removed: no Decbricks profiles supplied yet (open-items A8).
-             Re-add as .structure-footer__social elements inside the marquee wrapper when available. -->
-        <div
-          class="relative z-10 flex flex-col gap-12 px-20 pb-40 sm:-mt-20 sm:flex-row sm:items-center lg:-mt-20 lg:px-36 2xl:-mt-40"
-        ><span class="mr-auto subheading u-kicker text-darkPurple uppercase" role={'text' as any} aria-label="Copyright information"
-          set:html={brandify('© 2026 Decbricks. All rights reserved.')}
-        ></span
-        ><nav class="flex flex-wrap items-center gap-13 lg:gap-32"
-          ><a
-            href="/the404game"
-            class="part-btnPrimary group flex items-center justify-center gap-12 rounded-8 transition-colors duration-300 cursor-pointer bg-darkestPurple text-white flex-row px-14 py-11 lg:px-18 lg:py-16"
-            aria-label="Play Our 404 Game"
-            ><div class="relative flex overflow-hidden"
-              ><span class="part-btnPrimary__text uppercase btn-text">Play Our 404 Game</span
-              ><span class="part-btnPrimary__text absolute inset-x-0 top-full text-center uppercase btn-text"
-                >Play Our 404 Game</span
-              ></div
-            ></a
-          ><svg
-            class="svgs-doubleSlash hidden -translate-y-1 text-darkPurple lg:block lg:w-20 lg:min-w-20"
-            viewBox="0 0 18 10"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-            <rect
-              x="8"
-              y="9.27246"
-              width="3.09091"
-              height="3.09091"
-              transform="rotate(-90 8 9.27246)"
-              fill="currentColor"
-            />
-            <rect
-              x="11.0938"
-              y="6.18066"
-              width="3.09091"
-              height="3.09091"
-              transform="rotate(-90 11.0938 6.18066)"
-              fill="currentColor"
-            />
-            <rect
-              x="14.1797"
-              y="3.09082"
-              width="3.09091"
-              height="3.09091"
-              transform="rotate(-90 14.1797 3.09082)"
-              fill="currentColor"
-            />
-            <rect y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 0 9.27246)" fill="currentColor" />
-            <rect
-              x="3.09375"
-              y="6.18066"
-              width="3.09091"
-              height="3.09091"
-              transform="rotate(-90 3.09375 6.18066)"
-              fill="currentColor"
-            />
-            <rect
-              x="6.17969"
-              y="3.09082"
-              width="3.09091"
-              height="3.09091"
-              transform="rotate(-90 6.17969 3.09082)"
-              fill="currentColor"
-            /></svg
-          ><svg
-            class="svgs-slash block w-8 min-w-8 -translate-y-1 text-darkPurple lg:hidden"
-            viewBox="0 0 10 10"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-            <rect y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 0 9.27246)" fill="currentColor" />
-            <rect
-              x="3.09375"
-              y="6.18066"
-              width="3.09091"
-              height="3.09091"
-              transform="rotate(-90 3.09375 6.18066)"
-              fill="currentColor"
-            />
-            <rect
-              x="6.17969"
-              y="3.09082"
-              width="3.09091"
-              height="3.09091"
-              transform="rotate(-90 6.17969 3.09082)"
-              fill="currentColor"
-            /></svg
-          ><button
-            aria-label="Manage Cookies"
-            class="parts-btnText rounded-sm subheading u-kicker text-darkPurple uppercase focus:outline-none cursor-pointer"
-            ><div class="relative overflow-hidden"
-              ><span class="parts-btnText__label">Manage Cookies</span
-              ><span class="parts-btnText__label absolute inset-x-0 top-full">Manage Cookies</span></div
-            ></button
-          ><svg
-            class="svgs-doubleSlash hidden -translate-y-1 text-darkPurple lg:block lg:w-20 lg:min-w-20"
-            viewBox="0 0 18 10"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-            <rect
-              x="8"
-              y="9.27246"
-              width="3.09091"
-              height="3.09091"
-              transform="rotate(-90 8 9.27246)"
-              fill="currentColor"
-            />
-            <rect
-              x="11.0938"
-              y="6.18066"
-              width="3.09091"
-              height="3.09091"
-              transform="rotate(-90 11.0938 6.18066)"
-              fill="currentColor"
-            />
-            <rect
-              x="14.1797"
-              y="3.09082"
-              width="3.09091"
-              height="3.09091"
-              transform="rotate(-90 14.1797 3.09082)"
-              fill="currentColor"
-            />
-            <rect y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 0 9.27246)" fill="currentColor" />
-            <rect
-              x="3.09375"
-              y="6.18066"
-              width="3.09091"
-              height="3.09091"
-              transform="rotate(-90 3.09375 6.18066)"
-              fill="currentColor"
-            />
-            <rect
-              x="6.17969"
-              y="3.09082"
-              width="3.09091"
-              height="3.09091"
-              transform="rotate(-90 6.17969 3.09082)"
-              fill="currentColor"
-            /></svg
-                    ><svg
-            class="svgs-doubleSlash hidden -translate-y-1 text-darkPurple lg:block lg:w-20 lg:min-w-20"
-            viewBox="0 0 18 10"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-            <rect
-              x="8"
-              y="9.27246"
-              width="3.09091"
-              height="3.09091"
-              transform="rotate(-90 8 9.27246)"
-              fill="currentColor"
-            />
-            <rect
-              x="11.0938"
-              y="6.18066"
-              width="3.09091"
-              height="3.09091"
-              transform="rotate(-90 11.0938 6.18066)"
-              fill="currentColor"
-            />
-            <rect
-              x="14.1797"
-              y="3.09082"
-              width="3.09091"
-              height="3.09091"
-              transform="rotate(-90 14.1797 3.09082)"
-              fill="currentColor"
-            />
-            <rect y="9.27246" width="3.09091" height="3.09091" transform="rotate(-90 0 9.27246)" fill="currentColor" />
-            <rect
-              x="3.09375"
-              y="6.18066"
-              width="3.09091"
-              height="3.09091"
-              transform="rotate(-90 3.09375 6.18066)"
-              fill="currentColor"
-            />
-            <rect
-              x="6.17969"
-              y="3.09082"
-              width="3.09091"
-              height="3.09091"
-              transform="rotate(-90 6.17969 3.09082)"
-              fill="currentColor"
-            /></svg
-                    ></nav
-        ></div
-      ></div
-    ></div
-  ><div
+      <FooterWordmark />
+      <FooterLegal />
+    </div>
+  </div>
+  <div
     class="webgl-background pointer-events-none absolute inset-0 h-full w-full bg-purple"
     data-trail="rgb(188, 61, 77)"
     aria-hidden="true"
-  ></div></footer
-><canvas class="webgl pointer-events-none fixed inset-0 z-10 hidden h-full w-full lg:block"></canvas
-><canvas class="webgl pointer-events-none fixed inset-0 z-0 hidden h-full w-full lg:block"></canvas>
+  ></div>
+</footer>
+<FooterWebgl />

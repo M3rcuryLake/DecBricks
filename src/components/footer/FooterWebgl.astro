@@ -1,0 +1,10 @@
+---
+/**
+ * Global WebGL canvases mounted at the end of `.page` (after `</footer>`) in
+ * strict fg-then-bg order. Kept here so `reattachCanvases()` in
+ * `src/scripts/webgl/impl.ts` continues to re-bind renderers after every
+ * client-side swap (see BUG-015 / footer-redesign-plan §5.3).
+ */
+---
+<canvas class="webgl pointer-events-none fixed inset-0 z-10 hidden h-full w-full lg:block"></canvas
+><canvas class="webgl pointer-events-none fixed inset-0 z-0 hidden h-full w-full lg:block"></canvas>

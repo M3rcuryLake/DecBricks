@@ -1,0 +1,73 @@
+---
+import { FOOTER } from '../../data/footer';
+import { brandify } from '../../lib/brand';
+
+const legalLinks = FOOTER.legal.filter((l) => l.enabled && Boolean(l.href));
+---
+
+<div class="structure-footer__legal">
+  <p class="structure-footer__copyright subheading u-kicker text-darkPurple uppercase">
+    <Fragment set:html={brandify(FOOTER.copyright)} />
+  </p>
+
+  <div class="structure-footer__legalActions">
+    {legalLinks.map((link) => (
+      <a
+        href={link.href}
+        class="structure-footer__legalLink subheading u-kicker text-darkPurple uppercase"
+      >
+        {link.label}
+      </a>
+    ))}
+
+    <button
+      aria-label={FOOTER.cookieLabel}
+      type="button"
+      class="parts-btnText structure-footer__legalBtn rounded-sm subheading u-kicker text-darkPurple uppercase focus:outline-none cursor-pointer"
+    >
+      <span class="relative block overflow-hidden">
+        <span class="parts-btnText__label block">{FOOTER.cookieLabel}</span>
+        <span class="parts-btnText__label block absolute inset-x-0 top-full" aria-hidden="true">
+          {FOOTER.cookieLabel}
+        </span>
+      </span>
+    </button>
+
+    <a
+      href={FOOTER.game.href}
+      class="structure-footer__legalLink subheading u-kicker text-darkPurple uppercase"
+      aria-label={FOOTER.game.label}
+    >
+      {FOOTER.game.label}
+    </a>
+
+    <button class="parts-btnScrollTop structure-footer__topBtn" aria-label="Rise to the top" type="button">
+      <span class="relative flex items-center gap-11 overflow-hidden">
+        <svg
+          class="svgs-arrowUp block w-12 min-w-12 text-darkPurple sm:w-20 sm:min-w-20"
+          viewBox="0 0 20 12"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <rect x="8" y="12" width="4" height="4" transform="rotate(-90 8 12)" fill="currentColor" />
+          <rect y="12" width="4" height="4" transform="rotate(-90 0 12)" fill="currentColor" />
+          <rect x="4" y="8" width="4" height="4" transform="rotate(-90 4 8)" fill="currentColor" />
+          <rect x="8" y="4" width="4" height="4" transform="rotate(-90 8 4)" fill="currentColor" />
+          <rect x="8" y="5.54101e-08" width="4" height="4" fill="currentColor" />
+          <rect x="12" y="4" width="4" height="4" fill="currentColor" />
+          <rect x="16" y="8" width="4" height="4" fill="currentColor" />
+        </svg>
+        <span class="parts-btnScrollTop__label subheading u-kicker text-darkPurple uppercase" aria-hidden="true">
+          Rise to the top
+        </span>
+        <span
+          class="parts-btnScrollTop__label absolute top-full right-0 text-center subheading u-kicker text-darkPurple uppercase"
+          aria-hidden="true"
+        >
+          Rise to the top
+        </span>
+      </span>
+    </button>
+  </div>
+</div>

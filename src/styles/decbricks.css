@@ -1030,3 +1030,198 @@ html.has-cookie-banner .page .sections-servicesHero {
 .structure-footer a[href="/the404game"] {
   min-height: 44px;
 }
+
+/* --------------------------------------------------------------------------
+   Footer v2 — Phase 1: structure & content architecture (plan §4, §7-P1).
+   Layout, landmarks, responsive columns, CTA, contact/status hooks, legal row.
+   Brick-laid wordmark, grid texture & motion polish arrive in Phases 2–3.
+   -------------------------------------------------------------------------- */
+.structure-footer__shell {
+  padding: clamp(56px, 6vw, 96px) 20px 24px;
+  gap: clamp(32px, 4.5vw, 64px);
+}
+@media (min-width: 1024px) {
+  .structure-footer__shell {
+    padding-inline: 36px;
+  }
+}
+
+.structure-footer__cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px 32px;
+}
+.structure-footer__ctaTitle {
+  font-family: var(--font-neuePower), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(36px, 5.8vw, 96px);
+  line-height: 0.96;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+  max-width: 14ch;
+}
+.structure-footer__ctaActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.structure-footer__ctaBtn,
+.structure-footer__ctaGhost {
+  font-family: var(--font-neuePower), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1;
+  min-height: 52px;
+  padding: 16px 24px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  transition: background-color 200ms var(--ease-brand), transform 200ms var(--ease-brand);
+}
+.structure-footer__ctaBtn {
+  background-color: var(--brand-on-dark);
+  color: var(--brand-bg-dark);
+}
+.structure-footer__ctaBtn:hover {
+  background-color: var(--brand-surface-alt);
+  transform: translateY(-2px);
+}
+.structure-footer__ctaBtn:active {
+  transform: translateY(0);
+}
+.structure-footer__ctaGhost {
+  border: 1.5px solid color-mix(in oklab, var(--brand-on-dark) 55%, transparent);
+  background-color: transparent;
+}
+.structure-footer__ctaGhost:hover {
+  background-color: color-mix(in oklab, var(--brand-on-dark) 10%, transparent);
+}
+@media (max-width: 455px) {
+  .structure-footer__ctaActions {
+    width: 100%;
+  }
+  .structure-footer__ctaBtn,
+  .structure-footer__ctaGhost {
+    flex: 1 1 100%;
+  }
+}
+
+.structure-footer__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 24px;
+  padding-top: 28px;
+  border-top: 1px solid color-mix(in oklab, var(--brand-on-dark) 22%, transparent);
+}
+@media (min-width: 768px) {
+  .structure-footer__grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 32px;
+  }
+}
+
+.structure-footer__col {
+  min-width: 0;
+}
+.structure-footer__colHeading {
+  margin-bottom: 12px;
+}
+.structure-footer__colList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+.structure-footer__link {
+  font-family: var(--font-neuePower), system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.2;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0 1.5px;
+  background-repeat: no-repeat;
+  background-position: 0 calc(100% - 8px);
+  transition: background-size 250ms var(--ease-brand);
+}
+.structure-footer__link:hover {
+  background-size: 100% 1.5px;
+}
+.structure-footer__link--sub {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12px;
+  margin-left: 10px;
+}
+.structure-footer__socialList {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+
+.structure-footer__wordmarkRow {
+  padding-top: 8px;
+  border-top: 1px solid color-mix(in oklab, var(--brand-on-dark) 22%, transparent);
+}
+.structure-footer__wordmark {
+  display: inline-block;
+  font-size: clamp(28px, 4vw, 48px);
+}
+
+.structure-footer__legal {
+  display: flex;
+  flex-direction: column;
+  gap: 12px 24px;
+  padding-top: 20px;
+  border-top: 1px solid color-mix(in oklab, var(--brand-on-dark) 22%, transparent);
+}
+@media (min-width: 768px) {
+  .structure-footer__legal {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+.structure-footer__copyright {
+  margin: 0;
+  line-height: 1.5;
+}
+.structure-footer__legalActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 24px;
+}
+.structure-footer__legalLink,
+.structure-footer__legalBtn,
+.structure-footer__topBtn {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  touch-action: manipulation;
+}
+.structure-footer__legalLink:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.structure-footer a:focus-visible,
+.structure-footer button:focus-visible {
+  outline: 2px solid var(--brand-on-dark);
+  outline-offset: 3px;
+}
+

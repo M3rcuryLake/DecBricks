@@ -1,0 +1,38 @@
+---
+import { FOOTER } from '../../data/footer';
+
+const { timeZone, availability } = FOOTER.studio;
+const hasStatus = Boolean(timeZone || availability);
+
+const AVAILABILITY_LABELS: Record<'open' | 'limited' | 'closed', string> = {
+  open: 'Open for projects',
+  limited: 'Limited availability',
+  closed: 'Booked out',
+};
+---
+
+{
+  hasStatus && (
+    <div
+      class="structure-footer__col structure-footer__status"
+      data-studio-tz={timeZone || undefined}
+    >
+      <h3 class="structure-footer__colHeading subheading u-kicker text-darkPurple uppercase">
+        Studio time
+      </h3>
+      {timeZone && (
+        <p class="structure-footer__clockWrap">
+          <time class="structure-footer__clock text-darkPurple" data-footer-clock>
+            {timeZone}
+          </time>
+        </p>
+      )}
+      {availability && (
+        <p class="structure-footer__availability text-darkPurple">
+          <span class="structure-footer__statusDot" aria-hidden="true" />
+          <span>{AVAILABILITY_LABELS[availability]}</span>
+        </p>
+      )}
+    </div>
+  )
+}

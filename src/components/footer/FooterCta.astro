@@ -1,0 +1,45 @@
+---
+import { FOOTER, FOOTER_CONTACT } from '../../data/footer';
+
+interface Props {
+  show: boolean;
+}
+
+const { show } = Astro.props;
+const hasBooking = Boolean(FOOTER_CONTACT.cal.link || FOOTER_CONTACT.cal.bookingUrl);
+const bookingHref = FOOTER_CONTACT.cal.bookingUrl || '/contact#book-a-call';
+const bookingExternal = Boolean(FOOTER_CONTACT.cal.bookingUrl);
+---
+
+{
+  show ? (
+    <section class="structure-footer__cta" aria-labelledby="footer-cta-heading">
+      <h2 id="footer-cta-heading" class="structure-footer__ctaTitle text-darkPurple">
+        {FOOTER.cta.heading}
+      </h2>
+      <div class="structure-footer__ctaActions">
+        <a
+          href={FOOTER.cta.primary.href}
+          class="structure-footer__ctaBtn"
+        >
+          <span>{FOOTER.cta.primary.label}</span>
+          <span aria-hidden="true">→</span>
+        </a>
+        {hasBooking && (
+          <a
+            href={bookingHref}
+            class="structure-footer__ctaGhost text-darkPurple"
+            target={bookingExternal ? '_blank' : undefined}
+            rel={bookingExternal ? 'noopener noreferrer' : undefined}
+          >
+            <span>{FOOTER.cta.bookingLabel}</span>
+          </a>
+        )}
+      </div>
+    </section>
+  ) : (
+    <h2 id="footer-heading" class="sr-only">
+      Site footer
+    </h2>
+  )
+}
