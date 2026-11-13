@@ -17,28 +17,36 @@ function deriveNavItems(links: HTMLAnchorElement[]) {
 function initServicesHero(heroEl: HTMLElement) {
   // 1. "Jump to" ServiceNavLink char roll hover/focus (ZYPH-moW.js).
   // Desktop-only matchMedia gate; reverse runs at default timescale; charsClass 'char'.
-  const navLinks = Array.from(heroEl.querySelectorAll<HTMLAnchorElement>('.parts-serviceNavLink'));  const mmRoll = gsap.matchMedia();
+  const navLinks = Array.from(heroEl.querySelectorAll<HTMLAnchorElement>('.parts-serviceNavLink'));
+  const mmRoll = gsap.matchMedia();
   mmRoll.add(
     { isDesktop: `(min-width: ${bp.lg}px)`, reduceMotion: '(prefers-reduced-motion: reduce)' },
     (ctx) => {
       const { isDesktop, reduceMotion } = ctx.conditions as { isDesktop: boolean; reduceMotion: boolean };
       if (!isDesktop || reduceMotion) return;
       const splits: SplitText[] = [];
+      const timelines: gsap.core.Timeline[] = [];
+      const ac = new AbortController();
       navLinks.forEach((link) => {
         const labels = link.querySelectorAll<HTMLElement>('.parts-serviceNavLink__label');
         if (!labels.length) return;
         const split = SplitText.create(labels, { type: 'chars', charsClass: 'char' });
         splits.push(split);
         const tl = gsap.timeline({ paused: true });
+        timelines.push(tl);
         tl.to(split.chars, { yPercent: -100, ease: 'power1.inOut', stagger: 0.03, duration: 0.2 });
         const onEnter = () => tl.play();
         const onLeave = () => tl.reverse();
-        link.addEventListener('mouseenter', onEnter);
-        link.addEventListener('mouseleave', onLeave);
-        link.addEventListener('focus', onEnter);
-        link.addEventListener('blur', onLeave);
+        link.addEventListener('mouseenter', onEnter, { signal: ac.signal });
+        link.addEventListener('mouseleave', onLeave, { signal: ac.signal });
+        link.addEventListener('focus', onEnter, { signal: ac.signal });
+        link.addEventListener('blur', onLeave, { signal: ac.signal });
       });
-      return () => splits.forEach((s) => s.revert());
+      return () => {
+        ac.abort();
+        timelines.forEach((tl) => tl.kill());
+        splits.forEach((s) => s.revert());
+      };
     }
   );
 
@@ -135,7 +143,7 @@ function initServicesHero(heroEl: HTMLElement) {
     setupHeroEntrance();
   };
 
-  bus.on(' hero-transition-start'.trim(), onPlayHero);
+  bus.on('hero-transition-start', onPlayHero);
   if ((window as any).animationsEnabled) {
     setupHeroEntrance();
   } else {
@@ -143,8 +151,14 @@ function initServicesHero(heroEl: HTMLElement) {
   }
 
   return () => {
-    bus.off(' hero-transition-start'.trim(), onPlayHero);
+    bus.off('hero-transition-start', onPlayHero);
     bus.off('transition-entrance-done', onTransitionEntranceDone);
+    heroTriggers.forEach((st) => st.kill());
+    heroTriggers.length = 0;
+    entranceTl?.kill();
+    entranceTl = null;
+    webGLTrail?.destroy();
+    webGLTrail = null;
     mmRoll.revert();
   };
 }
@@ -332,31 +346,41 @@ function initServicesSidebarNav() {
     }
   };
 
+  const navAc = new AbortController();
+
   // Sidebar item click (tKtS4PHT.js select): prevent default, smooth-scroll via Lenis,
   // hold until the scroll completes, then re-sync the active item to the live position.
   items.forEach((item) => {
-    item.link.addEventListener('click', (e) => {
-      e.preventDefault();
-      held = true;
-      addHoldListeners();
-      setActive(item.id);
-      scrollToSection(item.id, () => {
-        removeHoldListeners();
-        held = false;
-        syncActiveToScroll();
-      });
-    });
+    item.link.addEventListener(
+      'click',
+      (e) => {
+        e.preventDefault();
+        held = true;
+        addHoldListeners();
+        setActive(item.id);
+        scrollToSection(item.id, () => {
+          removeHoldListeners();
+          held = false;
+          syncActiveToScroll();
+        });
+      },
+      { signal: navAc.signal }
+    );
   });
 
   // Hero "Jump to" click (ZYPH-moW.js select → useServicesNav.scrollToSection):
   // smooth-scroll only; the hero highlight follows its own section triggers.
   heroJumpLinks.forEach((jumpLink) => {
-    jumpLink.addEventListener('click', (e) => {
-      const id = (jumpLink.getAttribute('href') || '').replace(/^#/, '');
-      if (!id) return;
-      e.preventDefault();
-      scrollToSection(id, () => {});
-    });
+    jumpLink.addEventListener(
+      'click',
+      (e) => {
+        const id = (jumpLink.getAttribute('href') || '').replace(/^#/, '');
+        if (!id) return;
+        e.preventDefault();
+        scrollToSection(id, () => {});
+      },
+      { signal: navAc.signal }
+    );
   });
 
   const mm = gsap.matchMedia();
@@ -466,6 +490,12 @@ function initServicesSidebarNav() {
   );
 
   return () => {
+    navAc.abort();
+    removeHoldListeners();
+    items.forEach((item) => {
+      item.tl?.kill();
+      item.tl = null;
+    });
     mm.revert();
   };
 }
