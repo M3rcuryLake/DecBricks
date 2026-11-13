@@ -5,6 +5,22 @@ const EASE = 'smooth-2';
 const READOUT_DELAY = 0.2;
 const STAGE_OVERLAP = -0.2;
 const RESIZE_THRESHOLD = 140;
+// Redesign-polish §4 Phase 2 (owner-approved "plan default", 2026-11-13):
+// intro plays ≤1.2s on the FIRST visit of a browser session, is skipped on
+// repeat visits, and is hard-capped at 1.5s even if hero media lags.
+// Rollback = remove the sessionStorage gate + timeScale/cap lines below.
+const INTRO_TARGET_S = 1.1; // intro (pre-hold) duration target, ≤1.2s budget
+const HARD_CAP_MS = 1500;
+const LOADER_SEEN_KEY = 'decbricks:loader-seen';
+
+const loaderSeenThisSession = (): boolean => {
+  try {
+    if (document.documentElement.classList.contains('loader-skip')) return true;
+    return sessionStorage.getItem(LOADER_SEEN_KEY) === '1';
+  } catch {
+    return false;
+  }
+};
 
 type Stage = { width: number; height: number };
 type Config = {
@@ -91,36 +107,36 @@ function headingTimeline(el: HTMLElement, reduced: boolean) {
   tl.to(a.chars, {
     y: 0,
     opacity: 1,
-    duration: 0.3,
+    duration: reduced ? 0 : 0.3,
     ease: 'slowDown',
-    stagger: { each: 0.02, from: 'random' },
+    stagger: reduced ? 0 : { each: 0.02, from: 'random' },
   })
     .to(
       b.chars,
       {
         y: 0,
         opacity: 1,
-        duration: 0.35,
+        duration: reduced ? 0 : 0.35,
         ease: 'slowDown',
-        stagger: { each: 0.02, from: 'random' },
+        stagger: reduced ? 0 : { each: 0.02, from: 'random' },
       },
       '<+=0.1'
     )
     .to(a.chars, {
       y,
       opacity: o,
-      duration: 0.3,
+      duration: reduced ? 0 : 0.3,
       ease: 'accelerate',
-      stagger: { each: 0.025, from: 'random' },
+      stagger: reduced ? 0 : { each: 0.025, from: 'random' },
     })
     .to(
       b.chars,
       {
         y,
         opacity: o,
-        duration: 0.35,
+        duration: reduced ? 0 : 0.35,
         ease: 'accelerate',
-        stagger: { each: 0.025, from: 'random' },
+        stagger: reduced ? 0 : { each: 0.025, from: 'random' },
       },
       '<+=0.1'
     );
@@ -130,8 +146,9 @@ function headingTimeline(el: HTMLElement, reduced: boolean) {
 
 export function initLoader() {
   const root = document.querySelector<HTMLElement>('.structure-loader');
-  // Run once per initial page load only, never on route changes or duplicate calls
-  if (!root || hasRunInitialLoader) {
+  // Run once per initial page load only, never on route changes or duplicate calls.
+  // Repeat visits in the same session skip entirely (owner-approved plan default).
+  if (!root || hasRunInitialLoader || loaderSeenThisSession()) {
     if (root) root.style.display = 'none';
     (window as any).animationsEnabled = true;
     bus.emit('transition-entrance-done');
@@ -142,6 +159,11 @@ export function initLoader() {
   }
 
   hasRunInitialLoader = true;
+  try {
+    sessionStorage.setItem(LOADER_SEEN_KEY, '1');
+  } catch {
+    /* private mode: loader just plays every visit */
+  }
   if (activeLoaderCtx) {
     activeLoaderCtx.revert();
     activeLoaderCtx = null;
@@ -171,6 +193,7 @@ export function initLoader() {
   let lastW = window.innerWidth;
   let lastH = window.innerHeight;
   let heroReady = false;
+  let capTimer: number | undefined;
   let tl!: gsap.core.Timeline;
 
   const maxStage = () =>
@@ -254,6 +277,7 @@ export function initLoader() {
     tl = gsap.timeline({
       onStart: () => bus.emit('transition-entrance-done'),
       onComplete: () => {
+        window.clearTimeout(capTimer);
         setTimeout(() => {
           bus.emit('page-transition-complete');
         }, 0);
@@ -261,12 +285,13 @@ export function initLoader() {
     });
     tl.to(box, { scale: 1, duration: reduced ? 0 : DURATION, ease: EASE });
     cfg.stages.forEach((_, i) => addStage(i, i === 0 ? '<' : `>${STAGE_OVERLAP}`, reduced));
-    // Hold at the end until the hero is ready.
+    // Hold at the end until the hero is ready (reduced motion: no animation to
+    // sync — release immediately, the intro is already instant).
     tl.addPause('<', () => {
-      if (heroReady) tl.play();
+      if (heroReady || reduced) tl.play();
     });
     tl.call(() => bus.emit('hero-transition-start'), undefined, '<+0.3');
-    tl.to(root, { autoAlpha: 0, duration: 0.5 }, '<');
+    tl.to(root, { autoAlpha: 0, duration: reduced ? 0 : 0.5 }, '<');
     tl.call(
       () => {
         (window as any).animationsEnabled = true;
@@ -276,6 +301,19 @@ export function initLoader() {
       undefined,
       '<'
     );
+    // Intro compression: speed the whole timeline so the animated intro (up to
+    // the hero hold) lands within the ≤1.2s budget. Sub-timelines (heading
+    // char slides) inherit the parent timeScale.
+    const natural = tl.duration();
+    if (!reduced && natural > INTRO_TARGET_S) tl.timeScale(natural / INTRO_TARGET_S);
+    // Hard cap: even if hero media lags, release the hold and finish within
+    // the 1.5s budget (any remaining tail runs 2× faster).
+    capTimer = window.setTimeout(() => {
+      heroReady = true;
+      if (tl.paused()) tl.play();
+      // Rush any remaining tail (hold release + fade) to honour the cap.
+      tl.timeScale(Math.max(tl.timeScale(), 4));
+    }, HARD_CAP_MS);
   }, root);
 
   activeLoaderCtx = ctx;

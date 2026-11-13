@@ -63,6 +63,14 @@ const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION || undefined;
       if (!document.cookie.includes('essential-consent')) {
         document.documentElement.classList.add('has-cookie-banner');
       }
+      // Phase 2 loader policy: hide the loader before first paint on repeat
+      // visits of the same session (companion to scripts/loader.ts, which
+      // skips the timeline entirely and emits its lifecycle events anyway).
+      try {
+        if (sessionStorage.getItem('decbricks:loader-seen') === '1') {
+          document.documentElement.classList.add('loader-skip');
+        }
+      } catch (e) {}
     </script>
     <title>{title}</title>
     <meta name="theme-color" content={themeColor} />

@@ -285,6 +285,16 @@
    Polish pass (S3, QA 2026-11-11). Small, palette-only refinements.
    -------------------------------------------------------------------------- */
 
+/* --------------------------------------------------------------------------
+   Phase 2 loader policy (owner-approved plan default, 2026-11-13). Repeat
+   visits in the same session skip the brand intro; this rule hides the fixed
+   loader before first paint (the JS skip in loader.ts removes it at boot,
+   which alone would flash the burgundy overlay).
+   -------------------------------------------------------------------------- */
+html.loader-skip .structure-loader {
+  display: none !important;
+}
+
 /* Text selection was the last default-blue surface on a fully branded site. */
 ::selection {
   background-color: var(--brand-bg-dark);
