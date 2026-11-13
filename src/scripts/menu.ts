@@ -49,43 +49,25 @@ function updateHeaderActiveUI(pathname = normalizePath(window.location.pathname)
   header.querySelectorAll<HTMLAnchorElement>('nav a[href]').forEach((link) => {
     const rawHref = link.getAttribute('href') || '';
     const dataAnchor = link.getAttribute('data-anchor') || '';
-    const isDesktopBtn = link.classList.contains('parts-btnBlock');
-    // Highlight pill = Contact (Header.astro renders it with the burgundy
-    // highlight classes; it is a permanent CTA pill, not a route-active one).
-    // Header used to model it with `data-anchor="#contact"`, which the runtime
-    // matched — it is a plain href now, so match the href as well.
-    const isHighlight = dataAnchor === '#contact' || rawHref === '/contact';
+    // The Contact pill is a permanent CTA (burgundy fill), not a route-active
+    // marker; route state is conveyed by router-link-active + the underline.
 
     let isRouteMatch = false;
-    let isActive = false;
 
     if (dataAnchor) {
       isRouteMatch = isHome;
-      isActive = currentAnchor === dataAnchor;
     } else if (rawHref === '/services') {
       isRouteMatch = isServices;
-      isActive = isServices;
     } else if (rawHref === '/about' || rawHref === '/contact') {
       // Plain pages: keep SSR `router-link-active`/`aria-current` in sync
       // instead of stripping them (About/Contact previously lost both).
       isRouteMatch = rawHref === pathname;
-      isActive = isRouteMatch;
     }
 
     link.classList.toggle('router-link-active', isRouteMatch);
     link.classList.toggle('router-link-exact-active', isRouteMatch);
     if (isRouteMatch) link.setAttribute('aria-current', 'page');
     else link.removeAttribute('aria-current');
-
-    if (isDesktopBtn && !isHighlight) {
-      // Active pill = burgundy + beige text (matches Header.astro's SSR class
-      // for `link.current`); the coral `bg-purple` token can't carry 12–14px
-      // white text (3.9:1).
-      link.classList.toggle('bg-darkPurple', isActive);
-      link.classList.toggle('text-neonGreen', isActive);
-      link.classList.toggle('hover:bg-white', !isActive);
-      link.classList.toggle('focus:bg-white', !isActive);
-    }
   });
 }
 

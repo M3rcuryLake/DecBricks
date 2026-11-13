@@ -29,7 +29,7 @@ const links = [
   ><nav
     class="pointer-events-auto hidden items-center gap-5 overflow-hidden rounded-8 structure-navPill p-4 lg:flex"
     aria-label="Main navigation"
-  >{links.map((link) => (
+  >{links.map((link, i) => (
       <a
         aria-current={link.current ? 'page' : undefined}
         href={link.href}
@@ -37,11 +37,12 @@ const links = [
         class:list={[
           link.current && 'router-link-active router-link-exact-active',
           link.label === 'Contact'
-            ? 'parts-btnBlock flex items-center bg-darkPurple text-neonGreen duration-500 focus:outline-none rounded-8 px-8 pt-9 pb-8 lg:py-14 lg:px-16 hover:bg-white hover:text-darkPurple'
+            ? 'parts-btnBlock flex items-center bg-darkPurple duration-500 focus:outline-none rounded-8 px-8 pt-9 pb-8 lg:py-14 lg:px-16 hover:bg-white hover:text-darkPurple'
             : 'parts-btnBlock flex items-center text-darkPurple duration-500 focus:outline-none hover:bg-white focus:bg-white rounded-8 px-8 pt-9 pb-8 lg:py-14 lg:px-16',
         ]}
         aria-label={link.label}
-      ><div class="relative flex overflow-hidden"
+      ><span class="parts-btnBlock__index" aria-hidden="true">{`0${i + 1}`}</span
+        ><div class="relative flex overflow-hidden"
         ><span class="parts-btnBlock__label text-center btn-text uppercase">{link.label}</span
         ><span class="parts-btnBlock__label absolute inset-x-0 top-full text-center btn-text uppercase">{link.label}</span></div
       ></a>
@@ -93,10 +94,10 @@ const links = [
         fill="currentColor"
       /></svg></button
   ><nav
-    class="pointer-events-auto absolute inset-x-0 top-0 flex w-full flex-col gap-6 px-17 pt-100 pb-54 lg:hidden"
+    class="pointer-events-auto absolute inset-x-0 top-0 flex w-full flex-col px-17 pt-100 pb-27 lg:hidden"
     aria-label="Main navigation"
     ><div class="relative z-10 overflow-hidden"
-      >{links.map((link) => (
+      >{links.map((link, i) => (
         <a
           aria-current={link.current ? 'page' : undefined}
           href={link.href}
@@ -106,10 +107,14 @@ const links = [
             'link block btn-menu text-darkPurple uppercase',
           ]}
           aria-label={link.label}
-        >{link.label}</a
+        ><span class="link-index" aria-hidden="true">{`0${i + 1}`}</span>{link.label}</a
         >
       ))}
     </div
+    ><div class="structure-menu__meta relative z-10 mt-auto flex items-center justify-between pt-24"
+      ><span class="u-kicker">Menu</span
+      ><span class="u-kicker">Esc to close</span
+    ></div
     ><button
       class="close absolute top-16 right-16 z-10 flex items-center gap-8 rounded-8 bg-darkPurple text-white px-13 py-11 btn-text uppercase"
       aria-expanded="false"
@@ -129,16 +134,7 @@ const links = [
         <rect y="12" width="4" height="4" transform="rotate(-90 0 12)" fill="currentColor" />
         <rect x="8" y="12" width="4" height="4" transform="rotate(-90 8 12)" fill="currentColor" /></svg></button
     ><div
-      class="background absolute inset-x-0 bottom-0 aspect-10/9 w-[200%] -translate-x-[3%] -rotate-6 rounded-8 bg-neonGreen"
+      class="background absolute inset-x-0 top-0 bottom-0 w-full"
       aria-hidden="true"
-      ><svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 659 374"
-        class="fixed top-1/2 left-1/2 block w-456 -translate-x-1/2 -translate-y-1/2 text-white"
-      >
-        <path
-          fill="currentColor"
-          d="M506.526 0H330.411v8.086h-18.217V19.55h-18.217v11.455h-17.542v12.13h-17.542v12.13h-16.53l-1.012 1.01v11.793h-16.867V80.87h-16.867v12.804h-16.868v13.477h-16.192v13.477h-15.856l-1.012 1.011v13.14h-16.192v14.151h-15.518v14.825h-15.518v14.825H95.618v14.825H80.774v14.488l-1.012 1.011H65.931v14.488l-1.012 1.011H51.088v16.172H33.1l-.074 21.16H18.257v19.717H0V374l49.064-.121V361.87h17.542v-11.455H83.81l1.012-1.011v-9.771h17.205l1.012-1.011v-9.771h18.217v-9.434h18.891v-9.434h18.892v-9.434h18.554c2.064-2.332.593-6.442 1.012-9.434h18.891v-8.76h19.566v-8.76h18.892v-8.761h19.566v-8.76h19.566c.385-2.796-1.012-6.617 1.012-8.76h18.554v-8.086h19.566v-7.413h19.566v-7.412h19.229c1.923-1.779.708-5.007 1.012-7.413h19.566v-6.738h20.241v-6.739h17.542v3.369h-12.819v13.478h-15.181l-1.012 1.01v13.814h-15.518v14.825h-14.843v13.815l-1.012 1.01h-14.506v14.825h-15.518v14.825h-14.843v15.499h-14.843v56.979h59.71v-13.577h15.855v-14.353h14.85v-13.55h15.518v-14.825h14.506c1.687-2.466 1.113-7.284 1.046-10.472-.041-1.718-1.363-3.268.303-4.353h14.506v-13.814l1.012-1.011h14.506v-13.14l1.012-1.011h15.181v-13.477h16.193v-13.477h16.192v-11.793l1.012-1.011h15.856v-12.803h16.867v-12.13h17.542v-11.118l1.012-1.011h17.205v-10.782h17.204l1.012-1.011v-9.771h18.217v-10.108h18.217c.445-3.194-1.086-7.574 1.012-10.108h17.879v-9.434h18.892v-6.065H659V72.11h-60.722v4.717h-20.241v5.39h-20.916v5.392H536.88v5.39h-20.915v6.065h-20.241v5.391h-19.903c-1.761 1.436-.823 4.03-1.012 6.065h-20.241v6.065h-20.241v6.738h-20.241v6.065h-20.241v6.739h-20.24v6.738h-20.241v6.739h-20.241v6.739h-20.241v7.412h-19.566v7.413h-20.241v7.412h-19.566v8.76h-19.566v8.087h-19.566v8.76h-19.566v8.76h-16.193v-3.369h8.103v-14.151h15.518v-13.141l1.012-1.01h15.181v-13.478h16.867v-13.477h16.193v-12.803h16.867v-12.804h16.868v-12.803h16.867v-11.119l1.012-1.011h16.53v-12.13h17.542V80.197h17.542V69.751l1.012-1.01h17.205V57.959h18.216V47.85h18.892V37.743h18.891v-9.434h18.892c.418-2.992-1.053-7.103 1.012-9.434h18.554v-8.76h18.884v-7.42c6.309-.316 12.995.432 19.256.007 1.923-.128.709-1.664.992-2.702"
-        /></svg></div></nav
+    ></div></nav
 ></header>

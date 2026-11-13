@@ -482,15 +482,19 @@ li {
   position: absolute;
   z-index: 300;
   margin: 10px;
-  padding: 10px 16px;
-  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 18px;
+  /* Brand signature radius (§3). */
+  border-radius: 40px 0 40px 40px;
   transform: translateY(-200%);
   background-color: var(--brand-bg-dark);
   color: var(--brand-on-dark);
-  font-family: var(--font-display, sans-serif);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 .part-skipLink:focus {
@@ -607,6 +611,86 @@ li {
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
 }
+
+/* --------------------------------------------------------------------------
+   Phase 2 header (redesign-polish §4.1): mono index + underline active state.
+   The Contact pill keeps its burgundy fill but carries Off-White text (the
+   remapped "neonGreen" token reads beige; the CTA standardises on on-dark
+   text). Hover slide labels are untouched; the index sits outside the slide
+   mask. Departure Mono gets the nav indexes (mono's real job, §3).
+   -------------------------------------------------------------------------- */
+.parts-btnBlock__index {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  color: var(--color-ink-muted);
+  margin-right: 7px;
+  transform: translateY(-1px);
+}
+/* Active route = 2px bar under the label. It must live on the link (not as
+   text-decoration on the label): the labels sit in a tight overflow-hidden
+   slide mask (line-height 100%), which would clip any offset decoration. */
+.structure-navPill .parts-btnBlock {
+  position: relative;
+}
+.structure-navPill .parts-btnBlock.router-link-active::after {
+  content: '';
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 9px;
+  height: 2px;
+  background: currentColor;
+}
+.parts-btnBlock.bg-darkPurple {
+  color: var(--brand-on-dark);
+}
+
+/* Phase 2 tap rects: mobile Menu button (36px → 44px) and the mobile menu
+   Close button (34px → 44px). min-height + flex centering; padding untouched
+   so the visual weight stays with the button, not the label. */
+.structure-menu > button {
+  min-height: 44px;
+}
+.structure-menu .close {
+  min-height: 44px;
+}
+
+/* --------------------------------------------------------------------------
+   Phase 2 mobile menu (§4.2): full editorial overlay — straight grid, no
+   rotation, no 1minus1 glyph, mono meta row. The overlay nav itself spans
+   the viewport; links get hairline separators + mono indexes.
+   -------------------------------------------------------------------------- */
+.structure-menu > nav.absolute {
+  min-height: 100svh;
+}
+.structure-menu nav .background {
+  background-color: var(--brand-surface);
+  border-radius: 0;
+}
+.structure-menu nav .link {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 16px 0 14px;
+  border-bottom: 1px solid var(--hairline);
+}
+.structure-menu nav .link .link-index {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  color: var(--color-ink-muted);
+}
+.structure-menu__meta {
+  color: var(--color-ink-muted);
+}
+.structure-menu__meta .u-kicker {
+  font-size: 11px;
+}
+
+/* Skip link (§4.6) styling is updated in its own block below. */
 
 /* Tap targets < 24px (BUG-008): "Scroll To Explore" (16px), "Rise to the
    top" (17px), footer "Manage Cookies" (16px). Expand the clickable area
