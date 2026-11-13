@@ -1944,3 +1944,76 @@ html.has-cookie-banner .page .sections-servicesHero {
     scrollbar-gutter: stable;
   }
 }
+
+/* ==========================================================================
+   Services 7-Cards — Phase 1: ServiceArtwork bespoke palette SVG tokens
+   Pure CSS variables mapped to the fixed brand palette (tokens.md) across
+   `/services` blueprint plates and `/` home mini card badges.
+   ========================================================================== */
+.parts-serviceArtwork {
+  --art-ink: #800020;
+  --art-card: #fff9f2;
+  --art-card-alt: #f3e6d5;
+  --art-accent: #bc3d4d;
+  --art-sage: #c9d3c0;
+  --art-olive: #5a6432;
+  --art-mini-bg: #fff9f2;
+  --art-mini-fg: #800020;
+  --art-mini-stroke: rgba(128, 0, 32, 0.22);
+}
+.parts-serviceArtwork[data-surface='beige-plate'] {
+  background-color: var(--brand-surface-alt, #f3e6d5);
+}
+.parts-serviceArtwork[data-surface='sage-plate'] {
+  background-color: var(--brand-sage, #c9d3c0);
+  --art-ink: #2a0208;
+  --art-card: #fff9f2;
+  --art-card-alt: #f3e6d5;
+}
+.parts-serviceArtwork--plate {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.parts-serviceArtwork--mini {
+  width: 96px;
+  height: 96px;
+  flex: 0 0 auto;
+}
+@media (min-width: 1440px) {
+  .parts-serviceArtwork--mini {
+    width: 112px;
+    height: 112px;
+  }
+}
+.parts-serviceArtwork[data-surface='beige'],
+.parts-serviceArtwork[data-surface='beige-alt'] {
+  --art-mini-bg: #fff9f2;
+  --art-mini-fg: #2a0208;
+  --art-mini-stroke: rgba(128, 0, 32, 0.22);
+}
+.parts-serviceArtwork[data-surface='burgundy'],
+.parts-serviceArtwork[data-surface='deepest'] {
+  --art-mini-bg: #fff9f2;
+  --art-mini-fg: #800020;
+  --art-mini-stroke: rgba(255, 249, 242, 0.4);
+}
+.parts-serviceArtwork[data-surface='sage'] {
+  --art-mini-bg: #fff9f2;
+  --art-mini-fg: #2f3a1e;
+  --art-mini-stroke: rgba(47, 58, 30, 0.35);
+}
+.parts-serviceArtwork[data-surface='brick'] {
+  --art-mini-bg: #5a0014;
+  --art-mini-fg: #fff9f2;
+  --art-mini-stroke: rgba(255, 249, 242, 0.35);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .parts-serviceArtwork__brick {
+    transition: transform var(--dur-std) var(--ease-brand);
+  }
+  .parts-serviceCard:hover .parts-serviceArtwork__brick,
+  .parts-serviceBlock:hover .parts-serviceArtwork__brick {
+    transform: translateY(-3px);
+  }
+}
