@@ -296,3 +296,14 @@ No new dependencies. No class renames; one additive hook (`.parts-servicesHeroNa
 
 **Files:** `src/data/footer.ts`, `src/components/footer/*.astro`, `src/components/Footer.astro`, `src/scripts/footer.ts`, `src/styles/decbricks.css`, `docs/open-items.md`.
 
+
+## Testimonials redesign — Phase 0 (2026-11-13)
+
+Plan `docs/plans/testimonials-redesign-plan.md` (owner-approved, Concept A spotlight), evidence `docs/plans/audit/testimonials-current.md`. What/why/files:
+
+- **Data extraction:** `src/data/testimonials.ts` (typed, mirrors `services.ts` pattern) holds 8 clearly-marked placeholder quotes derived from the template's own set — sentiments and length variety kept, all real clients/"1minus1" removed, `service` mapped to the real Strategy/Creative/Web-Development/Campaigns taxonomy. The old 9 hardcoded cards (incl. the Team17 duplicate) are gone.
+- **IP removal in `Testimonials.astro` (1011 → ~90 lines):** all 10 sticker `<picture>` blocks (1minus1 "Group 508xx" art), the one-off service chip, the 45 pixel-cross "rating" SVGs (owner decision: stars stay off until a real ratings policy exists), minimap chip, counter chip, vertical "Testimonials" span and the drag-cursor marquee. Underlying image files stay in `public/images/case-studies/` (possibly referenced elsewhere); unused-hash cull list recorded in open-items B2.
+- **Placeholder launch guard:** prod renders nothing while any `placeholder: true` exists unless `PUBLIC_SHOW_PLACEHOLDER_TESTIMONIALS=true` (preview-only — `check-placeholders.mjs` fails if the flag is raised while placeholders lack consent); dev always previews + `console.warn`. Zero-dep script + `check:placeholders` npm script. No Review/AggregateRating schema now or later (Google: self-serving Organization reviews are ineligible — stated in plan §6).
+- **Script:** `testimonials.ts` sticker placement now skipped when the section has no stickers; drag-canvas init/teardown wiring in `main.ts` unchanged (still registered in boot + `onAfterSwap`; 3-swap gauntlet clean). Draggable/Inertia registrations in `core/gsap` deliberately untouched — they die in Phase 1 with the drag canvas.
+- **Skill conflict log:** `astro-best-practices` (islands/hydration, scoped component styles) conflicts with the template's init+teardown architecture and the decbricks.css convention — AGENTS.md precedence wins; no islands introduced, styles land in `decbricks.css` (P1+).
+- **Interim state accepted:** the drag canvas keeps its known a11y/cut-card issues until Phase 1 replaces it; placeholders make it visibly interim ("Client Name — Role, Company" attribution).

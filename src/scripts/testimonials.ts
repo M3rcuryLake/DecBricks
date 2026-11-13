@@ -371,21 +371,23 @@ export function initTestimonials() {
     const spanW = maxX - minX;
     const spanH = maxY - minY;
 
-    const stickerSizes = stickers.map((s) => {
-      const r = s.getBoundingClientRect();
-      return { width: r.width || 200, height: r.height || 200 };
-    });
+    if (stickers.length) {
+      const stickerSizes = stickers.map((s) => {
+        const r = s.getBoundingClientRect();
+        return { width: r.width || 200, height: r.height || 200 };
+      });
 
-    const placedStickers = placeStickers(
-      placedCards.map((c) => ({ x: c.x - minX, y: c.y - minY, width: c.width, height: c.height })),
-      stickerSizes,
-      { canvasWidth: spanW, canvasHeight: spanH, margin: 40, seed: config.seed + 999 }
-    );
+      const placedStickers = placeStickers(
+        placedCards.map((c) => ({ x: c.x - minX, y: c.y - minY, width: c.width, height: c.height })),
+        stickerSizes,
+        { canvasWidth: spanW, canvasHeight: spanH, margin: 40, seed: config.seed + 999 }
+      );
 
-    stickers.forEach((el, idx) => {
-      const s = placedStickers[idx];
-      gsap.set(el, { x: s.x + minX, y: s.y + minY, rotate: s.rotation });
-    });
+      stickers.forEach((el, idx) => {
+        const s = placedStickers[idx];
+        gsap.set(el, { x: s.x + minX, y: s.y + minY, rotate: s.rotation });
+      });
+    }
 
     const padX = window.innerWidth < bp.lg ? 30 : 120;
     const padY = window.innerWidth < bp.lg ? 30 : 80;

@@ -9,7 +9,8 @@
     "check": "astro check",
     "headings": "node scripts/check-headings.mjs",
     "links": "node scripts/check-links.mjs",
-    "check:brand": "python3 scripts/check-brand.py"
+    "check:brand": "python3 scripts/check-brand.py",
+    "check:placeholders": "node scripts/check-placeholders.mjs"
   },
   "dependencies": {
     "astro": "^5.0.0",
