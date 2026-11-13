@@ -3,11 +3,15 @@ import { FOOTER } from '../../data/footer';
 import { brandify } from '../../lib/brand';
 
 const legalLinks = FOOTER.legal.filter((l) => l.enabled && Boolean(l.href));
+const copyrightHtml = brandify(FOOTER.copyright).replaceAll(
+  'class="font-brand"',
+  'class="font-brand" translate="no"'
+);
 ---
 
 <div class="structure-footer__legal">
   <p class="structure-footer__copyright subheading u-kicker text-darkPurple uppercase">
-    <Fragment set:html={brandify(FOOTER.copyright)} />
+    <Fragment set:html={copyrightHtml} />
   </p>
 
   <div class="structure-footer__legalActions">

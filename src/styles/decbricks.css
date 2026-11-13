@@ -1053,12 +1053,14 @@ html.has-cookie-banner .page .sections-servicesHero {
 }
 
 .structure-footer__shell {
-  padding: clamp(48px, 7vw, 112px) 20px 24px;
+  padding: clamp(48px, 7vw, 112px) max(20px, env(safe-area-inset-right, 0px))
+    calc(24px + env(safe-area-inset-bottom, 0px)) max(20px, env(safe-area-inset-left, 0px));
   gap: clamp(40px, 5vw, 72px);
 }
 @media (min-width: 1024px) {
   .structure-footer__shell {
-    padding-inline: 36px;
+    padding-inline: max(36px, env(safe-area-inset-left, 0px))
+      max(36px, env(safe-area-inset-right, 0px));
   }
 }
 
@@ -1440,11 +1442,73 @@ html.has-cookie-banner .page .sections-servicesHero {
   }
 }
 
+.structure-footer a,
+.structure-footer button {
+  min-width: 44px;
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
 .structure-footer a:focus-visible,
 .structure-footer button:focus-visible {
   outline: 2px solid var(--brand-on-dark);
   outline-offset: 3px;
 }
+
+@media (forced-colors: active) {
+  .structure-footer .structure-footer__wordmark {
+    background-image: none;
+    background-color: transparent;
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+    -webkit-text-fill-color: CanvasText;
+    color: CanvasText;
+    forced-color-adjust: auto;
+  }
+  .structure-footer__brick.is-filled {
+    background-color: Highlight;
+    border-color: Highlight;
+  }
+}
+
+@media print {
+  .structure-loader,
+  .webgl,
+  .structure-footer .webgl-background,
+  .structure-footer__gridBg,
+  .structure-footer__wordmarkRow,
+  .structure-footer__ctaActions,
+  .structure-footer__copyBtn,
+  .structure-footer__topBtn,
+  .structure-footer__legalBtn {
+    display: none !important;
+  }
+  .structure-footer {
+    background: #ffffff !important;
+    padding-bottom: 0 !important;
+    break-inside: avoid;
+  }
+  .structure-footer__inner {
+    transform: none !important;
+  }
+  .structure-footer,
+  .structure-footer .text-darkPurple,
+  .structure-footer a,
+  .structure-footer__ctaTitle,
+  .structure-footer__copyright {
+    color: #111111 !important;
+  }
+  .structure-footer .font-brand::before {
+    background-image: url(/brand/logo.webp) !important;
+    filter: brightness(0);
+  }
+  .structure-footer__grid,
+  .structure-footer__legal {
+    border-top-color: #999999 !important;
+    margin-top: 0 !important;
+  }
+}
+
 
 /* ==========================================================================
    Testimonials — editorial spotlight (tst-*)
