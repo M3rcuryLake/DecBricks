@@ -199,6 +199,7 @@
    NOT restyled here (GSAP-measured, owned by Phase 3) — u-display is defined
    for them. */
 .u-display {
+  font-family: var(--font-neuePower), system-ui, sans-serif;
   font-size: var(--fs-display);
   font-weight: 800;
   line-height: 0.98;
@@ -268,6 +269,116 @@
 }
 .u-btn-ghost:active {
   transform: scale(0.98);
+}
+
+/* --------------------------------------------------------------------------
+   Phase 3 — hero v2: editorial-brick grid, gated by [data-hero-v2] on the
+   hero <section>. Layout-only; every template class hook preserved. Tilt is
+   removed from the hero (single-tilt rule: the one remaining tilt on the
+   page is the service-card collage). Several responsive utilities needed
+   here (lg:w-320, 2xl:w-480, lg:aspect-3/2, max-lg:min-h-svh, sm:px-30) are
+   NOT in the compiled global.css, so the media queries below supply them.
+   -------------------------------------------------------------------------- */
+[data-hero-v2] .hero-v2-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: end;
+  margin-block: clamp(18px, 2.4vw, 32px);
+}
+@media (min-width: 1024px) {
+  [data-hero-v2] .hero-v2-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: clamp(18px, 2.4vw, 32px);
+  }
+}
+/* Display word 2 on a deliberate one-step offset — fully contained (R8). */
+[data-hero-v2] .hero-v2-word2 {
+  margin-left: clamp(24px, 8vw, 160px);
+}
+/* Media cell widths/aspects (compiled CSS lacks the responsive variants). */
+[data-hero-v2] .hero-v2-mediaCell {
+  aspect-ratio: 8 / 5;
+  width: 100%;
+}
+/* The media sits 10px inside the tick frame, so the coral corner ticks read
+   on top of / around it (the WebGL texture paints over in-cell HTML). */
+[data-hero-v2] .hero-v2-mediaCell .start-mobile,
+[data-hero-v2] .hero-v2-mediaCell .start {
+  inset: 10px;
+  width: auto;
+  height: auto;
+}
+@media (min-width: 640px) {
+  [data-hero-v2] .hero-v2-mediaCell {
+    width: 480px;
+    max-width: 100%;
+  }
+}
+@media (min-width: 1024px) {
+  [data-hero-v2] .hero-v2-mediaCell {
+    width: 320px;
+    aspect-ratio: 3 / 2;
+  }
+}
+@media (min-width: 1536px) {
+  [data-hero-v2] .hero-v2-mediaCell {
+    width: 480px;
+  }
+}
+/* Hero top padding (sm:px-30 not compiled): 15px mobile, 30px from sm. */
+[data-hero-v2] .hero-top {
+  padding-inline: 15px;
+}
+@media (min-width: 640px) {
+  [data-hero-v2] .hero-top {
+    padding-inline: 30px;
+  }
+}
+/* Mobile frame grows with content instead of a hard h-svh cap. */
+@media (max-width: 1023.98px) {
+  [data-hero-v2] .hero-v2-frame {
+    height: auto;
+    min-height: 100svh;
+  }
+}
+/* Capability pills: Departure Mono row (§3 label role), 44px tap targets. */
+[data-hero-v2] .hero-v2-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: clamp(18px, 2.4vw, 32px);
+  /* explicit on-dark colour — the list inherits body black otherwise and its
+     whitespace text nodes trip the contrast sweep */
+  color: #fff9f2;
+}
+[data-hero-v2] .hero-v2-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding-inline: 18px;
+  border: 1px solid var(--hairline-dark);
+  border-radius: var(--radius-pill);
+  color: #fff9f2;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: background-color var(--dur-std) var(--ease-brand);
+}
+[data-hero-v2] .hero-v2-pill:hover {
+  background-color: rgba(255, 249, 242, 0.08);
+}
+[data-hero-v2] .hero-v2-pill:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+[data-hero-v2] .hero-v2-pillIndex {
+  color: rgba(255, 249, 242, 0.75);
+  font-size: 10px;
+  letter-spacing: 0.1em;
 }
 
 /* Theme-4 hero service slab: same hue family as coral but deep enough to

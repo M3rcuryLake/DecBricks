@@ -54,67 +54,81 @@ const HOME_CARD_STYLES = [
 ];
 ---
 
-<section class="sections-hero relative overflow-hidden bg-darkPurple" aria-labelledby="hero-heading"
-  ><div class="flex max-h-1080 min-h-svh flex-col pt-70 max-lg:h-svh lg:pt-155" data-theme="dark"
+<section class="sections-hero relative overflow-hidden bg-darkPurple" aria-labelledby="hero-heading" data-hero-v2
+  ><div class="hero-v2-frame flex max-h-1080 min-h-svh flex-col pt-70 max-lg:min-h-svh lg:pt-155" data-theme="dark"
     ><div class="hidden flex-grow lg:block"></div
     ><div
-      class="hero-top relative mx-auto flex w-full max-w-1920 flex-grow flex-col justify-center sm:justify-center lg:justify-start lg:pb-0"
+      class="hero-top relative mx-auto flex w-full max-w-1920 flex-grow flex-col justify-center px-15 sm:px-30 lg:justify-start lg:pb-0"
       ><h2 id="hero-heading" class="sr-only">Distinct Always</h2
       ><div class="relative"
         ><span
           aria-hidden="true"
-          class="sections-hero__heading relative z-22 block w-fit heading-3xl text-neonGreen uppercase lg:z-11 lg:-mb-50 lg:-ml-20"
+          class="sections-hero__heading relative z-22 block w-fit u-display text-neonGreen uppercase"
           data-text="Distinct"
           ><span class="sections-hero__headingInner pointer-default block"> Distinct </span></span
-        ><div class="mb-52 flex w-fit min-w-full items-center justify-between lg:mb-0"
+        ><div class="hero-v2-row"
           ><h1 class="sr-only">
             Award-winning creative agency for video games. Brand shapers, game marketeers &amp; web engineers.</h1
           ><span
-            class="parts-smileyText sections-hero__body relative z-20 hidden w-4/12 min-w-4/12 pl-64 heading text-white 2xl:mb-40 2xl:block 3xl:pr-42"
+            class="parts-smileyText sections-hero__body relative z-20 hidden w-4/12 min-w-4/12 heading text-white lg:block"
             style="font-kerning: none; text-rendering: optimizeSpeed"
             ><span class="sr-only"
               >Award-winning creative agency for video games. Brand shapers, game marketeers &amp; web engineers.</span
             ><span aria-hidden="true" role="presentation" style="font-kerning: none; text-rendering: optimizeSpeed"
               >Award-winning creative agency for video games. Brand shapers, game marketeers &amp; web engineers.</span
             ></span
-          ><span
-            class="sections-hero__heading relative z-10 ml-auto block heading-3xl font-offBit101 font-normal text-neonGreen uppercase lg:w-min 2xl:-mr-40"
-            data-font="OffBitTrial-101"
-            data-text="Always"
-            aria-hidden="true"
-            ><span class="sections-hero__headingInner pointer-default block"> Always </span></span
-          ></div
-        ><div
-          class="pin-trigger__mobile start-mobile absolute -top-120 -right-100 z-20 aspect-8/5 w-320 rotate-14 overflow-hidden rounded-20 rounded-tr-none sm:w-480 lg:hidden"
-          ><video
-            data-preview-mp4="/videos/219063fa94bc3a4eb8ae3dad65571723.mp4"
-            class="sections-hero__videoPreviewMobile start-mobile-inner h-full w-full webgl-video parts-webglPreview overflow-hidden object-cover"
-            playsinline
-            loop
-            preload="metadata"
-            muted
-            autoplay
-            crossorigin="anonymous"
-          ></video></div></div
+          ><div class="hero-v2-mediaCell relative aspect-8/5 w-full sm:w-480 lg:aspect-3/2 lg:w-320 2xl:w-480"
+            ><span class="absolute -top-px -left-px z-30 size-9 bg-purple" data-hero-tick aria-hidden="true"></span
+            ><span class="absolute -top-px -right-px z-30 size-9 bg-purple" data-hero-tick aria-hidden="true"></span
+            ><span class="absolute -bottom-px -left-px z-30 size-9 bg-purple" data-hero-tick aria-hidden="true"></span
+            ><span class="absolute -right-px -bottom-px z-30 size-9 bg-purple" data-hero-tick aria-hidden="true"></span
+            ><div
+              class="pin-trigger__mobile start-mobile absolute inset-0 z-20 overflow-hidden rounded-40 rounded-tr-none lg:hidden"
+              ><video
+                data-preview-mp4="/videos/219063fa94bc3a4eb8ae3dad65571723.mp4"
+                class="sections-hero__videoPreviewMobile start-mobile-inner h-full w-full webgl-video parts-webglPreview overflow-hidden object-cover"
+                playsinline
+                loop
+                preload="metadata"
+                muted
+                autoplay
+                crossorigin="anonymous"
+              ></video></div
+            ><video
+              data-preview-mp4="/videos/219063fa94bc3a4eb8ae3dad65571723.mp4"
+              class="sections-hero__videoPreview start absolute inset-0 z-10 hidden h-full w-full rounded-40 rounded-tr-none overflow-hidden lg:invisible lg:block webgl-video parts-webglPreview object-cover"
+              classname="lg:opacity-0"
+              playsinline
+              loop
+              preload="metadata"
+              muted
+              autoplay
+              crossorigin="anonymous"
+            ></video></div></div
+        ><span
+          class="sections-hero__heading hero-v2-word2 relative z-10 block w-fit u-display text-neonGreen uppercase"
+          data-font="OffBitTrial-101"
+          data-text="Always"
+          aria-hidden="true"
+          ><span class="sections-hero__headingInner pointer-default block"> Always </span></span
+        ><ul class="hero-v2-pills" aria-label="Our services">
+          {SERVICES.map((service) => (
+            <li>
+              <a data-hero-pill href={`/services#${service.id}`} class="hero-v2-pill">
+                <span class="hero-v2-pillIndex" aria-hidden="true">{service.number}</span>
+                {service.navLabel}
+              </a>
+            </li>
+          ))}
+        </ul></div
       ><span
-        class="parts-smileyText relative z-6 mb-20 w-11/12 pl-16 heading text-white sm:w-6/12 lg:z-20 2xl:hidden"
+        class="parts-smileyText relative z-6 mb-20 w-11/12 pl-16 heading text-white sm:w-6/12 lg:hidden"
         style="font-kerning: none; text-rendering: optimizeSpeed"
         ><span class="sr-only"
           >Award-winning creative agency for video games. Brand shapers, game marketeers &amp; web engineers.</span
         ><span aria-hidden="true" role="presentation" style="font-kerning: none; text-rendering: optimizeSpeed"
           >Award-winning creative agency for video games. Brand shapers, game marketeers &amp; web engineers.</span
         ></span
-      ><video
-        data-preview-mp4="/videos/219063fa94bc3a4eb8ae3dad65571723.mp4"
-        class="sections-hero__videoPreview start absolute top-40 right-1/12 z-10 hidden aspect-3/2 w-320 rotate-14 overflow-hidden rounded-40 rounded-tr-none lg:invisible lg:block 2xl:w-480 webgl-video parts-webglPreview overflow-hidden object-cover"
-        classname="lg:opacity-0"
-        playsinline
-        loop
-        preload="metadata"
-        muted
-        autoplay
-        crossorigin="anonymous"
-      ></video
       ><svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -222,7 +236,7 @@ const HOME_CARD_STYLES = [
           d="M993.15 1390.49L845.65 1229.99L698.65 1102.99L515.65 968.987L340.65 869.987L216.15 806.487L74.1504 751.987L0.150391 728.487L51.1504 724.987L187.15 731.987L393.15 751.987L611.65 782.987L756.65 809.987L904.65 839.487L958.15 849.987L889.15 782.987L778.15 697.487L624.65 597.987L431.65 493.487L287.65 426.487L135.65 370.987L26.1504 343.487L89.6504 335.487H278.15L421.15 343.487L561.65 358.987L730.65 387.987L862.15 416.487L1020.15 457.487L1197.15 514.987L1134.65 451.487L1060.15 387.987L887.15 267.987L713.15 176.987L512.15 93.4868L361.65 45.4868L169.15 0.486816"
           stroke="currentColor"
         /></svg></div></div
-  ><div class="relative flex items-end lg:min-h-screen lg:items-start"
+  ><div class="relative flex items-end lg:items-start"
     ><div class="end relative z-20 mx-auto w-full"
       ><div
         class="parts-webglVideoPlayer relative aspect-video-mobile max-h-screen w-full rotate-0 sm:aspect-video"
@@ -444,7 +458,7 @@ const HOME_CARD_STYLES = [
     ></div
   ><div
     id="services"
-    class="sections-services pointer-events-none relative z-20 lg:pt-100 pin-trigger"
+    class="sections-services pointer-events-none relative z-20 lg:pt-45 pin-trigger"
     style="transform: translateZ(0px)"
     ><div class="relative mx-auto flex w-full flex-col">
         {
