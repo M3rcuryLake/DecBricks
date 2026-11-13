@@ -569,6 +569,26 @@ li {
 }
 
 /* --------------------------------------------------------------------------
+   Footer band (phase 0, R11): the webgl trail band behind the footer was pure
+   coral (#D45060) with burgundy text = 2.64:1. Repainted burgundy (the
+   documented default; owner may still choose the alternative), and the
+   footer's own text flips to Off-White (≈10:1). The trail strokes move to
+   --brand-accent-deep (rgb 188 61 77) so they stay visible on burgundy
+   without washing out the Off-White text. The webgl shader samples the
+   element's computed background-color, so this is the single source. */
+.structure-footer .webgl-background {
+  background-color: var(--brand-bg-dark);
+}
+.structure-footer .text-darkPurple {
+  color: var(--brand-on-dark);
+}
+/* The scroll-top button wrapper has no text colour utility of its own and
+   otherwise inherits black (unused visually, but keep the sweep clean). */
+.structure-footer .parts-btnScrollTop {
+  color: var(--brand-on-dark);
+}
+
+/* --------------------------------------------------------------------------
    Cookie-banner safe area (phase 0, R9). cookies.ts sets --cookie-safe-area
    to the banner card's height + bottom margin while the banner is visible and
    toggles .has-cookie-banner on <html>. Consumers: (1) the page reserves the
