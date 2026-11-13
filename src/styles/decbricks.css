@@ -1554,9 +1554,11 @@ html.has-cookie-banner .page .sections-servicesHero {
   text-wrap: balance;
 }
 .tst-index {
+  /* Lives in the controls row now (upgrade plan §3): real nav info, not a
+     display numeral — mirrors the live region "Quote N of 8" + #t-N links. */
   margin: 0;
   font-family: var(--font-offBit);
-  font-size: clamp(40px, 5vw, 72px);
+  font-size: 22px;
   line-height: 1;
   color: var(--brand-surface-alt);
   white-space: nowrap;
@@ -1585,14 +1587,19 @@ html.has-cookie-banner .page .sections-servicesHero {
   touch-action: pan-y pinch-zoom;
 }
 .tst-card {
+  /* Always fills the stage (absolute inset:0, upgraded from the P1
+     relative-active trick): shorter quotes would otherwise leave dead
+     band space below the card. The stage's height is JS-set (tallest
+     quote + floor); CSS min-height is the no-JS fallback. */
   position: absolute;
   inset: 0;
   opacity: 0;
   pointer-events: none;
   transform: translateY(12px);
+  /* Leaving duration — the outgoing card fades up-and-out over 140ms. */
   transition:
-    opacity var(--dur-std) var(--ease-brand),
-    transform var(--dur-std) var(--ease-brand);
+    opacity 140ms var(--ease-brand),
+    transform 140ms var(--ease-brand);
 }
 /* The inner is the visible card (CaseStudies precedent: slide outer /
    __inner visual). Moving background/radius/padding + clipping here keeps
@@ -1606,26 +1613,36 @@ html.has-cookie-banner .page .sections-servicesHero {
   padding: clamp(28px, 3vw, 48px) clamp(24px, 3vw, 48px) clamp(24px, 2.5vw, 40px);
 }
 .tst-card.is-active {
-  position: relative;
   opacity: 1;
   pointer-events: auto;
   transform: none;
+  /* Entering duration — the incoming card fades in from below over 180ms
+     (its base state supplies the 12px below-offset). Transitions read the
+     DESTINATION state's `transition`, so enter/leave timing differs. */
+  transition:
+    opacity 180ms var(--ease-brand),
+    transform 180ms var(--ease-brand);
 }
-.tst-qmark {
-  display: block;
-  margin-bottom: 18px;
-  font-family: var(--font-offBit);
-  color: var(--brand-accent);
-  font-size: 40px;
-  line-height: 0.6;
+/* Phase 2 of the two-phase swap (JS adds this, then activates the incoming
+   card 140ms later): overrides the active visuals, must come after
+   `.is-active` to win the cascade. */
+.tst-card.is-leaving {
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition:
+    opacity 140ms var(--ease-brand),
+    transform 140ms var(--ease-brand);
 }
 .tst-quote {
+  /* The one bold move (upgrade plan §1): the quote in FK Raster — the
+     template's display face. Everything else stays quiet. */
   margin: 0;
-  font-family: var(--font-neuePower);
-  font-weight: 600;
+  font-family: var(--font-offBit);
+  font-weight: 400;
   color: var(--brand-on-light);
-  font-size: clamp(24px, 2.6vw, 44px);
-  line-height: 1.2;
+  font-size: clamp(26px, 2.8vw, 44px);
+  line-height: 1.15;
   text-wrap: balance;
 }
 .tst-attr {
@@ -1635,7 +1652,10 @@ html.has-cookie-banner .page .sections-servicesHero {
   margin-top: clamp(20px, 2.5vw, 36px);
   flex-wrap: wrap;
 }
-.tst-dot {
+/* Initials disc in the featured card's attribution row. (Renamed from
+   `.tst-dot` in the upgrade plan — that class now belongs to the mobile
+   selector dots; nothing queried the disc, verified by grep.) */
+.tst-attrDisc {
   flex: none;
   width: 44px;
   height: 44px;
@@ -1672,28 +1692,25 @@ html.has-cookie-banner .page .sections-servicesHero {
   display: flex;
   flex-direction: column;
 }
-.tst-railTitle {
-  margin: 0 0 8px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--brand-surface-alt);
-  opacity: 0.75;
-}
+/* Identity rail (upgrade plan §1): initials disc + name + role/company +
+   service tag — one line each. No truncated quote text. Desktop (≥1024)
+   only; below 1024 the `.tst-dot` row replaces it. */
 .tst-railList {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 .tst-railBtn {
   all: unset;
   box-sizing: border-box;
-  display: block;
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
   width: 100%;
-  min-height: 44px;
+  min-height: 48px;
   text-align: left;
-  padding: 10px 14px;
+  padding: 8px 12px;
   border-radius: 10px;
   cursor: pointer;
   color: var(--brand-surface-alt);
@@ -1712,23 +1729,56 @@ html.has-cookie-banner .page .sections-servicesHero {
   outline: 2px solid var(--brand-on-dark);
   outline-offset: 3px;
 }
-.tst-railQuote {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+.tst-railDisc {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--brand-surface-alt);
+  color: var(--brand-on-light);
+  font-family: var(--font-neuePower);
+  font-weight: 700;
+  font-size: 11px;
+  display: grid;
+  place-items: center;
+}
+.tst-railBtn.is-active .tst-railDisc {
+  background: var(--brand-on-light);
+  color: var(--brand-surface-alt);
+}
+.tst-railWho b {
+  display: block;
   font-family: var(--font-neuePower);
   font-weight: 600;
   font-size: 14px;
-  line-height: 1.3;
+  line-height: 1.25;
 }
-.tst-railMeta {
+.tst-railWho span {
   display: block;
-  margin-top: 4px;
+  font-size: 12px;
+  line-height: 1.3;
+  color: color-mix(in oklab, var(--brand-surface-alt) 80%, var(--brand-bg-dark));
+  /* Role/company ellipsises by design (upgrade plan §7) — it never wraps
+     into the next row. */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tst-railBtn.is-active .tst-railWho span {
+  color: var(--color-ink-muted);
+}
+.tst-railChip {
   font-family: var(--font-mono);
   font-size: 10px;
   text-transform: uppercase;
-  opacity: 0.75;
+  color: var(--brand-surface-alt);
+  border: 1px solid color-mix(in oklab, var(--brand-surface-alt) 45%, transparent);
+  border-radius: 999px;
+  padding: 5px 10px;
+  white-space: nowrap;
+}
+.tst-railBtn.is-active .tst-railChip {
+  color: var(--brand-olive);
+  border-color: var(--brand-olive);
 }
 .tst-controls {
   display: flex;
@@ -1777,9 +1827,14 @@ html.has-cookie-banner .page .sections-servicesHero {
     grid-template-columns: 1fr;
     gap: 32px;
   }
+  .tst-rail {
+    display: none;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .tst-card,
+  .tst-card.is-active,
+  .tst-card.is-leaving,
   .tst-bar,
   .tst-railBtn,
   .tst-btn {
@@ -1788,49 +1843,64 @@ html.has-cookie-banner .page .sections-servicesHero {
 }
 
 /* ==========================================================================
-   Testimonials — Phase 2 additions (mobile rail disclosure, live region)
+   Testimonials — Phase 2 addition (live region) + upgrade (selector dots)
+   Below 1024 the rail is CSS-hidden and this dot row is the selector
+   (44px hit targets, synced with swipe by the shared state machine).
    ========================================================================== */
 .tst-live {
   margin: 0;
 }
-.tst-railToggle {
+.tst-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+.tst-dot {
   all: unset;
   box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  min-height: 44px;
-  padding: 10px 14px;
-  border: 1px solid color-mix(in oklab, var(--brand-surface-alt) 30%, transparent);
-  border-radius: 10px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--brand-surface-alt);
+  flex: none;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
   cursor: pointer;
 }
-.tst-railToggleChevron {
-  transition: transform var(--dur-micro) var(--ease-brand);
+/* 8 exact 44px targets + gaps don't fit below ~416px of band width; the
+   hit targets overlap slightly instead of shrinking (the visual dot stays
+   centred, taps near a boundary land on the later sibling). */
+@media (max-width: 415px) {
+  .tst-dot {
+    margin-inline: -3.5px;
+  }
 }
-.tst-rail:not(.is-collapsed) .tst-railToggleChevron {
-  transform: rotate(180deg);
+@media (max-width: 345px) {
+  .tst-dot {
+    margin-inline: -6px;
+  }
 }
-.tst-railToggle:focus-visible {
+.tst-dot i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  /* ≥60% beige over burgundy keeps the inactive dots ≥3:1 (UI-component
+     contrast); the active dot is full beige. */
+  background: color-mix(in oklab, var(--brand-surface-alt) 60%, transparent);
+  transition: background var(--dur-micro) var(--ease-brand);
+}
+.tst-dot:hover i {
+  background: var(--brand-surface);
+}
+.tst-dot.is-active i {
+  background: var(--brand-surface-alt);
+}
+.tst-dot:focus-visible {
   outline: 2px solid var(--brand-on-dark);
   outline-offset: 3px;
 }
-@media (max-width: 767px) {
-  .tst-railTitle {
-    display: none;
-  }
-  .tst-rail.is-collapsed .tst-railList {
-    display: none;
-  }
-}
-@media (min-width: 768px) {
-  .tst-railToggle {
+@media (min-width: 1024px) {
+  .tst-dots {
     display: none;
   }
 }
@@ -1859,10 +1929,12 @@ html.has-cookie-banner .page .sections-servicesHero {
    earlier rules would otherwise lose the cascade (Phase 3 lesson). */
 @media (prefers-reduced-motion: reduce) {
   .tst-card,
+  .tst-card.is-active,
+  .tst-card.is-leaving,
   .tst-bar,
   .tst-railBtn,
   .tst-btn,
-  .tst-railToggleChevron {
+  .tst-dot i {
     transition: none;
   }
   .tst-index b.is-swap {
@@ -1872,33 +1944,10 @@ html.has-cookie-banner .page .sections-servicesHero {
 
 /* ==========================================================================
    Testimonials — Phase 4 additions (plan §4 breakpoint reconciliation)
-   Index/quote/title steps per breakpoint; 320px rail column at ≥1920.
+   (Quote + counter are single clamps since the upgrade — no per-breakpoint
+   steps left; only the ≥1920 title/grid scale remains.)
    ========================================================================== */
-@media (min-width: 640px) {
-  .tst-index {
-    font-size: 56px;
-  }
-  .tst-quote {
-    font-size: 28px;
-    line-height: 1.2;
-  }
-}
-@media (min-width: 1024px) {
-  .tst-index {
-    font-size: 72px;
-  }
-  .tst-quote {
-    font-size: clamp(28px, 2.6vw, 40px);
-    line-height: 1.15;
-  }
-}
 @media (min-width: 1920px) {
-  .tst-index {
-    font-size: 72px;
-  }
-  .tst-quote {
-    font-size: 44px;
-  }
   .tst-title {
     font-size: 52px;
   }
@@ -1914,7 +1963,7 @@ html.has-cookie-banner .page .sections-servicesHero {
 /* Kill the double-tap-zoom delay on the section's controls. */
 .tst-btn,
 .tst-railBtn,
-.tst-railToggle {
+.tst-dot {
   touch-action: manipulation;
 }
 /* While a horizontal swipe intent is detected (JS adds .is-swiping after
@@ -1928,92 +1977,7 @@ html.has-cookie-banner .page .sections-servicesHero {
 
 /* ==========================================================================
    Testimonials — Phase 6 additions (owner request: rail scroll + kinetic)
-   Rail column pinned to the stage height ≥1024 (JS in testimonials.ts);
-   the rail list scrolls internally. `data-lenis-prevent` on the list keeps
-   Lenis from hijacking the wheel; `overscroll-behavior` stops scroll
-   chaining to the page. Below 1024 the grid stacks — no pin, no clip.
+   (The rail height pin + internal scroll were superseded by the upgrade
+   plan — the identity rail fits the stage naturally and the pin was the
+   cramping root cause. Kinetic hover JS remains in testimonials.ts.)
    ========================================================================== */
-@media (min-width: 1024px) {
-  .tst-railList {
-    flex: 1 1 0;
-    min-height: 0;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(243, 230, 213, 0.35) transparent;
-    scrollbar-gutter: stable;
-  }
-}
-
-/* ==========================================================================
-   Services 7-Cards — Phase 1: ServiceArtwork bespoke palette SVG tokens
-   Pure CSS variables mapped to the fixed brand palette (tokens.md) across
-   `/services` blueprint plates and `/` home mini card badges.
-   ========================================================================== */
-.parts-serviceArtwork {
-  --art-ink: #800020;
-  --art-card: #fff9f2;
-  --art-card-alt: #f3e6d5;
-  --art-accent: #bc3d4d;
-  --art-sage: #c9d3c0;
-  --art-olive: #5a6432;
-  --art-mini-bg: #fff9f2;
-  --art-mini-fg: #800020;
-  --art-mini-stroke: rgba(128, 0, 32, 0.22);
-}
-.parts-serviceArtwork[data-surface='beige-plate'] {
-  background-color: var(--brand-surface-alt, #f3e6d5);
-}
-.parts-serviceArtwork[data-surface='sage-plate'] {
-  background-color: var(--brand-sage, #c9d3c0);
-  --art-ink: #2a0208;
-  --art-card: #fff9f2;
-  --art-card-alt: #f3e6d5;
-}
-.parts-serviceArtwork--plate {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-.parts-serviceArtwork--mini {
-  width: 96px;
-  height: 96px;
-  flex: 0 0 auto;
-}
-@media (min-width: 1440px) {
-  .parts-serviceArtwork--mini {
-    width: 112px;
-    height: 112px;
-  }
-}
-.parts-serviceArtwork[data-surface='beige'],
-.parts-serviceArtwork[data-surface='beige-alt'] {
-  --art-mini-bg: #fff9f2;
-  --art-mini-fg: #2a0208;
-  --art-mini-stroke: rgba(128, 0, 32, 0.22);
-}
-.parts-serviceArtwork[data-surface='burgundy'],
-.parts-serviceArtwork[data-surface='deepest'] {
-  --art-mini-bg: #fff9f2;
-  --art-mini-fg: #800020;
-  --art-mini-stroke: rgba(255, 249, 242, 0.4);
-}
-.parts-serviceArtwork[data-surface='sage'] {
-  --art-mini-bg: #fff9f2;
-  --art-mini-fg: #2f3a1e;
-  --art-mini-stroke: rgba(47, 58, 30, 0.35);
-}
-.parts-serviceArtwork[data-surface='brick'] {
-  --art-mini-bg: #5a0014;
-  --art-mini-fg: #fff9f2;
-  --art-mini-stroke: rgba(255, 249, 242, 0.35);
-}
-@media (prefers-reduced-motion: no-preference) {
-  .parts-serviceArtwork__brick {
-    transition: transform var(--dur-std) var(--ease-brand);
-  }
-  .parts-serviceCard:hover .parts-serviceArtwork__brick,
-  .parts-serviceBlock:hover .parts-serviceArtwork__brick {
-    transform: translateY(-3px);
-  }
-}

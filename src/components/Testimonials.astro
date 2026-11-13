@@ -49,15 +49,12 @@ const initials = (name: string) =>
         <div class="tst-head">
           <div>
             <p class="tst-kicker">
-              <em aria-hidden="true">///</em> Social proof
+              <em aria-hidden="true">///</em> Client words
             </p>
             <h2 class="tst-title" id="testimonials-title">
               What our clients say
             </h2>
           </div>
-          <p class="tst-index" aria-hidden="true" data-testid="testimonials-index">
-            <b>{pad2(1)}</b> / {pad2(total)}
-          </p>
         </div>
 
         <div class="tst-grid">
@@ -73,14 +70,11 @@ const initials = (name: string) =>
                 data-testid={`testimonial-${t.id}`}
               >
                 <div class="tst-cardInner">
-                  <span class="tst-qmark" aria-hidden="true">
-                    ///
-                  </span>
                   <blockquote class="tst-quote">
                     <p>{t.quote}</p>
                   </blockquote>
                   <div class="tst-attr">
-                    <span class="tst-dot" aria-hidden="true">
+                    <span class="tst-attrDisc" aria-hidden="true">
                       {initials(t.name)}
                     </span>
                     <div class="tst-who">
@@ -96,21 +90,8 @@ const initials = (name: string) =>
             ))}
           </div>
 
-          <nav class="tst-rail" aria-label="All quotes">
-            <p class="tst-railTitle">All quotes</p>
-            <button
-              type="button"
-              class="tst-railToggle"
-              aria-expanded="false"
-              aria-controls="tst-railList"
-              data-testid="testimonials-railToggle"
-            >
-              <span>All quotes</span>
-              <svg class="tst-railToggleChevron" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                <path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.6" />
-              </svg>
-            </button>
-            <div class="tst-railList" id="tst-railList" data-testid="testimonials-rail" data-lenis-prevent>
+          <nav class="tst-rail" aria-label="All clients">
+            <div class="tst-railList" id="tst-railList" data-testid="testimonials-rail">
               {TESTIMONIALS.map((t, i) => (
                 <button
                   type="button"
@@ -119,10 +100,16 @@ const initials = (name: string) =>
                   aria-current={i === 0 ? 'true' : 'false'}
                   data-testid={`testimonial-rail-${t.id}`}
                 >
-                  <span class="tst-railQuote">{t.quote}</span>
-                  <span class="tst-railMeta">
-                    {pad2(i + 1)} · {t.service}
+                  <span class="tst-railDisc" aria-hidden="true">
+                    {initials(t.name)}
                   </span>
+                  <span class="tst-railWho">
+                    <b>{t.name}</b>
+                    <span>
+                      {t.role}, {t.company}
+                    </span>
+                  </span>
+                  <span class="tst-railChip">{t.service}</span>
                 </button>
               ))}
             </div>
@@ -142,9 +129,27 @@ const initials = (name: string) =>
               <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" />
             </svg>
           </button>
+          <p class="tst-index" aria-hidden="true" data-testid="testimonials-index">
+            <b>{pad2(1)}</b> / {pad2(total)}
+          </p>
           <div class="tst-progress" aria-hidden="true">
             <i class="tst-bar" style={`width: ${100 / total}%`}></i>
           </div>
+        </div>
+
+        <div class="tst-dots" data-testid="testimonials-dots">
+          {TESTIMONIALS.map((t, i) => (
+            <button
+              type="button"
+              class={`tst-dot${i === 0 ? ' is-active' : ''}`}
+              aria-label={`Quote ${i + 1} of ${total}`}
+              aria-controls={t.id}
+              aria-current={i === 0 ? 'true' : 'false'}
+              data-testid={`testimonial-dot-${t.id}`}
+            >
+              <i aria-hidden="true"></i>
+            </button>
+          ))}
         </div>
       </div>
     </section>
