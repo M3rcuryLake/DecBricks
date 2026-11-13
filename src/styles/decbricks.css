@@ -1191,6 +1191,88 @@ html.has-cookie-banner .page .sections-servicesHero {
   gap: 4px 16px;
 }
 
+.structure-footer__emailRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+}
+.structure-footer__copyBtn {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 6px 12px;
+  border: 1px solid color-mix(in oklab, var(--brand-on-dark) 35%, transparent);
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  transition: background-color var(--ft-hover) var(--ft-ease);
+}
+.structure-footer__copyBtn:hover,
+.structure-footer__copyBtn[data-copied="true"] {
+  background-color: color-mix(in oklab, var(--brand-on-dark) 12%, transparent);
+}
+.structure-footer__copyStatus {
+  flex-basis: 100%;
+  min-height: 16px;
+  line-height: 1.3;
+}
+.structure-footer__copyStatus:empty {
+  display: none;
+}
+
+.structure-footer__clockWrap {
+  margin: 0;
+}
+.structure-footer__clock {
+  font-family: var(--font-brand);
+  font-size: clamp(48px, 5vw, 84px);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  display: inline-block;
+  min-width: 5ch;
+}
+.structure-footer__availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding: 8px 14px;
+  border: 1px solid color-mix(in oklab, var(--brand-on-dark) 35%, transparent);
+  border-radius: 999px;
+  font-family: var(--font-nohemi), system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.2;
+}
+.structure-footer__statusDot {
+  width: 8px;
+  height: 8px;
+  flex: none;
+  display: block;
+  background-color: var(--brand-sage, #c9d3c0);
+}
+.structure-footer__availability[data-availability="limited"] .structure-footer__statusDot {
+  background-color: var(--brand-surface-alt, #f3e6d5);
+}
+.structure-footer__availability[data-availability="closed"] .structure-footer__statusDot {
+  background-color: transparent;
+  border: 1.5px solid var(--brand-on-dark);
+}
+@keyframes footerDotBlink {
+  50% {
+    opacity: 0.25;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .structure-footer__availability[data-availability="open"] .structure-footer__statusDot {
+    animation: footerDotBlink 1.6s steps(2) infinite;
+  }
+}
+
 .structure-footer__wordmarkRow {
   container-type: inline-size;
   width: 100%;
@@ -1286,14 +1368,38 @@ html.has-cookie-banner .page .sections-servicesHero {
 .structure-footer__topBtn {
   transform-origin: center center;
 }
-.structure-footer__topBtn .svgs-arrowUp {
-  transform-origin: center center;
-  transition: transform var(--ft-hover) var(--ft-ease);
+.structure-footer__bricks {
+  display: grid;
+  grid-template-columns: repeat(2, 9px);
+  gap: 2px;
+  padding-inline-end: 3px;
 }
-.structure-footer__topBtn:hover .svgs-arrowUp {
+.structure-footer__brick {
+  display: block;
+  width: 9px;
+  height: 4px;
+  border: 1px solid color-mix(in oklab, var(--brand-on-dark) 48%, transparent);
+  background-color: transparent;
+  transform-origin: center center;
+  transition: background-color 180ms var(--ft-ease), border-color 180ms var(--ft-ease), transform var(--ft-hover) var(--ft-ease);
+}
+/* Stagger middle running-bond course horizontally for unmistakable brick pattern. */
+.structure-footer__brick[data-brick="3"],
+.structure-footer__brick[data-brick="4"] {
+  transform: translateX(3px);
+}
+.structure-footer__brick.is-filled {
+  background-color: var(--brand-on-dark);
+  border-color: var(--brand-on-dark);
+}
+.structure-footer__topBtn:hover .structure-footer__brick--topA {
   transform: translateY(-3px);
 }
-.structure-footer__topBtn:active .svgs-arrowUp {
+.structure-footer__topBtn:hover .structure-footer__brick--topB {
+  transform: translateY(-2px);
+}
+.structure-footer__topBtn:active .structure-footer__brick--topA,
+.structure-footer__topBtn:active .structure-footer__brick--topB {
   transform: translateY(1px);
 }
 
@@ -1314,17 +1420,20 @@ html.has-cookie-banner .page .sections-servicesHero {
   }
   .structure-footer__link,
   .structure-footer__ctaBtn,
-  .structure-footer__ctaGhost {
+  .structure-footer__ctaGhost,
+  .structure-footer__copyBtn {
     transition: color 150ms ease, background-color 150ms ease;
   }
   .structure-footer__ctaBtn:hover,
   .structure-footer__ctaBtn:active,
   .structure-footer__ctaGhost:active,
-  .structure-footer__topBtn:hover .svgs-arrowUp,
-  .structure-footer__topBtn:active .svgs-arrowUp {
+  .structure-footer__topBtn:hover .structure-footer__brick--topA,
+  .structure-footer__topBtn:hover .structure-footer__brick--topB,
+  .structure-footer__topBtn:active .structure-footer__brick--topA,
+  .structure-footer__topBtn:active .structure-footer__brick--topB {
     transform: none;
   }
-  .structure-footer__topBtn .svgs-arrowUp,
+  .structure-footer__topBtn .structure-footer__brick,
   .structure-footer__statusDot {
     transition: none;
     animation: none;
@@ -1336,7 +1445,6 @@ html.has-cookie-banner .page .sections-servicesHero {
   outline: 2px solid var(--brand-on-dark);
   outline-offset: 3px;
 }
-
 
 /* ==========================================================================
    Testimonials — editorial spotlight (tst-*)

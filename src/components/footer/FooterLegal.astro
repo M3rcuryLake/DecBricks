@@ -43,21 +43,14 @@ const legalLinks = FOOTER.legal.filter((l) => l.enabled && Boolean(l.href));
 
     <button class="parts-btnScrollTop structure-footer__topBtn" aria-label="Rise to the top" type="button">
       <span class="relative flex items-center gap-11 overflow-hidden">
-        <svg
-          class="svgs-arrowUp block w-12 min-w-12 text-darkPurple sm:w-20 sm:min-w-20"
-          viewBox="0 0 20 12"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          <rect x="8" y="12" width="4" height="4" transform="rotate(-90 8 12)" fill="currentColor" />
-          <rect y="12" width="4" height="4" transform="rotate(-90 0 12)" fill="currentColor" />
-          <rect x="4" y="8" width="4" height="4" transform="rotate(-90 4 8)" fill="currentColor" />
-          <rect x="8" y="4" width="4" height="4" transform="rotate(-90 8 4)" fill="currentColor" />
-          <rect x="8" y="5.54101e-08" width="4" height="4" fill="currentColor" />
-          <rect x="12" y="4" width="4" height="4" fill="currentColor" />
-          <rect x="16" y="8" width="4" height="4" fill="currentColor" />
-        </svg>
+        <span class="structure-footer__bricks" data-footer-bricks aria-hidden="true">
+          <i class="structure-footer__brick structure-footer__brick--topA" data-brick="6"></i>
+          <i class="structure-footer__brick structure-footer__brick--topB" data-brick="5"></i>
+          <i class="structure-footer__brick" data-brick="4"></i>
+          <i class="structure-footer__brick" data-brick="3"></i>
+          <i class="structure-footer__brick" data-brick="2"></i>
+          <i class="structure-footer__brick" data-brick="1"></i>
+        </span>
         <span class="parts-btnScrollTop__label subheading u-kicker text-darkPurple uppercase" aria-hidden="true">
           Rise to the top
         </span>

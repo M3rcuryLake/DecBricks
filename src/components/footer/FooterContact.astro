@@ -13,10 +13,24 @@ const hasContact = Boolean(email || phones.length > 0 || socials.length > 0);
       </h3>
       <ul class="structure-footer__colList">
         {email && (
-          <li>
+          <li class="structure-footer__emailRow">
             <a href={`mailto:${email}`} class="structure-footer__link text-darkPurple">
               {email}
             </a>
+            <button
+              type="button"
+              class="structure-footer__copyBtn subheading u-kicker text-darkPurple uppercase"
+              data-copy-email={email}
+              aria-label={`Copy email address ${email}`}
+            >
+              Copy
+            </button>
+            <span
+              class="structure-footer__copyStatus subheading u-kicker text-darkPurple uppercase"
+              role="status"
+              aria-live="polite"
+              data-copy-status
+            ></span>
           </li>
         )}
         {phones.map((phone) => (

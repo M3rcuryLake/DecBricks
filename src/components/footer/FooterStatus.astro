@@ -23,13 +23,13 @@ const AVAILABILITY_LABELS: Record<'open' | 'limited' | 'closed', string> = {
       {timeZone && (
         <p class="structure-footer__clockWrap">
           <time class="structure-footer__clock text-darkPurple" data-footer-clock>
-            {timeZone}
+            --:--
           </time>
         </p>
       )}
       {availability && (
-        <p class="structure-footer__availability text-darkPurple">
-          <span class="structure-footer__statusDot" aria-hidden="true" />
+        <p class="structure-footer__availability text-darkPurple" data-availability={availability}>
+          <span class="structure-footer__statusDot" aria-hidden="true"></span>
           <span>{AVAILABILITY_LABELS[availability]}</span>
         </p>
       )}
