@@ -18,7 +18,7 @@
  * initCalEmbed() returns a teardown; registered in main.ts boot + onAfterSwap.
  */
 import { bus } from './core/gsap';
-import { CAL, EMAIL, PHONES } from '../data/contact';
+import { CAL } from '../data/contact';
 
 const CONSENT_COOKIE = 'essential-consent';
 const SCRIPT_TIMEOUT_MS = 10_000;
@@ -38,7 +38,6 @@ declare global {
 }
 
 const hasConsent = () => document.cookie.split('; ').some((c) => c.startsWith(CONSENT_COOKIE + '='));
-const hasFallbackContent = () => !!CAL.bookingUrl || !!EMAIL || PHONES.length > 0;
 
 /** Official inline-embed loader shape: a queue consumed by embed.js. Loads once. */
 function ensureCal(origin: string): CalQueueObject {
@@ -74,10 +73,9 @@ export function initCalEmbed() {
   const fallback = root.querySelector<HTMLElement>('.cal-fallback');
   const status = root.querySelector<HTMLElement>('.cal-status');
 
-  // No Cal link configured: fallback card is already visible server-side.
-  // (DEV warning lives in CalEmbed.astro.) Also skip in prod if there is
-  // literally nothing to fall back to — then show nothing at all.
-  if (!mount || (!CAL.link && !hasFallbackContent())) return;
+  // No Cal link configured: fallback card is already visible server-side
+  // (DEV warning lives in CalEmbed.astro). Never load embed.js with an empty link.
+  if (!mount || !CAL.link) return;
 
   const say = (message: string) => {
     if (status) {
@@ -151,7 +149,7 @@ export function initCalEmbed() {
     return false;
   };
 
-  let loadStarted = false;
+  let loadStarted = hasConsent();
   let observed = false;
 
   /** Begin the (consented) load: queue the inline embed, reveal the skeleton. */

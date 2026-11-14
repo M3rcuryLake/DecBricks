@@ -139,7 +139,7 @@ export function initKeywords() {
       window.addEventListener('scroll', handleScroll, { passive: true });
       window.addEventListener('resize', handleResize, { passive: true });
 
-      setTimeout(() => {
+      const recacheTimer = window.setTimeout(() => {
         debouncedRecache = gsap
           .delayedCall(0.15, () => {
             cacheElementCenters();
@@ -148,6 +148,7 @@ export function initKeywords() {
       }, 100);
 
       return () => {
+        window.clearTimeout(recacheTimer);
         els.forEach((el) => {
           gsap.killTweensOf(el);
           const inner = innerEls.get(el);

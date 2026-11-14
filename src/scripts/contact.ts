@@ -19,6 +19,7 @@ export function initContact() {
   let isHovered = false;
   let isFocused = false;
   let hoverTween: gsap.core.Tween | null = null;
+  const ac = new AbortController();
 
   const updateHoverState = (active: boolean) => {
     hoverTween?.kill();
@@ -53,6 +54,7 @@ export function initContact() {
         .to('.sections-contactForm__headingRight', { x: isDesktop ? -75 : -25, ease: 'none' }, 0);
 
       let formTl: gsap.core.Timeline | null = null;
+      const desktopAc = new AbortController();
       const tick = () => {
         if (!formEl) return;
         const rot = gsap.utils.interpolate(state.scrollRotation, 0, state.hoverProgress);
@@ -75,29 +77,47 @@ export function initContact() {
         formTl.to(state, { scrollRotation: 8, ease: 'none' });
         gsap.ticker.add(tick);
 
-        formEl.addEventListener('mouseenter', () => {
-          isHovered = true;
-          updateHoverState(true);
-        });
-        formEl.addEventListener('mouseleave', () => {
-          isHovered = false;
-          if (!isFocused) updateHoverState(false);
-        });
-        formEl.addEventListener('focusin', () => {
-          isFocused = true;
-          updateHoverState(true);
-        });
-        formEl.addEventListener('focusout', (e) => {
-          if (!formEl.contains(e.relatedTarget as Node | null)) {
-            isFocused = false;
-            if (!isHovered) updateHoverState(false);
-          }
-        });
+        formEl.addEventListener(
+          'mouseenter',
+          () => {
+            isHovered = true;
+            updateHoverState(true);
+          },
+          { signal: desktopAc.signal }
+        );
+        formEl.addEventListener(
+          'mouseleave',
+          () => {
+            isHovered = false;
+            if (!isFocused) updateHoverState(false);
+          },
+          { signal: desktopAc.signal }
+        );
+        formEl.addEventListener(
+          'focusin',
+          () => {
+            isFocused = true;
+            updateHoverState(true);
+          },
+          { signal: desktopAc.signal }
+        );
+        formEl.addEventListener(
+          'focusout',
+          (e) => {
+            if (!formEl.contains(e.relatedTarget as Node | null)) {
+              isFocused = false;
+              if (!isHovered) updateHoverState(false);
+            }
+          },
+          { signal: desktopAc.signal }
+        );
       } else if (formEl) {
         gsap.set(formEl, { rotate: 0 });
       }
 
       return () => {
+        desktopAc.abort();
+        hoverTween?.kill();
         headingTl.kill();
         formTl?.kill();
         gsap.ticker.remove(tick);
@@ -115,7 +135,7 @@ export function initContact() {
       checkboxSvg.classList.toggle('opacity-0', !checkboxInput.checked);
     };
     syncCheckbox();
-    checkboxInput.addEventListener('change', syncCheckbox);
+    checkboxInput.addEventListener('change', syncCheckbox, { signal: ac.signal });
   }
 
   // Status live region (`#status-message` carries aria-live in the markup).
@@ -138,8 +158,10 @@ export function initContact() {
   const btnTexts = submitBtn?.querySelectorAll<HTMLElement>('.part-btnPrimary__text');
   const setBtn = (label: string) => btnTexts?.forEach((t) => (t.textContent = label));
 
-  formEl.addEventListener('submit', (e) => {
-    e.preventDefault();
+  formEl.addEventListener(
+    'submit',
+    (e) => {
+      e.preventDefault();
     const inputs = Array.from(formEl.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input[required], textarea[required], input[name], textarea[name]'));
     let valid = true;
     let firstInvalid: HTMLElement | null = null;
@@ -232,9 +254,12 @@ export function initContact() {
         setBtn('Try again');
         setSending(false);
       });
-  });
+    },
+    { signal: ac.signal }
+  );
 
   return () => {
+    ac.abort();
     mm.revert();
   };
 }

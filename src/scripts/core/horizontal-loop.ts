@@ -132,7 +132,13 @@ export function horizontalLoop(itemsIn: gsap.TweenTarget, config: HorizontalLoop
     gsap.set(items, { x: 0 });
     populateWidths();
     populateTimeline();
-    window.addEventListener('resize', () => refresh(true));
+    const onResize = () => refresh(true);
+    window.addEventListener('resize', onResize);
+    const origKill = tl.kill.bind(tl);
+    tl.kill = ((...args: Parameters<HorizontalLoop['kill']>) => {
+      window.removeEventListener('resize', onResize);
+      return origKill(...args);
+    }) as HorizontalLoop['kill'];
 
     tl.closestIndex = (setCurrent) => {
       const index = closestIndexOf(times, tl.time(), tl.duration());

@@ -41,6 +41,7 @@ class StickerMouseTrail {
   private stickerPool: { element: HTMLElement; inUse: boolean; timeline: gsap.core.Timeline | null }[] = [];
   private activeStickers = new Set<{ element: HTMLElement; inUse: boolean; timeline: gsap.core.Timeline | null }>();
   private stickerElements: HTMLElement[] = [];
+  private burstCalls: gsap.core.Tween[] = [];
   private target!: HTMLElement;
   private targetRect!: DOMRect;
   private entranceTrigger?: ScrollTrigger;
@@ -87,6 +88,8 @@ class StickerMouseTrail {
     this.onResize = null;
     this.entranceTrigger?.kill();
     this.entranceTrigger = undefined;
+    this.burstCalls.forEach((c) => c.kill());
+    this.burstCalls = [];
     this.stickerPool.forEach((s) => s.timeline?.kill());
     gsap.killTweensOf(this.stickerPool.map((s) => s.element));
   }
@@ -117,13 +120,15 @@ class StickerMouseTrail {
       const delay = idx * this.config.burstStagger;
       const col = idx % cols;
       const row = Math.floor(idx / cols);
-      gsap.delayedCall(delay, () => {
-        const cx = 60 + col * cellW + cellW / 2;
-        const cy = 60 + row * cellH + cellH / 2;
-        const x = cx + (Math.random() - 0.5) * (cellW * 0.75);
-        const y = cy + (Math.random() - 0.5) * (cellH * 0.75);
-        this.createMedia(x, y, 0, 0);
-      });
+      this.burstCalls.push(
+        gsap.delayedCall(delay, () => {
+          const cx = 60 + col * cellW + cellW / 2;
+          const cy = 60 + row * cellH + cellH / 2;
+          const x = cx + (Math.random() - 0.5) * (cellW * 0.75);
+          const y = cy + (Math.random() - 0.5) * (cellH * 0.75);
+          this.createMedia(x, y, 0, 0);
+        })
+      );
     }
   }
 
@@ -297,7 +302,7 @@ function initMomentumHover(container: HTMLElement, onUpdate?: (target: HTMLEleme
     element: slide,
     target: slide.querySelector<HTMLElement>('.parts-caseStudyCard__inner'),
   }));
-  new MomentumHover(
+  return new MomentumHover(
     container,
     items,
     {
@@ -315,6 +320,7 @@ export function initCaseStudies() {
   const section = document.querySelector<HTMLElement>('.sections-caseStudies');
   if (!section) return;
 
+  const ac = new AbortController();
   initSvgRectReveal(section);
   const stickerTrail = new StickerMouseTrail(section);
   const destroyMobileStickerSlider = initMobileStickerSlider(section);
@@ -656,12 +662,13 @@ export function initCaseStudies() {
   resizeManager.add(onSliderResize);
 
   // Entrance animation + MomentumHover (after WebGLImage textures are ready)
-  initMomentumHover(sliderEl, (_target, slideEl) => syncSlideToWebGL(slideEl));
+  const momentumHover = initMomentumHover(sliderEl, (_target, slideEl) => syncSlideToWebGL(slideEl));
 
+  let entranceTween: gsap.core.Tween | null = null;
   const startEntrance = () => {
     if (prefersReducedMotion()) return;
     const initialSlides = getVisibleSlides().slice(0, 4);
-    gsap.from(initialSlides, {
+    entranceTween = gsap.from(initialSlides, {
       x: 120,
       stagger: 0.1,
       duration: 1.4,
@@ -706,12 +713,20 @@ export function initCaseStudies() {
         });
       },
     });
-    slide.addEventListener('mouseenter', () => {
-      if (!prefersReducedMotion() && window.innerWidth >= bp.lg) tl.play();
-    });
-    slide.addEventListener('mouseleave', () => {
-      if (!prefersReducedMotion() && window.innerWidth >= bp.lg) tl.reverse();
-    });
+    slide.addEventListener(
+      'mouseenter',
+      () => {
+        if (!prefersReducedMotion() && window.innerWidth >= bp.lg) tl.play();
+      },
+      { signal: ac.signal }
+    );
+    slide.addEventListener(
+      'mouseleave',
+      () => {
+        if (!prefersReducedMotion() && window.innerWidth >= bp.lg) tl.reverse();
+      },
+      { signal: ac.signal }
+    );
   });
 
   // Category filter buttons
@@ -734,8 +749,10 @@ export function initCaseStudies() {
   updateFilterButtonsUI('all');
 
   filterBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      if (isAnimatingFilter) return;
+    btn.addEventListener(
+      'click',
+      () => {
+        if (isAnimatingFilter) return;
       const cat = (btn.querySelector('.parts-btnBlock__label')?.textContent || '').trim().toLowerCase();
       if (!cat || cat === activeCategory) return;
       activeCategory = cat;
@@ -785,13 +802,21 @@ export function initCaseStudies() {
           stagger: 0.02,
           ease: 'elastic.out(1.1,0.65)',
         });
-    });
+      },
+      { signal: ac.signal }
+    );
   });
 
   return () => {
+    ac.abort();
     mm.revert();
     resizeManager.remove(onSliderResize);
     sliderEl.removeEventListener('keydown', onSliderKeydown);
+    momentumHover?.destroy();
+    entranceTween?.kill();
+    sliderDraggable?.kill();
+    pageDraggable?.kill();
+    pageTimeline?.kill();
     stickerTrail.destroy();
     destroyMobileStickerSlider?.();
   };

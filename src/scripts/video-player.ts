@@ -27,12 +27,14 @@ export function initVideoPlayer() {
   const volumeBars = controls?.querySelectorAll<HTMLElement>('.parts-volumeControl span');
   const volumeInput = controls?.querySelector<HTMLInputElement>('.parts-volumeControl input[type="range"]');
 
+  const ac = new AbortController();
   let isPlaying = false;
   let isMuted = false;
   let currentTime = 0;
   let duration = 0;
   let volume = 1;
   let hasPlayed = false;
+  let announceTimer: number | undefined;
 
   const updateProgressUI = () => {
     const dur = duration || video?.duration || 0;
@@ -43,11 +45,15 @@ export function initVideoPlayer() {
     if (timestampEl) timestampEl.textContent = formatTimestamp(t);
   };
 
-  video?.addEventListener('timeupdate', () => {
-    currentTime = video.currentTime;
-    duration = video.duration || duration;
-    updateProgressUI();
-  });
+  video?.addEventListener(
+    'timeupdate',
+    () => {
+      currentTime = video.currentTime;
+      duration = video.duration || duration;
+      updateProgressUI();
+    },
+    { signal: ac.signal }
+  );
 
   // ── 1. Play button inner reveal (B6TU9kmS.js) ─────────────────────────────
   const mm = gsap.matchMedia();
@@ -191,12 +197,16 @@ export function initVideoPlayer() {
   };
 
   // ── 4. Player events ────────────────────────────────────────────────────────
-  player.addEventListener('videoplay', () => {
-    const start = document.querySelector<HTMLElement>('.sections-hero .start');
-    const startMobile = document.querySelector<HTMLElement>('.sections-hero .start-mobile');
-    if (start) gsap.to(start, { opacity: 0, duration: 0.3 });
-    if (startMobile) gsap.to(startMobile, { opacity: 0, duration: 0.3 });
-  });
+  player.addEventListener(
+    'videoplay',
+    () => {
+      const start = document.querySelector<HTMLElement>('.sections-hero .start');
+      const startMobile = document.querySelector<HTMLElement>('.sections-hero .start-mobile');
+      if (start) gsap.to(start, { opacity: 0, duration: 0.3 });
+      if (startMobile) gsap.to(startMobile, { opacity: 0, duration: 0.3 });
+    },
+    { signal: ac.signal }
+  );
 
   // ── 5. Interactions ────────────────────────────────────────────────────────
   const announceAction = (message: string) => {
@@ -210,7 +220,8 @@ export function initVideoPlayer() {
       document.body.appendChild(t);
     }
     t.textContent = message;
-    setTimeout(() => {
+    window.clearTimeout(announceTimer);
+    announceTimer = window.setTimeout(() => {
       if (t && t.textContent === message) t.textContent = '';
     }, 1000);
   };
@@ -390,39 +401,61 @@ export function initVideoPlayer() {
     }
   };
   video?.setAttribute('tabindex', '0');
-  video?.addEventListener('keydown', handleKeydown);
+  video?.addEventListener('keydown', handleKeydown, { signal: ac.signal });
 
-  playBtn?.addEventListener('click', startPlayback);
-  pauseBtn?.addEventListener('click', togglePlayPause);
-  clickOverlay?.addEventListener('click', () => {
-    if (hasPlayed) togglePlayPause();
-  });
+  playBtn?.addEventListener('click', startPlayback, { signal: ac.signal });
+  pauseBtn?.addEventListener('click', togglePlayPause, { signal: ac.signal });
+  clickOverlay?.addEventListener(
+    'click',
+    () => {
+      if (hasPlayed) togglePlayPause();
+    },
+    { signal: ac.signal }
+  );
 
-  progressInput?.addEventListener('input', () => {
-    if (!video || !video.duration) return;
-    seekTo(parseFloat(progressInput.value) * video.duration);
-  });
+  progressInput?.addEventListener(
+    'input',
+    () => {
+      if (!video || !video.duration) return;
+      seekTo(parseFloat(progressInput.value) * video.duration);
+    },
+    { signal: ac.signal }
+  );
 
-  muteBtn?.addEventListener('click', toggleMute);
-  volumeInput?.addEventListener('input', () => {
-    setVolume(parseFloat(volumeInput.value) || 0);
-  });
+  muteBtn?.addEventListener('click', toggleMute, { signal: ac.signal });
+  volumeInput?.addEventListener(
+    'input',
+    () => {
+      setVolume(parseFloat(volumeInput.value) || 0);
+    },
+    { signal: ac.signal }
+  );
 
-  video?.addEventListener('ended', () => {
-    isPlaying = false;
-    setShowButton(true);
-    showPlayButton();
-  });
+  video?.addEventListener(
+    'ended',
+    () => {
+      isPlaying = false;
+      setShowButton(true);
+      showPlayButton();
+    },
+    { signal: ac.signal }
+  );
 
-  player.addEventListener('hide', () => {
-    hideVideo();
-    const start = document.querySelector<HTMLElement>('.sections-hero .start');
-    const startMobile = document.querySelector<HTMLElement>('.sections-hero .start-mobile');
-    if (start) gsap.to(start, { opacity: 1, duration: 0.3 });
-    if (startMobile) gsap.to(startMobile, { opacity: 1, duration: 0.3 });
-  });
+  player.addEventListener(
+    'hide',
+    () => {
+      hideVideo();
+      const start = document.querySelector<HTMLElement>('.sections-hero .start');
+      const startMobile = document.querySelector<HTMLElement>('.sections-hero .start-mobile');
+      if (start) gsap.to(start, { opacity: 1, duration: 0.3 });
+      if (startMobile) gsap.to(startMobile, { opacity: 1, duration: 0.3 });
+    },
+    { signal: ac.signal }
+  );
 
   return () => {
+    window.clearTimeout(announceTimer);
+    ac.abort();
     headerST?.kill();
     revealTl?.kill();
     playBtnTl?.kill();

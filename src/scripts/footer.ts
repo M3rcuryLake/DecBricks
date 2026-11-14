@@ -1,4 +1,4 @@
-import { gsap, bus, ScrollTrigger, initSvgRectReveal, prefersReducedMotion } from './core/gsap';
+import { bus, ScrollTrigger, initSvgRectReveal, prefersReducedMotion } from './core/gsap';
 import { getLenis } from './smooth-scroll';
 
 let didWarnMissing = false;
@@ -50,7 +50,6 @@ export function initFooter() {
 
   initSvgRectReveal(footer);
 
-  const marquee = footer.querySelector<HTMLElement>('.structure-footer__marquee');
   const wordmarkRow = footer.querySelector<HTMLElement>('.structure-footer__wordmarkRow');
   const scrollTopBtn = footer.querySelector<HTMLButtonElement>('.parts-btnScrollTop');
   const manageCookiesBtn = footer.querySelector<HTMLButtonElement>('button[aria-label="Manage Cookies"]');
@@ -219,38 +218,6 @@ export function initFooter() {
   scrollTopBtn?.addEventListener('click', onScrollTop);
   manageCookiesBtn?.addEventListener('click', onManageCookies);
 
-  // 6. Optional legacy marquee guard (kept in flow so CTA stays visible when scrolling in)
-  const mm = gsap.matchMedia();
-  if (marquee) {
-    mm.add(
-      {
-        reduceMotion: '(prefers-reduced-motion: reduce)',
-      },
-      (ctx) => {
-        const { reduceMotion } = ctx.conditions as { reduceMotion: boolean };
-        if (reduceMotion) return;
-
-        const marqueeTween = gsap.to(marquee, {
-          x: () => (marquee.offsetWidth + 100) * -0.5,
-          duration: 45,
-          repeat: -1,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: footer,
-            start: 'top bottom',
-            end: 'bottom top',
-            toggleActions: 'play pause play pause',
-            invalidateOnRefresh: true,
-          },
-        });
-
-        return () => {
-          marqueeTween.kill();
-        };
-      }
-    );
-  }
-
   return () => {
     disposed = true;
     layObserver?.disconnect();
@@ -265,6 +232,5 @@ export function initFooter() {
     progressTrigger = null;
     scrollTopBtn?.removeEventListener('click', onScrollTop);
     manageCookiesBtn?.removeEventListener('click', onManageCookies);
-    mm.revert();
   };
 }

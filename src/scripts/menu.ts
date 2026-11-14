@@ -24,7 +24,6 @@ export function scrollToAnchor(hash: string, durationOverride?: number) {
   }
 }
 
-let currentAnchor: string | null = null;
 let anchorClearTimer: number | undefined;
 let rebuildThemeTriggersFn: (() => void) | null = null;
 let closeMenuFn: ((resumeLenis?: boolean) => void) | null = null;
@@ -73,14 +72,12 @@ function updateHeaderActiveUI(pathname = normalizePath(window.location.pathname)
 
 export function setActiveAnchor(anchor: string | null) {
   window.clearTimeout(anchorClearTimer);
-  currentAnchor = anchor;
   updateHeaderActiveUI();
   // Exact 5000ms auto-clear from D53SQfW8.js:
   // r(R, e => { e && (P &&= (clearTimeout(P), null), P = setTimeout(() => { O(), D.value = null }, 5e3)) })
   if (anchor) {
     anchorClearTimer = window.setTimeout(() => {
       clearPendingAnchor();
-      currentAnchor = null;
       updateHeaderActiveUI();
     }, 5000);
   }
@@ -192,16 +189,29 @@ export function initMenu() {
 
     mm.add(`(max-width: ${bp.lg - 1}px)`, () => {
       const reduced = prefersReducedMotion();
+      const mobileLinks = mobileNav.querySelectorAll('.link');
       menuTl = gsap.timeline({
         paused: true,
         defaults: { duration: reduced ? 0 : 0.5 },
       });
       menuTl.from(mobileNav, { yPercent: -150, duration: reduced ? 0 : 0.75, ease: 'elastic.out(1, 1.25)' });
-      menuTl.from('.link', { yPercent: 100, stagger: 0.1, ease: 'power2.inOut' }, '<-=0.1');
+      if (mobileLinks.length) {
+        menuTl.from(mobileLinks, { yPercent: 100, stagger: 0.1, ease: 'power2.inOut' }, '<-=0.1');
+      }
       if (closeBtn) menuTl.from(closeBtn, { autoAlpha: 0 }, '>-=0.1');
       return () => {
+        if (menuOpenState) {
+          menuOpenState = false;
+          setMobileNavInert(true);
+          openBtn?.setAttribute('aria-expanded', 'false');
+          applyLogoClasses();
+          getLenis()?.start();
+        }
         menuTl?.kill();
         menuTl = null;
+        gsap.set([mobileNav, closeBtn, ...mobileLinks].filter(Boolean), {
+          clearProps: 'transform,opacity,visibility',
+        });
       };
     });
 
@@ -220,9 +230,12 @@ export function initMenu() {
       menuOpenState = false;
       setMobileNavInert(true);
       openBtn?.setAttribute('aria-expanded', 'false');
+      applyLogoClasses();
       menuTl?.timeScale(1).reverse();
-      if (resumeLenis) getLenis()?.start();
-      setTimeout(() => menuButtonRef?.focus());
+      if (resumeLenis) {
+        getLenis()?.start();
+        setTimeout(() => menuButtonRef?.focus());
+      }
     };
 
     closeMenuFn = close;

@@ -13,6 +13,3 @@ const escape = (s: string) => s.replace(/[&<>"']/g, (c) => ESC[c]);
 export function brandify(text: string): string {
   return escape(text).replace(/\bDecbricks\b/gi, (m) => `<span class="font-brand">${m}</span>`);
 }
-
-/** True when a string contains the brand word (for decisions at call sites). */
-export const hasBrand = (s: string) => /\bDecbricks\b/i.test(s);
