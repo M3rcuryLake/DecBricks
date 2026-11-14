@@ -746,12 +746,6 @@ li {
   background-color: var(--brand-olive);
 }
 
-/* "Drag To Navigate" cursor card (BUG-006): burgundy on coral 2.63:1 →
-   burgundy on sage 7.0:1. */
-.parts-marqueeCursor__card {
-  background-color: var(--brand-sage);
-}
-
 /* Contact form borders (states): olive on hover/focus. Note: the markup's
    hover/focus:border-purple utilities do not exist in the compiled CSS —
    the live affordance is the border + :focus-visible ring, so target those. */
@@ -2033,141 +2027,141 @@ html.has-cookie-banner .page .sections-servicesHero {
 /* 7 measured non-green card themes (adjacent surfaces distinct; text >= 5.13:1, slash >= 3.34:1) */
 .parts-serviceCard--t1 .parts-serviceCard__inner,
 .parts-serviceCard--t1 .parts-serviceCard__inner::before {
-  background-color: #FFF9F2;
+  background-color: var(--brand-surface);
 }
 .parts-serviceCard--t1 .parts-serviceCard__content {
-  color: #800020;
+  color: var(--brand-on-light);
 }
 .parts-serviceCard--t1 .parts-serviceCard__numeral {
-  color: color-mix(in oklab, #800020 10%, transparent);
+  color: color-mix(in oklab, var(--brand-bg-dark) 10%, transparent);
 }
 .parts-serviceCard--t1 .parts-serviceCard__slash {
-  color: #D45060;
+  color: var(--brand-accent);
 }
 .parts-serviceCard--t1 .parts-keyword__inner,
 .parts-serviceCard--t1 .parts-serviceCard__btn {
-  background-color: #800020;
-  color: #FFF9F2;
+  background-color: var(--brand-bg-dark);
+  color: var(--brand-on-dark);
 }
 .parts-serviceCard--t1 .parts-serviceCard__btn:active {
-  background-color: #BC3D4D;
+  background-color: var(--brand-accent-deep);
 }
 .parts-serviceCard--t1 .parts-serviceCard__more {
-  background-color: #F3E6D5;
-  color: #800020;
+  background-color: var(--brand-surface-alt);
+  color: var(--brand-on-light);
 }
 
 .parts-serviceCard--t2 .parts-serviceCard__inner,
 .parts-serviceCard--t2 .parts-serviceCard__inner::before {
-  background-color: #F3E6D5;
+  background-color: var(--brand-surface-alt);
 }
 .parts-serviceCard--t2 .parts-serviceCard__content {
-  color: #800020;
+  color: var(--brand-on-light);
 }
 .parts-serviceCard--t2 .parts-serviceCard__numeral {
   color: rgba(255, 249, 242, 0.45);
 }
 .parts-serviceCard--t2 .parts-serviceCard__slash {
-  color: #D45060;
+  color: var(--brand-accent);
 }
 .parts-serviceCard--t2 .parts-keyword__inner {
-  background-color: #FFF9F2;
-  color: #800020;
+  background-color: var(--brand-surface);
+  color: var(--brand-on-light);
 }
 .parts-serviceCard--t2 .parts-serviceCard__more {
   background-color: #5A0014;
-  color: #FFF9F2;
+  color: var(--brand-on-dark);
 }
 .parts-serviceCard--t2 .parts-serviceCard__btn {
-  background-color: #800020;
-  color: #FFF9F2;
+  background-color: var(--brand-bg-dark);
+  color: var(--brand-on-dark);
 }
 .parts-serviceCard--t2 .parts-serviceCard__btn:active {
-  background-color: #BC3D4D;
+  background-color: var(--brand-accent-deep);
 }
 
 .parts-serviceCard--t3 .parts-serviceCard__inner,
 .parts-serviceCard--t3 .parts-serviceCard__inner::before {
-  background-color: #800020;
+  background-color: var(--brand-bg-dark);
 }
 .parts-serviceCard--t3 .parts-serviceCard__content {
-  color: #FFF9F2;
+  color: var(--brand-on-dark);
 }
 .parts-serviceCard--t3 .parts-serviceCard__numeral {
   color: rgba(243, 230, 213, 0.1);
 }
 .parts-serviceCard--t3 .parts-serviceCard__slash {
-  color: #F3E6D5;
+  color: var(--brand-surface-alt);
 }
 .parts-serviceCard--t3 .parts-keyword__inner {
   background-color: #5A0014;
-  color: #FFF9F2;
+  color: var(--brand-on-dark);
 }
 .parts-serviceCard--t3 .parts-serviceCard__more {
-  background-color: #F3E6D5;
-  color: #800020;
+  background-color: var(--brand-surface-alt);
+  color: var(--brand-on-light);
 }
 .parts-serviceCard--t3 .parts-serviceCard__btn {
-  background-color: #FFF9F2;
-  color: #800020;
+  background-color: var(--brand-surface);
+  color: var(--brand-on-light);
 }
 .parts-serviceCard--t3 .parts-serviceCard__btn:active {
-  background-color: #F3E6D5;
+  background-color: var(--brand-surface-alt);
 }
 
 .parts-serviceCard--t4 .parts-serviceCard__inner,
 .parts-serviceCard--t4 .parts-serviceCard__inner::before {
-  background-color: #FFF9F2;
+  background-color: var(--brand-surface);
 }
 .parts-serviceCard--t4 .parts-serviceCard__content {
-  color: #800020;
+  color: var(--brand-on-light);
 }
 .parts-serviceCard--t4 .parts-serviceCard__numeral {
-  color: color-mix(in oklab, #800020 10%, transparent);
+  color: color-mix(in oklab, var(--brand-bg-dark) 10%, transparent);
 }
 .parts-serviceCard--t4 .parts-serviceCard__slash {
-  color: #BC3D4D;
+  color: var(--brand-accent-deep);
 }
 .parts-serviceCard--t4 .parts-keyword__inner {
   background-color: #5A0014;
-  color: #FFF9F2;
+  color: var(--brand-on-dark);
 }
 .parts-serviceCard--t4 .parts-serviceCard__more {
-  background-color: #BC3D4D;
-  color: #FFF9F2;
+  background-color: var(--brand-accent-deep);
+  color: var(--brand-on-dark);
 }
 .parts-serviceCard--t4 .parts-serviceCard__btn {
-  background-color: #800020;
-  color: #FFF9F2;
+  background-color: var(--brand-bg-dark);
+  color: var(--brand-on-dark);
 }
 .parts-serviceCard--t4 .parts-serviceCard__btn:active {
-  background-color: #BC3D4D;
+  background-color: var(--brand-accent-deep);
 }
 
 .parts-serviceCard--t5 .parts-serviceCard__inner,
 .parts-serviceCard--t5 .parts-serviceCard__inner::before {
-  background-color: #BC3D4D;
+  background-color: var(--brand-accent-deep);
 }
 .parts-serviceCard--t5 .parts-serviceCard__content {
-  color: #FFF9F2;
+  color: var(--brand-on-dark);
 }
 .parts-serviceCard--t5 .parts-serviceCard__numeral {
   color: rgba(255, 249, 242, 0.15);
 }
 .parts-serviceCard--t5 .parts-serviceCard__slash {
-  color: #FFF9F2;
+  color: var(--brand-on-dark);
 }
 .parts-serviceCard--t5 .parts-keyword__inner {
-  background-color: #800020;
-  color: #FFF9F2;
+  background-color: var(--brand-bg-dark);
+  color: var(--brand-on-dark);
 }
 .parts-serviceCard--t5 .parts-serviceCard__more {
   background-color: #5A0014;
-  color: #FFF9F2;
+  color: var(--brand-on-dark);
 }
 .parts-serviceCard--t5 .parts-serviceCard__btn {
-  background-color: #800020;
-  color: #FFF9F2;
+  background-color: var(--brand-bg-dark);
+  color: var(--brand-on-dark);
 }
 .parts-serviceCard--t5 .parts-serviceCard__btn:active {
   background-color: #5A0014;
@@ -2175,31 +2169,31 @@ html.has-cookie-banner .page .sections-servicesHero {
 
 .parts-serviceCard--t6 .parts-serviceCard__inner,
 .parts-serviceCard--t6 .parts-serviceCard__inner::before {
-  background-color: #F3E6D5;
+  background-color: var(--brand-surface-alt);
 }
 .parts-serviceCard--t6 .parts-serviceCard__content {
-  color: #800020;
+  color: var(--brand-on-light);
 }
 .parts-serviceCard--t6 .parts-serviceCard__numeral {
   color: rgba(255, 249, 242, 0.45);
 }
 .parts-serviceCard--t6 .parts-serviceCard__slash {
-  color: #BC3D4D;
+  color: var(--brand-accent-deep);
 }
 .parts-serviceCard--t6 .parts-keyword__inner {
-  background-color: #800020;
-  color: #FFF9F2;
+  background-color: var(--brand-bg-dark);
+  color: var(--brand-on-dark);
 }
 .parts-serviceCard--t6 .parts-serviceCard__more {
-  background-color: #BC3D4D;
-  color: #FFF9F2;
+  background-color: var(--brand-accent-deep);
+  color: var(--brand-on-dark);
 }
 .parts-serviceCard--t6 .parts-serviceCard__btn {
   background-color: #5A0014;
-  color: #FFF9F2;
+  color: var(--brand-on-dark);
 }
 .parts-serviceCard--t6 .parts-serviceCard__btn:active {
-  background-color: #BC3D4D;
+  background-color: var(--brand-accent-deep);
 }
 
 .parts-serviceCard--t7 .parts-serviceCard__inner,
@@ -2207,28 +2201,28 @@ html.has-cookie-banner .page .sections-servicesHero {
   background-color: #5A0014;
 }
 .parts-serviceCard--t7 .parts-serviceCard__content {
-  color: #FFF9F2;
+  color: var(--brand-on-dark);
 }
 .parts-serviceCard--t7 .parts-serviceCard__numeral {
   color: rgba(255, 249, 242, 0.1);
 }
 .parts-serviceCard--t7 .parts-serviceCard__slash {
-  color: #F3E6D5;
+  color: var(--brand-surface-alt);
 }
 .parts-serviceCard--t7 .parts-keyword__inner {
-  background-color: #F3E6D5;
-  color: #800020;
+  background-color: var(--brand-surface-alt);
+  color: var(--brand-on-light);
 }
 .parts-serviceCard--t7 .parts-serviceCard__more {
-  background-color: #BC3D4D;
-  color: #FFF9F2;
+  background-color: var(--brand-accent-deep);
+  color: var(--brand-on-dark);
 }
 .parts-serviceCard--t7 .parts-serviceCard__btn {
-  background-color: #FFF9F2;
-  color: #800020;
+  background-color: var(--brand-surface);
+  color: var(--brand-on-light);
 }
 .parts-serviceCard--t7 .parts-serviceCard__btn:active {
-  background-color: #F3E6D5;
+  background-color: var(--brand-surface-alt);
 }
 
 /* Reduced-motion fallback: static level vertical card stack */
@@ -2308,7 +2302,7 @@ html.has-cookie-banner .page .sections-servicesHero {
 }
 .parts-serviceBlock__cta:hover,
 .parts-serviceBlock__cta:focus-visible {
-  color: #5A6432;
+  color: var(--brand-olive);
 }
 @media (prefers-reduced-motion: no-preference) {
   .parts-serviceArtwork__pulse {
@@ -2337,19 +2331,19 @@ html.has-cookie-banner .page .sections-servicesHero {
   font-variant-numeric: tabular-nums;
 }
 .parts-serviceCard__btn:focus-visible {
-  outline: 2px solid #800020;
+  outline: 2px solid var(--brand-on-light);
   outline-offset: 3px;
 }
 .parts-serviceCard--t3 .parts-serviceCard__btn:focus-visible,
 .parts-serviceCard--t5 .parts-serviceCard__btn:focus-visible,
 .parts-serviceCard--t7 .parts-serviceCard__btn:focus-visible,
 .parts-serviceNavLink:focus-visible {
-  outline: 2px solid #FFF9F2;
+  outline: 2px solid var(--brand-on-dark);
   outline-offset: 3px;
 }
 .sections-servicesSidebarNavItem:focus-visible,
 .parts-serviceBlock__cta:focus-visible {
-  outline: 2px solid #5A6432;
+  outline: 2px solid var(--brand-olive);
   outline-offset: 3px;
 }
 
