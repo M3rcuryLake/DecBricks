@@ -24,7 +24,6 @@ export function scrollToAnchor(hash: string, durationOverride?: number) {
   }
 }
 
-let currentAnchor: string | null = null;
 let anchorClearTimer: number | undefined;
 let rebuildThemeTriggersFn: (() => void) | null = null;
 let closeMenuFn: ((resumeLenis?: boolean) => void) | null = null;
@@ -73,14 +72,12 @@ function updateHeaderActiveUI(pathname = normalizePath(window.location.pathname)
 
 export function setActiveAnchor(anchor: string | null) {
   window.clearTimeout(anchorClearTimer);
-  currentAnchor = anchor;
   updateHeaderActiveUI();
   // Exact 5000ms auto-clear from D53SQfW8.js:
   // r(R, e => { e && (P &&= (clearTimeout(P), null), P = setTimeout(() => { O(), D.value = null }, 5e3)) })
   if (anchor) {
     anchorClearTimer = window.setTimeout(() => {
       clearPendingAnchor();
-      currentAnchor = null;
       updateHeaderActiveUI();
     }, 5000);
   }
