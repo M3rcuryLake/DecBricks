@@ -133,3 +133,16 @@ Multi-viewport Playwright verification (`320, 375, 768, 1024, 1280, 1920, 2560`)
 
 Re-verified gates after Phase 6 fixes: `build` ✅ · `check` ✅ (0 err) · `check:brand` ✅ · `headings` ✅ · `links` ✅ · `check:placeholders` ✅ · `check:footer` ✅.
 
+---
+
+## Code Cleanup & Bug Fix Verification (2026-11-14, branch `cleanup/2026-11-14`)
+
+Full report: [`docs/cleanup/report.md`](file:///home/ankit/GitHub/decbricks/docs/cleanup/report.md) · Bug repros: [`docs/cleanup/bugs.md`](file:///home/ankit/GitHub/decbricks/docs/cleanup/bugs.md).
+
+| ID | Category | Scope & Measured Evidence | Status |
+|---|---|---|---|
+| CL-1 | `BUG-016..022` lifecycle fixes | Resize `375->1280` with open menu clears `lenis-stopped` / restores `aria-expanded="false"` + `inert` + logo contrast; pre-consented Cal.com loads & empty `CAL.link` skips cleanly; client swaps (`/about <-> /` + multi-route `/about -> /services -> /contact -> / -> /about`) reattach `1280×800` WebGL canvases with `errs: []`, `badReqs: []` | ✅ fixed & verified |
+| CL-2 | Dead asset & code scrub | Quarantined & deleted `BrandText.astro`, `fav1.png`, `32` dead `public/images/case-studies/` sticker files (`-3,075,122 B` in `dist/`), `menu.ts` `currentAnchor`, `footer.ts` `.structure-footer__marquee`, `brand.ts` `hasBrand`, `decbricks.css` `.parts-marqueeCursor__card`; tokenized card hexes cleanly; `noUnusedLocals` / `noUnusedParameters` enabled in `tsconfig.json` | ✅ fixed & verified |
+| CL-3 | Multi-width & a11y parity | `overflowX: 0` across `320, 375, 768, 1024, 1280, 1920, 2560 px` and under `prefers-reduced-motion: reduce`; `0` console/page/HTTP errors; keyboard `Tab` focus order passes | ✅ pass |
+| CL-4 | Phase 5 CSS purge (`cleanup/global-css-purge-2026-11-14`) | Pruned `src/styles/global.css` `157,642 B -> 97,735 B` (`-38.00%`, `-1,171` unused rules; `dist` CSS `-59,790 B`); 6-width × 5-route + 4 interactive states verified with `0` console/HTTP errors & zero layout/style regressions | ✅ verified on branch |
+
